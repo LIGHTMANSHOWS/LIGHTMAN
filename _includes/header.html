@@ -2,7 +2,7 @@
   <div class="container header-inner">
 
     <a href="{{ '/' | relative_url }}" class="logo">
-      <img src="{{ '/assets/img/logo-lightman.png' | relative_url }}" alt="Lightman Perú">
+      <img src="{{ '/assets/img/logo-lightman.png' | relative_url }}" alt="Lightman Perú" decoding="async" fetchpriority="high">
     </a>
 
     <button class="menu-toggle" id="menuToggle" aria-label="Abrir menú" aria-expanded="false">
@@ -22,7 +22,8 @@
 
       <a href="https://wa.me/51947113430"
          class="btn btn-nav"
-         target="_blank">
+         target="_blank"
+         rel="noopener noreferrer">
          Contactar
       </a>
     </nav>
