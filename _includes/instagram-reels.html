@@ -1,0 +1,38 @@
+<section class="reels-section" id="videos" aria-labelledby="reels-heading">
+  <div class="container">
+    <p class="section-kicker">Lightman en acción · @lightman.pe</p>
+    <h2 id="reels-heading">EL SHOW <span>EN MOVIMIENTO</span></h2>
+    <p class="reels-intro">Mira nuestros trabajos reales, desde robots LED hasta escenarios sincronizados. Elige un servicio y abre su reel aquí mismo.</p>
+    <p class="reels-privacy">Al pulsar «Cargar reel», te conectarás a Instagram, que podrá usar cookies según tu configuración. Las portadas son imágenes de nuestros servicios, no fotogramas de los videos.</p>
+    <div class="reels-filters" role="group" aria-label="Filtrar videos por servicio" hidden>
+      <button type="button" data-reel-filter="all" aria-pressed="true">Todos</button>
+      <button type="button" data-reel-filter="robots" aria-pressed="false">Robots LED</button>
+      <button type="button" data-reel-filter="banderas" aria-pressed="false">Banderas</button>
+      <button type="button" data-reel-filter="shows" aria-pressed="false">Tambores y shows</button>
+      <button type="button" data-reel-filter="estructuras" aria-pressed="false">Estructuras</button>
+    </div>
+    <p class="reels-count" role="status" aria-live="polite">{{ site.data.instagram_reels.size }} videos de Lightman</p>
+    <div class="reels-grid">
+      {% for reel in site.data.instagram_reels %}
+      <article class="reel-card" data-reel-category="{{ reel.category }}" data-reel-id="{{ reel.id }}">
+        <div class="reel-cover">
+          <img src="{{ reel.image | relative_url }}" alt="{{ reel.label }} de Lightman" loading="lazy" decoding="async" width="540" height="675">
+          <span class="reel-badge">{{ reel.label }}</span>
+          <button class="reel-load" type="button" aria-label="Cargar reel: {{ reel.title }}" hidden><span aria-hidden="true">▶</span> Cargar reel</button>
+        </div>
+        <div class="reel-embed" hidden></div>
+        <div class="reel-info">
+          <h3>{{ reel.title }}</h3>
+          <p class="reel-status" role="status" aria-live="polite"></p>
+          <div class="reel-links">
+            <a class="reel-original" href="https://www.instagram.com/reel/{{ reel.id }}/" target="_blank" rel="noopener noreferrer">Ver en Instagram ↗</a>
+            <button class="reel-close" type="button" hidden>Cerrar video</button>
+          </div>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+    <p class="reels-help">¿El video no aparece? Usa «Ver en Instagram». La reproducción depende de Instagram y de los permisos de cada publicación.</p>
+    <a class="btn btn-secondary" href="https://www.instagram.com/lightman.pe/" target="_blank" rel="noopener noreferrer">Más trabajos en @lightman.pe ↗</a>
+  </div>
+</section>
