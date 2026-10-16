@@ -6,7 +6,7 @@
       {% assign video_path = '/assets/' | append: reel.id | append: '.mp4' %}
       <article class="reel-card" data-reel-id="{{ reel.id }}" aria-label="{{ reel.title | escape }}">
         <video class="reel-video" controls playsinline preload="metadata" aria-label="{{ reel.title | escape }}" aria-describedby="description-{{ reel.id }}">
-          <source src="{{ video_path | relative_url }}#t=0.1" type="video/mp4">
+          <source src="{{ video_path | relative_url }}#t={{ reel.start_seconds | default: 0.1 }}" type="video/mp4">
           Tu navegador no permite reproducir este video. <a href="{{ video_path | relative_url }}">Abrir {{ reel.title | escape }}</a>.
         </video>
         <p class="reel-description" id="description-{{ reel.id }}">{{ reel.title | escape }}. Demostración de {{ reel.label | escape }} de Lightman Perú.</p>
