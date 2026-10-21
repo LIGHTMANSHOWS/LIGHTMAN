@@ -32,10 +32,10 @@ if(!marqueeTape)buildMarqueeTape();
 const scroll=Math.floor(s.local*3),level=s.pulse*brightness;
 for(let i=0;i<points.length;i++){
 const p=points[i],k=i*3;if(p.star)continue;
-if(p.feature==='ornament'){for(let c=0;c<3;c++)rgb[k+c]*=.4;continue;}
+if(p.feature==='ornament'){for(let c=0;c<3;c++)rgb[k+c]*=.85;continue;}
 const strand=((p.strand+32)%64)-32,row=Math.floor((4.5-p.y)/.35),column=((strand+12+scroll)%marqueeTape.width+marqueeTape.width)%marqueeTape.width;
 const on=row>=0&&row<7&&marqueeTape.rows[row][column];
-for(let c=0;c<3;c++)rgb[k+c]=on?level:rgb[k+c]*.035;
+for(let c=0;c<3;c++)rgb[k+c]=on?level:rgb[k+c]*(row>=0&&row<7?.16:.9);
 }
 return 1;
 }
@@ -71,10 +71,10 @@ default:{const seed=Math.sin(Math.floor(column)*127.1+Math.floor(beat*2)*73.7)*4
 }
 // Keep the bottom edge independent; on the top edge the white letters win.
 const row=7-p.row,col=((Math.floor(column+scroll)%ribbonTape.width)+ribbonTape.width)%ribbonTape.width,lit=p.row!==0&&!!ribbonTape.rows[row][col],edge=point.feature==='edge';
-for(let c=0;c<3;c++)rgb[k+c]=lit?textLevel:Math.min(1,rgb[k+c]*(edge?.55+1.9*effect:.025+.11*effect));
+for(let c=0;c<3;c++)rgb[k+c]=lit?textLevel:Math.min(edge?1:brightness*.38,rgb[k+c]*(edge?.55+1.9*effect:.42+.46*effect));
 }
 return 1;
 }
-function apply(rgb,points,t,track,preview=false,brightness=1){const ribbon=points[0]&&points[0].ribbonProgress!==undefined,s=state(t,track,preview,ribbon?2:1);if(!s.active)return 0;let samples=cache.get(points);if(!samples){samples=points.map((p,i)=>{const a=p.feature==='foliage'?((p.strand+32)%64-32)/64:Math.atan2(p.x,p.z)/(Math.PI*2),column=p.ribbonProgress===undefined?0:Math.round(p.ribbonProgress*1199);return {a:a*64,y:(1-p.h)*H,distance:p.ribbonDistance??column,pitch:p.ribbonStep??1,row:p.ribbonRow??i%8};});cache.set(points,samples);}if(s.ribbon)return applyRibbon(rgb,points,s,samples,brightness);if(s.marquee)return applyModelMarquee(rgb,points,s,brightness);for(let i=0;i<points.length;i++){if(points[i].star)continue;const j=i*3;if(points[i].feature==='ornament')continue;const p=samples[i],period=s.lines?64:32,angle=((p.a-s.orbit+period/2)%period+period)%period-period/2,x=(s.marquee?p.a+32:angle+(s.lines?32:W/2)),c=sample(s,x,p.y);for(let channel=0;channel<3;channel++){const background=rgb[j+channel];rgb[j+channel]=c?Math.max(background*.15,c[channel]*s.pulse):background*(s.lines?.10:.25);}}return 1;}
+function apply(rgb,points,t,track,preview=false,brightness=1){const ribbon=points[0]&&points[0].ribbonProgress!==undefined,s=state(t,track,preview,ribbon?2:1);if(!s.active)return 0;let samples=cache.get(points);if(!samples){samples=points.map((p,i)=>{const a=p.feature==='foliage'?((p.strand+32)%64-32)/64:Math.atan2(p.x,p.z)/(Math.PI*2),column=p.ribbonProgress===undefined?0:Math.round(p.ribbonProgress*1199);return {a:a*64,y:(1-p.h)*H,distance:p.ribbonDistance??column,pitch:p.ribbonStep??1,row:p.ribbonRow??i%8};});cache.set(points,samples);}if(s.ribbon)return applyRibbon(rgb,points,s,samples,brightness);if(s.marquee)return applyModelMarquee(rgb,points,s,brightness);for(let i=0;i<points.length;i++){if(points[i].star)continue;const j=i*3;if(points[i].feature==='ornament')continue;const p=samples[i],period=s.lines?64:32,angle=((p.a-s.orbit+period/2)%period+period)%period-period/2,x=(s.marquee?p.a+32:angle+(s.lines?32:W/2)),c=sample(s,x,p.y);for(let channel=0;channel<3;channel++){const background=rgb[j+channel];rgb[j+channel]=c?Math.max(background*.35,c[channel]*s.pulse*brightness):background*(s.lines?.20:.75);}}return 1;}
 return {load,apply,state,scenes,ribbonPhrases,amount:(t,track,preview)=>state(t,track,preview).strength};
 });

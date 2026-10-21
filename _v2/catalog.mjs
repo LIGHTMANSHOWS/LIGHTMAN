@@ -6,6 +6,7 @@ export const categories = [
 ];
 const item=(id,name,category,image,description,extra={})=>({id,name,category,image,description,...extra});
 export const products = [
+ item('arbol-navideno-led','Árbol navideño LED · 12 m','estructuras','arbol-navidad-led.png','Explora tres diseños de árbol en 3D, con efectos de luz y música sincronizada. Propuesta conceptual de Navidad San Fernando.',{href:'/propuestas/navidad-san-fernando/'}),
  item('banderas-led','Banderas LED digitales','activaciones','galerias/bandera/bandera-00.webp','Luz, contenido y movimiento en una superficie flexible. Un formato para aperturas y activaciones de marca.',{video:'DVzoQfEjTRW',gallery:['galerias/bandera/bandera-01.webp','galerias/bandera/bandera-02.webp','galerias/bandera/bandera-03.webp','galerias/bandera/bandera-04.webp'],features:['Alimentación con baterías','Control inalámbrico','Contenido visual según modelo','Integración Resolume / Art-Net, previa coordinación']}),
  item('tijeras-led','Tijeras LED Syncro','shows','tije.webp','Tradición andina reinterpretada con programación de luz y una puesta en escena sincronizada.',{video:'DWnRe6MDdTR',gallery:['hero2.webp','syncro2.webp','galerias/andino/andino-00.webp']}),
  item('robot-led-lightman','Robot LED Lightman','trajes','trajes/robot-led-lightman.webp','Un personaje de gran presencia para ingresos, escenarios y momentos de encuentro con el público.',{video:'CypT5liNP2F'}),
