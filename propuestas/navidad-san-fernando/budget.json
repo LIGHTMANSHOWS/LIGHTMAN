@@ -1,0 +1,59 @@
+{
+  "currency": "PEN",
+  "status": "estimación interna; no ofertas verificadas de proveedores",
+  "items": [
+    {
+      "concept": "Estructura modular, mástil y base",
+      "quantity": 1,
+      "unitPrice": 23500,
+      "total": 23500
+    },
+    {
+      "concept": "Nodos RGB 12 V + repuestos (5 %)",
+      "quantity": 10181,
+      "unitPrice": 2.6,
+      "total": 26470.6
+    },
+    {
+      "concept": "Control y red de datos",
+      "quantity": 1,
+      "unitPrice": 7200,
+      "total": 7200
+    },
+    {
+      "concept": "Fuentes, gabinetes y distribución",
+      "quantity": 1,
+      "unitPrice": 11800,
+      "total": 11800
+    },
+    {
+      "concept": "Audio de exterior y reproducción",
+      "quantity": 1,
+      "unitPrice": 5200,
+      "total": 5200
+    },
+    {
+      "concept": "Diseño y programación del show",
+      "quantity": 1,
+      "unitPrice": 4800,
+      "total": 4800
+    },
+    {
+      "concept": "Montaje, desmontaje y pruebas",
+      "quantity": 1,
+      "unitPrice": 9600,
+      "total": 9600
+    },
+    {
+      "concept": "Logística y transporte local",
+      "quantity": 1,
+      "unitPrice": 4200,
+      "total": 4200
+    }
+  ],
+  "subtotal": 92770.6,
+  "reserve10percent": 9277.06,
+  "igvReference18percent": 18368.58,
+  "total": 120416.24,
+  "appliesTo": "Opción 1; las opciones 2 y 3 requieren presupuesto de fabricación propio"
+}
