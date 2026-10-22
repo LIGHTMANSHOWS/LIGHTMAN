@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="Conoce el controlador LIGHTMAN de cuatro salidas. Prueba efectos, escenas, playlists y mapeo de arcos desde una interfaz web interactiva.">
-  <meta name="theme-color" content="#07291c">
-  <title>LIGHTMAN · Controlador de arcos | Demo interactiva</title>
+  <meta name="theme-color" content="#000000">
+  <title>Stand Heineken · LIGHTMAN | Experiencia 3D</title>
   <link rel="canonical" href="https://lightmanperu.com/propuestas/controlador-arcos/">
   <link rel="icon" href="https://lightmanperu.com/favicon.ico">
   <meta property="og:type" content="website"><meta property="og:site_name" content="LIGHTMAN"><meta property="og:title" content="LIGHTMAN · Controlador de arcos"><meta property="og:description" content="Cuatro salidas. Escenas y playlists. Descubre el controlador LIGHTMAN y prueba la instalación en 3D."><meta property="og:url" content="https://lightmanperu.com/propuestas/controlador-arcos/"><meta property="og:image" content="https://lightmanperu.com/assets/img/og-lightman.jpg"><meta name="twitter:card" content="summary_large_image">
-  <link rel="stylesheet" href="styles.css">
-  <script src="renderer.js" defer></script><script src="app.js" defer></script>
+  <link rel="stylesheet" href="styles.css?v=20261022-dark">
+  <script src="renderer.js?v=20261022-dark" defer></script><script src="app.js" defer></script>
 </head>
 <body>
   <header class="site-header wrap"><a class="brand" href="#instalacion" aria-label="LIGHTMAN · Controlador de arcos"><span class="lightman-logo"><img src="https://lightmanperu.com/assets/img/logo-lightman.png" alt="LIGHTMAN" width="180" height="48"></span><span class="brand-product">Controlador de arcos<small>4 SALIDAS · CONTROL WEB</small></span></a><nav aria-label="Navegación principal"><a href="#control">Probar control</a><a href="#como-usar">Cómo se usa</a><a href="#producto">El controlador</a></nav></header>
   <main>
     <section class="hero wrap" id="instalacion" aria-labelledby="preview-title">
-      <div class="hero-caption"><h1 id="preview-title">Tus arcos. Tu próxima escena.</h1><span class="live-label"><span></span> Vista 3D interactiva</span></div>
+      <a class="project-back" href="/proyectos/">← Proyectos LIGHTMAN</a>
+      <div class="hero-caption"><h1 id="preview-title"><span class="project-kicker">LIGHTMAN · Stand Heineken</span>Tus arcos. Tu próxima escena.</h1><span class="live-label"><span></span> Vista 3D interactiva</span></div>
       <div class="stage"><canvas id="arch-canvas" aria-label="Modelo 3D de cuatro arcos luminosos de marca. Arrastra para girar la vista.">Vista 3D de los arcos.</canvas><div class="stage-top"><span>Arrastra para girar</span><span>4 arcos · una experiencia</span></div><div class="stage-tools"><div><button type="button" data-view="perspective">Perspectiva</button><button type="button" data-view="front">Frente</button><button type="button" data-view="side">Lateral</button></div><div><button type="button" id="zoom-in" aria-label="Acercar">+</button><button type="button" id="zoom-out" aria-label="Alejar">−</button></div></div><div class="effect-ribbon"><span id="hero-effect">Tricolor</span><span id="hero-summary">80 % de brillo · 1.0×</span></div></div>
       <a class="control-invitation" href="#control"><span class="small-phone" aria-hidden="true"><span></span></span><span>Controla desde aquí<small>Pulsa y prueba la app en el celular de abajo</small></span><span class="down-arrow" aria-hidden="true">↓</span></a>
     </section>
