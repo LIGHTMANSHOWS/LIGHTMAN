@@ -1,0 +1,6 @@
+Logos: https://corporativo.sanfernando.pe/
+Logo actual: https://corporativo.sanfernando.pe/wp-content/uploads/2025/06/logo-185.webp
+Logo 75 años: https://corporativo.sanfernando.pe/wp-content/uploads/2023/06/Frame.png
+Base 3D y audio: https://github.com/lightmanshows/arbol-navidad-12m
+Adaptación web San Fernando. No incluye FSEQ adaptado.
+Nombre continuo e isotipo LED: imágenes proporcionadas por el usuario el 20/10/2026.
