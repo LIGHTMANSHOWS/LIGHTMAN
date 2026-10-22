@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#0c0c10">
+  <meta name="description" content="Propuesta de iluminación arquitectónica píxel a píxel para el stand Morada. Un proyecto LIGHTMAN.">
+  <title>Morada — Proyecto de iluminación · LIGHTMAN</title>
+  <link rel="icon" href="assets/favicon.svg" type="image/svg+xml"><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <a class="skip" href="#proyecto">Ir al proyecto</a>
+  <header class="header"><div class="container nav">
+    <a class="brand" href="#" aria-label="LIGHTMAN, inicio"><img src="assets/logo-lightman.png" alt="LIGHTMAN" width="180" height="33"></a>
+    <span class="nav-divider"></span><span class="nav-project">PROYECTOS <span>/</span> MORADA</span>
+    <nav aria-label="Navegación principal"><a href="#concepto">Concepto</a><a href="#simulacion">Explorar en 3D</a><a href="#alcance">Alcance</a></nav>
+    <span class="review-status"><i></i> Propuesta en revisión</span>
+  </div></header>
+  <main id="proyecto">
+    <section class="hero container" id="concepto">
+      <div class="hero-head"><div><p class="eyebrow"><span></span> ILUMINACIÓN ARQUITECTÓNICA · FERIAS</p><h1>Una marca.<br>Una nueva <em>presencia.</em></h1></div><div class="hero-intro"><span class="client-name">morada<span>®</span></span><p>La luz dibuja el espacio.<br>El movimiento atrae la mirada.</p><a href="#simulacion" class="text-link">Explorar la propuesta <span>↗</span></a></div></div>
+      <figure class="hero-visual"><img src="assets/morada-propuesta.jpg" alt="Referencia del stand Morada con cenefa y aristas iluminadas en tonos morados" width="1264" height="843" fetchpriority="high"><figcaption><span><i></i> CONCEPTO VISUAL</span><span>Morada × LIGHTMAN <b>01 / 2026</b></span></figcaption></figure>
+      <div class="facts"><div><span>PLANTA DEL STAND</span><strong>5 × 3 <small>m</small></strong></div><div><span>ALTURA CONFIRMADA</span><strong>3 <small>m</small></strong></div><div><span>TECNOLOGÍA</span><strong>Píxel <small>a píxel</small></strong></div><div><span>MONTAJE PREVISTO</span><strong>1 <small>jornada</small></strong></div></div>
+    </section>
+    <section class="light-story container"><p class="eyebrow">01 / EL CONCEPTO</p><div class="story-grid"><h2>La arquitectura<br>también puede<br><em>tener ritmo.</em></h2><div><p class="lead">Un contorno de luz que acompaña la identidad de Morada y hace que el stand destaque en la feria.</p><p>La cenefa y las aristas seleccionadas se convierten en una superficie de luz continua, con escenas en morado, magenta y blanco. Transiciones suaves y movimientos sutiles para dar presencia a la marca.</p><div class="palette" aria-label="Paleta conceptual: morado, magenta y blanco"><span style="--swatch:#8636f5">Morado</span><span style="--swatch:#f05af7">Magenta</span><span style="--swatch:#efecff">Blanco</span></div></div></div></section>
+    <section class="experience" id="simulacion"><div class="container"><div class="section-heading"><div><p class="eyebrow">02 / EXPLORA LA LUZ</p><h2>El espacio, <em>en movimiento.</em></h2></div><p>Gira el modelo y prueba las escenas.<br>Una primera mirada al lenguaje de luz.</p></div>
+      <div class="viewer-shell"><div class="viewer-top"><span><i></i> SIMULACIÓN CONCEPTUAL 3D</span><div class="view-buttons" role="group" aria-label="Vista de cámara"><button type="button" data-view="perspective" class="selected" aria-pressed="true">Perspectiva</button><button type="button" data-view="front" aria-pressed="false">Frontal</button><button type="button" data-view="top" aria-pressed="false">Planta</button></div></div>
+        <div id="viewer" aria-label="Modelo 3D interactivo del stand Morada"><p class="loading" id="loading">Preparando el espacio…</p><div class="viewer-fallback" id="viewer-fallback" hidden><img src="assets/morada-propuesta.jpg" alt="Referencia visual del stand Morada"><p>La vista 3D no está disponible en este navegador. Puedes revisar las referencias del proyecto.</p></div></div>
+        <div class="viewer-caption"><span>↔ Arrastra para girar <b>·</b> Rueda o pellizca para acercar</span><button type="button" id="rotate" aria-pressed="true">↻ Giro automático</button></div>
+        <div class="scene-controls">
+          <div><span class="control-label">ESCENAS DE LUZ</span><div class="scenes" role="group" aria-label="Escenas de iluminación"><button type="button" data-scene="static" aria-pressed="false"><i class="scene-icon static"></i>Estático</button><button type="button" data-scene="gradient" class="selected" aria-pressed="true"><i class="scene-icon gradient"></i>Degradados</button><button type="button" data-scene="pulse" aria-pressed="false"><i class="scene-icon pulse"></i>Pulso</button><button type="button" data-scene="flow" aria-pressed="false"><i class="scene-icon flow"></i>Animación</button></div></div>
+          <div class="intensity"><label class="control-label" for="intensity">INTENSIDAD <output id="intensity-value">80%</output></label><input id="intensity" type="range" min="10" max="100" value="80" aria-label="Intensidad visual de la simulación"></div>
+          <div class="intensity speed-control"><label class="control-label" for="speed">VELOCIDAD <output id="speed-value">1×</output></label><input id="speed" type="range" min="0.25" max="3" step="0.25" value="1" aria-label="Velocidad de animación" aria-describedby="speed-help"><span class="control-help" id="speed-help">Efectos y giro automático</span></div>
+          <button type="button" class="pause-button" id="pause" aria-pressed="false" aria-label="Pausar animación">Ⅱ</button>
+        </div>
+        <div class="gradient-options" id="gradient-options"><div class="gradient-heading"><span class="control-label">ELIGE TU DEGRADADO</span><span>Siempre dentro de la paleta Morada</span></div><div class="gradient-grid" role="group" aria-label="Opciones de degradado">
+          <button type="button" data-gradient="morada" class="selected" aria-pressed="true"><i style="background:linear-gradient(90deg,#a62bff,#ef42f5,#d187ff,#f4e9ff,#645eff)"></i><span>Morada original</span></button>
+          <button type="button" data-gradient="magenta" aria-pressed="false"><i style="background:linear-gradient(90deg,#a62bff,#ef42f5,#a62bff)"></i><span>Morado · magenta</span></button>
+          <button type="button" data-gradient="violet" aria-pressed="false"><i style="background:linear-gradient(90deg,#645eff,#a62bff,#d187ff,#645eff)"></i><span>Azul · violeta</span></button>
+          <button type="button" data-gradient="lilac" aria-pressed="false"><i style="background:linear-gradient(90deg,#d187ff,#f4e9ff,#d187ff)"></i><span>Lila · blanco</span></button>
+          <button type="button" data-gradient="pink" aria-pressed="false"><i style="background:linear-gradient(90deg,#ef42f5,#d187ff,#f4e9ff,#ef42f5)"></i><span>Magenta · blanco</span></button>
+          <button type="button" data-gradient="white" aria-pressed="false"><i style="background:linear-gradient(90deg,#a62bff,#d187ff,#f4e9ff,#d187ff,#a62bff)"></i><span>Morado · blanco</span></button>
+        </div></div>
+        <div class="scene-description" aria-live="polite"><span class="effect-swatch" id="effect-swatch" data-effect="gradient" aria-hidden="true"></span><p id="effect-description">Morada original: un recorrido completo de morado, magenta, lila, blanco y azul violeta.</p></div>
+      </div><p class="simulation-note">Modelo y efectos ilustrativos. El logo Morada se representa con luz blanca propia, independiente de las escenas del delineado LED; su iluminación y control están fuera de nuestro servicio. Los tramos y acabados se ajustarán al plano de fabricación. La intensidad del visor no representa una medición de iluminancia.</p>
+    </div></section>
+    <section class="scope container" id="alcance"><div class="section-heading"><div><p class="eyebrow">03 / NUESTRO SERVICIO</p><h2>Delineado LED<br>e <em>iluminación.</em></h2></div><p>Intervenimos en las líneas de luz del stand.<br>El rótulo Morada conserva su sistema propio.</p></div>
+      <div class="scope-grid"><article><span class="item-number">01</span><div class="line-icon fascia" aria-hidden="true"></div><h3>Cenefa superior</h3><p>Contornos de luz píxel a píxel para enmarcar la marca y acompañar la arquitectura.</p><span class="tag">IDENTIDAD + PRESENCIA</span></article><article><span class="item-number">02</span><div class="line-icon edges" aria-hidden="true"></div><h3>Aristas seleccionadas</h3><p>Líneas verticales coordinadas con la cenefa para dar continuidad visual al conjunto.</p><span class="tag">VOLUMEN + CONTINUIDAD</span></article><article><span class="item-number">03</span><div class="line-icon roof" aria-hidden="true"></div><h3>Luz blanca del techo</h3><p>Se conserva la iluminación blanca existente para la luz funcional del interior.</p><span class="tag neutral">ELEMENTO EXISTENTE</span></article></div>
+      <div class="scope-footer"><span><b>Sin intervención en el piso.</b> El diseño se concentra en cenefa y aristas.</span><span>Alcance del servicio <strong>Delineado LED e iluminación</strong></span></div>
+      <div class="scope-boundary"><span class="boundary-icon" aria-hidden="true">↗</span><div><h3>Logo iluminado independiente</h3><p>El rótulo Morada se muestra encendido como parte del stand. Su suministro, iluminación y control no forman parte de nuestro servicio.</p></div><span class="boundary-tag">FUERA DE ALCANCE</span></div>
+    </section>
+    <section class="next container"><p class="eyebrow">04 / HACIA EL MONTAJE</p><div class="next-grid"><h2>Listo para dar<br>el siguiente <em>paso.</em></h2><div class="milestones"><div class="milestone current"><span>01</span><div><h3>Revisión del concepto</h3><p>Validar el lenguaje de luz, las escenas y las zonas de intervención.</p></div><b>EN REVISIÓN</b></div><div class="milestone"><span>02</span><div><h3>Definición técnica</h3><p>Confirmar recorridos, fijaciones, alimentación y fecha de montaje.</p></div></div><div class="milestone"><span>03</span><div><h3>Instalación y puesta en escena</h3><p>Preparación a medida y montaje previsto en una jornada, sujeto a las condiciones de acceso y del stand.</p></div></div></div></div></section>
+  </main>
+  <footer class="footer"><div class="container"><a href="#" class="brand" aria-label="Volver al inicio"><img src="assets/logo-lightman.png" alt="LIGHTMAN" width="180" height="33"></a><p>Luz que transforma espacios.</p><span>MORADA · PROPUESTA VISUAL · OCTUBRE 2026</span></div></footer>
+  <script src="app.js" defer></script><script type="module" src="scene.js"></script>
+</body></html>
