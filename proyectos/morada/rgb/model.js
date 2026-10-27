@@ -1,5 +1,6 @@
 import * as THREE from '../vendor/three.module.js';
 import { OrbitControls } from '../vendor/OrbitControls.js';
+import { shelves, ledPaths } from './layout.js?v=20261027-warm-r3';
 
 const $=id=>document.getElementById(id);
 const zoneSpecs=[
@@ -7,12 +8,12 @@ const zoneSpecs=[
  {id:'esquinas',name:'Esquinas',detail:'Aristas exteriores',description:'Cuatro aristas exteriores desde la base hasta el friso.'},
  {id:'arcos',name:'Arcos laterales',detail:'Dos marcos de acceso',description:'Dos marcos rectangulares laterales, cada uno con dos verticales y travesaño superior. Ubicación referencial.'},
  {id:'techo',name:'Techo',detail:'Perímetro interior',description:'Delineado de los cuatro bordes interiores del techo. El centro es opaco.'},
- {id:'repisas',name:'Tres repisas',detail:'Luz bajo cada repisa',description:'Tres repisas: dos cortas superiores y una corrida inferior. Ubicación y largos referenciales.'}
+ {id:'repisas',name:'Tres repisas',detail:'Retroiluminación posterior',description:'Cinta oculta detrás de cada repisa, con luz reflejada en el muro. Tres recorridos posteriores, sin delineado frontal. Ubicación y largos referenciales.'}
 ];
-const colors={morada:['#aa35ff','#aa35ff','#aa35ff','#aa35ff','#aa35ff'],contrast:['#a62bff','#ff3179','#15e5ed','#2477ff','#ff8b24'],white:Array(5).fill('#ffffff')};
-let state=zoneSpecs.map((_,i)=>({color:colors.morada[i],brightness:85,on:true})),selected=0,preset='morada',isolate=false;
+const colors={warm:Array(5).fill('#ffd4a2'),morada:['#aa35ff','#aa35ff','#aa35ff','#aa35ff','#aa35ff'],contrast:['#a62bff','#ff3179','#15e5ed','#2477ff','#ff8b24'],white:Array(5).fill('#ffffff')};
+let state=zoneSpecs.map((_,i)=>({color:colors.warm[i],brightness:85,on:true})),selected=0,preset='warm',isolate=false;
 function valid(a){return Array.isArray(a)&&a.length===5&&a.every(s=>s&&/^#[\da-f]{6}$/i.test(s.color)&&Number.isFinite(s.brightness)&&s.brightness>=0&&s.brightness<=100&&typeof s.on==='boolean')}
-try{let raw=new URLSearchParams(location.hash.slice(1)).get('rgb3d')||localStorage.getItem('lightman-morada-3d-r2');if(raw){let a=JSON.parse(raw);if(valid(a)){state=a;preset=''}}}catch(e){}
+try{let raw=new URLSearchParams(location.hash.slice(1)).get('rgb3d')||localStorage.getItem('lightman-morada-3d-warm-r3');if(raw){let a=JSON.parse(raw);if(valid(a)){state=a;preset=''}}}catch(e){}
 
 let renderer;
 try{renderer=new THREE.WebGLRenderer({antialias:true,alpha:true,powerPreference:'low-power',preserveDrawingBuffer:true})}
@@ -54,7 +55,6 @@ function texture(rect,callback){loader.load('../assets/morada-frontal-referencia
 texture([129,173,247,87],t=>{backPoster.material.map=t;backPoster.material.needsUpdate=true});
 texture([38,153,30,171],t=>{leftPoster.material.map=t;leftPoster.material.needsUpdate=true});texture([449,158,25,164],t=>{rightPoster.material.map=t;rightPoster.material.needsUpdate=true});
 // Exactly three shelves: one low run and two short upper shelves.
-const shelves=[{x:0,y:.62,z:-1.18,w:4.45,d:.43},{x:-1.63,y:1.04,z:-1.29,w:1.0,d:.26},{x:1.63,y:1.04,z:-1.29,w:1.0,d:.26}];
 shelves.forEach((s,i)=>{const shelf=box(s.w,.045,s.d,s.x,s.y,s.z,i===0?wood:ivory);shelf.name='Repisa '+(i+1);});
 box(4.30,.38,.33,0,.37,-1.25,mat('#b3a395'));
 // Furniture follows the six-chair reference arrangement.
@@ -71,24 +71,23 @@ function line(zone,a,b){const start=new THREE.Vector3(...a),end=new THREE.Vector
  const mesh=new THREE.Mesh(new THREE.CylinderGeometry(.009,.009,length,8),new THREE.MeshBasicMaterial({color:'#aa35ff',toneMapped:false}));mesh.position.copy(mid);mesh.quaternion.copy(quat);mesh.userData.zone=zone;group.root.add(mesh);pickables.push(mesh);
  const halo=new THREE.Mesh(new THREE.CylinderGeometry(.043,.043,length,8),new THREE.MeshBasicMaterial({color:'#aa35ff',transparent:true,opacity:.14,depthWrite:false,blending:THREE.AdditiveBlending,toneMapped:false}));halo.position.copy(mid);halo.quaternion.copy(quat);halo.userData.visualOnly=true;mesh.name='LED_'+zoneSpecs[zone].id+'_'+(group.segments.length+1);channel.name='Perfil_'+zoneSpecs[zone].id+'_'+(group.segments.length+1);group.root.add(halo);group.segments.push({mesh,halo,channel,length,a,b});
 }
-const X=2.59,Z=1.59;
-for(const y of [2.36,3.005]){line(0,[-X,y,Z],[X,y,Z]);line(0,[-X,y,Z],[-X,y,-Z]);line(0,[X,y,Z],[X,y,-Z]);}
-for(const x of [-X,X])for(const z of [-Z,Z])line(0,[x,2.36,z],[x,3.005,z]);
-// Exterior corner runs stop below the frieze, no illuminated floor perimeter.
-for(const x of [-2.565,2.565])for(const z of [-1.565,1.565])line(1,[x,.045,z],[x,2.33,z]);
-for(const x of [-2.478,2.478]){for(const z of [-1.22,1.22])line(2,[x,.045,z],[x,2.23,z]);line(2,[x,2.23,-1.22],[x,2.23,1.22]);}
-const roofY=2.286;line(3,[-2.34,roofY,1.32],[2.34,roofY,1.32]);line(3,[2.34,roofY,1.32],[2.34,roofY,-1.32]);line(3,[2.34,roofY,-1.32],[-2.34,roofY,-1.32]);line(3,[-2.34,roofY,-1.32],[-2.34,roofY,1.32]);
-shelves.forEach(s=>line(4,[s.x-s.w/2+.025,s.y-.033,s.z+s.d/2-.015],[s.x+s.w/2-.025,s.y-.033,s.z+s.d/2-.015]));
-const bouncePositions=[[[0,2.7,1.68],[2.7,2.7,0],[-2.7,2.7,0]],[[2.4,1.3,1.4],[-2.4,1.3,-1.4]],[[2.2,1.3,0],[-2.2,1.3,0]],[[0,2.13,0]],[[-1.4,.95,-1.0],[1.4,.95,-1.0],[0,.51,-1.02]]];
+ledPaths.forEach(p=>line(p.zone,p.a,p.b));
+// Soft wall wash represents a concealed source behind each shelf.
+const washCanvas=document.createElement('canvas');washCanvas.width=256;washCanvas.height=128;
+const washCtx=washCanvas.getContext('2d');const grad=washCtx.createLinearGradient(0,0,0,128);
+grad.addColorStop(0,'rgba(255,255,255,0)');grad.addColorStop(.35,'rgba(255,255,255,.28)');grad.addColorStop(.5,'rgba(255,255,255,.68)');grad.addColorStop(.65,'rgba(255,255,255,.28)');grad.addColorStop(1,'rgba(255,255,255,0)');washCtx.fillStyle=grad;washCtx.fillRect(0,0,256,128);
+const washTexture=new THREE.CanvasTexture(washCanvas);const shelfWashes=[];
+shelves.forEach(s=>{const wash=new THREE.Mesh(new THREE.PlaneGeometry(s.w-.02,.27),new THREE.MeshBasicMaterial({map:washTexture,color:'#ffd4a2',transparent:true,opacity:.35,depthWrite:false,toneMapped:false,blending:THREE.AdditiveBlending}));wash.position.set(s.x,s.y,-1.452);wash.userData.visualOnly=true;wash.name='Retroiluminacion_repisa';model.add(wash);shelfWashes.push(wash)});
+const bouncePositions=[[[0,2.7,1.68],[2.7,2.7,0],[-2.7,2.7,0]],[[2.4,1.3,1.4],[-2.4,1.3,-1.4]],[[2.2,1.3,0],[-2.2,1.3,0]],[[0,2.13,0]],[[-1.63,1.04,-1.28],[1.63,1.04,-1.28],[0,.62,-1.28]]];
 bouncePositions.forEach((ps,i)=>ps.forEach(p=>{const light=new THREE.PointLight('#aa35ff',.65,2.6,2);light.position.set(...p);scene.add(light);groups[i].lights.push(light)}));
-scene.add(new THREE.HemisphereLight('#f2edff','#33303b',1.65));const key=new THREE.DirectionalLight('#fff1df',2.4);key.position.set(3,7,5);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-5;key.shadow.camera.right=5;key.shadow.camera.top=5;key.shadow.camera.bottom=-5;key.shadow.normalBias=.035;scene.add(key);const fill=new THREE.DirectionalLight('#c6c1e4',1);fill.position.set(-5,4,-1);scene.add(fill);const room=new THREE.PointLight('#fff0dc',8,7,2);room.position.set(0,2.05,0);scene.add(room);
+scene.add(new THREE.HemisphereLight('#f2edff','#33303b',1.65));const key=new THREE.DirectionalLight('#fff1df',2.4);key.position.set(3,7,5);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-5;key.shadow.camera.right=5;key.shadow.camera.top=5;key.shadow.camera.bottom=-5;key.shadow.normalBias=.035;scene.add(key);const fill=new THREE.DirectionalLight('#c6c1e4',1);fill.position.set(-5,4,-1);scene.add(fill);const room=new THREE.PointLight('#fff0dc',5.6,7,2);room.position.set(0,2.05,0);scene.add(room);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(60,60),mat('#17151c'));floor.rotation.x=-Math.PI/2;floor.position.y=-.094;floor.receiveShadow=true;scene.add(floor);const grid=new THREE.GridHelper(24,24,'#39303f','#26222e');grid.position.y=-.09;grid.material.transparent=true;grid.material.opacity=.45;scene.add(grid);
 
 function say(text){$('status').textContent=text}
 zoneSpecs.forEach((spec,i)=>{const b=document.createElement('button');b.type='button';b.className='zone';b.dataset.zone=i;b.innerHTML='<span class="dot"></span><span class="zone-copy"><span class="zone-name">'+spec.name+'</span><span class="zone-detail">'+spec.detail+'</span></span><span class="hex-small"></span>';b.addEventListener('click',()=>select(i));$('zones').append(b)});
 function sync(){[...$('zones').children].forEach((el,i)=>{const s=state[i];el.classList.toggle('active',i===selected);el.setAttribute('aria-pressed',String(i===selected));el.style.setProperty('--color',s.on&&s.brightness?s.color:'#44444f');el.querySelector('.hex-small').textContent=s.on&&s.brightness?s.color.toUpperCase():'APAGADA'});const s=state[selected];$('zone-name').textContent=zoneSpecs[selected].name;$('selection-description').textContent=zoneSpecs[selected].description;$('color').value=s.color;$('hex').value=s.color.toUpperCase();$('brightness').value=s.brightness;$('brightness-value').textContent=s.brightness+'%';$('power').checked=s.on;document.querySelectorAll('[data-preset]').forEach(b=>b.classList.toggle('active',b.dataset.preset===preset))}
-function updateLights(){groups.forEach((g,i)=>{const s=state[i],gain=s.on&&(!isolate||i===selected)?s.brightness/100:0;const col=new THREE.Color(s.color);g.segments.forEach(({mesh,halo})=>{mesh.material.color.copy(col).multiplyScalar(gain);halo.material.color.copy(col);halo.material.opacity=.16*gain;mesh.visible=gain>0;halo.visible=gain>0});g.lights.forEach(l=>{l.color.copy(col);l.intensity=[.12,.25,.3,.45,.55][i]*gain})})}
-let saveTimer;function persist(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem('lightman-morada-3d-r2',JSON.stringify(state))}catch(e){}},120)}
+function updateLights(){const shelfState=state[4],shelfGain=shelfState.on&&(!isolate||selected===4)?shelfState.brightness/100:0;shelfWashes.forEach(w=>{w.material.color.set(shelfState.color);w.material.opacity=.35*shelfGain;w.visible=shelfGain>0});groups.forEach((g,i)=>{const s=state[i],gain=s.on&&(!isolate||i===selected)?s.brightness/100:0;const col=new THREE.Color(s.color);g.segments.forEach(({mesh,halo})=>{mesh.material.color.copy(col).multiplyScalar(gain);halo.material.color.copy(col);halo.material.opacity=.16*gain;mesh.visible=gain>0;halo.visible=gain>0});g.lights.forEach(l=>{l.color.copy(col);l.intensity=[.12,.25,.3,.45,.18][i]*gain})})}
+let saveTimer;function persist(){clearTimeout(saveTimer);saveTimer=setTimeout(()=>{try{localStorage.setItem('lightman-morada-3d-warm-r3',JSON.stringify(state))}catch(e){}},120)}
 function change(){preset='';sync();updateLights();persist();say('')}
 function select(i){selected=i;sync();updateLights()}
 $('color').addEventListener('input',e=>{state[selected].color=e.target.value;state[selected].on=true;change()});$('hex').addEventListener('change',e=>{let v=e.target.value.trim();if(!v.startsWith('#'))v='#'+v;if(/^#[\da-f]{6}$/i.test(v)){state[selected].color=v.toLowerCase();state[selected].on=true;change()}else{sync();say('Usa seis dígitos hexadecimales, por ejemplo #A62BFF.')}});
@@ -101,7 +100,12 @@ const raycaster=new THREE.Raycaster(),pointer=new THREE.Vector2();let down;
 renderer.domElement.addEventListener('pointerdown',e=>{down=[e.clientX,e.clientY]});renderer.domElement.addEventListener('pointerup',e=>{if(!down||Math.hypot(e.clientX-down[0],e.clientY-down[1])>5)return;const b=renderer.domElement.getBoundingClientRect();pointer.set((e.clientX-b.left)/b.width*2-1,-(e.clientY-b.top)/b.height*2+1);raycaster.setFromCamera(pointer,camera);const hit=raycaster.intersectObjects(pickables)[0];if(hit){select(hit.object.userData.zone);say('Zona seleccionada: '+zoneSpecs[selected].name)}});
 renderer.domElement.addEventListener('keydown',e=>{if(e.key==='ArrowLeft'||e.key==='ArrowRight'){e.preventDefault();const offset=camera.position.clone().sub(controls.target);offset.applyAxisAngle(new THREE.Vector3(0,1,0),e.key==='ArrowLeft'?.15:-.15);camera.position.copy(controls.target).add(offset);controls.update()}else if(e.key==='+'||e.key==='-'){e.preventDefault();camera.position.sub(controls.target).multiplyScalar(e.key==='+'?.9:1.1).add(controls.target);controls.update()}});
 function download(blob,name){const u=URL.createObjectURL(blob),a=document.createElement('a');a.href=u;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(u),3000)}
-$('download').addEventListener('click',()=>{renderer.render(scene,camera);renderer.domElement.toBlob(b=>{if(b)download(b,'Morada-3D-RGB-LIGHTMAN.png')},'image/png');say('Imagen de esta vista guardada.')});
+$('download').addEventListener('click',()=>{
+ const w=$('viewer').clientWidth,h=$('viewer').clientHeight,pixelRatio=renderer.getPixelRatio();
+ const restore=()=>{renderer.setPixelRatio(pixelRatio);renderer.setSize(w,h,false);renderer.render(scene,camera)};
+ try{renderer.setPixelRatio(1);renderer.setSize(2560,Math.round(2560/camera.aspect),false);renderer.render(scene,camera);renderer.domElement.toBlob(blob=>{restore();if(blob){download(blob,'Morada-3D-Calido-LIGHTMAN.png');say('Imagen de esta vista guardada en alta resolución (2560 px de ancho).')}else say('No se pudo crear la imagen. Intenta de nuevo.')},'image/png')}
+ catch(e){restore();say('No se pudo exportar esta vista. Intenta de nuevo con menos aplicaciones abiertas.')}
+});
 $('share').addEventListener('click',async()=>{const p=new URLSearchParams();p.set('rgb3d',JSON.stringify(state));const url=location.origin+location.pathname+'#'+p;history.replaceState(null,'','#'+p);try{await navigator.clipboard.writeText(url);say('Enlace copiado con los colores y brillos de las cinco zonas.')}catch(e){say('La combinación está en la URL. Copia la dirección del navegador.')}});
 // Portable OBJ export of the actual modeled geometry (not a flat image).
 $('export-model').addEventListener('click',()=>{model.updateMatrixWorld(true);const out=['# LIGHTMAN - Morada RGB conceptual',' # Dimensions are referential; not fabrication data.'];let index=1;model.traverse(mesh=>{if(!mesh.isMesh||!mesh.visible||mesh.userData.visualOnly)return;const geo=mesh.geometry.index?mesh.geometry.toNonIndexed():mesh.geometry;const pos=geo.attributes.position;if(!pos)return;out.push('o '+(mesh.name||'mesh_'+mesh.id).replace(/[^a-zA-Z0-9_-]/g,'_'));const v=new THREE.Vector3();for(let i=0;i<pos.count;i++){v.fromBufferAttribute(pos,i).applyMatrix4(mesh.matrixWorld);out.push('v '+v.toArray().map(n=>n.toFixed(5)).join(' '))}for(let i=0;i<pos.count;i+=3)out.push('f '+(index+i)+' '+(index+i+1)+' '+(index+i+2));index+=pos.count;if(geo!==mesh.geometry)geo.dispose()});download(new Blob([out.join('\n')],{type:'text/plain'}),'Morada-3D-Conceptual.obj');say('Modelo 3D OBJ guardado. Geometría conceptual, sin texturas.')});
@@ -109,4 +113,4 @@ function resize(){const w=$('viewer').clientWidth,h=$('viewer').clientHeight;ren
 new ResizeObserver(resize).observe($('viewer'));resize();renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();window.dispatchEvent(new Event('morada-viewer-error'))});
 let visible=true,previous=0;new IntersectionObserver(e=>{visible=e[0].isIntersecting},{rootMargin:'100px'}).observe($('viewer'));
 function frame(t){requestAnimationFrame(frame);const dt=previous?Math.min((t-previous)/1000,.06):0;previous=t;if(!visible||document.hidden)return;controls.update(dt);renderer.render(scene,camera)}
-sync();updateLights();requestAnimationFrame(frame);document.documentElement.dataset.modelReady='true';document.documentElement.dataset.modelRevision='20261027-frisos-esquinas-arcos-techo-3repisas';
+sync();updateLights();requestAnimationFrame(frame);document.documentElement.dataset.modelReady='true';document.documentElement.dataset.modelRevision='20261027-calido-ambiente70-retro3repisas';
