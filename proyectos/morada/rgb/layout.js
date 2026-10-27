@@ -1,14 +1,15 @@
 // Conceptual geometry inherited from the reference model, in metres.
-// Nominal visualization proportions: 5 m front, 3 m depth, 3 m overall height.
-// These are NOT confirmed fabrication dimensions. The final site measurement wins.
-export const MODEL_DIMENSIONS={nominalWidth:5,nominalDepth:3,nominalHeight:3,status:'referencial'};
+// Cintia confirmed 3 x 5 m and 5 m overall height on 2026-10-27 at 11:19.
+// The detailed frieze, arch and shelf dimensions remain model-based allowances.
+export const MODEL_DIMENSIONS={nominalWidth:5,nominalDepth:3,nominalHeight:5,status:'planta y altura confirmadas; detalles según modelo'};
+export const HEIGHT_DELTA=MODEL_DIMENSIONS.nominalHeight-3;
 export const shelves=[
  {x:0,y:.62,z:-1.18,w:4.45,d:.43},
  {x:-1.63,y:1.04,z:-1.29,w:1.0,d:.26},
  {x:1.63,y:1.04,z:-1.29,w:1.0,d:.26}
 ];
 export const ledPaths=[];
-function add(zone,a,b){ledPaths.push({zone,a,b,length:Math.hypot(...a.map((v,i)=>b[i]-v))})}
+function add(zone,a,b){const lift=p=>[p[0],zone<4&&p[1]>2?p[1]+HEIGHT_DELTA:p[1],p[2]];a=lift(a);b=lift(b);ledPaths.push({zone,a,b,length:Math.hypot(...a.map((v,i)=>b[i]-v))})}
 const X=2.59,Z=1.59;
 for(const y of [2.36,3.005]){add(0,[-X,y,Z],[X,y,Z]);add(0,[-X,y,Z],[-X,y,-Z]);add(0,[X,y,Z],[X,y,-Z])}
 for(const x of [-X,X])for(const z of [-Z,Z])add(0,[x,2.36,z],[x,3.005,z]);
