@@ -1,14 +1,14 @@
 import * as THREE from '../vendor/three.module.js';
 import { OrbitControls } from '../vendor/OrbitControls.js';
-import { shelves, ledPaths, HEIGHT_DELTA as DY } from './layout.js?v=20261027-calido-altura5-r4';
+import { shelves, ledPaths, PLAN, HEIGHT_DELTA as DY } from './layout.js?v=20261027-plano-final-r5';
 
 const $=id=>document.getElementById(id);
 const zoneSpecs=[
- {id:'frisos',name:'Frisos completos',detail:'Frente + ambos laterales',description:'Contorno del friso frontal y de los dos retornos laterales.'},
- {id:'esquinas',name:'Esquinas',detail:'Aristas exteriores',description:'Cuatro aristas exteriores desde la base hasta el friso.'},
- {id:'arcos',name:'Arcos laterales',detail:'Dos marcos de acceso',description:'Dos marcos rectangulares laterales, cada uno con dos verticales y travesaño superior. Ubicación referencial.'},
- {id:'techo',name:'Techo',detail:'Perímetro interior',description:'Delineado de los cuatro bordes interiores del techo. El centro es opaco.'},
- {id:'repisas',name:'Tres repisas',detail:'Retroiluminación posterior',description:'Cinta oculta detrás de cada repisa, con luz reflejada en el muro. Tres recorridos posteriores, sin delineado frontal. Ubicación y largos referenciales.'}
+ {id:'frisos',name:'Frisos completos',detail:'Frente + laterales · alto 1 m',description:'Friso de 1 m de altura: contorno frontal de 5 m, ambos laterales de 3 m y cuatro uniones verticales. Según A-01 a A-04.'},
+ {id:'esquinas',name:'Esquinas',detail:'Cuatro verticales de 4 m',description:'Cuatro esquinas bajo el friso: desde el piso hasta la cota +4.00 m.'},
+ {id:'arcos',name:'Arcos laterales',detail:'Dos accesos de 1 × 4 m',description:'Accesos laterales de 1.00 × 4.00 m. Cinta en el centro del derrame de 0.15 m, separada de friso exterior y techo interior; dos verticales y un travesaño por arco.'},
+ {id:'techo',name:'Techo',detail:'Interior 4.70 × 2.70 m',description:'Perímetro interior del techo, derivado de planta 5 × 3 m y muros de 0.15 m. Centro opaco.'},
+ {id:'repisas',name:'Tres repisas',detail:'Retroiluminación posterior',description:'Tres repisas de 0.80 m, a cotas 1.55 / 1.65 / 1.55 m. Retroiluminación posterior oculta, sin tira frontal ni LED en la credenza.'}
 ];
 const colors={warm:Array(5).fill('#ffd4a2'),morada:['#aa35ff','#aa35ff','#aa35ff','#aa35ff','#aa35ff'],contrast:['#a62bff','#ff3179','#15e5ed','#2477ff','#ff8b24'],white:Array(5).fill('#ffffff')};
 let state=zoneSpecs.map((_,i)=>({color:colors.warm[i],brightness:85,on:true})),selected=0,preset='warm',isolate=false;
@@ -31,39 +31,47 @@ const ivory=mat('#e8e3de'),purple=mat('#49215e'),wood=mat('#a07756'),dark=mat('#
 function box(w,h,d,x,y,z,m=ivory,parent=model){let mesh=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),m);mesh.position.set(x,y,z);mesh.castShadow=true;mesh.receiveShadow=true;parent.add(mesh);return mesh}
 function panel(w,h,x,y,z,texture,rot=0){const m=new THREE.MeshStandardMaterial({map:texture,roughness:.85,side:THREE.DoubleSide});const mesh=new THREE.Mesh(new THREE.PlaneGeometry(w,h),m);mesh.position.set(x,y,z);mesh.rotation.y=rot;model.add(mesh);return mesh}
 function textTexture(text,bg,fg='#fff',w=1024,h=256,font='bold 150px Arial'){const c=document.createElement('canvas');c.width=w;c.height=h;const ctx=c.getContext('2d');if(bg){ctx.fillStyle=bg;ctx.fillRect(0,0,w,h)}ctx.fillStyle=fg;ctx.font=font;ctx.textAlign='center';ctx.textBaseline='middle';ctx.fillText(text,w/2,h/2);const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=Math.min(renderer.capabilities.getMaxAnisotropy(),8);return t}
-// Base 5 m front, 3 m depth and 5 m overall height confirmed by Cintia.
-// Detailed frieze, arch and shelf dimensions remain conceptual pending the drawing.
-box(5.2,.09,3.2,0,-.045,0,mat('#666064'));
-const structureH=2.35+DY;box(5,structureH,.08,0,structureH/2,-1.5);
-for(const x of [-2.5,2.5])for(const z of [-1.5,1.5])box(.14,structureH,.14,x,structureH/2,z);
-// Front and two side friezes, with no assumed rear illuminated frieze.
-box(5.16,.64,.16,0,2.68+DY,1.5,purple);
-box(.16,.64,3.13,-2.5,2.68+DY,0,purple);box(.16,.64,3.13,2.5,2.68+DY,0,purple);
-const ceiling=box(5,.055,3,0,2.325+DY,0,ivory);ceiling.name='Techo opaco - abrir para vista interior';
-// Inset side portals make the two rectangular arches visible from either side.
-for(const x of [-2.41,2.41]){for(const z of [-1.22,1.22])box(.115,2.23+DY,.12,x,(2.23+DY)/2,z);box(.115,.115,2.56,x,2.23+DY,0)}
-// Existing display panels occupy the front jambs, not the open side entrances.
-for(const x of [-2.21,2.21])box(.46,2.23+DY,.11,x,(2.23+DY)/2,1.43);
-function logo(width,x,y,z,rot){const group=new THREE.Group();group.name='Logo Morada blanco independiente';group.position.set(x,y,z);group.rotation.y=rot;const texture=textTexture('morada',null,'#ffffff',1024,256,'bold 226px Arial');const mesh=new THREE.Mesh(new THREE.PlaneGeometry(width,width/4),new THREE.MeshBasicMaterial({map:texture,transparent:true,toneMapped:false,depthWrite:false}));group.add(mesh);model.add(group)}
-logo(2.02,1.15,2.68+DY,1.586,0);logo(1.6,2.586,2.68+DY,0,Math.PI/2);logo(1.6,-2.586,2.68+DY,0,-Math.PI/2);
+// Final plan geometry A-01 to A-05.
+box(5,.09,3,0,-.045,0,mat('#666064'));
+box(5,5,.15,0,2.5,-1.425);
+for(const x of [-2.425,2.425]){
+ box(.15,4,.60,x,2,-1.20);
+ box(.15,4,1.40,x,2,.80);
+ // The 5 cm reveals give the 4.60 m clear front dimension in A-01.
+ box(.05,4,.15,x<0?-2.325:2.325,2,1.425);
+}
+box(5,1,.15,0,4.5,1.425,purple);
+for(const x of [-2.425,2.425])box(.15,1,3,x,4.5,0,purple);
+const ceiling=box(4.7,.05,2.7,0,4.025,0,ivory);ceiling.name='Techo interior 4.70 x 2.70';
+function logo(width,x,y,z,rot){const group=new THREE.Group();group.name='Logo Morada blanco frio independiente';group.position.set(x,y,z);group.rotation.y=rot;const texture=textTexture('morada',null,'#ffffff',1024,256,'bold 226px Arial');const mesh=new THREE.Mesh(new THREE.PlaneGeometry(width,width/4),new THREE.MeshBasicMaterial({map:texture,transparent:true,toneMapped:false,depthWrite:false}));group.add(mesh);model.add(group)}
+logo(2.02,1.15,4.5,1.508,0);logo(1.8,2.508,4.5,0,Math.PI/2);logo(1.8,-2.508,4.5,0,-Math.PI/2);
 const displayTex=textTexture('Tu nueva morada.','#89766d','#ffffff',1400,500,'64px Arial');
-box(3.76,1.13,.04,0,1.63,-1.432,black);const backPoster=panel(3.7,1.07,0,1.63,-1.405,displayTex);
+box(4.04,1.04,.045,0,2.7,-1.325,black);const backPoster=panel(4,1,0,2.7,-1.297,displayTex);backPoster.name='Pantalla existente 4.00 x 1.00';
 const posterTex=textTexture('morada','#ebe7e4','#632d81',400,1200,'bold 70px Arial');
-const leftPoster=panel(.40,1.68,-2.21,1.38,1.49,posterTex),rightPoster=panel(.40,1.68,2.21,1.38,1.49,posterTex);
+// Existing 1.00 x 2.20 lightboxes on side walls, 0.60 m above floor.
+box(.025,2.2,1,-2.508,1.7,.8);box(.025,2.2,1,2.508,1.7,.8);
+const leftPoster=panel(1,2.2,-2.522,1.7,.8,posterTex,-Math.PI/2),rightPoster=panel(1,2.2,2.522,1.7,.8,posterTex,Math.PI/2);
+const printCanvas=document.createElement('canvas');printCanvas.width=768;printCanvas.height=512;
+const pc=printCanvas.getContext('2d');pc.fillStyle='#663788';pc.font='500 68px Arial';pc.textAlign='center';['MIRAFLORES','BARRANCO','SAN ISIDRO'].forEach((t,i)=>pc.fillText(t,384,130+i*112));
+const printTex=new THREE.CanvasTexture(printCanvas);printTex.colorSpace=THREE.SRGBColorSpace;
+for(const x of [-2.504,2.504]){const printPanel=panel(1.18,.72,x,3.40,.8,printTex,x<0?-Math.PI/2:Math.PI/2);printPanel.material.transparent=true;printPanel.material.depthWrite=false;}
 const loader=new THREE.TextureLoader();let pendingTextures=3;
 function texture(rect,callback){loader.load('../assets/morada-frontal-referencia.png',t=>{t.colorSpace=THREE.SRGBColorSpace;t.repeat.set(rect[2]/517,rect[3]/400);t.offset.set(rect[0]/517,(400-rect[1]-rect[3])/400);t.anisotropy=Math.min(renderer.capabilities.getMaxAnisotropy(),8);callback(t);pendingTextures--;if(!pendingTextures)document.documentElement.dataset.textures='ready'},undefined,()=>{pendingTextures--;})}
 texture([129,173,247,87],t=>{backPoster.material.map=t;backPoster.material.needsUpdate=true});
 texture([38,153,30,171],t=>{leftPoster.material.map=t;leftPoster.material.needsUpdate=true});texture([449,158,25,164],t=>{rightPoster.material.map=t;rightPoster.material.needsUpdate=true});
-// Exactly three shelves: one low run and two short upper shelves.
-shelves.forEach((s,i)=>{const shelf=box(s.w,.045,s.d,s.x,s.y,s.z,i===0?wood:ivory);shelf.name='Repisa '+(i+1);});
-box(4.30,.38,.33,0,.37,-1.25,mat('#b3a395'));
-// Furniture follows the six-chair reference arrangement.
-box(4.14,.09,.63,0,.70,.48,purple);for(const x of [-1.85,1.85])for(const z of [.25,.7])box(.045,.65,.045,x,.325,z,purple);
-for(let i=0;i<6;i++){const x=-1.73+i*.69;box(.44,.045,.43,x,.37,1.08,wood);box(.44,.16,.04,x,.59,1.31,wood);for(const dx of [-.19,.19])box(.025,.26,.03,x+dx,.48,1.31,wood);for(const dx of [-.17,.17])for(const dz of [-.16,.16])box(.027,.35,.027,x+dx,.175,1.08+dz,wood)}
-box(.24,.2,.2,-.65,.745,-1.17,black);box(.12,.15,.12,-.25,.72,-1.17,metal);
-const laptop=box(.26,.17,.018,1.0,.83,.48,black);laptop.rotation.x=-.18;box(.27,.012,.20,1,.754,.55,black);
+shelves.forEach((s,i)=>{const shelf=box(s.w,.05,s.d,s.x,s.y,s.z,wood);shelf.name='Repisa '+(i+1)+' 0.80 m a cota '+s.bottom;});
+// Existing credenza, not one of the three LED shelves.
+box(4,1.12,.43,0,.56,-1.125,ivory);box(4,.06,.45,0,1.15,-1.125,wood);
+// M-01 (A-05): 4.60 x 0.60, 0.90 high, 0.15 top, 0.75 supports.
+box(4.6,.15,.6,0,.825,.8,purple);
+for(const x of [-2.175,-.725,.725,2.175])box(.15,.75,.5,x,.375,.8,purple);
+for(let i=0;i<6;i++){const x=-1.94+i*.776;box(.44,.045,.43,x,.43,1.30,wood);box(.44,.16,.04,x,.67,1.50,wood);for(const dx of [-.19,.19])box(.025,.26,.03,x+dx,.56,1.50,wood);for(const dx of [-.17,.17])for(const dz of [-.16,.16])box(.027,.41,.027,x+dx,.205,1.30+dz,wood)}
+for(const x of [-1.6,0,1.6]){box(.46,.07,.45,x,.45,.10,ivory);box(.46,.45,.07,x,.71,-.10,ivory);box(.06,.42,.06,x,.21,.10,metal);for(const dx of [-.18,.18])box(.025,.03,.4,x+dx,.025,.1,metal)}
+const laptop=box(.26,.17,.018,1,.99,.8,black);laptop.rotation.x=-.18;box(.27,.012,.20,1,.906,.88,black);
+box(.24,.20,.20,-.65,1.28,-1.13,black);box(.12,.15,.12,-.25,1.25,-1.13,metal);
 const leafMat=mat('#3f633a'),potMat=mat('#d4c7ba');
-for(const x of [-.65,.55]){box(.16,.16,.16,x,1.14,-1.3,potMat);for(let i=0;i<9;i++){const leaf=new THREE.Mesh(new THREE.SphereGeometry(.09,8,5),leafMat);leaf.position.set(x+Math.sin(i*2.4)*.12,1.28+Math.cos(i)*.045,-1.28+Math.cos(i*2.4)*.1);leaf.scale.set(.6,1,.45);model.add(leaf)}}
+for(const x of [-.65,.65]){box(.14,.14,.14,x,1.25,-1.15,potMat);for(let i=0;i<7;i++){const leaf=new THREE.Mesh(new THREE.SphereGeometry(.08,8,5),leafMat);leaf.position.set(x+Math.sin(i*2.4)*.10,1.38+Math.cos(i)*.04,-1.13+Math.cos(i*2.4)*.08);leaf.scale.set(.6,1,.45);model.add(leaf)}}
+
 // Five independently controllable analogue RGB groups; each group is uniform.
 const groups=zoneSpecs.map(s=>{const g=new THREE.Group();g.name=s.name;g.userData.zone=s.id;model.add(g);return {root:g,segments:[],lights:[]}}),pickables=[];
 function line(zone,a,b){const start=new THREE.Vector3(...a),end=new THREE.Vector3(...b),length=start.distanceTo(end),mid=start.clone().add(end).multiplyScalar(.5),quat=new THREE.Quaternion().setFromUnitVectors(new THREE.Vector3(0,1,0),end.clone().sub(start).normalize());const group=groups[zone];
@@ -77,10 +85,10 @@ const washCanvas=document.createElement('canvas');washCanvas.width=256;washCanva
 const washCtx=washCanvas.getContext('2d');const grad=washCtx.createLinearGradient(0,0,0,128);
 grad.addColorStop(0,'rgba(255,255,255,0)');grad.addColorStop(.35,'rgba(255,255,255,.28)');grad.addColorStop(.5,'rgba(255,255,255,.68)');grad.addColorStop(.65,'rgba(255,255,255,.28)');grad.addColorStop(1,'rgba(255,255,255,0)');washCtx.fillStyle=grad;washCtx.fillRect(0,0,256,128);
 const washTexture=new THREE.CanvasTexture(washCanvas);const shelfWashes=[];
-shelves.forEach(s=>{const wash=new THREE.Mesh(new THREE.PlaneGeometry(s.w-.02,.27),new THREE.MeshBasicMaterial({map:washTexture,color:'#ffd4a2',transparent:true,opacity:.35,depthWrite:false,toneMapped:false,blending:THREE.AdditiveBlending}));wash.position.set(s.x,s.y,-1.452);wash.userData.visualOnly=true;wash.name='Retroiluminacion_repisa';model.add(wash);shelfWashes.push(wash)});
-const bouncePositions=[[[0,2.7+DY,1.68],[2.7,2.7+DY,0],[-2.7,2.7+DY,0]],[[2.4,1.3+DY/2,1.4],[-2.4,1.3+DY/2,-1.4]],[[2.2,1.3+DY/2,0],[-2.2,1.3+DY/2,0]],[[0,2.13+DY,0]],[[-1.63,1.04,-1.28],[1.63,1.04,-1.28],[0,.62,-1.28]]];
+shelves.forEach(s=>{const wash=new THREE.Mesh(new THREE.PlaneGeometry(s.w-.02,.27),new THREE.MeshBasicMaterial({map:washTexture,color:'#ffd4a2',transparent:true,opacity:.35,depthWrite:false,toneMapped:false,blending:THREE.AdditiveBlending}));wash.position.set(s.x,s.y,-1.348);wash.userData.visualOnly=true;wash.name='Retroiluminacion_repisa';model.add(wash);shelfWashes.push(wash)});
+const bouncePositions=[[[0,4.5,1.68],[2.7,4.5,0],[-2.7,4.5,0]],[[2.4,2,1.4],[-2.4,2,-1.4]],[[2.2,2,-.4],[-2.2,2,-.4]],[[0,3.8,0]],shelves.map(s=>[s.x,s.y,-1.20])];
 bouncePositions.forEach((ps,i)=>ps.forEach(p=>{const light=new THREE.PointLight('#aa35ff',.65,2.6,2);light.position.set(...p);scene.add(light);groups[i].lights.push(light)}));
-scene.add(new THREE.HemisphereLight('#f2edff','#33303b',1.65));const key=new THREE.DirectionalLight('#fff1df',2.4);key.position.set(3,7+DY,5);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-5;key.shadow.camera.right=5;key.shadow.camera.top=5;key.shadow.camera.bottom=-5;key.shadow.normalBias=.035;scene.add(key);const fill=new THREE.DirectionalLight('#c6c1e4',1);fill.position.set(-5,4+DY,-1);scene.add(fill);const room=new THREE.PointLight('#fff0dc',5.6,7,2);room.position.set(0,2.05+DY,0);scene.add(room);
+scene.add(new THREE.HemisphereLight('#f2edff','#33303b',1.65));const key=new THREE.DirectionalLight('#fff1df',2.4);key.position.set(3,7+DY,5);key.castShadow=true;key.shadow.mapSize.set(1024,1024);key.shadow.camera.left=-5;key.shadow.camera.right=5;key.shadow.camera.top=5;key.shadow.camera.bottom=-5;key.shadow.normalBias=.035;scene.add(key);const fill=new THREE.DirectionalLight('#c6c1e4',1);fill.position.set(-5,4+DY,-1);scene.add(fill);const room=new THREE.PointLight('#fff0dc',5.6,7,2);room.position.set(0,3.725,0);scene.add(room);
 const floor=new THREE.Mesh(new THREE.PlaneGeometry(60,60),mat('#17151c'));floor.rotation.x=-Math.PI/2;floor.position.y=-.094;floor.receiveShadow=true;scene.add(floor);const grid=new THREE.GridHelper(24,24,'#39303f','#26222e');grid.position.y=-.09;grid.material.transparent=true;grid.material.opacity=.45;scene.add(grid);
 
 function say(text){$('status').textContent=text}
@@ -113,4 +121,4 @@ function resize(){const w=$('viewer').clientWidth,h=$('viewer').clientHeight;ren
 new ResizeObserver(resize).observe($('viewer'));resize();renderer.domElement.addEventListener('webglcontextlost',e=>{e.preventDefault();window.dispatchEvent(new Event('morada-viewer-error'))});
 let visible=true,previous=0;new IntersectionObserver(e=>{visible=e[0].isIntersecting},{rootMargin:'100px'}).observe($('viewer'));
 function frame(t){requestAnimationFrame(frame);const dt=previous?Math.min((t-previous)/1000,.06):0;previous=t;if(!visible||document.hidden)return;controls.update(dt);renderer.render(scene,camera)}
-sync();updateLights();requestAnimationFrame(frame);document.documentElement.dataset.modelReady='true';document.documentElement.dataset.modelRevision='20261027-calido-altura5-ambiente70-retro3repisas';
+sync();updateLights();requestAnimationFrame(frame);document.documentElement.dataset.modelReady='true';document.documentElement.dataset.modelRevision='20261027-plano-final-A01-A05-calido-retro';
