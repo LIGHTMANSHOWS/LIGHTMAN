@@ -25,14 +25,14 @@
       const shape=new T.Shape();poly.forEach((p,i)=>i?shape.lineTo(...p):shape.moveTo(...p));shape.closePath();
       const body=new T.Mesh(new T.ExtrudeGeometry(shape,{depth:.27,bevelEnabled:false}),material(0xdfd4e1,{metalness:.3,roughness:.38}));body.name='Volumen_de_referencia_7p2_x_3p7m';body.castShadow=true;context.add(body);
       // Facets are a schematic interpretation of the supplied iridescent cladding.
-      function facet(vertices,color){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices.flatMap(p=>[p[0],p[1],.279]),3));g.computeVertexNormals();const m=new T.Mesh(g,material(color,{side:T.DoubleSide,roughness:.28,metalness:.36}));m.name='Faceta_de_contexto';context.add(m);}
+      function facet(vertices,color){const g=new T.BufferGeometry();g.setAttribute('position',new T.Float32BufferAttribute(vertices.flatMap(p=>[p[0],p[1],.279]),3));g.computeVertexNormals();const m=new T.Mesh(g,new T.MeshBasicMaterial({color,side:T.DoubleSide,toneMapped:false}));m.name='Faceta_de_contexto';context.add(m);}
       const palette=[0xcfcde5,0xe9cbd5,0xf0dec6,0xbfdcdd,0xe6dcec,0xf7e9d9];
       for(const side of [-1,1]){
         const a=[side*3.6,0],b=[side*2.1,0],c=[side*1.35,2.5],d=[side*2.1,3.7],e=[side*3.6,2.8],p=[side*2.7,1.35],q=[side*2.7,2.8];
         [[a,b,p],[b,c,p],[c,q,p],[c,d,q],[d,e,q],[e,a,p],[e,p,q]].forEach((v,i)=>facet(v,palette[(i+(side===1?2:0))%palette.length]));
       }
       facet([[-2.1,3.7],[-1.35,2.5],[0,3.2]],0xf0dce2);facet([[-2.1,3.7],[0,3.2],[2.1,3.7]],0xe9dce2);facet([[2.1,3.7],[0,3.2],[1.35,2.5]],0xd7dfeb);facet([[-1.35,2.5],[1.35,2.5],[0,3.2]],0xebd1cf);
-      box(context,'Cartel_referencial',2.7,.71,.035,0,3.17,.32,material(0xf5ede1,{roughness:.9,metalness:0}));
+      box(context,'Cartel_referencial',2.7,.71,.035,0,3.17,.32,new T.MeshBasicMaterial({color:0xf5ede1,toneMapped:false}));
     }
     if(s.human){
       const human=new T.Group();human.name='Escala_humana_1p75m';root.add(human);human.position.set(.6,0,-2.5);const clothes=material(0x758a8d,{metalness:0}),skin=material(0xc7b49b,{metalness:0});
