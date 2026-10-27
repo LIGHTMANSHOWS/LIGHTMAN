@@ -1,0 +1,13 @@
+Three.js r180: MIT License, see LICENSE-three.txt.
+Human rig base: Xbot sample distributed in the Three.js examples, sourced from Mixamo.
+Source: https://github.com/mrdoob/three.js/blob/r180/examples/models/gltf/Xbot.glb
+Character clothing shells, LED layout, cap, visor, instruments, screens, capes and poses are custom LIGHTMAN scene geometry.
+Visual reference: https://www.tiktok.com/@lightman.pe/video/7672570775979085076
+This is an approximate recreation, not a scan of the performers.
+
+Urban head: Infinite, 3D Head Scan by Lee Perry-Smith / Infinite-Realities. Converted by Morgan McGuire and Guedis Cardenas. Creative Commons Attribution 3.0 Unported, https://creativecommons.org/licenses/by/3.0/.
+Source: Three.js r180 examples/models/gltf/LeePerrySmith and https://casual-effects.com/data/.
+Changes: bust cropped, resized and fitted to articulated body, with custom Urban hat and glasses. Generic face, not an event performer likeness.
+Licence reference: https://github.com/keijiro/InfiniteScan
+
+Audio: Batucada | Festival Internacional de Artes Vivas 2018 - Viko. https://www.youtube.com/watch?v=Ao6GSvsmZjs . Creative Commons Attribution (reuse allowed), according to YouTube metadata. MP3 conversion, loudness normalization and fades. Full attribution in credits.html.
