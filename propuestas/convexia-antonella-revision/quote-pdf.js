@@ -13,14 +13,14 @@
   function paragraph(value,y){for(const line of wrap(value)){text(34,y,line,8,false,'0.38 0.43 0.45');y-=12;}return y;}
   commands.push('0.065 0.10 0.13 rg 0 770 595.28 72 re f');
   text(34,810,'LIGHTMAN',24,true,'1 1 1');text(34,790,'STAGE & INSTALL - COTIZACIÓN CONFIGURADA',8,false,'1 1 1');
-  text(425,810,d.date,9,false,'1 1 1');text(425,792,'CONVEXIA - REV. 03',8,false,'1 1 1');
+  text(425,810,d.date,9,false,'1 1 1');text(425,792,'CONVEXIA - REV. 04',8,false,'1 1 1');
   text(34,744,'Arcos LED para Convexia',20,true);text(34,724,'Proyecto X / Antonella | Instalación solicitada: 2 de noviembre de 2026',9);
   text(34,706,'Configuración elegida en el visor; importes en soles.',8,false,'0.38 0.43 0.45');
   const scale=Math.min(527/d.imageWidth,220/d.imageHeight),iw=d.imageWidth*scale,ih=d.imageHeight*scale;
   commands.push(`q ${iw.toFixed(3)} 0 0 ${ih.toFixed(3)} ${((595.28-iw)/2).toFixed(3)} ${(471+(220-ih)/2).toFixed(3)} cm /Im1 Do Q`);
   text(34,456,`${s.count} arcos | Ancho inferior ${s.width.toFixed(2)} m | Alto ${s.height.toFixed(2)} m`,11,true);
   text(34,438,`Separación entre ejes ${s.gap.toFixed(2)} m | Recorrido ${q.depth.toFixed(2)} m`,10);
-  text(34,420,`Ancho superior de estudio ${(s.width*.64).toFixed(3)} m | Luz fija`,9);
+  text(34,420,`Ancho superior de estudio ${(s.width*.64).toFixed(3)} m | Vista ${s.environment==='night'?'nocturna':s.environment==='day'?'diurna':'atardecer'} | Efecto: ${{rainbow:'arcoiris',wave:'onda',chase:'barrido',pulse:'pulso',solid:'fijo'}[s.effect]||'fijo'}`,9);
   rule(405);
   const option=q.rate===50?'LED con estructura':'Solo LED';
   text(34,386,'ALTERNATIVA',8,true);text(290,386,'METRAJE',8,true);text(390,386,'TARIFA / M',8,true);text(490,386,'SUBTOTAL',8,true);
@@ -31,7 +31,7 @@
   let y=239;
   y=paragraph('Metrado referencial: suma de los tres lados iluminados de cada arco trapezoidal, redondeada a 2 decimales. Ancho superior del modelo: 64% del inferior. Geometría y medidas sujetas a validación final.',y)-6;
   y=paragraph('La tarifa de S/50 por metro incluye LED y estructura; no se suma a la tarifa de S/40. El pórtico decorativo se muestra como contexto del cliente y no forma parte del suministro.',y)-6;
-  y=paragraph('Color final, fijaciones, alimentación, horarios, montaje y retiro, plazo del servicio, movilidad y condiciones de pago se coordinan antes de confirmar el servicio.',y)-6;
+  y=paragraph('Efectos de la imagen: simulación visual; control dinámico por validar. Color, fijaciones, alimentación, montaje, retiro y condiciones de pago se coordinan antes de confirmar el servicio.',y)-6;
   text(34,y,'Visor: lightmanperu.com/propuestas/convexia-antonella-revision/',8,false,'0.64 0.32 0.15');
   rule(42);text(34,28,'LIGHTMAN Producciones | lightmanperu.com | +51 964 111 591',7,false,'0.4 0.45 0.47');text(552,28,'1',7);
   const jpeg=Uint8Array.from(atob(d.image.split(',')[1]),c=>c.charCodeAt(0));

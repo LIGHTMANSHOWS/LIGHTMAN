@@ -1,7 +1,7 @@
 (function(scope){
   const T=scope.THREE;
-  const defaults={width:4.2,height:2.5,count:8,gap:0.5,tone:'warm',environment:'day',portico:true,human:true,dimensions:true};
-  const tones={warm:0xffc47a,neutral:0xfff3dc,cool:0xc3e9ff};
+  const defaults={width:4.2,height:2.5,count:8,gap:0.5,tone:'warm',environment:'night',effect:'rainbow',speed:1,brightness:1,portico:true,human:true,dimensions:true};
+  const tones={warm:0xffc47a,neutral:0xfff3dc,cool:0xc3e9ff,cyan:0x27dfff,magenta:0xff40be,blue:0x466eff};
   function material(color,extra={}){return new T.MeshStandardMaterial({color,roughness:.65,metalness:.15,...extra});}
   function box(root,name,w,h,d,x,y,z,mat){const m=new T.Mesh(new T.BoxGeometry(w,h,d),mat);m.name=name;m.position.set(x,y,z);m.castShadow=true;m.receiveShadow=true;root.add(m);return m;}
   function rod(root,name,a,b,r,mat){const p=new T.Vector3(...a),q=new T.Vector3(...b),v=q.clone().sub(p);const m=new T.Mesh(new T.CylinderGeometry(r,r,v.length(),12),mat);m.name=name;m.position.copy(p.add(q).multiplyScalar(.5));m.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),v.normalize());m.castShadow=true;root.add(m);return m;}
@@ -13,7 +13,9 @@
     for(let i=0;i<s.count;i++){
       const z=-.55-i*s.gap;const group=new T.Group();group.name='Arco_'+String(i+1).padStart(2,'0');arches.add(group);
       for(let j=0;j<3;j++){
-        const a=[...points[j],z],b=[...points[j+1],z];rod(group,'Soporte_referencial',a,b,.022,dark);rod(group,'Difusor_LED_luz_fija',[a[0],a[1],z+.035],[b[0],b[1],z+.035],.017,led);
+        const a=[...points[j],z],b=[...points[j+1],z];rod(group,'Soporte_referencial',a,b,.022,dark);
+        const luminous=new T.MeshBasicMaterial({color:tones[s.tone],toneMapped:false});const core=rod(group,'Difusor_LED',[a[0],a[1],z+.035],[b[0],b[1],z+.035],.018,luminous);core.userData.led={arch:i,edge:j};
+        const halo=rod(group,'Halo_visual_LED',[a[0],a[1],z+.035],[b[0],b[1],z+.035],.065,new T.MeshBasicMaterial({color:tones[s.tone],transparent:true,opacity:.13,toneMapped:false,blending:T.AdditiveBlending,depthWrite:false}));halo.userData.glow={arch:i,edge:j};halo.userData.noExport=true;halo.castShadow=false;
       }
       for(const x of [-s.width/2,s.width/2])box(group,'Base_esquematica_sujecion_por_validar',.3,.025,.42,x,.0125,z,dark);
     }
@@ -44,11 +46,11 @@
   function exportGLB(root,settings){
     root.updateMatrixWorld(true);let offset=0;const chunks=[],bufferViews=[],accessors=[],meshes=[],nodes=[],materials=[];const materialMap=new Map();
     function addArray(array,type,componentType,count,bounds){const pad=(4-offset%4)%4;if(pad){chunks.push(new Uint8Array(pad));offset+=pad;}const bytes=new Uint8Array(array.buffer,array.byteOffset,array.byteLength);const index=bufferViews.length;bufferViews.push({buffer:0,byteOffset:offset,byteLength:bytes.length});chunks.push(bytes);offset+=bytes.length;accessors.push({bufferView:index,componentType,count,type,...bounds});return accessors.length-1;}
-    root.traverse(mesh=>{if(!mesh.isMesh||Array.isArray(mesh.material))return;const g=mesh.geometry.clone();g.applyMatrix4(mesh.matrixWorld);const p=g.getAttribute('position'),n=g.getAttribute('normal');g.computeBoundingBox();const pos=addArray(new Float32Array(p.array),'VEC3',5126,p.count,{min:g.boundingBox.min.toArray(),max:g.boundingBox.max.toArray()});const attrs={POSITION:pos};if(n)attrs.NORMAL=addArray(new Float32Array(n.array),'VEC3',5126,n.count);
+    root.traverse(mesh=>{if(!mesh.isMesh||mesh.userData.noExport||Array.isArray(mesh.material))return;const g=mesh.geometry.clone();g.applyMatrix4(mesh.matrixWorld);const p=g.getAttribute('position'),n=g.getAttribute('normal');g.computeBoundingBox();const pos=addArray(new Float32Array(p.array),'VEC3',5126,p.count,{min:g.boundingBox.min.toArray(),max:g.boundingBox.max.toArray()});const attrs={POSITION:pos};if(n)attrs.NORMAL=addArray(new Float32Array(n.array),'VEC3',5126,n.count);
       const prim={attributes:attrs};if(g.index)prim.indices=addArray(new Uint32Array(g.index.array),'SCALAR',5125,g.index.count);
       const m=mesh.material;if(!materialMap.has(m.uuid)){materialMap.set(m.uuid,materials.length);materials.push({name:m.name||'Material',pbrMetallicRoughness:{baseColorFactor:[m.color.r,m.color.g,m.color.b,1],metallicFactor:m.metalness??0,roughnessFactor:m.roughness??.7},emissiveFactor:m.emissive?m.emissive.toArray().map(v=>Math.min(1,v*(m.emissiveIntensity??1))):[0,0,0],doubleSided:m.side===T.DoubleSide});}prim.material=materialMap.get(m.uuid);meshes.push({name:mesh.name,primitives:[prim]});nodes.push({name:mesh.name,mesh:meshes.length-1});g.dispose();
     });
-    const doc={asset:{version:'2.0',generator:'LIGHTMAN · Convexia estudio v02'},scene:0,scenes:[{nodes:nodes.map((_,i)=>i),extras:{units:'metres',conceptual:true,settings,notes:'Pórtico de contexto. 8 arcos y separación aproximada de 0.50 m confirmados. Geometría, separación entre ejes y fijaciones por validar.'}}],nodes,meshes,materials,accessors,bufferViews,buffers:[{byteLength:offset}]};
+    const doc={asset:{version:'2.0',generator:'LIGHTMAN · Convexia estudio v04'},scene:0,scenes:[{nodes:nodes.map((_,i)=>i),extras:{units:'metres',conceptual:true,settings,notes:'Pórtico de contexto. 8 arcos y separación aproximada de 0.50 m confirmados. Geometría, separación entre ejes y fijaciones por validar.'}}],nodes,meshes,materials,accessors,bufferViews,buffers:[{byteLength:offset}]};
     let json=new TextEncoder().encode(JSON.stringify(doc));const jlen=Math.ceil(json.length/4)*4,blen=Math.ceil(offset/4)*4,total=12+8+jlen+8+blen;const out=new Uint8Array(total);const dv=new DataView(out.buffer);dv.setUint32(0,0x46546c67,true);dv.setUint32(4,2,true);dv.setUint32(8,total,true);dv.setUint32(12,jlen,true);dv.setUint32(16,0x4e4f534a,true);out.fill(32,20,20+jlen);out.set(json,20);dv.setUint32(20+jlen,blen,true);dv.setUint32(24+jlen,0x004e4942,true);let cursor=28+jlen;for(const c of chunks){out.set(c,cursor);cursor+=c.length;}return out;
   }
   function quote(s,rate=50){const q=quantities(s),metres=Math.round(q.total*100)/100,subtotal=Math.round(metres*rate*100)/100,igv=Math.round(subtotal*18)/100;return {...q,metres,rate,subtotal,igv,totalPrice:Math.round((subtotal+igv)*100)/100};}
