@@ -7,9 +7,10 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { createUrbanCostume } from './urban-costume.js?v=5.3';
-import { createPixelEffects } from './pixel-effects.js?v=5.3';
-import { setupMusic } from './music.js?v=5.3';
+import { createTronMask } from './tron-mask.js?v=5.7';
+import { createUrbanCostume } from './urban-costume.js?v=5.7';
+import { createPixelEffects } from './pixel-effects.js?v=5.7';
+import { setupMusic } from './music.js?v=5.7';
 
 const $=s=>document.querySelector(s),canvas=$('#stage');
 document.querySelectorAll('[data-count],[data-view],[data-format]').forEach(b=>b.disabled=true);
@@ -79,7 +80,7 @@ function updateBrand(t=0,rhythm=music.sample(t)){
   }d.tex.needsUpdate=true;
  }
 }
-const panelMat=surfaceMaterial(96,64,'flag'),capeMat=surfaceMaterial(64,112,'cape'),drumMat=surfaceMaterial(128,40);updateBrand();
+const panelMat=surfaceMaterial(120,80,'flag'),capeMat=surfaceMaterial(80,120,'cape'),drumMat=surfaceMaterial(128,40);updateBrand();
 function clothPanel(w,h,type,phase,display=true){const group=new THREE.Group();const geo=new THREE.PlaneGeometry(w,h,type==='cape'?30:32,24);const base=geo.attributes.position.array.slice();const front=new THREE.Mesh(geo,display?(type==='cape'?capeMat:panelMat):cloth);front.castShadow=false;front.receiveShadow=false;group.add(front);dynamicFabrics.push({geo,base,w,h,type,phase});return group;}
 
 function drum(role){const g=new THREE.Group();const radius=role==='bombo'?.245:role==='tarola'?.19:.155,height=role==='bombo'?.34:role==='tarola'?.15:.29;const body=mesh(new THREE.CylinderGeometry(radius,radius,height,48,1,true),blackMetal,g);body.position.y=-height/2;
@@ -136,22 +137,13 @@ function makeAvatar(role,index,costume='tron'){
   const wristA=world(bones[(sign>0?'Left':'Right')+'ForeArm']),wristB=world(bones[(sign>0?'Left':'Right')+'Hand']);
   ledStrip([wristA.clone().lerp(wristB,.92).add(V(0,-.025,.035)),wristA.clone().lerp(wristB,.92).add(V(0,.025,.035))],ledGreen,group,bones[(sign>0?'Left':'Right')+'ForeArm'],.025);
  }
- // Full closed Tron helmet, grounded in Drive's CATALOGO FULL IA / tron2.png.
- const head=new THREE.Group();
- const helmetMaterial=new THREE.MeshPhysicalMaterial({color:'#080d15',metalness:.38,roughness:.21,clearcoat:.9,clearcoatRoughness:.12,envMapIntensity:.8});
- const profile=[V(.026,-.142,0),V(.062,-.119,0),V(.087,-.075,0),V(.102,-.025,0),V(.107,.035,0),V(.102,.083,0),V(.081,.125,0),V(.04,.148,0),V(.001,.157,0)];
- mesh(new THREE.LatheGeometry(profile,48),helmetMaterial,head);
- const visorMaterial=new THREE.MeshPhysicalMaterial({color:'#030609',metalness:.5,roughness:.11,clearcoat:1,envMapIntensity:.65});
- const face=new THREE.CylinderGeometry(.109,.109,.079,48,1,true,-Math.PI*.41,Math.PI*.82);mesh(face,visorMaterial,head,V(0,.009,0));
- for(const yy of [-.008,.022])for(let n=0;n<22;n++){const a=-1.11+n/21*2.22;mesh(new THREE.SphereGeometry(.0039,8,6),ledGreen,head,V(Math.sin(a)*.111,yy,Math.cos(a)*.111));}
- for(const yy of [-.033,.05])tube(Array.from({length:13},(_,n)=>{const a=-1.28+n/12*2.56;return V(Math.sin(a)*.111,yy,Math.cos(a)*.111);}),.0022,blackMetal,head);
- head.position.copy(headPos).add(V(0,.07,.006));bind(head,bones.Head,group);
+ createTronMask({group,bones,headPos,headGeometry,skinMaterial,mesh,tube,bind,cloth,rubber,led:ledGreen});
  }else{createUrbanCostume({group,bones,hipPos,chestPos,headPos,bind,mesh,tube,ledStrip,cloth,rubber,steel,green:ledGreen,orange:ledOrange,headGeometry,skinMaterial});}
  human.headY=headPos.y+.07;human.hipY=hipPos.y;
  if(role==='bandera'){
-  const pole=new THREE.Group();rod(V(0,-.65,0),V(0,1.25,0),.012,steel,pole);
-  const flag=clothPanel(.94,.67,'flag',index);flag.position.set(.49,.88,0);pole.add(flag);
-  for(let n=0;n<5;n++){const ring=mesh(new THREE.TorusGeometry(.017,.0025,6,10),steel,pole,V(.02,.55+n*.14,0));ring.rotation.y=Math.PI/2;}
+  const pole=new THREE.Group();rod(V(0,-.65,0),V(0,1.55,0),.012,steel,pole);
+  const flag=clothPanel(1.50,1.00,'flag',index);flag.position.set(.77,1.00,0);pole.add(flag);
+  for(let n=0;n<7;n++){const ring=mesh(new THREE.TorusGeometry(.017,.0025,6,10),steel,pole,V(.02,.53+n*.155,0));ring.rotation.y=Math.PI/2;}
   root.add(pole);human.instrument=pole;
  }else if(role==='viento'){
   const horn=trumpet();root.add(horn);human.instrument=horn;
@@ -159,7 +151,7 @@ function makeAvatar(role,index,costume='tron'){
   const instrument=drum(role);root.add(instrument);human.instrument=instrument;
   human.sticks=[];for(let i=0;i<2;i++){const stick=new THREE.Group();root.add(stick);rod(V(0,0,0),V(0,0,.32),.0045,new THREE.MeshStandardMaterial({color:'#c4a079',roughness:.7}),stick);mesh(new THREE.SphereGeometry(role==='bombo'?.014:.006,10,8),role==='bombo'?rubber:steel,stick,V(0,0,.32));human.sticks.push(stick);}
   // The video also shows luminous capes on percussionists.
-  const cape=clothPanel(.82,1.44,'cape',index);cape.position.set(0,.94,-.165);cape.rotation.y=Math.PI;root.add(cape);human.cape=cape;
+  const cape=clothPanel(1.00,1.50,'cape',index);cape.position.set(0,.94,-.165);cape.rotation.y=Math.PI;root.add(cape);human.cape=cape;
  }
  const heightVariation=[.99,1.025,.975,1.01,1.035,.985,1.015,.98,1.025,1][index%10];group.scale.setScalar(heightVariation);
  avatars.push(human);return human;
@@ -226,15 +218,16 @@ function setFormation(n){state.count=n;avatars.forEach(h=>{h.group.visible=false
  document.querySelectorAll('[data-count]').forEach(b=>{const on=Number(b.dataset.count)===n;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});
  const tron=FORMATIONS[n].filter(x=>x.costume==='tron').length,urban=n-tron;
  canvas.setAttribute('aria-label',`Escena 3D de ${n} artistas: ${tron} Tron en percusión y ${urban} Urban en vientos y banderas. Arrastra para girar.`);
+ canvas.dataset.flagWidth='1.50';canvas.dataset.flagHeight='1.00';canvas.dataset.tronHead='frontal-mask-exposed-ears-neck';
  canvas.dataset.cast=JSON.stringify(FORMATIONS[n].map(x=>({role:x.role,costume:x.costume,cape:!!x.cape})));
  if($('#wardrobe-summary'))$('#wardrobe-summary').textContent=`${tron} TRON · ${urban} URBAN`;
  setView('ensemble');
 }
 function setView(view){state.view=view;let p,target;const mobile=canvas.clientWidth<600;
  if(view==='ensemble'){avatars.forEach(h=>h.group.visible=!!h.active);p=state.count===10?V(mobile?7:3.3,2.65,mobile?16:10.4):V(mobile?6:3,2.4,mobile?14:9.4);target=V(0,1.1,-.25);}
- else{const role=view==='detail'?'bombo':view.startsWith('flag')?'bandera':view==='horn'?'viento':'bombo';const h=avatars.find(h=>h.role===role&&h.active);avatars.forEach(v=>v.group.visible=v===h);const center=h?.base||V(0,0,0);target=center.clone().add(view.startsWith('flag')?V(.25,1.3,0):V(0,1.05,0));p=center.clone().add(view==='flag-back'?V(-1.5,1.95,-4.2):view==='flag'?V(1.5,1.95,4.2):view==='horn'?V(1.5,1.65,2.6):view==='cape-front'?V(1.5,1.7,3):view==='cape'?V(-1.4,1.6,-3):V(1.55,1.55,2.9));}
+ else{const role=view==='detail'?'bombo':view.startsWith('flag')?'bandera':view==='horn'?'viento':'bombo';const h=avatars.find(h=>h.role===role&&h.active);avatars.forEach(v=>v.group.visible=v===h);const center=h?.base||V(0,0,0);target=center.clone().add(view==='mask'?V(0,h.headY,0):view.startsWith('flag')?V(mobile?.65:.45,mobile?1.7:1.48,0):V(0,1.05,0));p=center.clone().add(view==='mask'?V(.62,h.headY+.08,1.14):view==='flag-back'?V(mobile?-2.2:-1.8,mobile?2.7:2.2,mobile?-7:-5):view==='flag'?V(mobile?2.2:1.8,mobile?2.7:2.2,mobile?7:5):view==='horn'?V(1.5,1.65,2.6):view==='cape-front'?V(1.5,1.7,3):view==='cape'?V(-1.4,1.6,-3):V(1.55,1.55,2.9));}
  const scoreTime=music.time(state.time);avatars.forEach(h=>{if(h.group.visible)pose(h,scoreTime);});animateFabrics(music.sample(scoreTime).beat*.55);
- transition={from:camera.position.clone(),to:p,start:performance.now(),fromTarget:controls.target.clone(),toTarget:target};document.querySelectorAll('[data-view]').forEach(b=>{const on=b.dataset.view===view;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});if($('#stage-caption'))$('#stage-caption').textContent=view==='ensemble'?`${state.count} ARTISTAS · 3D INTERACTIVO`:view==='flag-back'?'BANDERAS · REVERSO EN ESPEJO':view==='flag'?'URBAN · BANDERAS':view==='horn'?'URBAN · VIENTO':view==='cape-front'?'CAPA TRANSPARENTE · CARA INTERIOR':view==='cape'?'TRON · CAPA LED CENTRAL':'TRON · PERCUSIÓN';if($('#detail-view')){$('#detail-view').textContent=view==='ensemble'?'Acercar la marca ↗':'Ver elenco completo ↗';$('#detail-view').setAttribute('aria-pressed',view!=='ensemble');}}
+ transition={from:camera.position.clone(),to:p,start:performance.now(),fromTarget:controls.target.clone(),toTarget:target};document.querySelectorAll('[data-view]').forEach(b=>{const on=b.dataset.view===view;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});if($('#stage-caption'))$('#stage-caption').textContent=view==='ensemble'?`${state.count} ARTISTAS · 3D INTERACTIVO`:view==='mask'?'TRON · MÁSCARA FRONTAL':view==='flag-back'?'BANDERAS · REVERSO EN ESPEJO':view==='flag'?'BANDERAS · 1,50 × 1,00 M':view==='horn'?'URBAN · VIENTO':view==='cape-front'?'CAPA TRANSPARENTE · CARA INTERIOR':view==='cape'?'TRON · CAPA LED CENTRAL':'TRON · PERCUSIÓN';if($('#detail-view')){$('#detail-view').textContent=view==='ensemble'?'Acercar la marca ↗':'Ver elenco completo ↗';$('#detail-view').setAttribute('aria-pressed',view!=='ensemble');}}
 
 // Event-like floor, shadows, floor markings and rear truss provide scale cues.
 const floorCanvas=document.createElement('canvas');floorCanvas.width=floorCanvas.height=512;const fcx=floorCanvas.getContext('2d');fcx.fillStyle='#171819';fcx.fillRect(0,0,512,512);let seed=31;for(let i=0;i<25000;i++){seed=(seed*1664525+1013904223)>>>0;const x=seed%512;seed=(seed*1664525+1013904223)>>>0;const y=seed%512;fcx.fillStyle=`rgba(20,24,28,${(seed%15)/100})`;fcx.fillRect(x,y,1,1);}fcx.strokeStyle='#060708';fcx.lineWidth=5;fcx.strokeRect(0,0,512,512);fcx.strokeStyle='#26282a';fcx.lineWidth=1;fcx.strokeRect(4,4,504,504);const floorTex=new THREE.CanvasTexture(floorCanvas);floorTex.colorSpace=THREE.SRGBColorSpace;floorTex.wrapS=floorTex.wrapT=THREE.RepeatWrapping;floorTex.repeat.set(40,40);const floor=mesh(new THREE.PlaneGeometry(50,50),new THREE.MeshPhysicalMaterial({map:floorTex,color:'#383838',bumpMap:floorTex,bumpScale:.004,roughness:.9,metalness:0,envMapIntensity:.02,specularIntensity:.08,fog:false}),scene);floor.rotation.x=-Math.PI/2;floor.position.y=-.018;floor.receiveShadow=true;floor.castShadow=false;
