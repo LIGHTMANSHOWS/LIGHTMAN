@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Cotizador de túneles LED | LIGHTMAN</title><meta name="description" content="Configura túneles LED modulares con tubos de 1,20 m. Compara modelos, medidas y presupuesto en tiempo real."><link rel="icon" href="assets/lightman-logo.jpg"><link rel="stylesheet" href="style.css?v=1"><script defer src="assets/three.min.js"></script><script defer src="model.js?v=1"></script><script defer src="app.js?v=1"></script></head>
+<body>
+<header><a href="https://lightmanperu.com" class="brand"><img src="assets/lightman-logo.jpg" alt="LIGHTMAN"><span>LIGHTMAN<small>DISEÑO · LUZ · EXPERIENCIAS</small></span></a><span class="edition">CONFIGURADOR MODULAR <b>01</b></span></header>
+<main>
+ <div class="intro"><div><span class="eyebrow">DE LA IDEA AL MONTAJE</span><h1>Diseña tu túnel <em>LED.</em></h1><p>Elige la forma. Ajusta los módulos. Mira cómo cambia la luz y el presupuesto.</p></div><div class="module-tag"><strong>1,20 <small>m</small></strong><span>UN TUBO. MUCHAS POSIBILIDADES.</span></div></div>
+ <div class="studio" id="explorar">
+  <section class="viewer" aria-label="Visor 3D del túnel">
+   <div class="viewer-toolbar"><span class="badge">MAQUETA 3D</span><div class="viewbar"><div class="segmented"><button data-view="perspective" class="active">Perspectiva</button><button data-view="front">Frente</button><button data-view="plan">Planta</button><button data-view="inside">Recorrido</button></div><button id="fullscreen" aria-label="Pantalla completa">⛶</button></div></div>
+   <div class="canvas-wrap"><canvas id="scene" aria-label="Modelo 3D interactivo: arrastra para girar y usa la rueda o pellizca para acercar"></canvas><div id="dimension-labels"></div><p id="scene-error" hidden>Tu navegador no pudo iniciar el visor 3D. El cálculo de tubos y presupuesto sigue disponible.</p></div>
+   <div class="viewer-bottom"><span>Arrastra para girar · Pellizca para acercar</span><span id="scene-status"></span><strong id="viewer-price" aria-live="polite"></strong></div>
+  </section>
+  <aside class="controls">
+   <section><div class="section-title"><span>01</span><h2>La forma</h2></div><div class="shapes" role="group" aria-label="Modelo de túnel">
+    <button data-shape="hexagon" class="active" aria-pressed="true"><svg viewBox="0 0 64 48"><path d="M20 42 8 23 20 4H44L56 23 44 42"/></svg>Hexagonal</button>
+    <button data-shape="square" aria-pressed="false"><svg viewBox="0 0 64 48"><path d="M13 42V5H51V42"/></svg>Cuadrado</button>
+    <button data-shape="triangle" aria-pressed="false"><svg viewBox="0 0 64 48"><path d="M8 42 32 4 56 42"/></svg>Triangular</button>
+    <button data-shape="rectangle" aria-pressed="false"><svg viewBox="0 0 64 48"><path d="M5 42V10H59V42"/></svg>Rectangular</button>
+   </div><p class="hint" id="shape-description"></p></section>
+   <section><div class="section-title"><span>02</span><h2>Los módulos</h2></div>
+    <label class="range-label" for="modules"><span id="modules-label">Tubos por lado</span><output id="modules-out"></output></label><input id="modules" type="range" min="1" max="4" step="1" value="1">
+    <div id="width-control" hidden><label class="range-label" for="widthModules">Tubos en el techo <output id="widthModules-out"></output></label><input id="widthModules" type="range" min="1" max="5" step="1" value="3"></div>
+    <label class="range-label" for="count">Cantidad de marcos <output id="count-out">8</output></label><input id="count" type="range" min="2" max="24" step="1" value="8">
+    <label class="range-label" for="gap">Separación entre marcos <output id="gap-out">0,50 m</output></label><input id="gap" type="range" min=".25" max="2" step=".05" value=".5">
+    <p class="hint">La separación cambia el recorrido. La cantidad de marcos y los tubos por lado cambian el precio.</p>
+   </section>
+   <section><div class="section-title"><span>03</span><h2>La luz</h2></div><div class="select-grid"><label>Ambiente<select id="environment"><option value="night">Noche</option><option value="day">Día</option></select></label><label>Efecto<select id="effect"><option value="rainbow">Arcoíris</option><option value="solid">Luz fija</option><option value="wave">Onda</option><option value="chase">Barrido</option><option value="pulse">Pulso</option></select></label></div>
+    <label>Color base<select id="tone"><option value="cyan">Cian</option><option value="warm">Cálido</option><option value="neutral">Neutro</option><option value="cool">Frío</option><option value="magenta">Magenta</option><option value="blue">Azul</option></select></label>
+    <label class="range-label" for="speed">Velocidad <output id="speed-out">1,0×</output></label><input id="speed" type="range" min=".2" max="2" step=".1" value="1">
+    <label class="range-label" for="brightness">Brillo <output id="brightness-out">100%</output></label><input id="brightness" type="range" min=".2" max="1.5" step=".1" value="1">
+    <div class="checks"><label><input id="dimensions" type="checkbox" checked> Medidas</label><label><input id="human" type="checkbox" checked> Escala humana</label></div><button class="secondary full" id="pause-effects" aria-pressed="false">Pausar efectos</button>
+   </section><button id="reset" class="text-button">Restablecer configuración</button>
+  </aside>
+  <section class="live-quote" aria-label="Presupuesto actualizado">
+   <div class="quote-top"><div><span class="eyebrow">TU CONFIGURACIÓN</span><h2 id="config-name">Túnel hexagonal</h2></div><div class="total"><small>Estimado con IGV</small><strong id="quote-total" aria-live="polite"></strong></div></div>
+   <div class="metrics"><div><strong id="size-out"></strong><small>ANCHO × ALTO MÁXIMOS</small></div><div><strong id="depth-out"></strong><small>RECORRIDO ENTRE EJES</small></div><div><strong id="tubes-out"></strong><small>TUBOS DE 1,20 M</small></div><div><strong id="metres-out"></strong><small>METROS LINEALES LED</small></div></div>
+   <p class="formula" id="formula"></p><p class="hint" id="passage-note"></p>
+   <details class="pricing"><summary>Tarifa y desglose <span>+ IGV 18%</span></summary><div class="pricing-body"><div class="select-grid"><label>Alcance<select id="quote-option"><option value="structure">LED con estructura</option><option value="led">Solo LED</option></select></label><label>Tarifa por metro · sin IGV<input id="rate" type="number" min="0" max="10000" step=".01" value="50" inputmode="decimal"></label></div><p class="hint">Tarifas de referencia del proyecto base: S/40 solo LED y S/50 con estructura. Editables; pendientes de validar para estos modelos.</p><dl><div><dt>Subtotal sin IGV</dt><dd id="quote-subtotal"></dd></div><div><dt>IGV 18%</dt><dd id="quote-tax"></dd></div></dl><p class="hint">El estimado incluye únicamente el alcance seleccionado por metro LED. Montaje, traslado, control, alimentación y condiciones comerciales se definen al cerrar la cotización.</p></div></details>
+   <div class="actions"><button id="save-summary" class="primary">Descargar configuración</button><button id="save-image" class="secondary">Guardar imagen 3D</button></div>
+  </section>
+ </div>
+ <section class="basis"><div><span class="eyebrow">CÓMO ESTÁ ARMADO</span><h2>Una base modular, un cálculo claro.</h2></div><p>Cada segmento corresponde a un tubo de 1,20 m. No se fraccionan tubos para ajustar las medidas. Los modelos quedan abiertos en la base, sin LED cruzando el paso. La geometría muestra dimensiones entre ejes de tubos; uniones, bases y tolerancias se validan para fabricación.</p><p>La vista de luz es una simulación. El precio sigue los tubos del modelo; el diseño de estructura, la altura libre útil y el sistema de control se revisan para cada montaje.</p></section>
+</main><footer><span>LIGHTMAN · COTIZADOR DE TÚNELES LED</span><span>BASE MODULAR 1,20 M · VERSIÓN 01</span></footer>
+</body></html>
