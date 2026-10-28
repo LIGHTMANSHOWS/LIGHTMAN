@@ -37,14 +37,14 @@
  }
 
  const n=(x,d=2)=>x.toLocaleString('es-PE',{minimumFractionDigits:d,maximumFractionDigits:d});
- const descriptions={hexagon:'Cinco lados LED de un hexágono regular; base abierta.',square:'Dos laterales y un techo de igual longitud; base abierta.',triangle:'Dos lados LED de un triángulo equilátero; base abierta.',rectangle:'Altura y techo modulares independientes; base abierta.'};
+ const descriptions={hexagon:'Cinco lados LED de un hexágono regular; base abierta.',square:'Dos laterales y un techo de igual longitud; base abierta.',triangle:'Dos lados LED de un triángulo equilátero; base abierta.',rectangle:'Altura y techo modulares independientes; base abierta.',trapezoid:'Modelo del proyecto base adaptado a tubos completos. Laterales inclinados 15° respecto de la vertical.'};
  function update(){
   const q=C.quantities(s);s.width=q.width;s.height=q.height;
   if(model)dispose(model);model=C.makeModel(s);scene.add(model);leds=[];halos=[];
   model.traverse(m=>{if(m.userData.led)leds.push(m);if(m.userData.glow)halos.push(m);});dimensions();
   const night=s.environment==='night';scene.background=new T.Color(night?0x040711:0xe6eaeb);floor.material.color.set(night?0x0b1322:0xd0d2cb);floor.material.roughness=night?.4:.95;grid.material.opacity=night?.07:.35;hemi.intensity=night?.32:1.8;sun.intensity=night?.18:2.7;rim.intensity=night?.75:.1;applyEffect();
   $('modules-out').textContent=s.modules+' × 1,20 m';$('widthModules-out').textContent=s.widthModules+' × 1,20 m';$('count-out').textContent=s.count;$('gap-out').textContent=n(s.gap)+' m';
-  $('width-control').hidden=s.shape!=='rectangle';$('modules-label').textContent=s.shape==='rectangle'?'Tubos por lateral':'Tubos por lado';$('shape-description').textContent=descriptions[s.shape];
+  const separateRoof=['rectangle','trapezoid'].includes(s.shape);$('width-control').hidden=!separateRoof;$('modules-label').textContent=separateRoof?'Tubos por lateral':'Tubos por lado';$('shape-description').textContent=descriptions[s.shape];
   document.querySelectorAll('[data-shape]').forEach(b=>{const active=b.dataset.shape===s.shape;b.classList.toggle('active',active);b.setAttribute('aria-pressed',String(active));});
   updateQuote();render();
  }
@@ -73,7 +73,7 @@
  for(const name of ['pointerup','pointercancel','lostpointercapture'])canvas.addEventListener(name,e=>pointers.delete(e.pointerId));
  canvas.addEventListener('wheel',e=>{e.preventDefault();radius=T.MathUtils.clamp(radius+e.deltaY*.012,1,85);render();},{passive:false});
  document.querySelectorAll('[data-view]').forEach(b=>b.onclick=()=>setView(b.dataset.view));
- const presets={hexagon:1,square:2,triangle:3,rectangle:2};
+ const presets={hexagon:1,square:2,triangle:3,rectangle:2,trapezoid:2};
  document.querySelectorAll('[data-shape]').forEach(b=>b.onclick=()=>{s.shape=b.dataset.shape;s.modules=presets[s.shape];$('modules').value=s.modules;update();});
  for(const key of ['modules','widthModules','count','gap'])$(key).oninput=e=>{s[key]=+e.target.value;update();};
  for(const key of ['environment','effect','tone'])$(key).onchange=e=>{s[key]=e.target.value;update();};

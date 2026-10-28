@@ -1,9 +1,10 @@
 (function(scope){
  const T=scope.THREE,TUBE=1.2;
  const defaults={shape:'hexagon',modules:1,widthModules:3,count:8,gap:.5,tone:'cyan',environment:'night',effect:'rainbow',speed:1,brightness:1,human:true,dimensions:true};
- const names={hexagon:'Hexagonal',square:'Cuadrado',triangle:'Triangular',rectangle:'Rectangular'};
+ const names={hexagon:'Hexagonal',square:'Cuadrado',triangle:'Triangular',rectangle:'Rectangular',trapezoid:'Trapezoidal'};
  function profile(s){
   const a=s.modules*TUBE,w=s.widthModules*TUBE;
+  if(s.shape==='trapezoid'){const dx=a*Math.sin(Math.PI/12),h=a*Math.cos(Math.PI/12);return [[-w/2-dx,0],[-w/2,h],[w/2,h],[w/2+dx,0]];}
   if(s.shape==='triangle')return [[-a/2,0],[0,a*Math.sqrt(3)/2],[a/2,0]];
   if(s.shape==='hexagon')return [[-a/2,0],[-a,a*Math.sqrt(3)/2],[-a/2,a*Math.sqrt(3)],[a/2,a*Math.sqrt(3)],[a,a*Math.sqrt(3)/2],[a/2,0]];
   const width=s.shape==='rectangle'?w:a;
