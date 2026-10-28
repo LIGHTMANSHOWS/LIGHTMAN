@@ -7,10 +7,10 @@ import { RenderPass } from 'three/addons/postprocessing/RenderPass.js';
 import { UnrealBloomPass } from 'three/addons/postprocessing/UnrealBloomPass.js';
 import { OutputPass } from 'three/addons/postprocessing/OutputPass.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
-import { createTronMask } from './tron-mask.js?v=5.7';
-import { createUrbanCostume } from './urban-costume.js?v=5.7';
-import { createPixelEffects } from './pixel-effects.js?v=5.7';
-import { setupMusic } from './music.js?v=5.7';
+import { createTronMask } from './tron-mask.js?v=5.8';
+import { createUrbanCostume } from './urban-costume.js?v=5.8';
+import { createPixelEffects } from './pixel-effects.js?v=5.8';
+import { setupMusic } from './music.js?v=5.8';
 
 const $=s=>document.querySelector(s),canvas=$('#stage');
 document.querySelectorAll('[data-count],[data-view],[data-format]').forEach(b=>b.disabled=true);
