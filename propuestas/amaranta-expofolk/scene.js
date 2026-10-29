@@ -43,8 +43,8 @@ const sunMat=new T.MeshBasicMaterial({map:sunTexture,color:'#8b9ca8',side:T.Doub
 const fixtures=[];
 // Four blocks of 12 continuous 5 m bars: two stacked behind each diamond.
 // Audience faces -Z: the screens are at z=-2.1 and their opaque backs at -2.31.
-// Spacing, bottom clearance and supports remain illustrative pending the rigging plan.
-const curtain={blocksPerSide:2,barsPerBlock:12,barMeters:5,columnSpacing:.58,blockGap:.1,bottom:1,z:-3.2};
+// Zero gap between blocks confirmed by the user. Lateral spacing, clearance and supports are illustrative.
+const curtain={blocksPerSide:2,barsPerBlock:12,barMeters:5,columnSpacing:.58,blockGap:0,bottom:1,z:-3.2};
 for(const side of [-1,1]){
  for(let block=0;block<curtain.blocksPerSide;block++)for(let col=0;col<curtain.barsPerBlock;col++)fixtures.push({x:side*6.5+(col-(curtain.barsPerBlock-1)/2)*curtain.columnSpacing,y:curtain.bottom+curtain.barMeters/2+block*(curtain.barMeters+curtain.blockGap),z:curtain.z,zone:side<0?'left':'right',block,row:block,col,length:curtain.barMeters});
 }
