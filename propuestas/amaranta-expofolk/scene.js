@@ -5,7 +5,7 @@ const $=id=>document.getElementById(id),host=$('viewer');
 let renderer;
 try{renderer=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true,powerPreference:'low-power'});}catch(e){$('loading').hidden=true;$('viewer-error').hidden=false;throw e;}
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.65));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;
-renderer.domElement.setAttribute('aria-label','Escenario Amaranta / ExpoFolk con tubos LED suspendidos; arrastra para girar');host.appendChild(renderer.domElement);
+renderer.domElement.setAttribute('aria-label','Escenario Amaranta / ExpoFolk: 48 barras LED de 5 m en cuatro bloques de 12 detrás de los rombos; arrastra para girar');host.appendChild(renderer.domElement);
 const scene=new T.Scene();scene.fog=new T.FogExp2('#090910',.013);
 const camera=new T.PerspectiveCamera(40,1,.1,180);
 const orbit=new OrbitControls(camera,renderer.domElement);orbit.enableDamping=true;orbit.enablePan=true;orbit.dampingFactor=.075;orbit.minDistance=13;orbit.maxDistance=85;orbit.maxPolarAngle=Math.PI*.49;
@@ -41,22 +41,23 @@ const outline=[[-.8,2.8],[.8,2.8],[.8,2.15],[1.5,2.15],[1.5,1.5],[2.15,1.5],[2.1
 const shape=new T.Shape(outline.map(([x,y])=>new T.Vector2(x,y)));const shapeGeometry=new T.ShapeGeometry(shape);const pos=shapeGeometry.attributes.position,uv=shapeGeometry.attributes.uv;for(let i=0;i<pos.count;i++)uv.setXY(i,(pos.getX(i)+2.8)/5.6,(pos.getY(i)+2.8)/5.6);
 const sunMat=new T.MeshBasicMaterial({map:sunTexture,color:'#8b9ca8',side:T.DoubleSide});screenMats.push(sunMat);const chakana=new T.Mesh(shapeGeometry,sunMat);chakana.position.set(0,4.2,-2.7);screenGroup.add(chakana);
 const fixtures=[];
-// Two rear curtains: 5 rows × 20 nominal 1 m tubes per diamond screen.
+// Four blocks of 12 continuous 5 m bars: two stacked behind each diamond.
 // Audience faces -Z: the screens are at z=-2.1 and their opaque backs at -2.31.
-const curtain={rows:5,columns:20,tubeMeters:1,columnSpacing:.38,rowSpacing:1.5,z:-3.2};
+// Spacing, bottom clearance and supports remain illustrative pending the rigging plan.
+const curtain={blocksPerSide:2,barsPerBlock:12,barMeters:5,columnSpacing:.58,blockGap:.1,bottom:1,z:-3.2};
 for(const side of [-1,1]){
- for(let row=0;row<curtain.rows;row++)for(let col=0;col<curtain.columns;col++)fixtures.push({x:side*6.5+(col-(curtain.columns-1)/2)*curtain.columnSpacing,y:4.45+(row-(curtain.rows-1)/2)*curtain.rowSpacing,z:curtain.z,zone:side<0?'left':'right',row,col});
+ for(let block=0;block<curtain.blocksPerSide;block++)for(let col=0;col<curtain.barsPerBlock;col++)fixtures.push({x:side*6.5+(col-(curtain.barsPerBlock-1)/2)*curtain.columnSpacing,y:curtain.bottom+curtain.barMeters/2+block*(curtain.barMeters+curtain.blockGap),z:curtain.z,zone:side<0?'left':'right',block,row:block,col,length:curtain.barMeters});
 }
 const distribution={left:0,right:0};
-for(const f of fixtures)distribution[f.zone]+=curtain.tubeMeters;
-const nominalMeters=fixtures.length*curtain.tubeMeters;
-if(nominalMeters!==200||distribution.left!==100||distribution.right!==100)throw new Error('El reparto debe sumar 200 m: 100 m detrás de cada rombo');
-const segments=12,total=fixtures.length*segments;
-const led=new T.InstancedMesh(new T.CylinderGeometry(.037,.037,1/segments*.92,5),new T.MeshBasicMaterial({color:'#ffffff',toneMapped:false}),total);led.instanceMatrix.setUsage(T.StaticDrawUsage);led.frustumCulled=false;
-const glow=new T.InstancedMesh(new T.CylinderGeometry(.115,.115,1,6),new T.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.075,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false}),fixtures.length);glow.frustumCulled=false;
-const housings=new T.InstancedMesh(new T.CylinderGeometry(.052,.052,1.04,6),new T.MeshBasicMaterial({color:'#282333',transparent:true,opacity:.14,depthWrite:false}),fixtures.length);housings.frustumCulled=false;
+for(const f of fixtures)distribution[f.zone]+=f.length;
+const nominalMeters=fixtures.reduce((meters,f)=>meters+f.length,0);
+if(fixtures.length!==48||nominalMeters!==240||distribution.left!==120||distribution.right!==120)throw new Error('El reparto debe sumar 48 barras de 5 m: 2 bloques de 12 por lado, 240 m');
+const segments=60,total=fixtures.length*segments;
+const led=new T.InstancedMesh(new T.CylinderGeometry(.037,.037,curtain.barMeters/segments*.92,5),new T.MeshBasicMaterial({color:'#ffffff',toneMapped:false}),total);led.instanceMatrix.setUsage(T.StaticDrawUsage);led.frustumCulled=false;
+const glow=new T.InstancedMesh(new T.CylinderGeometry(.115,.115,curtain.barMeters,6),new T.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.075,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false}),fixtures.length);glow.frustumCulled=false;
+const housings=new T.InstancedMesh(new T.CylinderGeometry(.052,.052,curtain.barMeters+.04,6),new T.MeshBasicMaterial({color:'#282333',transparent:true,opacity:.14,depthWrite:false}),fixtures.length);housings.frustumCulled=false;
 const wires=[];
-fixtures.forEach((f,i)=>{temp.position.set(f.x,f.y,f.z);temp.updateMatrix();glow.setMatrixAt(i,temp.matrix);housings.setMatrixAt(i,temp.matrix);glow.setColorAt(i,color.set('#9e65ff'));for(let j=0;j<segments;j++){temp.position.set(f.x,f.y-.5+(j+.5)/segments,f.z);temp.updateMatrix();led.setMatrixAt(i*segments+j,temp.matrix);led.setColorAt(i*segments+j,color.set('#9e65ff'));}wires.push(f.x,f.y+.52,f.z,f.x,f.y+.72,f.z);});
+fixtures.forEach((f,i)=>{temp.position.set(f.x,f.y,f.z);temp.updateMatrix();glow.setMatrixAt(i,temp.matrix);housings.setMatrixAt(i,temp.matrix);glow.setColorAt(i,color.set('#9e65ff'));for(let j=0;j<segments;j++){temp.position.set(f.x,f.y-f.length/2+(j+.5)*f.length/segments,f.z);temp.updateMatrix();led.setMatrixAt(i*segments+j,temp.matrix);led.setColorAt(i*segments+j,color.set('#9e65ff'));}wires.push(f.x,f.y+f.length/2+.02,f.z,f.x,f.y+f.length/2+.22,f.z);});
 tubes.add(housings,glow,led,new T.LineSegments(new T.BufferGeometry().setAttribute('position',new T.Float32BufferAttribute(wires,3)),new T.LineBasicMaterial({color:'#3b3545',transparent:true,opacity:.5})));
 const fixturePositions=[];
 for(let i=0;i<10;i++)fixturePositions.push([-12+i*2.65,8.8,-4.5]);for(const side of [-1,1])for(let i=0;i<5;i++)fixturePositions.push([side*(4+i*2.1),1.2,3.5]);
@@ -67,9 +68,9 @@ const humanMat=mat('#817681');box(.36,.7,.22,0,1.9,2.5,humanMat);rod([-.12,1.57,
 const floorPool=new T.PointLight('#8f4bb8',12,24,2);floorPool.position.set(0,5,2);scene.add(floorPool);
 const state={effect:'cascade',palette:'violet',brightness:.8,speed:1,playing:!matchMedia('(prefers-reduced-motion: reduce)').matches,time:0,camera:'perspective'};
 const palettes={violet:['#8f49ff','#f1d6ff'],amber:['#ff8c32','#ffe7ae'],mint:['#18c88d','#d0fff2'],white:['#b6c6e2','#ffffff']};
-const descriptions={cascade:'Pulsos que descienden detrás de las pantallas en rombo.',sweep:'Un barrido continuo entre las dos cortinas detrás de los rombos.',weave:'Tramas alternadas que dan profundidad detrás de los rombos.',solid:'Color continuo para revisar los 200 m detrás de los rombos.'};
+const descriptions={cascade:'Pulsos que descienden por los dos bloques superpuestos de cada rombo.',sweep:'Un barrido continuo entre las barras detrás de los dos rombos.',weave:'Tramas alternadas entre los cuatro bloques de 12 barras.',solid:'48 barras de 5 m: dos bloques superpuestos de 12 por lado, 240 m en total.'};
 let base=new T.Color(),accent=new T.Color(),last=performance.now(),frame=0;
-function animateColors(){const [a,b]=palettes[state.palette];base.set(a);accent.set(b);let n=0;for(let i=0;i<fixtures.length;i++){const f=fixtures[i];let peak=.2;for(let j=0;j<segments;j++){const fy=f.y-.5+(j+.5)/segments;let v;if(state.effect==='solid')v=.75;else if(state.effect==='cascade'){const phase=((fy*.2+state.time*.55+Math.abs(f.x)*.022)%1+1)%1;v=.12+Math.pow(Math.max(0,Math.sin(phase*Math.PI)),7)*.88;}else if(state.effect==='sweep'){const phase=f.x*.15+state.time*1.35+f.z*.12;v=.08+Math.pow(Math.max(0,Math.cos(phase)),8)*.92;}else{v=.12+Math.pow(Math.max(0,Math.sin(f.col*.8+f.row*1.8+state.time*2+fy*.9)),6)*.88;}peak=Math.max(peak,v);color.copy(base).lerp(accent,v*v*.8).multiplyScalar(v*state.brightness*1.7);led.setColorAt(n++,color);}glow.setColorAt(i,color.copy(base).multiplyScalar(peak*state.brightness));}led.instanceColor.needsUpdate=true;glow.instanceColor.needsUpdate=true;floorPool.color.copy(base);floorPool.intensity=state.brightness*9;}
+function animateColors(){const [a,b]=palettes[state.palette];base.set(a);accent.set(b);let n=0;for(let i=0;i<fixtures.length;i++){const f=fixtures[i];let peak=.2;for(let j=0;j<segments;j++){const fy=f.y-f.length/2+(j+.5)*f.length/segments;let v;if(state.effect==='solid')v=.75;else if(state.effect==='cascade'){const phase=((fy*.2+state.time*.55+Math.abs(f.x)*.022)%1+1)%1;v=.12+Math.pow(Math.max(0,Math.sin(phase*Math.PI)),7)*.88;}else if(state.effect==='sweep'){const phase=f.x*.15+state.time*1.35+f.z*.12;v=.08+Math.pow(Math.max(0,Math.cos(phase)),8)*.92;}else{v=.12+Math.pow(Math.max(0,Math.sin(f.col*.8+f.row*1.8+state.time*2+fy*.9)),6)*.88;}peak=Math.max(peak,v);color.copy(base).lerp(accent,v*v*.8).multiplyScalar(v*state.brightness*1.7);led.setColorAt(n++,color);}glow.setColorAt(i,color.copy(base).multiplyScalar(peak*state.brightness));}led.instanceColor.needsUpdate=true;glow.instanceColor.needsUpdate=true;floorPool.color.copy(base);floorPool.intensity=state.brightness*9;}
 function cameraView(name){state.camera=name;const portrait=host.clientWidth<600;const views={perspective:{pos:portrait?[36,22,61]:[22,13.5,33],target:[0,5,-1]},front:{pos:portrait?[0,10,70]:[0,9,43],target:[0,5,-2]},inside:{pos:[13,6.5,10],target:[0,5,-3]},plan:{pos:portrait?[0,69,.1]:[0,49,.1],target:[0,0,-1]}};const v=views[name];camera.position.set(...v.pos);orbit.target.set(...v.target);orbit.update();document.querySelectorAll('[data-camera]').forEach(el=>{const active=el.dataset.camera===name;el.classList.toggle('active',active);el.setAttribute('aria-pressed',active);});$('view-caption').textContent={perspective:'Perspectiva',front:'Frente',inside:'Dentro del escenario',plan:'Planta'}[name];}
 function resize(){const w=host.clientWidth,h=host.clientHeight;if(w<1||h<1)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}new ResizeObserver(resize).observe(host);
 function refreshPlay(){$('play').innerHTML=state.playing?'Pausar animación <span>Ⅱ</span>':'Reproducir <span>▶</span>';}
@@ -84,4 +85,4 @@ $('reset').onclick=()=>{state.effect='cascade';state.palette='violet';state.brig
 $('fullscreen').onclick=async()=>{const wrap=host.parentElement;try{if(document.fullscreenElement)await document.exitFullscreen();else await wrap.requestFullscreen();}catch{wrap.classList.toggle('expanded');}};
 document.addEventListener('visibilitychange',()=>last=performance.now());
 function loop(now){requestAnimationFrame(loop);const dt=Math.min((now-last)/1000,.08);last=now;if(document.hidden)return;if(state.playing)state.time+=dt*state.speed;if(frame++%2===0&&state.playing)animateColors();orbit.update();renderer.render(scene,camera);}resize();cameraView('perspective');animateColors();refreshPlay();$('loading').hidden=true;requestAnimationFrame(loop);
-window.amarantaStudy={state,nominalTubeCount:fixtures.length,nominalMeters,distribution,placement:'behind-diamond-screens',curtain,renderer,scene,camera,fixtures};
+window.amarantaStudy={state,nominalTubeCount:fixtures.length,nominalBarCount:fixtures.length,nominalMeters,distribution,placement:'behind-diamond-screens',curtain,renderer,scene,camera,fixtures};
