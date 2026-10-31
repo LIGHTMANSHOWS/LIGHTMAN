@@ -1,6 +1,6 @@
-// Revision 10: 48 floor-based 5 m bars at uniform pitch along the full rear contour.
+// Revision 11: 48 floor-based 5 m bars redistributed over long spans, with empty returns.
 export const layout={
-  "revision": 10,
+  "revision": 11,
   "deck": 0.8,
   "scalePixelsPerMeter": 67.2,
   "heightMethod": "Front elevation scaled from the 4 m side headers and 6 m central spans. Heights and suspension are estimates.",
@@ -2045,8 +2045,8 @@ export const layout={
     "count": 48,
     "bottom": 0.8,
     "endMargin": 0.25,
-    "placement": "uniform-along-complete-rear-contour",
-    "spacingMeasure": "center-to-center distance along the rear structure, including both 1.5 m returns",
+    "placement": "horizontal-rear-segments-only",
+    "spacingMeasure": "Horizontal center-to-center pitch on each long segment; both 1.5 m returns remain empty",
     "rearSegments": [
       {
         "zone": "left",
@@ -2054,19 +2054,9 @@ export const layout={
         "to": 1
       },
       {
-        "zone": "left-return",
-        "from": 1,
-        "to": 2
-      },
-      {
         "zone": "center",
         "from": 2,
         "to": 3
-      },
-      {
-        "zone": "right-return",
-        "from": 3,
-        "to": 4
       },
       {
         "zone": "right",

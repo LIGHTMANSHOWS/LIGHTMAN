@@ -1,6 +1,6 @@
 import * as T from './vendor/three.module.js';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { layout } from './layout.js?v=separacion-uniforme-10';
+import { layout } from './layout.js?v=sin-retornos-48-11';
 
 const $=id=>document.getElementById(id),host=$('viewer');
 let renderer;
@@ -96,22 +96,23 @@ const chakanaBack=new T.Mesh(shapeGeometry,dark);chakanaBack.scale.copy(chakana.
 // The LEDs belong to the measured rear perimeter, independently of screen yaw.
 // All 48 uncut bars share the stage-floor base and rise exactly 5 m.
 const fixtures=[],curtain=layout.bars;
-let pathLength=0;
 const barPath=curtain.rearSegments.map(zone=>{
- const a=layout.rearStructure.points[zone.from],b=layout.rearStructure.points[zone.to],length=Math.hypot(b[0]-a[0],b[1]-a[1]);
- const segment={...zone,a,b,length,start:pathLength};pathLength+=length;return segment;
+ const a=layout.rearStructure.points[zone.from],b=layout.rearStructure.points[zone.to];
+ return {...zone,a,b,length:b[0]-a[0]};
 });
+const pathLength=barPath.reduce((sum,p)=>sum+p.length,0);
 const barPitch=(pathLength-2*curtain.endMargin)/(curtain.count-1);
+const firstX=barPath[0].a[0]+curtain.endMargin;
 for(let col=0;col<curtain.count;col++){
- const pathDistance=curtain.endMargin+col*barPitch;
- const segment=barPath.find(p=>pathDistance<=p.start+p.length+1e-8)||barPath[barPath.length-1];
- const t=(pathDistance-segment.start)/segment.length;
- fixtures.push({x:segment.a[0]+(segment.b[0]-segment.a[0])*t,y:curtain.bottom+curtain.barMeters/2,z:segment.a[1]+(segment.b[1]-segment.a[1])*t,zone:segment.zone,rearSegment:segment.from,pathDistance,row:0,col,length:curtain.barMeters});
+ const x=firstX+col*barPitch;
+ const segment=barPath.find(p=>x>=p.a[0]-1e-8&&x<=p.b[0]+1e-8);
+ if(!segment)throw new Error('La barra debe estar sobre uno de los tres tramos horizontales.');
+ fixtures.push({x,y:curtain.bottom+curtain.barMeters/2,z:segment.a[1],zone:segment.zone,rearSegment:segment.from,row:0,col,length:curtain.barMeters});
 }
 const distribution=Object.fromEntries(barPath.map(p=>[p.zone,0]));
 for(const f of fixtures)distribution[f.zone]+=f.length;
 const nominalMeters=fixtures.reduce((meters,f)=>meters+f.length,0);
-if(fixtures.length!==48||nominalMeters!==240||fixtures.some((f,i)=>f.length!==5||!Number.isFinite(f.y)||Math.abs(f.y-f.length/2-layout.deck)>1e-8||(i>0&&Math.abs(f.pathDistance-fixtures[i-1].pathDistance-barPitch)>1e-8)))throw new Error('Se requieren 48 barras de 5 m desde el piso, con separación uniforme a lo largo de la estructura posterior.');
+if(fixtures.length!==48||nominalMeters!==240||fixtures.some((f,i)=>f.length!==5||!Number.isFinite(f.y)||Math.abs(f.y-f.length/2-layout.deck)>1e-8||(i>0&&Math.abs(f.x-fixtures[i-1].x-barPitch)>1e-8)||![0,2,4].includes(f.rearSegment)))throw new Error('Se requieren 48 barras de 5 m sobre los tres tramos largos, con paso horizontal uniforme y retornos vacíos.');
 const segments=60,total=fixtures.length*segments;
 const led=new T.InstancedMesh(new T.CylinderGeometry(.037,.037,curtain.barMeters/segments*.92,5),new T.MeshBasicMaterial({color:'#ffffff',toneMapped:false}),total);led.instanceMatrix.setUsage(T.StaticDrawUsage);led.frustumCulled=false;
 const glow=new T.InstancedMesh(new T.CylinderGeometry(.115,.115,curtain.barMeters,6),new T.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.075,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false}),fixtures.length);glow.frustumCulled=false;
@@ -160,7 +161,7 @@ const humanMat=mat('#817681');box(.36,.7,.22,0,1.9,2.5,humanMat);rod([-.12,1.57,
 const floorPool=new T.PointLight('#8f4bb8',12,24,2);floorPool.position.set(0,5,2);scene.add(floorPool);
 const state={effect:'cascade',palette:'violet',brightness:.8,speed:1,playing:!matchMedia('(prefers-reduced-motion: reduce)').matches,time:0,camera:'perspective'};
 const palettes={violet:['#8f49ff','#f1d6ff'],amber:['#ff8c32','#ffe7ae'],mint:['#18c88d','#d0fff2'],white:['#b6c6e2','#ffffff']};
-const descriptions={cascade:'Pulsos verticales sobre la estructura posterior, de 0 a 5 m sobre el piso.',sweep:'Un barrido continuo por toda la estructura posterior, incluidos los retornos.',weave:'Tramas alternadas entre las 48 barras equidistantes a lo largo del contorno.',solid:'48 barras desde el piso hasta 5 m; paso uniforme de 62,6 cm siguiendo el contorno. Total: 240 m.'};
+const descriptions={cascade:'Pulsos verticales sobre la estructura posterior, de 0 a 5 m sobre el piso.',sweep:'Un barrido por los tres tramos largos, con los retornos de 1,50 m libres.',weave:'Tramas alternadas entre las 48 barras: 13 a cada lado y 22 en el centro.',solid:'48 barras desde el piso hasta 5 m; 56,2 cm entre ejes en los tramos largos. Retornos libres. Total: 240 m.'};
 let base=new T.Color(),accent=new T.Color(),last=performance.now(),frame=0;
 function animateColors(){const [a,b]=palettes[state.palette];base.set(a);accent.set(b);let n=0;for(let i=0;i<fixtures.length;i++){const f=fixtures[i];let peak=.2;for(let j=0;j<segments;j++){const fy=f.y-f.length/2+(j+.5)*f.length/segments;let v;if(state.effect==='solid')v=.75;else if(state.effect==='cascade'){const phase=((fy*.2+state.time*.55+Math.abs(f.x)*.022)%1+1)%1;v=.12+Math.pow(Math.max(0,Math.sin(phase*Math.PI)),7)*.88;}else if(state.effect==='sweep'){const phase=f.x*.15+state.time*1.35+f.z*.12;v=.08+Math.pow(Math.max(0,Math.cos(phase)),8)*.92;}else{v=.12+Math.pow(Math.max(0,Math.sin(f.col*.8+f.row*1.8+state.time*2+fy*.9)),6)*.88;}peak=Math.max(peak,v);color.copy(base).lerp(accent,v*v*.8).multiplyScalar(v*state.brightness*1.7);led.setColorAt(n++,color);}glow.setColorAt(i,color.copy(base).multiplyScalar(peak*state.brightness));}led.instanceColor.needsUpdate=true;glow.instanceColor.needsUpdate=true;floorPool.color.copy(base);floorPool.intensity=state.brightness*9;}
 function cameraView(name){state.camera=name;const portrait=host.clientWidth<600;const views={perspective:{pos:portrait?[36,22,61]:[23,16,36],target:[0,5,-1]},front:{pos:portrait?[0,10,70]:[0,6.4,43],target:[0,6.4,-2]},low:{pos:portrait?[0,1.2,65]:[0,1.2,32],target:[0,5,-3]},inside:{pos:[13,6.5,10],target:[0,5,-3]},plan:{pos:portrait?[0,65,-3]:[0,43,-3],target:[0,0,-3]}};const v=views[name];orbit.enableDamping=false;orbit.update();camera.position.set(...v.pos);orbit.target.set(...v.target);orbit.update();orbit.enableDamping=true;document.querySelectorAll('[data-camera]').forEach(el=>{const active=el.dataset.camera===name;el.classList.toggle('active',active);el.setAttribute('aria-pressed',active);});$('view-caption').textContent={perspective:'Perspectiva',front:'Frente',low:'Contrapicado',inside:'Dentro del escenario',plan:'Planta'}[name];}
