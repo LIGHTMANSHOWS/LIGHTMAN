@@ -1,6 +1,6 @@
-// Revision 08: screens follow their supporting truss axes; single rear setback.
+// Revision 09: 48 vertical 5 m bars from stage floor, on the measured rear structure.
 export const layout={
-  "revision": 8,
+  "revision": 9,
   "deck": 0.8,
   "scalePixelsPerMeter": 67.2,
   "heightMethod": "Front elevation scaled from the 4 m side headers and 6 m central spans. Heights and suspension are estimates.",
@@ -2043,10 +2043,26 @@ export const layout={
   "bars": {
     "barMeters": 5,
     "barsPerZone": 16,
-    "diamondSpacing": 0.4,
-    "centerSpacing": 0.36,
-    "screenClearance": 0.75,
-    "centerTopReveal": 0.7
+    "bottom": 0.8,
+    "endMargin": 0.25,
+    "placement": "on-measured-rear-structure",
+    "rearSegments": [
+      {
+        "zone": "left",
+        "from": 0,
+        "to": 1
+      },
+      {
+        "zone": "center",
+        "from": 2,
+        "to": 3
+      },
+      {
+        "zone": "right",
+        "from": 4,
+        "to": 5
+      }
+    ]
   },
   "rearStructure": {
     "source": "User dimension sketch and explicit confirmation: center is 1.50 m farther back.",
@@ -2083,6 +2099,15 @@ export const layout={
       ]
     ],
     "absoluteDepthEstimated": true,
-    "heightChangeMeters": 0
+    "heightChangeMeters": 0,
+    "frame": {
+      "height": 10.4,
+      "bayMaxWidth": 2,
+      "levelHeight": 2,
+      "frameRearOffset": 0.12,
+      "drapeRearOffset": 0.22,
+      "heightEstimated": true,
+      "reference": "Rear scaffold and black masking from user installation photographs; frame modules are illustrative."
+    }
   }
 };
