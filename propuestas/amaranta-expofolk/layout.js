@@ -1,6 +1,6 @@
-// Final plans; revision 06, 2026-10-30. Single 5 m bars behind diamonds and stepped chakana.
+// Revision 07: measured rear plan outline; height and absolute depth remain estimated.
 export const layout={
-  "revision": 6,
+  "revision": 7,
   "deck": 0.8,
   "scalePixelsPerMeter": 67.2,
   "heightMethod": "Front elevation scaled from the 4 m side headers and 6 m central spans. Heights and suspension are estimates.",
@@ -1654,47 +1654,31 @@ export const layout={
   },
   "stageOutline": [
     [
-      -13.392857142857142,
+      -13.45,
       -8.883928571428571
     ],
     [
-      -7.5892857142857135,
+      -5.95,
       -8.883928571428571
     ],
     [
-      -7.5892857142857135,
-      -8.005952380952381
+      -5.95,
+      -10.383928571428571
     ],
     [
-      -5.907738095238095,
-      -8.005952380952381
+      5.95,
+      -10.383928571428571
     ],
     [
-      -5.907738095238095,
-      -9.62797619047619
-    ],
-    [
-      5.907738095238095,
-      -9.62797619047619
-    ],
-    [
-      5.907738095238095,
-      -8.005952380952381
-    ],
-    [
-      7.5892857142857135,
-      -8.005952380952381
-    ],
-    [
-      7.5892857142857135,
+      5.95,
       -8.883928571428571
     ],
     [
-      13.37797619047619,
+      13.45,
       -8.883928571428571
     ],
     [
-      13.37797619047619,
+      13.45,
       0.0
     ],
     [
@@ -1854,7 +1838,7 @@ export const layout={
       0.2335092134757302
     ],
     [
-      -13.392857142857142,
+      -13.45,
       0.0
     ]
   ],
@@ -1900,7 +1884,7 @@ export const layout={
     "diamondY": 4.4,
     "diamondZ": -3.65,
     "centerY": 4.7,
-    "centerZ": -5.0,
+    "centerZ": -5.15,
     "chakanaOutline": [
       [
         -0.8,
@@ -2024,5 +2008,42 @@ export const layout={
     "centerSpacing": 0.36,
     "screenClearance": 0.75,
     "centerTopReveal": 0.7
+  },
+  "rearStructure": {
+    "source": "User dimension sketch and explicit confirmation: center is 1.50 m farther back.",
+    "leftMeters": 7.5,
+    "centerMeters": 11.9,
+    "rightMeters": 7.5,
+    "setbackMeters": 1.5,
+    "widthMeters": 26.9,
+    "developedMeters": 29.9,
+    "points": [
+      [
+        -13.45,
+        -8.883928571428571
+      ],
+      [
+        -5.95,
+        -8.883928571428571
+      ],
+      [
+        -5.95,
+        -10.383928571428571
+      ],
+      [
+        5.95,
+        -10.383928571428571
+      ],
+      [
+        5.95,
+        -8.883928571428571
+      ],
+      [
+        13.45,
+        -8.883928571428571
+      ]
+    ],
+    "absoluteDepthEstimated": true,
+    "heightChangeMeters": 0
   }
 };

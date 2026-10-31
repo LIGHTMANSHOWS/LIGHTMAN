@@ -1,6 +1,6 @@
 import * as T from './vendor/three.module.js';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { layout } from './layout.js?v=chacana-5m-06';
+import { layout } from './layout.js?v=posterior-269m-07';
 
 const $=id=>document.getElementById(id),host=$('viewer');
 let renderer;
@@ -18,10 +18,12 @@ const lightGroup=new T.Group();scene.add(lightGroup);
 const temp=new T.Object3D(),color=new T.Color();
 function box(w,h,d,x,y,z,m=stageMat,parent=scenery){const o=new T.Mesh(new T.BoxGeometry(w,h,d),m);o.position.set(x,y,z);parent.add(o);return o;}
 function rod(a,b,r=.045,m=steel,parent=scenery){const start=new T.Vector3(...a),end=new T.Vector3(...b),dir=end.clone().sub(start);const o=new T.Mesh(new T.CylinderGeometry(r,r,dir.length(),6),m);o.position.copy(start.add(end).multiplyScalar(.5));o.quaternion.setFromUnitVectors(new T.Vector3(0,1,0),dir.normalize());parent.add(o);return o;}
-// Stepped rear edge and curved apron traced from the final ground plan.
+// Rear perimeter uses the latest measured sketch; curved apron retains the final plan.
 const stageShape=new T.Shape(layout.stageOutline.map(([x,z])=>new T.Vector2(x,-z)));
 const deckMesh=new T.Mesh(new T.ExtrudeGeometry(stageShape,{depth:layout.deck,bevelEnabled:false}),stageMat);deckMesh.rotation.x=-Math.PI/2;scenery.add(deckMesh);
 const deckEdge=new T.LineLoop(new T.BufferGeometry().setFromPoints(layout.stageOutline.map(([x,z])=>new T.Vector3(x,layout.deck+.01,z))),new T.LineBasicMaterial({color:'#646b7d',transparent:true,opacity:.65}));scenery.add(deckEdge);
+// Highlight the measured rear boundary at deck level, without implying a new rigging system.
+const rearBoundary=new T.Line(new T.BufferGeometry().setFromPoints(layout.rearStructure.points.map(([x,z])=>new T.Vector3(x,layout.deck+.035,z))),new T.LineBasicMaterial({color:'#e37f8b'}));scenery.add(rearBoundary);
 for(const r of layout.risers){
  box(r.w,r.h-.12,r.d,r.x,layout.deck+r.h/2+.06,r.z,edge);
  for(const dx of [-1.25,1.25])for(const dz of [-1.25,1.25]){
@@ -122,7 +124,7 @@ const palettes={violet:['#8f49ff','#f1d6ff'],amber:['#ff8c32','#ffe7ae'],mint:['
 const descriptions={cascade:'Pulsos que descienden por los rombos y la chacana escalonada.',sweep:'Un barrido continuo por las tres zonas: rombos y chacana.',weave:'Tramas alternadas entre las tres zonas de 16 barras.',solid:'48 barras individuales de 5 m: 16 por rombo y 16 detrás de la chacana, 240 m en total.'};
 let base=new T.Color(),accent=new T.Color(),last=performance.now(),frame=0;
 function animateColors(){const [a,b]=palettes[state.palette];base.set(a);accent.set(b);let n=0;for(let i=0;i<fixtures.length;i++){const f=fixtures[i];let peak=.2;for(let j=0;j<segments;j++){const fy=f.y-f.length/2+(j+.5)*f.length/segments;let v;if(state.effect==='solid')v=.75;else if(state.effect==='cascade'){const phase=((fy*.2+state.time*.55+Math.abs(f.x)*.022)%1+1)%1;v=.12+Math.pow(Math.max(0,Math.sin(phase*Math.PI)),7)*.88;}else if(state.effect==='sweep'){const phase=f.x*.15+state.time*1.35+f.z*.12;v=.08+Math.pow(Math.max(0,Math.cos(phase)),8)*.92;}else{v=.12+Math.pow(Math.max(0,Math.sin(f.col*.8+f.row*1.8+state.time*2+fy*.9)),6)*.88;}peak=Math.max(peak,v);color.copy(base).lerp(accent,v*v*.8).multiplyScalar(v*state.brightness*1.7);led.setColorAt(n++,color);}glow.setColorAt(i,color.copy(base).multiplyScalar(peak*state.brightness));}led.instanceColor.needsUpdate=true;glow.instanceColor.needsUpdate=true;floorPool.color.copy(base);floorPool.intensity=state.brightness*9;}
-function cameraView(name){state.camera=name;const portrait=host.clientWidth<600;const views={perspective:{pos:portrait?[36,22,61]:[23,16,36],target:[0,5,-1]},front:{pos:portrait?[0,10,70]:[0,6.4,43],target:[0,6.4,-2]},low:{pos:portrait?[0,1.2,65]:[0,1.2,32],target:[0,5,-3]},inside:{pos:[13,6.5,10],target:[0,5,-3]},plan:{pos:portrait?[0,69,.1]:[0,49,.1],target:[0,0,-1]}};const v=views[name];orbit.enableDamping=false;orbit.update();camera.position.set(...v.pos);orbit.target.set(...v.target);orbit.update();orbit.enableDamping=true;document.querySelectorAll('[data-camera]').forEach(el=>{const active=el.dataset.camera===name;el.classList.toggle('active',active);el.setAttribute('aria-pressed',active);});$('view-caption').textContent={perspective:'Perspectiva',front:'Frente',low:'Contrapicado',inside:'Dentro del escenario',plan:'Planta'}[name];}
+function cameraView(name){state.camera=name;const portrait=host.clientWidth<600;const views={perspective:{pos:portrait?[36,22,61]:[23,16,36],target:[0,5,-1]},front:{pos:portrait?[0,10,70]:[0,6.4,43],target:[0,6.4,-2]},low:{pos:portrait?[0,1.2,65]:[0,1.2,32],target:[0,5,-3]},inside:{pos:[13,6.5,10],target:[0,5,-3]},plan:{pos:portrait?[0,65,-3]:[0,43,-3],target:[0,0,-3]}};const v=views[name];orbit.enableDamping=false;orbit.update();camera.position.set(...v.pos);orbit.target.set(...v.target);orbit.update();orbit.enableDamping=true;document.querySelectorAll('[data-camera]').forEach(el=>{const active=el.dataset.camera===name;el.classList.toggle('active',active);el.setAttribute('aria-pressed',active);});$('view-caption').textContent={perspective:'Perspectiva',front:'Frente',low:'Contrapicado',inside:'Dentro del escenario',plan:'Planta'}[name];}
 function resize(){const w=host.clientWidth,h=host.clientHeight;if(w<1||h<1)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}new ResizeObserver(resize).observe(host);
 function refreshPlay(){$('play').innerHTML=state.playing?'Pausar animación <span>Ⅱ</span>':'Reproducir <span>▶</span>';}
 function layers(){const solo=$('solo').checked;scenery.visible=!solo;lightGroup.visible=!solo&&$('fixtures').checked;screenGroup.visible=!solo&&$('screens').checked;beamGroup.visible=!solo&&$('beams').checked;}

@@ -1,0 +1,14 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 790 255" role="img" aria-labelledby="title desc">
+<title id="title">Estructura posterior: planta acotada</title><desc id="desc">Ancho total 26,90 metros. Laterales de 7,50 metros, centro de 11,90 metros retraído 1,50 metros hacia atrás, sin cambio de altura.</desc>
+<rect width="790" height="255" rx="12" fill="#14121b"/>
+<g font-family="Arial, sans-serif" text-anchor="middle" fill="#e8e1ef">
+<text x="395" y="28" font-size="12" fill="#bc9fd9">HACIA ATRÁS ↑ · VISTA EN PLANTA</text>
+<path d="M54,135 H241.5 V97.5 H539.0 V135 H726.5" fill="none" stroke="#ef8794" stroke-width="4" stroke-linejoin="round"/>
+<text x="147.75" y="117" font-size="17">7,50 m</text>
+<text x="390.25" y="79.5" font-size="17">11,90 m</text>
+<text x="632.75" y="117" font-size="17">7,50 m</text>
+<text x="203.5" y="94.5" font-size="12">1,50 m</text>
+<text x="577.0" y="94.5" font-size="12">1,50 m</text>
+<path d="M54,174 V194 M54,184 H726.5 M726.5,174 V194" stroke="#84758e" fill="none"/>
+<text x="395" y="208" font-size="17">26,90 m de ancho total</text>
+<text x="395" y="235" font-size="12" fill="#aaa0b6">FRENTE / PÚBLICO ↓</text></g></svg>
