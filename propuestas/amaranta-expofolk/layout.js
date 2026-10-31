@@ -1,6 +1,6 @@
-// Revision 07: measured rear plan outline; height and absolute depth remain estimated.
+// Revision 08: screens follow their supporting truss axes; single rear setback.
 export const layout={
-  "revision": 7,
+  "revision": 8,
   "deck": 0.8,
   "scalePixelsPerMeter": 67.2,
   "heightMethod": "Front elevation scaled from the 4 m side headers and 6 m central spans. Heights and suspension are estimates.",
@@ -1877,14 +1877,53 @@ export const layout={
     }
   ],
   "screens": {
-    "sideX": 11.4,
-    "sideY": 5.6,
-    "sideZ": 0,
-    "diamondX": 6.3,
-    "diamondY": 4.4,
-    "diamondZ": -3.65,
-    "centerY": 4.7,
-    "centerZ": -5.15,
+    "mounts": [
+      {
+        "id": "side-left",
+        "kind": "side",
+        "trussId": "left-side-header",
+        "x": -11.36905,
+        "y": 5.6,
+        "z": -0.1488,
+        "yaw": -0.0
+      },
+      {
+        "id": "diamond-left",
+        "kind": "diamond",
+        "trussId": "left-rear-wing",
+        "x": -6.40625,
+        "y": 4.4,
+        "z": -6.1012,
+        "yaw": 0.5116649296590913
+      },
+      {
+        "id": "center",
+        "kind": "chakana",
+        "trussId": "rear-upper",
+        "x": 0.014899999999999913,
+        "y": 4.7,
+        "z": -5.8036,
+        "yaw": -0.0
+      },
+      {
+        "id": "diamond-right",
+        "kind": "diamond",
+        "trussId": "right-rear-wing",
+        "x": 6.40625,
+        "y": 4.4,
+        "z": -6.1012,
+        "yaw": -0.5116649296590913
+      },
+      {
+        "id": "side-right",
+        "kind": "side",
+        "trussId": "right-side-header",
+        "x": 11.36905,
+        "y": 5.6,
+        "z": -0.1488,
+        "yaw": -0.0
+      }
+    ],
     "chakanaOutline": [
       [
         -0.8,

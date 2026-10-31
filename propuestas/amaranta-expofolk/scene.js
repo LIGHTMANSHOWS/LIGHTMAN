@@ -1,6 +1,6 @@
 import * as T from './vendor/three.module.js';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { layout } from './layout.js?v=posterior-269m-07';
+import { layout } from './layout.js?v=pantallas-diagonales-08';
 
 const $=id=>document.getElementById(id),host=$('viewer');
 let renderer;
@@ -44,18 +44,33 @@ const mountainTexture=texture(mountain);
 const portraitTexture=texture((ctx,w,h)=>{mountain(ctx,w,h);ctx.fillStyle='#f6ca16';ctx.beginPath();ctx.arc(w*.5,h*.22,w*.1,0,Math.PI*2);ctx.fill();for(let i=0;i<12;i++){const a=i*Math.PI/6;ctx.lineWidth=9;ctx.strokeStyle='#f6ca16';ctx.beginPath();ctx.moveTo(w*.5+Math.cos(a)*w*.14,h*.22+Math.sin(a)*w*.14);ctx.lineTo(w*.5+Math.cos(a)*w*.19,h*.22+Math.sin(a)*w*.19);ctx.stroke();}ctx.textAlign='center';ctx.font='bold 76px Arial';ctx.strokeStyle='#084a6b';ctx.lineWidth=9;ctx.strokeText('EXPOFOLK',w*.5,h*.48);ctx.fillStyle='#ffe045';ctx.fillText('EXPOFOLK',w*.5,h*.48);ctx.font='18px Arial';ctx.fillStyle='#17375b';ctx.fillText('MÚSICA · CULTURA · LUZ',w*.5,h*.55);},768,1050);
 const sunTexture=texture((ctx,w,h)=>{ctx.fillStyle='#21778d';ctx.fillRect(0,0,w,h);for(let x=0;x<w;x+=12){ctx.fillStyle=x%24===0?'#70b9c5':'#4095ab';ctx.fillRect(x,0,3,h);}for(let y=0;y<h;y+=12){ctx.fillStyle='#b6d4db33';ctx.fillRect(0,y,w,2);}ctx.fillStyle='#ffdb19';ctx.beginPath();ctx.arc(w/2,h/2,w*.16,0,Math.PI*2);ctx.fill();for(let i=0;i<12;i++){const a=i*Math.PI/6;ctx.save();ctx.translate(w/2,h/2);ctx.rotate(a);ctx.beginPath();ctx.moveTo(w*.2,-w*.025);ctx.quadraticCurveTo(w*.25,-w*.075,w*.36,0);ctx.quadraticCurveTo(w*.24,w*.005,w*.2,w*.025);ctx.closePath();ctx.fill();ctx.restore();}});
 const screenMats=[];
-function display(w,h,x,y,z,tex,rotation=0){box(w+.14,h+.14,.2,x,y,z-.11,dark,screenGroup).rotation.z=rotation;const m=new T.MeshBasicMaterial({map:tex,color:'#798da0',side:T.DoubleSide});screenMats.push(m);const o=new T.Mesh(new T.PlaneGeometry(w,h),m);o.position.set(x,y,z);o.rotation.z=rotation;screenGroup.add(o);return o;}
-const scr=layout.screens;
-for(const side of [-1,1]){display(4,6,side*scr.sideX,scr.sideY,scr.sideZ,portraitTexture);display(4.35,4.35,side*scr.diamondX,scr.diamondY,scr.diamondZ,mountainTexture,Math.PI/4);}
+// Mounts inherit the midpoint and plan orientation of their named truss.
+const scr=layout.screens,centerMount=scr.mounts.find(m=>m.kind==='chakana');
+function screenPoint(m,along=0,behind=0){return {x:m.x+Math.cos(m.yaw)*along-Math.sin(m.yaw)*behind,z:m.z-Math.sin(m.yaw)*along-Math.cos(m.yaw)*behind};}
+function screenRoot(m){const g=new T.Group();g.name=m.id;g.position.set(m.x,m.y,m.z);g.rotation.y=m.yaw;screenGroup.add(g);return g;}
+function display(w,h,m,tex,rotation=0){
+ const group=screenRoot(m);
+ box(w+.14,h+.14,.2,0,0,-.11,dark,group).rotation.z=rotation;
+ const material=new T.MeshBasicMaterial({map:tex,color:'#798da0',side:T.DoubleSide});screenMats.push(material);
+ const face=new T.Mesh(new T.PlaneGeometry(w,h),material);face.rotation.z=rotation;group.add(face);
+}
+for(const mount of scr.mounts){
+ if(mount.kind==='side')display(4,6,mount,portraitTexture);
+ if(mount.kind==='diamond')display(4.35,4.35,mount,mountainTexture,Math.PI/4);
+}
 const outline=scr.chakanaOutline;
 const shape=new T.Shape(outline.map(([x,y])=>new T.Vector2(x,y)));const shapeGeometry=new T.ShapeGeometry(shape);const pos=shapeGeometry.attributes.position,uv=shapeGeometry.attributes.uv;for(let i=0;i<pos.count;i++)uv.setXY(i,(pos.getX(i)+2.8)/5.6,(pos.getY(i)+2.8)/5.6);
-const sunMat=new T.MeshBasicMaterial({map:sunTexture,color:'#8b9ca8',side:T.DoubleSide});screenMats.push(sunMat);const chakana=new T.Mesh(shapeGeometry,sunMat);chakana.scale.setScalar(scr.chakanaScale);chakana.position.set(0,scr.centerY,scr.centerZ);screenGroup.add(chakana);
-const chakanaBack=new T.Mesh(shapeGeometry,dark);chakanaBack.scale.copy(chakana.scale);chakanaBack.position.set(0,scr.centerY,scr.centerZ-.08);screenGroup.add(chakanaBack);
+const sunMat=new T.MeshBasicMaterial({map:sunTexture,color:'#8b9ca8',side:T.DoubleSide});screenMats.push(sunMat);const chakana=new T.Mesh(shapeGeometry,sunMat);chakana.scale.setScalar(scr.chakanaScale);const centerRoot=screenRoot(centerMount);centerRoot.add(chakana);
+const chakanaBack=new T.Mesh(shapeGeometry,dark);chakanaBack.scale.copy(chakana.scale);chakanaBack.position.z=-.08;centerRoot.add(chakanaBack);
 // Three zones of 16 uncut vertical 5 m bars. The center follows the same
-// stepped outline and deeper screen plane as the chakana, without stacking.
+// stepped outline of the chakana; all three zones follow their screen planes.
 const fixtures=[],curtain=layout.bars;
-for(const side of [-1,1]){
- for(let col=0;col<curtain.barsPerZone;col++)fixtures.push({x:side*scr.diamondX+(col-(curtain.barsPerZone-1)/2)*curtain.diamondSpacing,y:scr.diamondY,z:scr.diamondZ-curtain.screenClearance,zone:side<0?'left':'right',row:0,col,length:curtain.barMeters});
+for(const mount of scr.mounts.filter(m=>m.kind==='diamond')){
+ for(let col=0;col<curtain.barsPerZone;col++){
+  const along=(col-(curtain.barsPerZone-1)/2)*curtain.diamondSpacing;
+  const p=screenPoint(mount,along,curtain.screenClearance);
+  fixtures.push({...p,y:mount.y,zone:mount.id==='diamond-left'?'left':'right',screenId:mount.id,row:0,col,length:curtain.barMeters});
+ }
 }
 function chakanaTop(x){
  const localX=x/scr.chakanaScale,heights=[];
@@ -63,11 +78,11 @@ function chakanaTop(x){
   const a=outline[i],b=outline[(i+1)%outline.length];
   if(a[1]===b[1]&&localX>=Math.min(a[0],b[0])&&localX<=Math.max(a[0],b[0]))heights.push(a[1]);
  }
- return scr.centerY+Math.max(...heights)*scr.chakanaScale;
+ return centerMount.y+Math.max(...heights)*scr.chakanaScale;
 }
 for(let col=0;col<curtain.barsPerZone;col++){
  const x=(col-(curtain.barsPerZone-1)/2)*curtain.centerSpacing;
- fixtures.push({x,y:chakanaTop(x)+curtain.centerTopReveal-curtain.barMeters/2,z:scr.centerZ-curtain.screenClearance,zone:'center',row:1,col,length:curtain.barMeters});
+ fixtures.push({...screenPoint(centerMount,x,curtain.screenClearance),y:chakanaTop(x)+curtain.centerTopReveal-curtain.barMeters/2,zone:'center',screenId:centerMount.id,row:1,col,length:curtain.barMeters});
 }
 const distribution={left:0,center:0,right:0};
 for(const f of fixtures)distribution[f.zone]+=f.length;
