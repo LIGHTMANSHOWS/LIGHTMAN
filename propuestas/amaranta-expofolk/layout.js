@@ -1,6 +1,6 @@
-// Final plan registration; 2026-10-29. Heights estimated by user request.
+// Final plans; revision 06, 2026-10-30. Single 5 m bars behind diamonds and stepped chakana.
 export const layout={
-  "revision": 5,
+  "revision": 6,
   "deck": 0.8,
   "scalePixelsPerMeter": 67.2,
   "heightMethod": "Front elevation scaled from the 4 m side headers and 6 m central spans. Heights and suspension are estimates.",
@@ -1900,12 +1900,129 @@ export const layout={
     "diamondY": 4.4,
     "diamondZ": -3.65,
     "centerY": 4.7,
-    "centerZ": -5.0
+    "centerZ": -5.0,
+    "chakanaOutline": [
+      [
+        -0.8,
+        2.8
+      ],
+      [
+        0.8,
+        2.8
+      ],
+      [
+        0.8,
+        2.15
+      ],
+      [
+        1.5,
+        2.15
+      ],
+      [
+        1.5,
+        1.5
+      ],
+      [
+        2.15,
+        1.5
+      ],
+      [
+        2.15,
+        0.8
+      ],
+      [
+        2.8,
+        0.8
+      ],
+      [
+        2.8,
+        -0.8
+      ],
+      [
+        2.15,
+        -0.8
+      ],
+      [
+        2.15,
+        -1.5
+      ],
+      [
+        1.5,
+        -1.5
+      ],
+      [
+        1.5,
+        -2.15
+      ],
+      [
+        0.8,
+        -2.15
+      ],
+      [
+        0.8,
+        -2.8
+      ],
+      [
+        -0.8,
+        -2.8
+      ],
+      [
+        -0.8,
+        -2.15
+      ],
+      [
+        -1.5,
+        -2.15
+      ],
+      [
+        -1.5,
+        -1.5
+      ],
+      [
+        -2.15,
+        -1.5
+      ],
+      [
+        -2.15,
+        -0.8
+      ],
+      [
+        -2.8,
+        -0.8
+      ],
+      [
+        -2.8,
+        0.8
+      ],
+      [
+        -2.15,
+        0.8
+      ],
+      [
+        -2.15,
+        1.5
+      ],
+      [
+        -1.5,
+        1.5
+      ],
+      [
+        -1.5,
+        2.15
+      ],
+      [
+        -0.8,
+        2.15
+      ]
+    ],
+    "chakanaScale": 1.0714285714285714
   },
   "bars": {
-    "bottom": 0.8,
-    "centerX": 6.3,
-    "z": -4.4,
-    "columnSpacing": 0.54
+    "barMeters": 5,
+    "barsPerZone": 16,
+    "diamondSpacing": 0.4,
+    "centerSpacing": 0.36,
+    "screenClearance": 0.75,
+    "centerTopReveal": 0.7
   }
 };

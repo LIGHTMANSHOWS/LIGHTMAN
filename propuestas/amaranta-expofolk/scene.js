@@ -1,15 +1,15 @@
 import * as T from './vendor/three.module.js';
 import { OrbitControls } from './vendor/OrbitControls.js';
-import { layout } from './layout.js?v=planos-finales-05';
+import { layout } from './layout.js?v=chacana-5m-06';
 
 const $=id=>document.getElementById(id),host=$('viewer');
 let renderer;
 try{renderer=new T.WebGLRenderer({antialias:true,alpha:true,preserveDrawingBuffer:true,powerPreference:'low-power'});}catch(e){$('loading').hidden=true;$('viewer-error').hidden=false;throw e;}
 renderer.setPixelRatio(Math.min(devicePixelRatio,1.65));renderer.outputColorSpace=T.SRGBColorSpace;renderer.toneMapping=T.ACESFilmicToneMapping;renderer.toneMappingExposure=1.08;
-renderer.domElement.setAttribute('aria-label','Escenario Amaranta / ExpoFolk: 48 barras LED de 5 m en cuatro bloques de 12 detrás de los rombos; arrastra para girar');host.appendChild(renderer.domElement);
+renderer.domElement.setAttribute('aria-label','Escenario Amaranta / ExpoFolk: 48 barras LED de 5 m detrás de los rombos y de la chacana escalonada; arrastra para girar');host.appendChild(renderer.domElement);
 const scene=new T.Scene();scene.fog=new T.FogExp2('#090910',.013);
 const camera=new T.PerspectiveCamera(40,1,.1,180);
-const orbit=new OrbitControls(camera,renderer.domElement);orbit.enableDamping=true;orbit.enablePan=true;orbit.dampingFactor=.075;orbit.minDistance=13;orbit.maxDistance=85;orbit.maxPolarAngle=Math.PI*.49;
+const orbit=new OrbitControls(camera,renderer.domElement);orbit.enableDamping=true;orbit.enablePan=true;orbit.dampingFactor=.075;orbit.minDistance=13;orbit.maxDistance=85;orbit.maxPolarAngle=Math.PI*.72;
 scene.add(new T.HemisphereLight('#bac2e7','#16131c',.6));const key=new T.DirectionalLight('#d7e1ff',1.3);key.position.set(4,16,15);scene.add(key);
 const mat=(color,metalness=.1)=>new T.MeshStandardMaterial({color,roughness:.8,metalness});
 const stageMat=mat('#292c38'),steel=mat('#404454',.6),dark=mat('#08080d'),edge=mat('#484957');
@@ -45,22 +45,32 @@ const screenMats=[];
 function display(w,h,x,y,z,tex,rotation=0){box(w+.14,h+.14,.2,x,y,z-.11,dark,screenGroup).rotation.z=rotation;const m=new T.MeshBasicMaterial({map:tex,color:'#798da0',side:T.DoubleSide});screenMats.push(m);const o=new T.Mesh(new T.PlaneGeometry(w,h),m);o.position.set(x,y,z);o.rotation.z=rotation;screenGroup.add(o);return o;}
 const scr=layout.screens;
 for(const side of [-1,1]){display(4,6,side*scr.sideX,scr.sideY,scr.sideZ,portraitTexture);display(4.35,4.35,side*scr.diamondX,scr.diamondY,scr.diamondZ,mountainTexture,Math.PI/4);}
-const outline=[[-.8,2.8],[.8,2.8],[.8,2.15],[1.5,2.15],[1.5,1.5],[2.15,1.5],[2.15,.8],[2.8,.8],[2.8,-.8],[2.15,-.8],[2.15,-1.5],[1.5,-1.5],[1.5,-2.15],[.8,-2.15],[.8,-2.8],[-.8,-2.8],[-.8,-2.15],[-1.5,-2.15],[-1.5,-1.5],[-2.15,-1.5],[-2.15,-.8],[-2.8,-.8],[-2.8,.8],[-2.15,.8],[-2.15,1.5],[-1.5,1.5],[-1.5,2.15],[-.8,2.15]];
+const outline=scr.chakanaOutline;
 const shape=new T.Shape(outline.map(([x,y])=>new T.Vector2(x,y)));const shapeGeometry=new T.ShapeGeometry(shape);const pos=shapeGeometry.attributes.position,uv=shapeGeometry.attributes.uv;for(let i=0;i<pos.count;i++)uv.setXY(i,(pos.getX(i)+2.8)/5.6,(pos.getY(i)+2.8)/5.6);
-const sunMat=new T.MeshBasicMaterial({map:sunTexture,color:'#8b9ca8',side:T.DoubleSide});screenMats.push(sunMat);const chakana=new T.Mesh(shapeGeometry,sunMat);chakana.scale.setScalar(3/2.8);chakana.position.set(0,scr.centerY,scr.centerZ);screenGroup.add(chakana);
+const sunMat=new T.MeshBasicMaterial({map:sunTexture,color:'#8b9ca8',side:T.DoubleSide});screenMats.push(sunMat);const chakana=new T.Mesh(shapeGeometry,sunMat);chakana.scale.setScalar(scr.chakanaScale);chakana.position.set(0,scr.centerY,scr.centerZ);screenGroup.add(chakana);
 const chakanaBack=new T.Mesh(shapeGeometry,dark);chakanaBack.scale.copy(chakana.scale);chakanaBack.position.set(0,scr.centerY,scr.centerZ-.08);screenGroup.add(chakanaBack);
-const fixtures=[];
-// Four blocks of 12 continuous 5 m bars: two stacked behind each diamond.
-// All bars stay behind the final-plan diamond screens; screen backs occlude them.
-// Zero gap between blocks confirmed by the user. Lateral spacing, clearance and supports are illustrative.
-const curtain={blocksPerSide:2,barsPerBlock:12,barMeters:5,columnSpacing:layout.bars.columnSpacing,blockGap:0,bottom:layout.bars.bottom,z:layout.bars.z};
+// Three zones of 16 uncut vertical 5 m bars. The center follows the same
+// stepped outline and deeper screen plane as the chakana, without stacking.
+const fixtures=[],curtain=layout.bars;
 for(const side of [-1,1]){
- for(let block=0;block<curtain.blocksPerSide;block++)for(let col=0;col<curtain.barsPerBlock;col++)fixtures.push({x:side*layout.bars.centerX+(col-(curtain.barsPerBlock-1)/2)*curtain.columnSpacing,y:curtain.bottom+curtain.barMeters/2+block*(curtain.barMeters+curtain.blockGap),z:curtain.z,zone:side<0?'left':'right',block,row:block,col,length:curtain.barMeters});
+ for(let col=0;col<curtain.barsPerZone;col++)fixtures.push({x:side*scr.diamondX+(col-(curtain.barsPerZone-1)/2)*curtain.diamondSpacing,y:scr.diamondY,z:scr.diamondZ-curtain.screenClearance,zone:side<0?'left':'right',row:0,col,length:curtain.barMeters});
 }
-const distribution={left:0,right:0};
+function chakanaTop(x){
+ const localX=x/scr.chakanaScale,heights=[];
+ for(let i=0;i<outline.length;i++){
+  const a=outline[i],b=outline[(i+1)%outline.length];
+  if(a[1]===b[1]&&localX>=Math.min(a[0],b[0])&&localX<=Math.max(a[0],b[0]))heights.push(a[1]);
+ }
+ return scr.centerY+Math.max(...heights)*scr.chakanaScale;
+}
+for(let col=0;col<curtain.barsPerZone;col++){
+ const x=(col-(curtain.barsPerZone-1)/2)*curtain.centerSpacing;
+ fixtures.push({x,y:chakanaTop(x)+curtain.centerTopReveal-curtain.barMeters/2,z:scr.centerZ-curtain.screenClearance,zone:'center',row:1,col,length:curtain.barMeters});
+}
+const distribution={left:0,center:0,right:0};
 for(const f of fixtures)distribution[f.zone]+=f.length;
 const nominalMeters=fixtures.reduce((meters,f)=>meters+f.length,0);
-if(fixtures.length!==48||nominalMeters!==240||distribution.left!==120||distribution.right!==120)throw new Error('El reparto debe sumar 48 barras de 5 m: 2 bloques de 12 por lado, 240 m');
+if(fixtures.length!==48||nominalMeters!==240||Object.values(distribution).some(m=>m!==80)||fixtures.some(f=>f.length!==5||!Number.isFinite(f.y)||f.y-2.5<layout.deck))throw new Error('El reparto debe sumar 48 barras individuales de 5 m: 80 m por rombo y 80 m detrás de la chacana.');
 const segments=60,total=fixtures.length*segments;
 const led=new T.InstancedMesh(new T.CylinderGeometry(.037,.037,curtain.barMeters/segments*.92,5),new T.MeshBasicMaterial({color:'#ffffff',toneMapped:false}),total);led.instanceMatrix.setUsage(T.StaticDrawUsage);led.frustumCulled=false;
 const glow=new T.InstancedMesh(new T.CylinderGeometry(.115,.115,curtain.barMeters,6),new T.MeshBasicMaterial({color:'#ffffff',transparent:true,opacity:.075,depthWrite:false,blending:T.AdditiveBlending,toneMapped:false}),fixtures.length);glow.frustumCulled=false;
@@ -109,10 +119,10 @@ const humanMat=mat('#817681');box(.36,.7,.22,0,1.9,2.5,humanMat);rod([-.12,1.57,
 const floorPool=new T.PointLight('#8f4bb8',12,24,2);floorPool.position.set(0,5,2);scene.add(floorPool);
 const state={effect:'cascade',palette:'violet',brightness:.8,speed:1,playing:!matchMedia('(prefers-reduced-motion: reduce)').matches,time:0,camera:'perspective'};
 const palettes={violet:['#8f49ff','#f1d6ff'],amber:['#ff8c32','#ffe7ae'],mint:['#18c88d','#d0fff2'],white:['#b6c6e2','#ffffff']};
-const descriptions={cascade:'Pulsos que descienden por los dos bloques superpuestos de cada rombo.',sweep:'Un barrido continuo entre las barras detrás de los dos rombos.',weave:'Tramas alternadas entre los cuatro bloques de 12 barras.',solid:'48 barras de 5 m: dos bloques superpuestos de 12 por lado, 240 m en total.'};
+const descriptions={cascade:'Pulsos que descienden por los rombos y la chacana escalonada.',sweep:'Un barrido continuo por las tres zonas: rombos y chacana.',weave:'Tramas alternadas entre las tres zonas de 16 barras.',solid:'48 barras individuales de 5 m: 16 por rombo y 16 detrás de la chacana, 240 m en total.'};
 let base=new T.Color(),accent=new T.Color(),last=performance.now(),frame=0;
 function animateColors(){const [a,b]=palettes[state.palette];base.set(a);accent.set(b);let n=0;for(let i=0;i<fixtures.length;i++){const f=fixtures[i];let peak=.2;for(let j=0;j<segments;j++){const fy=f.y-f.length/2+(j+.5)*f.length/segments;let v;if(state.effect==='solid')v=.75;else if(state.effect==='cascade'){const phase=((fy*.2+state.time*.55+Math.abs(f.x)*.022)%1+1)%1;v=.12+Math.pow(Math.max(0,Math.sin(phase*Math.PI)),7)*.88;}else if(state.effect==='sweep'){const phase=f.x*.15+state.time*1.35+f.z*.12;v=.08+Math.pow(Math.max(0,Math.cos(phase)),8)*.92;}else{v=.12+Math.pow(Math.max(0,Math.sin(f.col*.8+f.row*1.8+state.time*2+fy*.9)),6)*.88;}peak=Math.max(peak,v);color.copy(base).lerp(accent,v*v*.8).multiplyScalar(v*state.brightness*1.7);led.setColorAt(n++,color);}glow.setColorAt(i,color.copy(base).multiplyScalar(peak*state.brightness));}led.instanceColor.needsUpdate=true;glow.instanceColor.needsUpdate=true;floorPool.color.copy(base);floorPool.intensity=state.brightness*9;}
-function cameraView(name){state.camera=name;const portrait=host.clientWidth<600;const views={perspective:{pos:portrait?[36,22,61]:[23,16,36],target:[0,5,-1]},front:{pos:portrait?[0,10,70]:[0,6.4,43],target:[0,6.4,-2]},inside:{pos:[13,6.5,10],target:[0,5,-3]},plan:{pos:portrait?[0,69,.1]:[0,49,.1],target:[0,0,-1]}};const v=views[name];orbit.enableDamping=false;orbit.update();camera.position.set(...v.pos);orbit.target.set(...v.target);orbit.update();orbit.enableDamping=true;document.querySelectorAll('[data-camera]').forEach(el=>{const active=el.dataset.camera===name;el.classList.toggle('active',active);el.setAttribute('aria-pressed',active);});$('view-caption').textContent={perspective:'Perspectiva',front:'Frente',inside:'Dentro del escenario',plan:'Planta'}[name];}
+function cameraView(name){state.camera=name;const portrait=host.clientWidth<600;const views={perspective:{pos:portrait?[36,22,61]:[23,16,36],target:[0,5,-1]},front:{pos:portrait?[0,10,70]:[0,6.4,43],target:[0,6.4,-2]},low:{pos:portrait?[0,1.2,65]:[0,1.2,32],target:[0,5,-3]},inside:{pos:[13,6.5,10],target:[0,5,-3]},plan:{pos:portrait?[0,69,.1]:[0,49,.1],target:[0,0,-1]}};const v=views[name];orbit.enableDamping=false;orbit.update();camera.position.set(...v.pos);orbit.target.set(...v.target);orbit.update();orbit.enableDamping=true;document.querySelectorAll('[data-camera]').forEach(el=>{const active=el.dataset.camera===name;el.classList.toggle('active',active);el.setAttribute('aria-pressed',active);});$('view-caption').textContent={perspective:'Perspectiva',front:'Frente',low:'Contrapicado',inside:'Dentro del escenario',plan:'Planta'}[name];}
 function resize(){const w=host.clientWidth,h=host.clientHeight;if(w<1||h<1)return;renderer.setSize(w,h,false);camera.aspect=w/h;camera.updateProjectionMatrix();}new ResizeObserver(resize).observe(host);
 function refreshPlay(){$('play').innerHTML=state.playing?'Pausar animación <span>Ⅱ</span>':'Reproducir <span>▶</span>';}
 function layers(){const solo=$('solo').checked;scenery.visible=!solo;lightGroup.visible=!solo&&$('fixtures').checked;screenGroup.visible=!solo&&$('screens').checked;beamGroup.visible=!solo&&$('beams').checked;}
@@ -126,4 +136,4 @@ $('reset').onclick=()=>{state.effect='cascade';state.palette='violet';state.brig
 $('fullscreen').onclick=async()=>{const wrap=host.parentElement;try{if(document.fullscreenElement)await document.exitFullscreen();else await wrap.requestFullscreen();}catch{wrap.classList.toggle('expanded');}};
 document.addEventListener('visibilitychange',()=>last=performance.now());
 function loop(now){requestAnimationFrame(loop);const dt=Math.min((now-last)/1000,.08);last=now;if(document.hidden)return;if(state.playing)state.time+=dt*state.speed;if(frame++%2===0&&state.playing)animateColors();orbit.update();renderer.render(scene,camera);}resize();cameraView('perspective');animateColors();refreshPlay();$('loading').hidden=true;requestAnimationFrame(loop);
-window.amarantaStudy={state,nominalTubeCount:fixtures.length,nominalBarCount:fixtures.length,nominalMeters,distribution,placement:'behind-diamond-screens',curtain,layout,lightGroup,renderer,scene,camera,fixtures};
+window.amarantaStudy={state,nominalTubeCount:fixtures.length,nominalBarCount:fixtures.length,nominalMeters,distribution,placement:'behind-diamonds-and-stepped-chakana',curtain,layout,lightGroup,renderer,scene,camera,orbit,fixtures};
