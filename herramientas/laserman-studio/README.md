@@ -9,3 +9,11 @@ Guardar descarga el proyecto JSON. Exportar show genera un ZIP con proyecto, tre
 La web permite editar y simular. La salida física requiere el programa local de LIGHTMAN en el PC del montaje; el panel Salidas puede abrir el operador local. La vista escénica no es una calibración del proyector.
 
 Código y recursos de terceros: ver NOTICE.md y vendor/LICENSE-three.txt. La música fue sintetizada para este proyecto. No se incluyen proyectos de usuarios, credenciales, ejecutables ni transporte USB en la publicación.
+
+## Documentación
+
+- [Manual de uso y controles](docs/uso.md)
+- [Plataforma web y almacenamiento](docs/version-web.md)
+- [Formatos del proyecto y exportaciones](docs/formatos.md)
+- [Dirección y estructura del show](docs/show.md)
+- [Pruebas y alcance de validación](docs/validacion.md)

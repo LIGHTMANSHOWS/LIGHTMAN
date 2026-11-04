@@ -1,0 +1,13 @@
+{
+  "checks": [
+    "390px viewport: audio clock advances and no document overflow",
+    "Touch drag creates a marked range over existing clips",
+    "Mobile drawer edits the marker; horizontal toolbar remains operable and fills the range",
+    "Web output panel clearly routes physical operation to the local PC",
+    "Touch orbit updates the 3D scene"
+  ],
+  "manualComputerUse": "Blocked by the Windows tool because it could not verify Brave URL. These tests use a separate owned test browser.",
+  "hardwareOutputRequests": 0,
+  "pageErrors": [],
+  "viewport": "390x844 emulated in desktop Chrome; not an Android device test"
+}
