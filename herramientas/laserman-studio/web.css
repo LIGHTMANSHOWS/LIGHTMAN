@@ -1,0 +1,20 @@
+#mobileInspector{display:none}.local-operator{display:inline-flex;align-items:center;background:#193c3a;color:#7cebd6;border:1px solid #458e83;border-radius:5px;padding:8px 12px;text-decoration:none;font-size:11px}
+@media(max-width:700px){
+ :root{--label:132px;font-size:11px}
+ header{min-height:103px;height:103px;padding:7px 9px;gap:5px;flex-wrap:wrap;align-content:center}
+ .brand{margin-right:3px;gap:5px}.brand b{font-size:23px}.brand span{font-size:11px}.brand small{font-size:6px}
+ #projectName{flex:1;max-width:none;min-width:125px;font-size:10px;width:40%}
+ header button{padding:7px 8px;font-size:10px}#modeBadge{display:none}#mobileInspector{display:inline-block;margin-left:auto}
+ main{height:calc(100dvh - 103px);grid-template-columns:minmax(0,1fr);grid-template-rows:minmax(190px,1fr) 390px}
+ .stage{grid-column:1}.stagebar{top:7px;left:7px;right:7px;justify-content:flex-end}.stagebar>span{display:none}.stagebar button{font-size:9px;padding:5px}
+ .stage-overlay{left:12px;bottom:38px}.stage-overlay span{font-size:18px;letter-spacing:3px}.stage-overlay small{font-size:7px}.stage-bottom{padding:8px;font-size:8px}.stage-bottom span:last-child{display:none}
+ .inspector{display:none;position:fixed;top:103px;bottom:0;right:0;width:min(90vw,320px);z-index:35;box-shadow:-10px 0 40px #0009;padding:17px}
+ .inspector-open .inspector{display:block}
+ .transport{height:auto;min-height:76px;padding:6px 7px;gap:6px;flex-wrap:wrap;align-content:center}.transport .spacer{display:none}.transport #play{min-width:95px}.transport strong{font-size:14px}.transport button{font-size:10px;padding:7px}.transport #rewind{display:none}.transport .zoom{display:none}.transport label:has(#bpm){display:none}
+ .edit-tools{overflow:auto;gap:6px;padding:0 7px;min-height:38px}.edit-tools>*{flex-shrink:0}.edit-tools .spacer,.edit-tools small{display:none}.edit-tools select{max-width:68px}
+ .track-label{font-size:9px;padding:0 4px;gap:3px}.track-label button{padding:3px}.track-label.hand{padding-left:13px;font-size:9px}
+ .marker-label,.rulerlabel{font-size:7px;padding-left:6px}.audiolabel{padding-left:6px;font-size:7px}.timeline-footer{padding:7px;font-size:8px}.timeline-footer span:last-child{display:none}
+ dialog{padding:18px;max-width:calc(100% - 18px)}#toast{font-size:10px;padding:9px 12px;max-width:92%;bottom:18px}
+}
+
+.range-mode .track-row,.range-mode #ruler{touch-action:none}

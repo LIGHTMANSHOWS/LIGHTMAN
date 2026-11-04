@@ -1,0 +1,331 @@
+{
+  "id": "official-portion-x",
+  "name": "Portion X Jacket",
+  "version": 1,
+  "source": "official",
+  "description": "Full body LED costume with 530 pixels — head, body, arms, legs, feet",
+  "ledSpacing": {
+    "mode": "density",
+    "density": 60
+  },
+  "physicalSize": null,
+  "totalLeds": 530,
+  "zones": [
+    {
+      "name": "BackPackRight",
+      "count": 18,
+      "start": 0,
+      "side": "right",
+      "bodyPart": "backpack"
+    },
+    {
+      "name": "BackPackLeft",
+      "count": 18,
+      "start": 18,
+      "side": "left",
+      "bodyPart": "backpack"
+    },
+    {
+      "name": "Head Right",
+      "count": 22,
+      "start": 36,
+      "side": "right",
+      "bodyPart": "head"
+    },
+    {
+      "name": "Head Left",
+      "count": 22,
+      "start": 58,
+      "side": "left",
+      "bodyPart": "head"
+    },
+    {
+      "name": "MBodyRightUp",
+      "count": 24,
+      "start": 80,
+      "side": "right",
+      "bodyPart": "body"
+    },
+    {
+      "name": "MBodyRightDown",
+      "count": 23,
+      "start": 104,
+      "side": "right",
+      "bodyPart": "body"
+    },
+    {
+      "name": "MBodyLeftUp",
+      "count": 24,
+      "start": 127,
+      "side": "left",
+      "bodyPart": "body"
+    },
+    {
+      "name": "MBodyLeftDown",
+      "count": 23,
+      "start": 151,
+      "side": "left",
+      "bodyPart": "body"
+    },
+    {
+      "name": "ArmRightFront",
+      "count": 25,
+      "start": 174,
+      "side": "right",
+      "bodyPart": "frontarm"
+    },
+    {
+      "name": "HandRight",
+      "count": 27,
+      "start": 199,
+      "side": "right",
+      "bodyPart": "hand"
+    },
+    {
+      "name": "ArmRightUp",
+      "count": 21,
+      "start": 226,
+      "side": "right",
+      "bodyPart": "uparm"
+    },
+    {
+      "name": "ArmLeftFront",
+      "count": 25,
+      "start": 247,
+      "side": "left",
+      "bodyPart": "frontarm"
+    },
+    {
+      "name": "HandLeft",
+      "count": 27,
+      "start": 272,
+      "side": "left",
+      "bodyPart": "hand"
+    },
+    {
+      "name": "ArmLeftUp",
+      "count": 21,
+      "start": 299,
+      "side": "left",
+      "bodyPart": "uparm"
+    },
+    {
+      "name": "LegRight",
+      "count": 75,
+      "start": 320,
+      "side": "right",
+      "bodyPart": "leg"
+    },
+    {
+      "name": "LegLeft",
+      "count": 75,
+      "start": 395,
+      "side": "left",
+      "bodyPart": "leg"
+    },
+    {
+      "name": "FootRight",
+      "count": 30,
+      "start": 470,
+      "side": "right",
+      "bodyPart": "foot"
+    },
+    {
+      "name": "FootLeft",
+      "count": 30,
+      "start": 500,
+      "side": "left",
+      "bodyPart": "foot"
+    }
+  ],
+  "hierarchy": {
+    "name": "Portion X",
+    "isGroup": true,
+    "children": [
+      {
+        "name": "UBody",
+        "isGroup": true,
+        "children": [
+          {
+            "name": "BackPack",
+            "isGroup": true,
+            "children": [
+              {
+                "name": "BackPackRight",
+                "isGroup": true,
+                "children": []
+              },
+              {
+                "name": "BackPackLeft",
+                "isGroup": true,
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Head",
+            "isGroup": true,
+            "children": [
+              {
+                "name": "Head Right",
+                "isGroup": true,
+                "children": []
+              },
+              {
+                "name": "Head Left",
+                "isGroup": true,
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "MBody",
+            "isGroup": true,
+            "children": [
+              {
+                "name": "MBodyRight",
+                "isGroup": true,
+                "children": [
+                  {
+                    "name": "MBodyRightUp",
+                    "isGroup": true,
+                    "children": []
+                  },
+                  {
+                    "name": "MBodyRightDown",
+                    "isGroup": true,
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "MBodyLeft",
+                "isGroup": true,
+                "children": [
+                  {
+                    "name": "MBodyLeftUp",
+                    "isGroup": true,
+                    "children": []
+                  },
+                  {
+                    "name": "MBodyLeftDown",
+                    "isGroup": true,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          },
+          {
+            "name": "Arm",
+            "isGroup": true,
+            "children": [
+              {
+                "name": "ArmRight",
+                "isGroup": true,
+                "children": [
+                  {
+                    "name": "ArmRightFrontWithHand",
+                    "isGroup": true,
+                    "children": [
+                      {
+                        "name": "ArmRightFront",
+                        "isGroup": true,
+                        "children": []
+                      },
+                      {
+                        "name": "HandRight",
+                        "isGroup": true,
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "ArmRightUp",
+                    "isGroup": true,
+                    "children": []
+                  }
+                ]
+              },
+              {
+                "name": "ArmLeft",
+                "isGroup": true,
+                "children": [
+                  {
+                    "name": "ArmLeftFrontWithHand",
+                    "isGroup": true,
+                    "children": [
+                      {
+                        "name": "ArmLeftFront",
+                        "isGroup": true,
+                        "children": []
+                      },
+                      {
+                        "name": "HandLeft",
+                        "isGroup": true,
+                        "children": []
+                      }
+                    ]
+                  },
+                  {
+                    "name": "ArmLeftUp",
+                    "isGroup": true,
+                    "children": []
+                  }
+                ]
+              }
+            ]
+          }
+        ]
+      },
+      {
+        "name": "LBody",
+        "isGroup": true,
+        "children": [
+          {
+            "name": "Leg",
+            "isGroup": true,
+            "children": [
+              {
+                "name": "LegRight",
+                "isGroup": true,
+                "children": []
+              },
+              {
+                "name": "LegLeft",
+                "isGroup": true,
+                "children": []
+              }
+            ]
+          },
+          {
+            "name": "Foot",
+            "isGroup": true,
+            "children": [
+              {
+                "name": "FootRight",
+                "isGroup": true,
+                "children": []
+              },
+              {
+                "name": "FootLeft",
+                "isGroup": true,
+                "children": []
+              }
+            ]
+          }
+        ]
+      }
+    ]
+  },
+  "tags": [
+    "costume",
+    "full-body"
+  ],
+  "pixelPositions": null,
+  "backgroundImage": null,
+  "ledOrders": null,
+  "prpOriginal": null,
+  "createdAt": "2025-01-01T00:00:00.000Z",
+  "updatedAt": "2025-01-01T00:00:00.000Z"
+}
