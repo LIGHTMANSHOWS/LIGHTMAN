@@ -12,6 +12,8 @@ Código y recursos de terceros: ver NOTICE.md y vendor/LICENSE-three.txt. La mú
 
 ## Documentación
 
+- [Guía rápida para compartir (PDF)](docs/guia-rapida.pdf)
+
 - [Manual de uso y controles](docs/uso.md)
 - [Plataforma web y almacenamiento](docs/version-web.md)
 - [Formatos del proyecto y exportaciones](docs/formatos.md)
