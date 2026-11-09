@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080b11">
+  <meta name="description" content="Propuesta LIGHTMAN para stand Credicorp: arcos LED, bandera LED P25 y láseres hacia el techo. Visor 3D conceptual.">
+  <meta property="og:title" content="Credicorp · Stand 3D P25 | LIGHTMAN">
+  <meta property="og:description" content="Explora el stand con vinil cian y magenta, delineado LED, bandera P25 y láseres hacia el techo.">
+  <meta property="og:type" content="website">
+  <meta property="og:url" content="https://lightmanperu.com/propuestas/credicorp-stand-p25/">
+  <meta property="og:image" content="https://lightmanperu.com/propuestas/credicorp-stand-p25/assets/vista-3d.png">
+  <meta name="twitter:card" content="summary_large_image">
+  <title>Credicorp · Bandera LED P25 | LIGHTMAN</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='8' fill='%230a0c12'/%3E%3Cpath d='M10 8v24h21v-6H16V8' fill='%23f43b48'/%3E%3C/svg%3E">
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <header><a href="https://lightmanperu.com/" aria-label="Ir a LIGHTMAN" style="display:flex;align-items:center"><img src="./assets/logo-lightman.png" alt="LIGHTMAN"></a><span class="divider"></span><span>PROPUESTAS / CREDICORP</span><span class="version">VISTA CONCEPTUAL · 03</span></header>
+  <main>
+    <aside>
+      <div class="eyebrow"><span></span> STAND / PRESENTING PARTNER</div>
+      <h1>Una estructura.<br><em>Tres capas de luz.</em></h1>
+      <p class="intro">Vinil azul noche con ondas cian y magenta. Delineado LED de varias líneas, bandera P25 y láseres hacia el techo.</p>
+      <div class="metrics"><div><strong>5.70 × 3.00<span> m</span></strong><small>frente × fondo</small></div><div><strong>3.10<span> m</span></strong><small>altura total</small></div></div>
+      <section class="controls" aria-label="Iluminación">
+        <h2>01 / ILUMINACIÓN</h2>
+        <label class="switch-row"><span><b>Arcos LED</b><small>Contornos, líneas interiores y uniones</small></span><input id="arcs" type="checkbox" checked><span class="switch"></span></label>
+        <label class="switch-row"><span><b>Bandera LED P25</b><small>Píxeles a 25 mm entre centros</small></span><input id="screen" type="checkbox" checked><span class="switch"></span></label>
+        <label class="switch-row"><span><b>Láseres al techo</b><small>Dos abanicos ascendentes</small></span><input id="lasers" type="checkbox" checked><span class="switch"></span></label>
+      </section>
+      <section class="controls"><h2>02 / EFECTOS DE LUZ</h2><div class="segmented" role="group" aria-label="Efectos de luz"><button data-show="flow" class="active" aria-pressed="true">Flujo</button><button data-show="pulse" aria-pressed="false">Pulso</button><button data-show="scan" aria-pressed="false">Barrido</button><button data-show="static" aria-pressed="false">Fijo</button></div><label class="range-label" for="speed">Velocidad <output id="speed-value">1.0×</output></label><input id="speed" type="range" min="30" max="200" value="100" aria-label="Velocidad de efectos"></section>
+      <section class="controls"><h2>03 / CONTENIDO DE LA BANDERA</h2><div class="segmented" role="group" aria-label="Contenido LED"><button data-effect="flow" class="active" aria-pressed="true">Ondas</button><button data-effect="text" aria-pressed="false">Texto P25</button><button data-effect="solid" aria-pressed="false">Color</button></div><label class="range-label" for="brightness">Intensidad visual <output id="brightness-value">80%</output></label><input id="brightness" type="range" min="10" max="100" value="80" aria-label="Intensidad visual"></section>
+      <div class="p25-note"><span>P25</span><p>Bandera LED de píxel abierto.<br>La imagen se forma con puntos de luz, con separación visible.</p></div>
+      <details><summary>Medidas y alcance de la vista</summary><p>Columna central: 2.44 m de alto; 1.05 m arriba y 0.95 m abajo. La trama P25 se recorta al volumen de referencia. Formato final de módulos, montaje y número de caras por definir.</p><p>Altura del arco: 2.60 m. Geometría basada en la ficha recibida; espesores y ubicación de equipos son referenciales. El techo del recinto está ilustrado.</p></details>
+      <p class="footnote">Simulación visual. El brillo, los haces y las dimensiones de montaje se validan con los equipos y el recinto.</p>
+    </aside>
+    <section class="viewport" aria-label="Visor 3D del stand Credicorp">
+      <div id="canvas-wrap"><div id="loading">Preparando el stand 3D…</div></div>
+      <div class="stage-top"><span class="live-dot"></span><span id="view-name">PERSPECTIVA</span><span class="pitch-badge">BANDERA LED · P25 / 25 mm</span></div>
+      <div class="view-buttons" role="group" aria-label="Vistas de cámara"><button data-view="perspective" class="active" aria-pressed="true">Perspectiva</button><button data-view="front" aria-pressed="false">Frontal</button><button data-view="pixel" aria-pressed="false">Detalle P25</button><button data-view="top" aria-pressed="false">Superior</button></div>
+      <div class="stage-bottom"><span class="gesture">Arrastra para girar · Usa la rueda o dos dedos para acercar</span><div><button id="pause" aria-pressed="false" title="Pausar animación">Pausar</button><button id="rotate" aria-pressed="false" title="Giro automático">Girar</button><button id="capture" title="Descargar vista actual">Guardar vista ↗</button></div></div>
+      <div class="pixel-caption" id="pixel-caption" hidden><strong>25 mm entre centros</strong><span>El texto y las ondas se dibujan sobre los propios píxeles.</span></div>
+    </section>
+  </main>
+  <script type="module" src="./app.js?v=3"></script>
+</body>
+</html>
