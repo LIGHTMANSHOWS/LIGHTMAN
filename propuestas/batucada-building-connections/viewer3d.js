@@ -1,5 +1,5 @@
 import * as THREE from 'three';
-import { setupMedia } from './media-input.js?v=6.0';
+import { setupMedia } from './media-input.js?v=6.1';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { clone } from 'three/addons/utils/SkeletonUtils.js';
@@ -15,7 +15,7 @@ import { setupMusic } from './music.js?v=5.8';
 
 const $=s=>document.querySelector(s),canvas=$('#stage');
 document.querySelectorAll('[data-count],[data-view],[data-format]').forEach(b=>b.disabled=true);
-const state={count:10,brand:'Building Connections',color:'#54f2cb',effect:'pulse',pixelEffect:'chase',pixelSpeed:1,flagScale:.8,screenScale:.8,logo:null,paused:matchMedia('(prefers-reduced-motion:reduce)').matches,time:0,view:'ensemble',light:'event'};
+const state={count:10,brand:'Building Connections',color:'#54f2cb',effect:'pulse',pixelEffect:'chase',pixelSpeed:1,flagScale:.8,screenScale:.8,logo:null,paused:matchMedia('(prefers-reduced-motion:reduce)').matches,time:0,view:'ensemble',light:'event',flashLevel:matchMedia('(prefers-reduced-motion:reduce)').matches?0:.7};
 const pixels=createPixelEffects(state),music=setupMusic();
 const scene=new THREE.Scene();scene.background=new THREE.Color('#11161d');scene.fog=new THREE.FogExp2('#11161d',.024);
 const camera=new THREE.PerspectiveCamera(38,1,.05,90);camera.position.set(7,3.6,11.6);
@@ -69,8 +69,8 @@ function updateBrand(t=0,rhythm=music.sample(t)){
  const col=new THREE.Color(state.color),violet=new THREE.Color('#bd55ff'),pulse=state.effect==='pulse'?.65+.35*rhythm.accent:1;
  for(const d of displayVariants){const {cols,rows,ctx,srcCtx,kind}=d,flag=kind==='flag',sheer=kind!=='screen';
   srcCtx.clearRect(0,0,cols,rows);
-  if(state.logo){const isVideo=state.mediaKind==='video',w=isVideo?state.logo.videoWidth:state.logo.width,h=isVideo?state.logo.videoHeight:state.logo.height;
-   if(w&&h&&(!isVideo||state.logo.readyState>=2)){const scale=flag?state.flagScale:state.screenScale,margin=isVideo?0:4,r=Math.min((cols-margin)/w,(rows-margin)/h)*scale;srcCtx.imageSmoothingEnabled=!isVideo;srcCtx.drawImage(state.logo,(cols-w*r)/2,(rows-h*r)/2,w*r,h*r);}}
+  if(state.logo){const source=kind==='screen'&&state.drumLogo?.readyState>=2?state.drumLogo:state.logo;const isVideo=state.mediaKind==='video',w=isVideo?source.videoWidth:source.width,h=isVideo?source.videoHeight:source.height;
+   if(w&&h&&(!isVideo||source.readyState>=2)){const scale=flag?state.flagScale:state.screenScale,margin=isVideo?0:4,r=Math.min((cols-margin)/w,(rows-margin)/h)*scale;srcCtx.imageSmoothingEnabled=!isVideo;srcCtx.drawImage(source,(cols-w*r)/2,(rows-h*r)/2,w*r,h*r);}}
   const data=srcCtx.getImageData(0,0,cols,rows).data;
   ctx.clearRect(0,0,d.c.width,d.c.height);if(!sheer){ctx.fillStyle='#010304';ctx.fillRect(0,0,d.c.width,d.c.height);}
   for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
@@ -82,8 +82,8 @@ function updateBrand(t=0,rhythm=music.sample(t)){
   }d.tex.needsUpdate=true;
  }
 }
-const panelMat=surfaceMaterial(30,16,'flag'),capeMat=surfaceMaterial(80,120,'cape'),drumMat=surfaceMaterial(30,16);updateBrand();
-canvas.dataset.flagResolution='30x16';canvas.dataset.drumResolution='30x16';
+const panelMat=surfaceMaterial(60,42,'flag'),capeMat=surfaceMaterial(80,120,'cape'),drumMat=surfaceMaterial(30,16);updateBrand();
+canvas.dataset.flagResolution='60x42';canvas.dataset.drumResolution='30x16';
 function clothPanel(w,h,type,phase,display=true){const group=new THREE.Group();const geo=new THREE.PlaneGeometry(w,h,type==='cape'?30:32,24);const base=geo.attributes.position.array.slice();const front=new THREE.Mesh(geo,display?(type==='cape'?capeMat:panelMat):cloth);front.castShadow=false;front.receiveShadow=false;group.add(front);dynamicFabrics.push({geo,base,w,h,type,phase});return group;}
 
 function drum(role){const g=new THREE.Group();const radius=role==='bombo'?.245:role==='tarola'?.19:.155,height=role==='bombo'?.34:role==='tarola'?.15:.29;const body=mesh(new THREE.CylinderGeometry(radius,radius,height,48,1,true),blackMetal,g);body.position.y=-height/2;
@@ -256,6 +256,9 @@ function animate(ms){
   canvas.dataset.scoreTime=scoreTime.toFixed(4);canvas.dataset.syncMode=music.linked?'audio':'preview';canvas.dataset.beat=rhythm.beat.toFixed(4);
  }
  if(transition){const u=THREE.MathUtils.clamp((ms-transition.start)/800,0,1),s=u*u*(3-2*u);camera.position.lerpVectors(transition.from,transition.to,s);controls.target.lerpVectors(transition.fromTarget,transition.toTarget,s);if(u===1)transition=null;}
+ media.sync();
+ const flash=state.flashLevel*(music.linked?rhythm.kick:Math.exp(-(scoreTime%1)/.065));rim.intensity=2.7+flash*4;fill.intensity=(state.light==='studio'?1.2:.8)+flash*1.2;
+ canvas.dataset.flash=flash.toFixed(3);
  if(media.video&&media.video.readyState>=2&&ms-lastVideoTexture>35){updateBrand(scoreTime,rhythm);lastVideoTexture=ms;}
  controls.update();composer.render();
 }
@@ -275,6 +278,8 @@ $('#effect')?.addEventListener('change',e=>{state.effect=e.target.value;updateBr
 for(const [id,key,out] of [['flag-scale','flagScale','flag-scale-value'],['screen-scale','screenScale','screen-scale-value']])$('#'+id)?.addEventListener('input',e=>{state[key]=Number(e.target.value)/100;$('#'+out).value=e.target.value+'%';updateBrand(music.time(state.time));});
 function syncPause(){const b=$('#pause'),paused=music.linked?!music.playing:state.paused;b.textContent=paused?'Reanudar movimiento ▶':'Pausar movimiento Ⅱ';b.setAttribute('aria-pressed',String(paused));}
 $('#pause')?.addEventListener('click',()=>{if(music.linked){if(music.playing)music.pause();else music.play()?.catch(console.error);}else state.paused=!state.paused;syncPause();});music.onChange(()=>{if(music.playing)state.paused=false;syncPause();});syncPause();
+$('#scene-flashes')?.addEventListener('change',e=>{state.flashLevel=Number(e.target.value);});
+if($('#scene-flashes'))$('#scene-flashes').value=String(state.flashLevel);
 $('#lighting')?.addEventListener('change',e=>{state.light=e.target.value;const studio=state.light==='studio';hemi.intensity=studio?1.6:.75;key.intensity=studio?3.3:2.5;fill.intensity=studio?1.2:.8;renderer.toneMappingExposure=studio?1.2:1.15;scene.background.set(studio?'#29333f':'#11161d');scene.fog.color.copy(scene.background);});
 const media=setupMedia({state,onUpdate:()=>updateBrand(music.time(state.time))});
 $('#catalogue-open')?.addEventListener('click',()=>$('#catalogue-dialog').showModal());

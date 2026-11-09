@@ -1,10 +1,12 @@
 // Media stays in the browser. One decoded video feeds every LED surface.
 export function setupMedia({state,onUpdate}) {
- const $=s=>document.querySelector(s),input=$('#logo-input'),video=$('#video-preview');
+ const $=s=>document.querySelector(s),input=$('#logo-input'),video=$('#video-preview'),drumVideo=$('#drum-video');
  const image=$('#image-preview'),error=$('#file-error');
  let objectUrl=null,pending=null,generation=0;
  function discardPending(){if(!pending)return;pending.cancel();pending=null;}
  function dispose(){
+  state.drumLogo=null;
+  if(drumVideo){drumVideo.onloadeddata=null;drumVideo.pause();drumVideo.removeAttribute('src');drumVideo.load();}
   if(video){video.pause();video.removeAttribute('src');video.load();video.hidden=true;}
   if(objectUrl)URL.revokeObjectURL(objectUrl);objectUrl=null;
   image.hidden=true;image.removeAttribute('src');state.logo=null;state.mediaKind=null;
@@ -15,7 +17,7 @@ export function setupMedia({state,onUpdate}) {
   $('.image-drop')?.classList.toggle('has-video',isVideo);
   if($('#video-restart'))$('#video-restart').hidden=!isVideo;
   if($('#video-toggle'))$('#video-toggle').hidden=!isVideo;
-  $('#brand-status').textContent=isVideo?'Video en banderas y tambores · 30 × 16 píxeles':'Imagen aplicada en banderas, tambores y capa';
+  $('#brand-status').textContent=isVideo?'Banderas 60 × 42 · tambores 30 × 16 · video en bucle':'Imagen aplicada en banderas, tambores y capa';
  }
  function applyImage(file){
   const token=++generation;discardPending();const url=URL.createObjectURL(file),im=new Image();
@@ -23,7 +25,7 @@ export function setupMedia({state,onUpdate}) {
   im.onload=()=>{if(token!==generation)return;pending=null;dispose();objectUrl=url;state.logo=im;state.mediaKind='image';image.src=url;image.hidden=false;describe(file.name,false);onUpdate();};
   im.onerror=()=>{if(token!==generation)return;discardPending();error.textContent='No se pudo abrir la imagen. Prueba con PNG o JPG.';};im.src=url;
  }
- function applyVideo(url,name,local=false){
+ function applyVideo(url,name,local=false,hermes=false){
   if(!video){if(local)URL.revokeObjectURL(url);return;}
   const token=++generation;discardPending();error.textContent='';
   // Decode before replacing the current visual, so invalid files cannot blank it.
@@ -34,6 +36,12 @@ export function setupMedia({state,onUpdate}) {
    if(token!==generation)return;pending=null;release();dispose();
    if(local)objectUrl=url;
    state.logo=video;state.mediaKind='video';video.hidden=false;video.src=url;
+   video.dataset.visual=hermes?'hermes-batucada':'uploaded';
+   if(hermes&&drumVideo){
+    state.drumLogo=drumVideo;
+    drumVideo.onloadeddata=()=>{sync();onUpdate();};
+    drumVideo.src='assets/hermes/hermes-batucada-30x16.mp4?v=6.1';drumVideo.load();
+   }
    state.flagScale=state.screenScale=1;
    for(const id of ['flag-scale','screen-scale']){if($('#'+id))$('#'+id).value='100';if($('#'+id+'-value'))$('#'+id+'-value').value='100%';}
    describe(name,true);
@@ -56,14 +64,23 @@ export function setupMedia({state,onUpdate}) {
   $('.image-drop')?.classList.remove('has-video');
   $('#brand-status').textContent='Banderas y capa transparentes · luz por ambos lados';onUpdate();
  });
- $('#hermes-load')?.addEventListener('click',()=>applyVideo('assets/hermes/hermes-30x16.mp4?v=6.0','HERMES · 15 s · 30 × 16 px'));
+ const loadHermes=()=>applyVideo('assets/hermes/hermes-batucada-60x42.mp4?v=6.1','HERMES BATUCADA · 16 s · banderas 60 × 42 / tambores 30 × 16',false,true);
+ $('#hermes-load')?.addEventListener('click',loadHermes);
  $('#video-restart')?.addEventListener('click',()=>{video.currentTime=0;video.play().catch(()=>{});});
  $('#video-toggle')?.addEventListener('click',()=>{if(video.paused)video.play().catch(()=>{error.textContent='No se pudo iniciar el video.';});else video.pause();});
  for(const event of ['play','pause','loadeddata','emptied'])video?.addEventListener(event,()=>{
   const button=$('#video-toggle');if(!button)return;button.textContent=video.paused?'Reproducir video ▶':'Pausar video Ⅱ';button.setAttribute('aria-pressed',String(!video.paused));
+  sync();
  });
  for(const event of ['loadeddata','seeked','pause','play','ended'])video?.addEventListener(event,()=>{if(state.logo===video&&video.readyState>=2)onUpdate();});
  video?.addEventListener('error',()=>{if(state.logo===video)error.textContent='El video no pudo reproducirse. Prueba un MP4 H.264.';});
- if(new URLSearchParams(location.search).get('visual')==='hermes')applyVideo('assets/hermes/hermes-30x16.mp4?v=6.0','HERMES · 15 s · 30 × 16 px');
- return {get video(){return state.mediaKind==='video'?video:null;}};
+ function sync(){
+  if(state.drumLogo!==drumVideo||!drumVideo||drumVideo.readyState<2)return;
+  if(!drumVideo.seeking&&Math.abs(drumVideo.currentTime-video.currentTime)>.085)drumVideo.currentTime=video.currentTime;
+  if(video.paused){if(!drumVideo.paused)drumVideo.pause();}
+  else if(drumVideo.paused)drumVideo.play().catch(()=>{});
+ }
+ video?.addEventListener('seeked',()=>{sync();onUpdate();});
+ if(new URLSearchParams(location.search).get('visual')==='hermes')loadHermes();
+ return {sync,get video(){return state.mediaKind==='video'?video:null;}};
 }
