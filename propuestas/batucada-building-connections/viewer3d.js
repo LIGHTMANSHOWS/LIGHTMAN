@@ -1,4 +1,5 @@
 import * as THREE from 'three';
+import { setupMedia } from './media-input.js?v=6.0';
 import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
 import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { clone } from 'three/addons/utils/SkeletonUtils.js';
@@ -68,19 +69,21 @@ function updateBrand(t=0,rhythm=music.sample(t)){
  const col=new THREE.Color(state.color),violet=new THREE.Color('#bd55ff'),pulse=state.effect==='pulse'?.65+.35*rhythm.accent:1;
  for(const d of displayVariants){const {cols,rows,ctx,srcCtx,kind}=d,flag=kind==='flag',sheer=kind!=='screen';
   srcCtx.clearRect(0,0,cols,rows);
-  if(state.logo){const scale=flag?state.flagScale:state.screenScale,r=Math.min((cols-4)/state.logo.width,(rows-4)/state.logo.height)*scale;srcCtx.drawImage(state.logo,(cols-state.logo.width*r)/2,(rows-state.logo.height*r)/2,state.logo.width*r,state.logo.height*r);}
+  if(state.logo){const isVideo=state.mediaKind==='video',w=isVideo?state.logo.videoWidth:state.logo.width,h=isVideo?state.logo.videoHeight:state.logo.height;
+   if(w&&h&&(!isVideo||state.logo.readyState>=2)){const scale=flag?state.flagScale:state.screenScale,margin=isVideo?0:4,r=Math.min((cols-margin)/w,(rows-margin)/h)*scale;srcCtx.imageSmoothingEnabled=!isVideo;srcCtx.drawImage(state.logo,(cols-w*r)/2,(rows-h*r)/2,w*r,h*r);}}
   const data=srcCtx.getImageData(0,0,cols,rows).data;
   ctx.clearRect(0,0,d.c.width,d.c.height);if(!sheer){ctx.fillStyle='#010304';ctx.fillRect(0,0,d.c.width,d.c.height);}
   for(let y=0;y<rows;y++)for(let x=0;x<cols;x++){
    const i=(y*cols+x)*4,alpha=data[i+3]/255,sweep=state.effect==='sweep'?Math.pow(Math.max(0,Math.cos(x/cols*7-rhythm.beat*Math.PI*2+y*.03)),12):0,base=sheer?violet:col;
-   const gain=(sheer?.45:.10)+sweep*.45;let r=base.r*255*gain,g=base.g*255*gain,b=base.b*255*gain;
+   const gain=state.logo?0:(sheer?.45:.10)+sweep*.45;let r=base.r*255*gain,g=base.g*255*gain,b=base.b*255*gain;
    if(alpha>.01){r=r*(1-alpha)+data[i]*alpha;g=g*(1-alpha)+data[i+1]*alpha;b=b*(1-alpha)+data[i+2]*alpha;}
-   if(x===0||y===0||x===cols-1||y===rows-1){r=base.r*190;g=base.g*190;b=base.b*190;}
-   ctx.fillStyle=`rgb(${r*pulse},${g*pulse},${b*pulse})`;ctx.beginPath();ctx.arc(x*8+4,y*8+4,2.15,0,Math.PI*2);ctx.fill();
+   if(!state.logo&&(x===0||y===0||x===cols-1||y===rows-1)){r=base.r*190;g=base.g*190;b=base.b*190;}
+   const mediaGain=state.logo?1:pulse;ctx.fillStyle=`rgb(${r*mediaGain},${g*mediaGain},${b*mediaGain})`;ctx.beginPath();ctx.arc(x*8+4,y*8+4,2.15,0,Math.PI*2);ctx.fill();
   }d.tex.needsUpdate=true;
  }
 }
-const panelMat=surfaceMaterial(120,80,'flag'),capeMat=surfaceMaterial(80,120,'cape'),drumMat=surfaceMaterial(128,40);updateBrand();
+const panelMat=surfaceMaterial(30,16,'flag'),capeMat=surfaceMaterial(80,120,'cape'),drumMat=surfaceMaterial(30,16);updateBrand();
+canvas.dataset.flagResolution='30x16';canvas.dataset.drumResolution='30x16';
 function clothPanel(w,h,type,phase,display=true){const group=new THREE.Group();const geo=new THREE.PlaneGeometry(w,h,type==='cape'?30:32,24);const base=geo.attributes.position.array.slice();const front=new THREE.Mesh(geo,display?(type==='cape'?capeMat:panelMat):cloth);front.castShadow=false;front.receiveShadow=false;group.add(front);dynamicFabrics.push({geo,base,w,h,type,phase});return group;}
 
 function drum(role){const g=new THREE.Group();const radius=role==='bombo'?.245:role==='tarola'?.19:.155,height=role==='bombo'?.34:role==='tarola'?.15:.29;const body=mesh(new THREE.CylinderGeometry(radius,radius,height,48,1,true),blackMetal,g);body.position.y=-height/2;
@@ -225,9 +228,9 @@ function setFormation(n){state.count=n;avatars.forEach(h=>{h.group.visible=false
 }
 function setView(view){state.view=view;let p,target;const mobile=canvas.clientWidth<600;
  if(view==='ensemble'){avatars.forEach(h=>h.group.visible=!!h.active);p=state.count===10?V(mobile?7:3.3,2.65,mobile?16:10.4):V(mobile?6:3,2.4,mobile?14:9.4);target=V(0,1.1,-.25);}
- else{const role=view==='detail'?'bombo':view.startsWith('flag')?'bandera':view==='horn'?'viento':'bombo';const h=avatars.find(h=>h.role===role&&h.active);avatars.forEach(v=>v.group.visible=v===h);const center=h?.base||V(0,0,0);target=center.clone().add(view==='mask'?V(0,h.headY,0):view.startsWith('flag')?V(mobile?.65:.45,mobile?1.7:1.48,0):V(0,1.05,0));p=center.clone().add(view==='mask'?V(.62,h.headY+.08,1.14):view==='flag-back'?V(mobile?-2.2:-1.8,mobile?2.7:2.2,mobile?-7:-5):view==='flag'?V(mobile?2.2:1.8,mobile?2.7:2.2,mobile?7:5):view==='horn'?V(1.5,1.65,2.6):view==='cape-front'?V(1.5,1.7,3):view==='cape'?V(-1.4,1.6,-3):V(1.55,1.55,2.9));}
+ else{const role=view==='detail'?'bombo':view.startsWith('flag')?'bandera':view==='horn'?'viento':'bombo';const h=avatars.find(h=>h.role===role&&h.active);avatars.forEach(v=>v.group.visible=v===h);const center=h?.base||V(0,0,0);target=center.clone().add(view==='drum'?V(0,.89,.22):view==='mask'?V(0,h.headY,0):view.startsWith('flag')?V(mobile?.65:.45,mobile?1.7:1.48,0):V(0,1.05,0));p=center.clone().add(view==='drum'?V(.30,1.08,1.22):view==='mask'?V(.62,h.headY+.08,1.14):view==='flag-back'?V(mobile?-2.2:-1.8,mobile?2.7:2.2,mobile?-7:-5):view==='flag'?V(mobile?2.2:1.8,mobile?2.7:2.2,mobile?7:5):view==='horn'?V(1.5,1.65,2.6):view==='cape-front'?V(1.5,1.7,3):view==='cape'?V(-1.4,1.6,-3):V(1.55,1.55,2.9));}
  const scoreTime=music.time(state.time);avatars.forEach(h=>{if(h.group.visible)pose(h,scoreTime);});animateFabrics(music.sample(scoreTime).beat*.55);
- transition={from:camera.position.clone(),to:p,start:performance.now(),fromTarget:controls.target.clone(),toTarget:target};document.querySelectorAll('[data-view]').forEach(b=>{const on=b.dataset.view===view;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});if($('#stage-caption'))$('#stage-caption').textContent=view==='ensemble'?`${state.count} ARTISTAS · 3D INTERACTIVO`:view==='mask'?'TRON · MÁSCARA FRONTAL':view==='flag-back'?'BANDERAS · REVERSO EN ESPEJO':view==='flag'?'BANDERAS · 1,50 × 1,00 M':view==='horn'?'URBAN · VIENTO':view==='cape-front'?'CAPA TRANSPARENTE · CARA INTERIOR':view==='cape'?'TRON · CAPA LED CENTRAL':'TRON · PERCUSIÓN';if($('#detail-view')){$('#detail-view').textContent=view==='ensemble'?'Acercar la marca ↗':'Ver elenco completo ↗';$('#detail-view').setAttribute('aria-pressed',view!=='ensemble');}}
+ transition={from:camera.position.clone(),to:p,start:performance.now(),fromTarget:controls.target.clone(),toTarget:target};document.querySelectorAll('[data-view]').forEach(b=>{const on=b.dataset.view===view;b.classList.toggle('active',on);b.setAttribute('aria-pressed',on);});if($('#stage-caption'))$('#stage-caption').textContent=view==='ensemble'?`${state.count} ARTISTAS · 3D INTERACTIVO`:view==='drum'?'TAMBOR · 30 × 16 PÍXELES':view==='mask'?'TRON · MÁSCARA FRONTAL':view==='flag-back'?'BANDERAS · REVERSO EN ESPEJO':view==='flag'?'BANDERAS · 1,50 × 1,00 M':view==='horn'?'URBAN · VIENTO':view==='cape-front'?'CAPA TRANSPARENTE · CARA INTERIOR':view==='cape'?'TRON · CAPA LED CENTRAL':'TRON · PERCUSIÓN';if($('#detail-view')){$('#detail-view').textContent=view==='ensemble'?'Acercar la marca ↗':'Ver elenco completo ↗';$('#detail-view').setAttribute('aria-pressed',view!=='ensemble');}}
 
 // Event-like floor, shadows, floor markings and rear truss provide scale cues.
 const floorCanvas=document.createElement('canvas');floorCanvas.width=floorCanvas.height=512;const fcx=floorCanvas.getContext('2d');fcx.fillStyle='#171819';fcx.fillRect(0,0,512,512);let seed=31;for(let i=0;i<25000;i++){seed=(seed*1664525+1013904223)>>>0;const x=seed%512;seed=(seed*1664525+1013904223)>>>0;const y=seed%512;fcx.fillStyle=`rgba(20,24,28,${(seed%15)/100})`;fcx.fillRect(x,y,1,1);}fcx.strokeStyle='#060708';fcx.lineWidth=5;fcx.strokeRect(0,0,512,512);fcx.strokeStyle='#26282a';fcx.lineWidth=1;fcx.strokeRect(4,4,504,504);const floorTex=new THREE.CanvasTexture(floorCanvas);floorTex.colorSpace=THREE.SRGBColorSpace;floorTex.wrapS=floorTex.wrapT=THREE.RepeatWrapping;floorTex.repeat.set(40,40);const floor=mesh(new THREE.PlaneGeometry(50,50),new THREE.MeshPhysicalMaterial({map:floorTex,color:'#383838',bumpMap:floorTex,bumpScale:.004,roughness:.9,metalness:0,envMapIntensity:.02,specularIntensity:.08,fog:false}),scene);floor.rotation.x=-Math.PI/2;floor.position.y=-.018;floor.receiveShadow=true;floor.castShadow=false;
@@ -240,7 +243,7 @@ for(const x of [-4,0,4]){const can=mesh(new THREE.CylinderGeometry(.11,.11,.26,1
 function animateFabrics(t){for(const f of dynamicFabrics){const a=f.geo.attributes.position.array;for(let i=0;i<a.length;i+=3){const x=f.base[i],y=f.base[i+1],cape=f.type==='cape',edge=cape?(f.h/2-y)/f.h:(x/f.w+.5);a[i]=x*(cape?.65+.45*edge:1)+(cape?.012*Math.sin(y*7+t*2+f.phase)*edge:0);a[i+1]=y+(cape?-.065*Math.pow(Math.abs(x)/(f.w/2),1.4)*(1-edge)+.012*Math.sin(x*18+t)*edge*edge:.025*Math.sin(x*8-t*2+f.phase));a[i+2]=edge*(.055*Math.sin(x*8-t*3+f.phase)+.026*Math.sin(y*9+t*2))+(cape?.08*edge*edge+.065*Math.cos(x/f.w*Math.PI*2)+.026*Math.sin(x*25+f.phase)*(.2+.8*edge):0);}f.geo.attributes.position.needsUpdate=true;f.geo.computeVertexNormals();}}
 function resize(){const r=canvas.getBoundingClientRect();if(!r.width||!r.height)return;renderer.setSize(r.width,r.height,false);camera.aspect=r.width/r.height;camera.updateProjectionMatrix();composer.setSize(r.width,r.height);const mobile=r.width<600;if(lastMobile!==null&&lastMobile!==mobile&&ready)setView(state.view);lastMobile=mobile;}
 new ResizeObserver(resize).observe(canvas);resize();
-let lastPixels=-1,lastPoseTime=NaN,lastMusicRevision=-1;
+let lastPixels=-1,lastPoseTime=NaN,lastMusicRevision=-1,lastVideoTexture=-1;
 function animate(ms){
  requestAnimationFrame(animate);const dt=Math.min(clock.getDelta(),.05);if(document.hidden)return;
  if(!state.paused&&!music.linked)state.time+=dt;
@@ -253,6 +256,7 @@ function animate(ms){
   canvas.dataset.scoreTime=scoreTime.toFixed(4);canvas.dataset.syncMode=music.linked?'audio':'preview';canvas.dataset.beat=rhythm.beat.toFixed(4);
  }
  if(transition){const u=THREE.MathUtils.clamp((ms-transition.start)/800,0,1),s=u*u*(3-2*u);camera.position.lerpVectors(transition.from,transition.to,s);controls.target.lerpVectors(transition.fromTarget,transition.toTarget,s);if(u===1)transition=null;}
+ if(media.video&&media.video.readyState>=2&&ms-lastVideoTexture>35){updateBrand(scoreTime,rhythm);lastVideoTexture=ms;}
  controls.update();composer.render();
 }
 requestAnimationFrame(animate);
@@ -272,9 +276,7 @@ for(const [id,key,out] of [['flag-scale','flagScale','flag-scale-value'],['scree
 function syncPause(){const b=$('#pause'),paused=music.linked?!music.playing:state.paused;b.textContent=paused?'Reanudar movimiento ▶':'Pausar movimiento Ⅱ';b.setAttribute('aria-pressed',String(paused));}
 $('#pause')?.addEventListener('click',()=>{if(music.linked){if(music.playing)music.pause();else music.play()?.catch(console.error);}else state.paused=!state.paused;syncPause();});music.onChange(()=>{if(music.playing)state.paused=false;syncPause();});syncPause();
 $('#lighting')?.addEventListener('change',e=>{state.light=e.target.value;const studio=state.light==='studio';hemi.intensity=studio?1.6:.75;key.intensity=studio?3.3:2.5;fill.intensity=studio?1.2:.8;renderer.toneMappingExposure=studio?1.2:1.15;scene.background.set(studio?'#29333f':'#11161d');scene.fog.color.copy(scene.background);});
-let previewUrl=null;
-$('#logo-input')?.addEventListener('change',e=>{const file=e.target.files[0],error=$('#file-error');error.textContent='';if(!file)return;if(!['image/png','image/jpeg','image/webp','image/svg+xml'].includes(file.type)||file.size>8*1024*1024){error.textContent='Usa PNG, JPG, WebP o SVG de hasta 8 MB.';return;}const url=URL.createObjectURL(file),im=new Image();im.onload=()=>{if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=url;state.logo=im;updateBrand(music.time(state.time));$('#image-preview').src=url;$('#image-preview').hidden=false;$('#image-placeholder').hidden=true;$('#image-filename').textContent=file.name;$('#brand-status').textContent='Imagen aplicada en banderas y pantallas';$('#reset-logo').hidden=false;};im.onerror=()=>{error.textContent='No se pudo abrir la imagen.';URL.revokeObjectURL(url);};im.src=url;});
-$('#reset-logo')?.addEventListener('click',()=>{state.logo=null;$('#logo-input').value='';$('#reset-logo').hidden=true;$('#image-preview').hidden=true;$('#image-preview').removeAttribute('src');$('#image-placeholder').hidden=false;$('#image-filename').textContent='Sin imagen cargada';$('#brand-status').textContent='Banderas transparentes · luz violeta por ambos lados';if(previewUrl)URL.revokeObjectURL(previewUrl);previewUrl=null;updateBrand(music.time(state.time));});
+const media=setupMedia({state,onUpdate:()=>updateBrand(music.time(state.time))});
 $('#catalogue-open')?.addEventListener('click',()=>$('#catalogue-dialog').showModal());
 $('#catalogue-close')?.addEventListener('click',()=>$('#catalogue-dialog').close());
 document.querySelectorAll('[data-catalogue]').forEach(b=>b.addEventListener('click',()=>{const type=b.dataset.catalogue;$('#catalogue-image').src=`assets/references/${type}.png`;$('#catalogue-image').alt=`Traje ${type==='tron'?'Tron':'Urban'} del Catálogo Full IA`;document.querySelectorAll('[data-catalogue]').forEach(x=>{const on=x===b;x.classList.toggle('active',on);x.setAttribute('aria-pressed',on);});}));
