@@ -1,0 +1,13 @@
+'use strict';
+const canvas=document.getElementById('scene'),audio=document.getElementById('audio'),play=document.getElementById('play'),status=document.getElementById('status'),garden=createGarden(canvas);
+const brightness=1;
+let spacing=.15,atmosphere='music',started=false,frozen=matchMedia('(prefers-reduced-motion: reduce)').matches,clock=0,lastTime=0,lastRender=0;
+garden.geometry(spacing,null);garden.preset('under');
+function updatePlay(){const playing=!audio.paused;play.setAttribute('aria-label',playing?'Pausar lounge':'Reproducir lounge');play.querySelector('.play-icon').textContent=playing?'Ⅱ':'▶';play.querySelector('.play-label').textContent=playing?'Pausa':'Play';document.body.classList.toggle('has-started',started);}
+play.onclick=()=>{if(audio.paused)audio.play().catch(()=>{status.textContent='No se pudo reproducir el audio. Pulsa Play para intentar de nuevo.';});else audio.pause();};
+audio.addEventListener('play',()=>{started=true;frozen=false;updatePlay();});audio.addEventListener('pause',()=>{frozen=true;updatePlay();});audio.addEventListener('error',()=>{status.textContent='El audio no está disponible.';});
+document.querySelectorAll('[data-spacing]').forEach(button=>button.onclick=()=>{const next=Number(button.dataset.spacing);if(next===spacing)return;spacing=next;garden.geometry(spacing,null);document.querySelectorAll('[data-spacing]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));status.textContent=`Separación de ${Math.round(spacing*100)} centímetros de LED a LED.`;});
+document.querySelectorAll('[data-mode]').forEach(button=>button.onclick=()=>{atmosphere=button.dataset.mode;document.querySelectorAll('[data-mode]').forEach(b=>b.setAttribute('aria-pressed',String(b===button)));status.textContent=atmosphere==='lounge'?'Modo Lounge':'Modo Fiesta';});
+canvas.addEventListener('dblclick',()=>garden.preset('under'));
+function draw(now){requestAnimationFrame(draw);const dt=lastTime?(now-lastTime)/1000:0;lastTime=now;if(!started&&!frozen)clock+=dt;if(now-lastRender<1000/30)return;lastRender=now;const t=started?audio.currentTime:clock,level=loungeEnergy[Math.min(loungeEnergy.length-1,Math.floor(t*20))]||.3,state=garden.update(t,atmosphere,level,brightness,true);canvas.dataset.time=t.toFixed(2);canvas.dataset.cue=String(state.cue);canvas.dataset.effect=state.effect;canvas.dataset.cameraHeight=state.cameraHeight.toFixed(2);canvas.dataset.groundVisible=String(!state.belowGround);canvas.dataset.spacing=String(spacing);canvas.dataset.pixels=String(state.pixels);canvas.dataset.brightness='100';canvas.dataset.mode=atmosphere;}
+updatePlay();requestAnimationFrame(draw);
