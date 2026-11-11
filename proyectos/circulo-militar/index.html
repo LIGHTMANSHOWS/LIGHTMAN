@@ -7,14 +7,13 @@
   <meta name="description" content="Explora el escenario de Círculo Militar en 3D y consulta la planta, la elevación y la vista isométrica del proyecto.">
   <meta property="og:title" content="Círculo Militar · LIGHTMAN">
   <meta property="og:description" content="Visor interactivo y planos del escenario LED.">
-  <meta property="og:image" content="https://lightmanperu.com/proyectos/circulo-militar/assets/escenario-frontal.webp">
+  <meta property="og:image" content="https://lightmanperu.com/proyectos/circulo-militar/assets/concierto-portada.webp">
   <title>Círculo Militar · Proyecto LIGHTMAN</title>
   <link rel="icon" href="assets/logo-lightman.png" type="image/png">
-  <link rel="stylesheet" href="style.css?v=2">
+  <link rel="stylesheet" href="style.css?v=3">
   <script src="assets/three.min.js" defer></script>
   <script src="project.js" defer></script>
-  <script src="music.js" defer></script>
-  <script src="viewer.js?v=2" defer></script>
+  <script src="concert-engine.js?v=3" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenido">Ir al contenido</a>
@@ -27,15 +26,15 @@
   </header>
   <main id="contenido">
     <section class="hero" aria-labelledby="titulo">
-      <img class="hero-photo" src="assets/escenario-frontal.webp" alt="Render frontal del escenario con pantallas doradas y tubos violetas" fetchpriority="high">
+      <img class="hero-photo" src="assets/concierto-portada.webp" alt="Concierto 3D de Círculo Militar con pantallas tropicales, tubos LED y público" fetchpriority="high">
       <div class="shell hero-inner">
         <div class="hero-copy">
           <p class="eyebrow"><span></span> Diseño de escenario</p>
           <h1 id="titulo">CÍRCULO<br>MILITAR<span>.</span></h1>
-          <p>Explora el escenario en 3D y consulta los planos de iluminación y pantallas LED.</p>
+          <p>Un concierto de luz, pantallas y público al ritmo de Caribeños de Guadalupe. Explora el escenario y sus planos.</p>
           <div class="hero-actions"><a class="button button-gold" href="#visor">Explorar en 3D <span aria-hidden="true">↘</span></a><a class="button button-outline" href="#planos">Ver planos</a></div>
         </div>
-        <p class="image-credit">Render original · Vista frontal</p>
+        <p class="image-credit">Concierto 3D · Distribución revisada</p>
       </div>
     </section>
     <dl class="metrics shell" aria-label="Resumen del plano">
@@ -47,47 +46,22 @@
 
     <section id="visor" class="shell section viewer-section" aria-labelledby="visor-titulo">
       <div class="section-head"><h2 id="visor-titulo">Escenario en 3D</h2><p>Arrastra para girar. Usa la rueda o pellizca para acercarte.</p></div>
-      <div class="viewer-layout">
-        <div class="viewer-card">
-          <div class="viewer-toolbar" aria-label="Cámaras del escenario">
-            <div class="segmented"><button type="button" data-camera="perspectiva" aria-pressed="true">Perspectiva</button><button type="button" data-camera="frontal" aria-pressed="false">Frontal</button><button type="button" data-camera="planta" aria-pressed="false">Planta</button></div>
-            <button class="icon-button" id="save-image" type="button" aria-label="Guardar imagen del escenario" title="Guardar imagen">↓ <span>Imagen</span></button>
-          </div>
-          <div class="viewport" id="viewport" tabindex="0" aria-label="Modelo interactivo. Usa las flechas para girar, más y menos para acercar o alejar." aria-describedby="viewer-hint">
-            <img class="viewer-fallback" src="assets/escenario-frontal.webp" alt="Render del escenario" loading="lazy">
-            <span class="viewer-message" id="viewer-message" role="status">Preparando el modelo 3D…</span>
-          </div>
-          <div class="viewer-caption" id="viewer-hint"><span>Escala de referencia · medidas en metros</span><span id="camera-label">Perspectiva</span></div>
-        </div>
-        <aside class="control-panel" aria-label="Controles del show">
-          <div><h3>Control de luz</h3><p>Prueba una escena fija o reproduce la secuencia.</p></div>
-          <div class="music-control">
-            <button type="button" class="song-card" id="featured-song" aria-controls="song-player" aria-pressed="false">
-              <span class="song-icon" aria-hidden="true">♫</span><span><strong>Historia de Amor</strong><small>Caribeños de Guadalupe</small></span><span class="song-play" aria-hidden="true">▶</span>
-            </button>
-            <div id="song-player" hidden>
-              <div class="youtube-mount" id="youtube-mount"></div>
-              <div class="song-actions"><button class="text-button" id="use-demo" type="button">Solo luces</button><a href="https://www.youtube.com/watch?v=XRRW0DbJS_I" target="_blank" rel="noopener" class="text-button">Ver en YouTube ↗</a></div>
-              <p id="song-status" role="status"></p>
-            </div>
-          </div>
-          <div class="look-list" aria-label="Escenas de luz">
-            <button type="button" data-look="ambar" aria-pressed="true"><i class="swatch amber"></i>Ámbar y violeta</button>
-            <button type="button" data-look="violeta" aria-pressed="false"><i class="swatch violet"></i>Violeta</button>
-            <button type="button" data-look="azul" aria-pressed="false"><i class="swatch blue"></i>Azul eléctrico</button>
-          </div>
-          <div class="transport">
-            <div class="transport-row"><button class="button button-gold" id="play-show" type="button">▶ <span>Reproducir show</span></button><button class="icon-button reset" id="reset-show" type="button" aria-label="Reiniciar show" title="Reiniciar">↺</button></div>
-            <label class="sr-only" for="show-position">Posición del show</label><input type="range" id="show-position" min="0" max="36" step="0.1" value="0">
-            <div class="time-row"><output id="show-time" for="show-position">0:00 / 0:36</output><span id="show-mode">Secuencia visual</span></div>
-          </div>
-          <div class="audio-control">
-            <button class="button button-outline" type="button" id="choose-audio">+ Cargar música</button><input id="audio-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac" hidden>
-            <p id="audio-status" role="status">Opcional. El audio se reproduce desde tu dispositivo.</p>
-            <div class="volume" id="volume-row" hidden><label for="audio-volume">Volumen</label><input id="audio-volume" type="range" min="0" max="100" value="65"><button type="button" class="text-button" id="clear-audio">Quitar</button></div>
-          </div>
-        </aside>
-      </div>
+      <div class="viewer-layout"><div class="viewer-card"><div id="viewport" class="viewport concert-viewport" role="region" aria-label="Concierto 3D de Círculo Militar con la distribución revisada de pantallas y tubos LED"><div class="toolbar"><button data-view="perspective" class="active">Perspectiva</button><button data-view="front">Frontal</button><button data-view="top">Planta</button><button id="capture">Guardar imagen</button></div><div id="start-overlay"><button id="show-start" type="button" disabled aria-label="Reproducir canción completa e iniciar el show"><span class="start-circle" aria-hidden="true">▶</span><strong id="show-start-label">INICIAR SHOW</strong><small>Canción completa · repetición automática</small></button></div><div class="hint">Arrastra para girar · Rueda para acercar · Escala de referencia</div></div>
+<section class="player-strip" aria-label="Reproducción del show"><div class="transport"><button id="led-play" type="button">Reproducir</button><button id="audio-restart" type="button" aria-label="Reiniciar el show">↺ Reiniciar</button></div><div class="timeline"><input id="audio-seek" type="range" min="0" max="216" step="0.05" value="0" disabled aria-label="Posición de la canción"><span id="audio-time">0:00 / 3:36</span></div><label class="volume">Volumen <input id="audio-volume" type="range" min="0" max="100" value="65" aria-label="Volumen"><output id="audio-volume-value">65%</output></label></section></div><aside class="control-panel concert-panel" aria-label="Música del concierto">
+ <div><h3>Historia de Amor</h3><p>Caribeños de Guadalupe</p></div>
+ <div id="music-player-wrap" class="concert-player-wrap"><div id="music-player"></div></div>
+ <p id="concert-music-status" role="status">La canción se carga al iniciar el show.</p>
+ <a class="text-button" href="https://www.youtube.com/watch?v=XRRW0DbJS_I" target="_blank" rel="noopener">Grabación oficial en YouTube ↗</a>
+ <button type="button" class="button button-outline" id="concert-local-audio">Cargar audio local</button>
+</aside></div><div id="show-engine" hidden inert aria-hidden="true"><button id="led-blackout"></button><input id="audio-file" class="audio-file-input" type="file" accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac"><div id="audio-name"></div><audio id="song-audio"></audio><button id="audio-play"></button><select id="audio-range"><option value="full" selected>Canción completa · 5:16</option><option value="intro">Inicio · 30 segundos</option></select><input id="audio-loop" type="checkbox" checked><div id="music-status"></div><div id="youtube-alternative"></div><a id="youtube-web-link"></a><button id="music-start"></button><input id="section-follow" type="checkbox" checked><div id="song-section-label"></div><progress id="song-energy"></progress><div id="section-cuts"></div><output id="show-bpm-value"></output><input id="show-bpm" type="range" min="80" max="160" step="1" value="108"><button id="rhythm-tap"></button><div id="beat-dot"></div><div id="beat-position"></div><div id="rhythm-note"></div><input id="crowd-dance" type="checkbox" checked><button id="auto-toggle"></button><button id="auto-previous"></button><button id="auto-next"></button><output id="auto-hold-value"></output><input id="auto-hold" type="range" min="1" max="15" step="1" value="3"><output id="auto-fade-value"></output><input id="auto-fade" type="range" min="0.2" max="1.5" step="0.05" value="0.45"><progress id="auto-progress"></progress><div id="auto-status"></div><div id="sync-note"></div><div id="composition-current"></div><div id="visual-current"></div><select id="screen-effect"><option value="heart_glow">Corazón de luz</option><option value="fire_flowers">Flores de fuego</option><option value="sunset_waves">Ondas de atardecer</option><option value="cumbia_palmas">Palmeras tropicales</option><option value="heart_rain">Lluvia de corazones</option><option value="romantic_slides">Slides románticos</option><option value="rose_garden">Jardín de rosas</option><option value="fire">Fuego</option><option value="love_particles">Partículas de amor</option><option value="heart_duet">Dos corazones</option><option value="flower_slides">Slides florales</option><option value="rose_waves">Olas rosadas</option><option value="star_dust">Polvo de estrellas</option><option value="heart_fire">Corazón en llamas</option><option value="petal_rain">Lluvia de pétalos</option><option value="waves">Ondas</option><option value="neon_flowers">Flores de neón</option><option value="sunset_slides">Slides de atardecer</option><option value="heart_tunnel">Corazones infinitos</option><option value="gold_bokeh">Bokeh dorado</option><option value="golden_waves">Olas doradas</option><option value="flame_ribbons">Cintas de fuego</option><option value="heart_waves">Latidos de amor</option><option value="heart_constellation">Constelación de amor</option><option value="rose_mandala">Mandala de rosas</option><option value="sunset_particles">Atardecer brillante</option><option value="floral_waves">Flores entre olas</option></select><output id="screen-brightness-value"></output><input id="screen-brightness" type="range" min="0" max="100" value="50"><output id="screen-speed-value"></output><input id="screen-speed" type="range" min="0" max="300" step="5" value="100"><input id="screen-color-a" type="color" value="#7035dd"><input id="screen-color-b" type="color" value="#13d5ff"><input id="screen-title" type="checkbox" checked><output id="tube-floor-value"></output><input id="tube-floor" type="range" min="0" max="100" value="65"><input id="led-halo" type="checkbox" checked><select id="bar-effect"><option value="sync" disabled>Sigue la visual de pantallas</option><option value="wave">Onda vertical</option><option value="chase">Chase horizontal</option><option value="mirror">Barrido simétrico</option><option value="rainbow">Arcoíris</option><option value="pulse">Pulso suave</option><option value="solid">Color sólido</option><option value="rain">Lluvia luminosa</option><option value="sparkle">Destellos suaves</option><option value="rise">Ascenso de luz</option></select><output id="bar-brightness-value"></output><input id="bar-brightness" type="range" min="0" max="100" value="85"><output id="bar-speed-value"></output><input id="bar-speed" type="range" min="0" max="300" step="5" value="100"><input id="bar-color-a" type="color" value="#13d5ff"><input id="bar-color-b" type="color" value="#ff3eaa"><input id="lights-enabled" type="checkbox" checked><output id="light-brightness-value"></output><input id="light-brightness" type="range" min="0" max="100" value="70"><output id="strobe-brightness-value"></output><input id="strobe-brightness" type="range" min="0" max="100" value="100"><output id="blinder-brightness-value"></output><input id="blinder-brightness" type="range" min="0" max="100" value="100"><div id="strobe-color-swatch"></div><div id="strobe-color-label"></div><select id="head-movement"><option value="auto">Automático · 70 % en espejo</option><option value="0">Abanico al cielo</option><option value="1">Cruces altos</option><option value="2">Columnas verticales</option><option value="3">Órbita amplia</option><option value="4">Barrido al público</option><option value="5">Abanico horizontal</option><option value="6">Olas hacia arriba</option><option value="7">Diagonales altas</option><option value="8">Apertura total</option><option value="9">Círculos en el aire</option><option value="10">Cruces de escenario</option><option value="11">Cascada de haces</option><option value="12">Cúpula de luz</option><option value="13">Barrido de horizonte</option><option value="14">Rayos ascendentes</option><option value="15">Final abierto</option></select><div id="motion-scene"></div><output id="head-amplitude-value"></output><input id="head-amplitude" type="range" min="75" max="220" step="5" value="160"><output id="haze-density-value"></output><input id="haze-density" type="range" min="0" max="100" value="80"><input id="audience-visible" type="checkbox" checked><input id="light-beams" type="checkbox" checked><button id="led-match"></button><button id="led-save"></button><div id="led-status"></div><a id="download-model"></a><button id="download-scene"></button></div>
+
+
+
+
+
+
+
+
     </section>
 
     <section id="planos" class="plans-bg section" aria-labelledby="planos-titulo">
