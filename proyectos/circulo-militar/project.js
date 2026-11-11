@@ -6,23 +6,21 @@ const project = Object.freeze({
     { label: 'Laterales exteriores', count: 2, width: 6, height: 4.5 },
     { label: 'Laterales interiores', count: 4, width: 5, height: 2 },
     { label: 'Frontales laterales', count: 2, width: 7, height: 2 },
-    { label: 'Frontal central', count: 1, width: 12, height: 1 },
-    { label: 'Franjas del techo', count: 3, width: 1.5, height: 10 }
+    { label: 'Frontal central', count: 1, width: 12, height: 1 }
   ],
   fixtures: [
-    ['Clay Paky Stormy CC', 42],
-    ['Clay Paky A.leda B-EYE K20', 30],
-    ['Elation DTW Blinder 700', 22],
-    ['Robe Lighting MegaPointe', 47],
-    ['Robe BMFL WashBeam', 11]
+    ['Clay Paky Stormy CC', 20],
+    ['Clay Paky A.leda B-EYE K20', 10],
+    ['Robe Lighting MegaPointe', 30],
+    ['Robe BMFL WashBeam', 6]
   ],
-  tubeBands: [1.8, 10.45, 13.0],
+  tubeBands: [1.8, 10.45],
   tubesPerTowerBand: 21,
   frontTubeCount: 51,
   plans: {
-    planta: ['Planta', 'Planta acotada del escenario', 'Planta · estructura, ubicación de equipos y proyección del techo.'],
-    elevacion: ['Elevación', 'Elevación frontal acotada del escenario', 'Elevación · pantallas, alturas y distribución de luminarias.'],
-    isometrico: ['Isométrico', 'Vista isométrica del escenario', 'Isométrico · relación entre pantallas, tubos, trusses y techo.']
+    planta: ['Planta', 'Planta acotada del escenario', 'Planta revisada · estructura y equipos del montaje sin bloque superior.'],
+    elevacion: ['Elevación', 'Elevación frontal acotada del escenario', 'Elevación revisada · retiro del módulo superior de las torres y del techo central.'],
+    isometrico: ['Isométrico', 'Vista isométrica del escenario', 'Isométrico revisado · pantallas y tubos del montaje sin bloque superior.']
   }
 });
 
@@ -58,7 +56,7 @@ let planZoom = 100;
 function selectPlan(tab, focus = false) {
   activePlan = tab.dataset.plan;
   const [, alt, caption] = project.plans[activePlan];
-  planImage.src = `assets/plano-${activePlan}.webp`;
+  planImage.src = `assets/plano-${activePlan}.webp?v=4`;
   planImage.alt = alt;
   document.getElementById('plan-caption').textContent = caption;
   document.getElementById('plan-view').setAttribute('aria-labelledby', tab.id);

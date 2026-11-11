@@ -7,13 +7,13 @@
   <meta name="description" content="Explora el escenario de Círculo Militar en 3D y consulta la planta, la elevación y la vista isométrica del proyecto.">
   <meta property="og:title" content="Círculo Militar · LIGHTMAN">
   <meta property="og:description" content="Visor interactivo y planos del escenario LED.">
-  <meta property="og:image" content="https://lightmanperu.com/proyectos/circulo-militar/assets/concierto-portada.webp">
+  <meta property="og:image" content="https://lightmanperu.com/proyectos/circulo-militar/assets/concierto-portada.webp?v=4">
   <title>Círculo Militar · Proyecto LIGHTMAN</title>
   <link rel="icon" href="assets/logo-lightman.png" type="image/png">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=4">
   <script src="assets/three.min.js" defer></script>
-  <script src="project.js" defer></script>
-  <script src="concert-engine.js?v=3" defer></script>
+  <script src="project.js?v=4" defer></script>
+  <script src="concert-engine.js?v=4" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenido">Ir al contenido</a>
@@ -26,22 +26,22 @@
   </header>
   <main id="contenido">
     <section class="hero" aria-labelledby="titulo">
-      <img class="hero-photo" src="assets/concierto-portada.webp" alt="Concierto 3D de Círculo Militar con pantallas tropicales, tubos LED y público" fetchpriority="high">
+      <img class="hero-photo" src="assets/concierto-portada.webp?v=4" alt="Concierto 3D de Círculo Militar con pantallas tropicales, tubos LED y público" fetchpriority="high">
       <div class="shell hero-inner">
         <div class="hero-copy">
-          <p class="eyebrow"><span></span> Diseño de escenario</p>
+          <p class="eyebrow"><span></span> Montaje sin bloque superior</p>
           <h1 id="titulo">CÍRCULO<br>MILITAR<span>.</span></h1>
           <p>Un concierto de luz, pantallas y público al ritmo de Caribeños de Guadalupe. Explora el escenario y sus planos.</p>
           <div class="hero-actions"><a class="button button-gold" href="#visor">Explorar en 3D <span aria-hidden="true">↘</span></a><a class="button button-outline" href="#planos">Ver planos</a></div>
         </div>
-        <p class="image-credit">Concierto 3D · Distribución revisada</p>
+        <p class="image-credit">Concierto 3D · Sin bloque superior</p>
       </div>
     </section>
     <dl class="metrics shell" aria-label="Resumen del plano">
-      <div><dt>177</dt><dd>Tubos LED de 2 m</dd></div>
-      <div><dt>478</dt><dd>Gabinetes LED P3.9</dd></div>
-      <div><dt>239 m²</dt><dd>Superficie de pantalla</dd></div>
-      <div><dt>152</dt><dd>Luminarias de referencia</dd></div>
+      <div><dt>135</dt><dd>Tubos LED de 2 m</dd></div>
+      <div><dt>388</dt><dd>Gabinetes LED P3.9</dd></div>
+      <div><dt>194 m²</dt><dd>Superficie de pantalla</dd></div>
+      <div><dt>66</dt><dd>Luminarias de referencia</dd></div>
     </dl>
 
     <section id="visor" class="shell section viewer-section" aria-labelledby="visor-titulo">
@@ -66,26 +66,26 @@
 
     <section id="planos" class="plans-bg section" aria-labelledby="planos-titulo">
       <div class="shell">
-        <div class="section-head"><h2 id="planos-titulo">Planos del escenario</h2><p>Planos de referencia. Consulta el visor 3D para ver la distribución revisada.</p></div>
+        <div class="section-head"><h2 id="planos-titulo">Planos del escenario</h2><p>Esquemas de coordinación actualizados al retiro del bloque superior.</p></div>
         <div class="plan-card">
           <div class="plan-toolbar"><div class="segmented" role="tablist" aria-label="Vistas del plano"><button id="tab-planta" role="tab" type="button" data-plan="planta" aria-selected="false" aria-controls="plan-view" tabindex="-1">Planta</button><button id="tab-elevacion" role="tab" type="button" data-plan="elevacion" aria-selected="true" aria-controls="plan-view">Elevación</button><button id="tab-isometrico" role="tab" type="button" data-plan="isometrico" aria-selected="false" aria-controls="plan-view" tabindex="-1">Isométrico</button></div><button class="icon-button" id="expand-plan" type="button">⛶ <span>Ampliar</span></button></div>
-          <figure id="plan-view" role="tabpanel" aria-labelledby="tab-elevacion"><img id="plan-image" src="assets/plano-elevacion.webp" alt="Elevación frontal acotada del escenario" loading="lazy"><figcaption id="plan-caption">Elevación · pantallas, alturas y distribución de luminarias.</figcaption></figure>
+          <figure id="plan-view" role="tabpanel" aria-labelledby="tab-elevacion"><img id="plan-image" src="assets/plano-elevacion.webp?v=4" alt="Elevación frontal acotada del escenario" loading="lazy"><figcaption id="plan-caption">Elevación · pantallas, alturas y distribución de luminarias.</figcaption></figure>
         </div>
         <p class="plan-note">El plano pide coordinar los pesos de sonido, video e iluminación con los proveedores y certificar las estructuras de carga con el ingeniero estructural del proveedor.</p>
       </div>
     </section>
 
     <section id="equipos" class="shell section" aria-labelledby="equipos-titulo">
-      <div class="section-head"><h2 id="equipos-titulo">Equipos y medidas</h2><p>Inventario de referencia según el plano.</p></div>
+      <div class="section-head"><h2 id="equipos-titulo">Equipos y medidas</h2><p>Inventario del montaje revisado.</p></div>
       <div class="technical-grid">
-        <article class="technical-card"><h3>Pantallas P3.9</h3><table><thead><tr><th scope="col">Ubicación</th><th scope="col">Cantidad × medida</th><th scope="col">Área</th></tr></thead><tbody id="screen-table"></tbody><tfoot><tr><th scope="row">Total</th><td>13 superficies</td><td>239 m²</td></tr></tfoot></table><p>388 gabinetes para las pantallas del escenario y 90 para las tres franjas del techo.</p></article>
-        <article class="technical-card"><h3>Iluminación</h3><table><thead><tr><th scope="col">Equipo</th><th scope="col">Unidades</th></tr></thead><tbody id="light-table"></tbody><tfoot><tr><th scope="row">Total de luminarias</th><td>152</td></tr></tfoot></table><p>El plano añade 177 tubos LED de 2 m, equivalentes a 354 m lineales.</p></article>
+        <article class="technical-card"><h3>Pantallas P3.9</h3><table><thead><tr><th scope="col">Ubicación</th><th scope="col">Cantidad × medida</th><th scope="col">Área</th></tr></thead><tbody id="screen-table"></tbody><tfoot><tr><th scope="row">Total</th><td>10 superficies</td><td>194 m²</td></tr></tfoot></table><p>388 gabinetes para las pantallas del montaje sin bloque superior.</p></article>
+        <article class="technical-card"><h3>Iluminación</h3><table><thead><tr><th scope="col">Equipo</th><th scope="col">Unidades</th></tr></thead><tbody id="light-table"></tbody><tfoot><tr><th scope="row">Total de luminarias</th><td>66</td></tr></tfoot></table><p>El montaje revisado contempla 135 tubos LED de 2 m, equivalentes a 270 m lineales.</p></article>
       </div>
-      <div class="reference"><img src="assets/escenario-pista.webp" alt="Render original desde la pista con las tres pantallas superiores y haces violetas" loading="lazy"><div><h3>Vista original desde la pista</h3><p>El visor 3D muestra la distribución revisada de las diagonales inferiores, los tubos y la pantalla central.</p><a href="#visor">Volver al visor <span aria-hidden="true">↑</span></a></div></div>
+      <div class="reference"><img src="assets/escenario-pista.webp?v=4" alt="Vista frontal del montaje sin bloque superior" loading="lazy"><div><h3>Vista frontal del montaje</h3><p>135 tubos LED de 2 m con las diagonales inferiores bajo las superiores y la barra horizontal al centro de la tarima.</p><a href="#visor">Volver al visor <span aria-hidden="true">↑</span></a></div></div>
     </section>
   </main>
   <footer class="site-footer"><div class="shell"><a class="brand" href="https://lightmanperu.com/"><img src="assets/logo-lightman.png" alt="LIGHTMAN" width="112" height="27"></a><span>Visualización de propuesta · Círculo Militar</span><a href="https://lightmanperu.com/proyectos/">Ver proyectos ↗</a></div></footer>
 
-  <dialog id="plan-dialog" aria-labelledby="dialog-title"><div class="dialog-toolbar"><h2 id="dialog-title">Plano</h2><div><button id="plan-zoom-out" class="icon-button" type="button" aria-label="Reducir plano">−</button><button id="plan-zoom-in" class="icon-button" type="button" aria-label="Acercar plano">+</button><a id="plan-full" class="icon-button" href="assets/plano-elevacion.webp" target="_blank" rel="noopener">Abrir imagen ↗</a><button id="close-plan" type="button" class="icon-button" aria-label="Cerrar plano">×</button></div></div><div class="dialog-image"><img id="large-plan" alt=""></div></dialog>
+  <dialog id="plan-dialog" aria-labelledby="dialog-title"><div class="dialog-toolbar"><h2 id="dialog-title">Plano</h2><div><button id="plan-zoom-out" class="icon-button" type="button" aria-label="Reducir plano">−</button><button id="plan-zoom-in" class="icon-button" type="button" aria-label="Acercar plano">+</button><a id="plan-full" class="icon-button" href="assets/plano-elevacion.webp?v=4" target="_blank" rel="noopener">Abrir imagen ↗</a><button id="close-plan" type="button" class="icon-button" aria-label="Cerrar plano">×</button></div></div><div class="dialog-image"><img id="large-plan" alt=""></div></dialog>
 </body>
 </html>
