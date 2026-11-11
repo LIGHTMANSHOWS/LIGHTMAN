@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#111015">
+  <meta name="description" content="Explora el escenario de Círculo Militar en 3D y consulta la planta, la elevación y la vista isométrica del proyecto.">
+  <meta property="og:title" content="Círculo Militar · LIGHTMAN">
+  <meta property="og:description" content="Visor interactivo y planos del escenario LED.">
+  <meta property="og:image" content="https://lightmanperu.com/proyectos/circulo-militar/assets/escenario-frontal.webp">
+  <title>Círculo Militar · Proyecto LIGHTMAN</title>
+  <link rel="icon" href="assets/logo-lightman.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <script src="assets/three.min.js" defer></script>
+  <script src="project.js" defer></script>
+  <script src="viewer.js" defer></script>
+</head>
+<body>
+  <a class="skip" href="#contenido">Ir al contenido</a>
+  <header class="site-header">
+    <div class="shell topbar">
+      <a href="https://lightmanperu.com/" aria-label="LIGHTMAN Perú" class="brand"><img src="assets/logo-lightman.png" alt="LIGHTMAN" width="132" height="31"></a>
+      <nav aria-label="Navegación del proyecto"><a href="#visor">Visor 3D</a><a href="#planos">Planos</a><a href="#equipos">Equipos</a></nav>
+      <a class="portal" href="https://lightmanperu.com/proyectos/">Proyectos <span aria-hidden="true">↗</span></a>
+    </div>
+  </header>
+  <main id="contenido">
+    <section class="hero" aria-labelledby="titulo">
+      <img class="hero-photo" src="assets/escenario-frontal.webp" alt="Render frontal del escenario con pantallas doradas y tubos violetas" fetchpriority="high">
+      <div class="shell hero-inner">
+        <div class="hero-copy">
+          <p class="eyebrow"><span></span> Diseño de escenario</p>
+          <h1 id="titulo">CÍRCULO<br>MILITAR<span>.</span></h1>
+          <p>Explora el escenario en 3D y consulta los planos de iluminación y pantallas LED.</p>
+          <div class="hero-actions"><a class="button button-gold" href="#visor">Explorar en 3D <span aria-hidden="true">↘</span></a><a class="button button-outline" href="#planos">Ver planos</a></div>
+        </div>
+        <p class="image-credit">Render de referencia · Vista frontal</p>
+      </div>
+    </section>
+    <dl class="metrics shell" aria-label="Resumen del plano">
+      <div><dt>177</dt><dd>Tubos LED de 2 m</dd></div>
+      <div><dt>478</dt><dd>Gabinetes LED P3.9</dd></div>
+      <div><dt>239 m²</dt><dd>Superficie de pantalla</dd></div>
+      <div><dt>152</dt><dd>Luminarias de referencia</dd></div>
+    </dl>
+
+    <section id="visor" class="shell section viewer-section" aria-labelledby="visor-titulo">
+      <div class="section-head"><h2 id="visor-titulo">Escenario en 3D</h2><p>Arrastra para girar. Usa la rueda o pellizca para acercarte.</p></div>
+      <div class="viewer-layout">
+        <div class="viewer-card">
+          <div class="viewer-toolbar" aria-label="Cámaras del escenario">
+            <div class="segmented"><button type="button" data-camera="perspectiva" aria-pressed="true">Perspectiva</button><button type="button" data-camera="frontal" aria-pressed="false">Frontal</button><button type="button" data-camera="planta" aria-pressed="false">Planta</button></div>
+            <button class="icon-button" id="save-image" type="button" aria-label="Guardar imagen del escenario" title="Guardar imagen">↓ <span>Imagen</span></button>
+          </div>
+          <div class="viewport" id="viewport" tabindex="0" aria-label="Modelo interactivo. Usa las flechas para girar, más y menos para acercar o alejar." aria-describedby="viewer-hint">
+            <img class="viewer-fallback" src="assets/escenario-frontal.webp" alt="Render del escenario" loading="lazy">
+            <span class="viewer-message" id="viewer-message" role="status">Preparando el modelo 3D…</span>
+          </div>
+          <div class="viewer-caption" id="viewer-hint"><span>Escala de referencia · medidas en metros</span><span id="camera-label">Perspectiva</span></div>
+        </div>
+        <aside class="control-panel" aria-label="Controles del show">
+          <div><h3>Control de luz</h3><p>Prueba una escena fija o reproduce la secuencia.</p></div>
+          <div class="look-list" aria-label="Escenas de luz">
+            <button type="button" data-look="ambar" aria-pressed="true"><i class="swatch amber"></i>Ámbar y violeta</button>
+            <button type="button" data-look="violeta" aria-pressed="false"><i class="swatch violet"></i>Violeta</button>
+            <button type="button" data-look="azul" aria-pressed="false"><i class="swatch blue"></i>Azul eléctrico</button>
+          </div>
+          <div class="transport">
+            <div class="transport-row"><button class="button button-gold" id="play-show" type="button">▶ <span>Reproducir show</span></button><button class="icon-button reset" id="reset-show" type="button" aria-label="Reiniciar show" title="Reiniciar">↺</button></div>
+            <label class="sr-only" for="show-position">Posición del show</label><input type="range" id="show-position" min="0" max="36" step="0.1" value="0">
+            <div class="time-row"><output id="show-time" for="show-position">0:00 / 0:36</output><span id="show-mode">Secuencia visual</span></div>
+          </div>
+          <div class="audio-control">
+            <button class="button button-outline" type="button" id="choose-audio">+ Cargar música</button><input id="audio-file" type="file" accept="audio/*,.mp3,.wav,.m4a,.ogg,.flac" hidden>
+            <p id="audio-status" role="status">Opcional. El audio se reproduce desde tu dispositivo.</p>
+            <div class="volume" id="volume-row" hidden><label for="audio-volume">Volumen</label><input id="audio-volume" type="range" min="0" max="100" value="65"><button type="button" class="text-button" id="clear-audio">Quitar</button></div>
+          </div>
+        </aside>
+      </div>
+    </section>
+
+    <section id="planos" class="plans-bg section" aria-labelledby="planos-titulo">
+      <div class="shell">
+        <div class="section-head"><h2 id="planos-titulo">Planos del escenario</h2><p>Las cotas pertenecen al plano de Círculo Militar.</p></div>
+        <div class="plan-card">
+          <div class="plan-toolbar"><div class="segmented" role="tablist" aria-label="Vistas del plano"><button id="tab-planta" role="tab" type="button" data-plan="planta" aria-selected="false" aria-controls="plan-view" tabindex="-1">Planta</button><button id="tab-elevacion" role="tab" type="button" data-plan="elevacion" aria-selected="true" aria-controls="plan-view">Elevación</button><button id="tab-isometrico" role="tab" type="button" data-plan="isometrico" aria-selected="false" aria-controls="plan-view" tabindex="-1">Isométrico</button></div><button class="icon-button" id="expand-plan" type="button">⛶ <span>Ampliar</span></button></div>
+          <figure id="plan-view" role="tabpanel" aria-labelledby="tab-elevacion"><img id="plan-image" src="assets/plano-elevacion.webp" alt="Elevación frontal acotada del escenario" loading="lazy"><figcaption id="plan-caption">Elevación · pantallas, alturas y distribución de luminarias.</figcaption></figure>
+        </div>
+        <p class="plan-note">El plano pide coordinar los pesos de sonido, video e iluminación con los proveedores y certificar las estructuras de carga con el ingeniero estructural del proveedor.</p>
+      </div>
+    </section>
+
+    <section id="equipos" class="shell section" aria-labelledby="equipos-titulo">
+      <div class="section-head"><h2 id="equipos-titulo">Equipos y medidas</h2><p>Inventario de referencia según el plano.</p></div>
+      <div class="technical-grid">
+        <article class="technical-card"><h3>Pantallas P3.9</h3><table><thead><tr><th scope="col">Ubicación</th><th scope="col">Cantidad × medida</th><th scope="col">Área</th></tr></thead><tbody id="screen-table"></tbody><tfoot><tr><th scope="row">Total</th><td>13 superficies</td><td>239 m²</td></tr></tfoot></table><p>388 gabinetes para las pantallas del escenario y 90 para las tres franjas del techo.</p></article>
+        <article class="technical-card"><h3>Iluminación</h3><table><thead><tr><th scope="col">Equipo</th><th scope="col">Unidades</th></tr></thead><tbody id="light-table"></tbody><tfoot><tr><th scope="row">Total de luminarias</th><td>152</td></tr></tfoot></table><p>El plano añade 177 tubos LED de 2 m, equivalentes a 354 m lineales.</p></article>
+      </div>
+      <div class="reference"><img src="assets/escenario-pista.webp" alt="Render desde la pista con las tres pantallas superiores y haces violetas" loading="lazy"><div><h3>Vista desde la pista</h3><p>Los tubos verticales enmarcan las pantallas laterales y continúan en el frente central. Tres franjas LED cubren el techo del escenario.</p><a href="#visor">Volver al visor <span aria-hidden="true">↑</span></a></div></div>
+    </section>
+  </main>
+  <footer class="site-footer"><div class="shell"><a class="brand" href="https://lightmanperu.com/"><img src="assets/logo-lightman.png" alt="LIGHTMAN" width="112" height="27"></a><span>Visualización de propuesta · Círculo Militar</span><a href="https://lightmanperu.com/proyectos/">Ver proyectos ↗</a></div></footer>
+
+  <dialog id="plan-dialog" aria-labelledby="dialog-title"><div class="dialog-toolbar"><h2 id="dialog-title">Plano</h2><div><button id="plan-zoom-out" class="icon-button" type="button" aria-label="Reducir plano">−</button><button id="plan-zoom-in" class="icon-button" type="button" aria-label="Acercar plano">+</button><a id="plan-full" class="icon-button" href="assets/plano-elevacion.webp" target="_blank" rel="noopener">Abrir imagen ↗</a><button id="close-plan" type="button" class="icon-button" aria-label="Cerrar plano">×</button></div></div><div class="dialog-image"><img id="large-plan" alt=""></div></dialog>
+</body>
+</html>
