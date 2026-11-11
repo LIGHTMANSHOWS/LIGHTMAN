@@ -10,10 +10,11 @@
   <meta property="og:image" content="https://lightmanperu.com/proyectos/circulo-militar/assets/escenario-frontal.webp">
   <title>Círculo Militar · Proyecto LIGHTMAN</title>
   <link rel="icon" href="assets/logo-lightman.png" type="image/png">
-  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="style.css?v=2">
   <script src="assets/three.min.js" defer></script>
   <script src="project.js" defer></script>
-  <script src="viewer.js" defer></script>
+  <script src="music.js" defer></script>
+  <script src="viewer.js?v=2" defer></script>
 </head>
 <body>
   <a class="skip" href="#contenido">Ir al contenido</a>
@@ -34,7 +35,7 @@
           <p>Explora el escenario en 3D y consulta los planos de iluminación y pantallas LED.</p>
           <div class="hero-actions"><a class="button button-gold" href="#visor">Explorar en 3D <span aria-hidden="true">↘</span></a><a class="button button-outline" href="#planos">Ver planos</a></div>
         </div>
-        <p class="image-credit">Render de referencia · Vista frontal</p>
+        <p class="image-credit">Render original · Vista frontal</p>
       </div>
     </section>
     <dl class="metrics shell" aria-label="Resumen del plano">
@@ -60,6 +61,16 @@
         </div>
         <aside class="control-panel" aria-label="Controles del show">
           <div><h3>Control de luz</h3><p>Prueba una escena fija o reproduce la secuencia.</p></div>
+          <div class="music-control">
+            <button type="button" class="song-card" id="featured-song" aria-controls="song-player" aria-pressed="false">
+              <span class="song-icon" aria-hidden="true">♫</span><span><strong>Historia de Amor</strong><small>Caribeños de Guadalupe</small></span><span class="song-play" aria-hidden="true">▶</span>
+            </button>
+            <div id="song-player" hidden>
+              <div class="youtube-mount" id="youtube-mount"></div>
+              <div class="song-actions"><button class="text-button" id="use-demo" type="button">Solo luces</button><a href="https://www.youtube.com/watch?v=XRRW0DbJS_I" target="_blank" rel="noopener" class="text-button">Ver en YouTube ↗</a></div>
+              <p id="song-status" role="status"></p>
+            </div>
+          </div>
           <div class="look-list" aria-label="Escenas de luz">
             <button type="button" data-look="ambar" aria-pressed="true"><i class="swatch amber"></i>Ámbar y violeta</button>
             <button type="button" data-look="violeta" aria-pressed="false"><i class="swatch violet"></i>Violeta</button>
@@ -81,7 +92,7 @@
 
     <section id="planos" class="plans-bg section" aria-labelledby="planos-titulo">
       <div class="shell">
-        <div class="section-head"><h2 id="planos-titulo">Planos del escenario</h2><p>Las cotas pertenecen al plano de Círculo Militar.</p></div>
+        <div class="section-head"><h2 id="planos-titulo">Planos del escenario</h2><p>Planos de referencia. Consulta el visor 3D para ver la distribución revisada.</p></div>
         <div class="plan-card">
           <div class="plan-toolbar"><div class="segmented" role="tablist" aria-label="Vistas del plano"><button id="tab-planta" role="tab" type="button" data-plan="planta" aria-selected="false" aria-controls="plan-view" tabindex="-1">Planta</button><button id="tab-elevacion" role="tab" type="button" data-plan="elevacion" aria-selected="true" aria-controls="plan-view">Elevación</button><button id="tab-isometrico" role="tab" type="button" data-plan="isometrico" aria-selected="false" aria-controls="plan-view" tabindex="-1">Isométrico</button></div><button class="icon-button" id="expand-plan" type="button">⛶ <span>Ampliar</span></button></div>
           <figure id="plan-view" role="tabpanel" aria-labelledby="tab-elevacion"><img id="plan-image" src="assets/plano-elevacion.webp" alt="Elevación frontal acotada del escenario" loading="lazy"><figcaption id="plan-caption">Elevación · pantallas, alturas y distribución de luminarias.</figcaption></figure>
@@ -96,7 +107,7 @@
         <article class="technical-card"><h3>Pantallas P3.9</h3><table><thead><tr><th scope="col">Ubicación</th><th scope="col">Cantidad × medida</th><th scope="col">Área</th></tr></thead><tbody id="screen-table"></tbody><tfoot><tr><th scope="row">Total</th><td>13 superficies</td><td>239 m²</td></tr></tfoot></table><p>388 gabinetes para las pantallas del escenario y 90 para las tres franjas del techo.</p></article>
         <article class="technical-card"><h3>Iluminación</h3><table><thead><tr><th scope="col">Equipo</th><th scope="col">Unidades</th></tr></thead><tbody id="light-table"></tbody><tfoot><tr><th scope="row">Total de luminarias</th><td>152</td></tr></tfoot></table><p>El plano añade 177 tubos LED de 2 m, equivalentes a 354 m lineales.</p></article>
       </div>
-      <div class="reference"><img src="assets/escenario-pista.webp" alt="Render desde la pista con las tres pantallas superiores y haces violetas" loading="lazy"><div><h3>Vista desde la pista</h3><p>Los tubos verticales enmarcan las pantallas laterales y continúan en el frente central. Tres franjas LED cubren el techo del escenario.</p><a href="#visor">Volver al visor <span aria-hidden="true">↑</span></a></div></div>
+      <div class="reference"><img src="assets/escenario-pista.webp" alt="Render original desde la pista con las tres pantallas superiores y haces violetas" loading="lazy"><div><h3>Vista original desde la pista</h3><p>El visor 3D muestra la distribución revisada de las diagonales inferiores, los tubos y la pantalla central.</p><a href="#visor">Volver al visor <span aria-hidden="true">↑</span></a></div></div>
     </section>
   </main>
   <footer class="site-footer"><div class="shell"><a class="brand" href="https://lightmanperu.com/"><img src="assets/logo-lightman.png" alt="LIGHTMAN" width="112" height="27"></a><span>Visualización de propuesta · Círculo Militar</span><a href="https://lightmanperu.com/proyectos/">Ver proyectos ↗</a></div></footer>

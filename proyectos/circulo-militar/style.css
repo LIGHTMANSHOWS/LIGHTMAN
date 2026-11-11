@@ -73,6 +73,19 @@ h1 span{color:var(--gold)}
 .control-panel{padding:17px;display:grid;gap:18px}
 .control-panel h3,.technical-card h3,.reference h3{font-size:34px}
 .control-panel p,.technical-card p,.reference p{margin:7px 0 0;color:var(--muted);font-size:13px}
+.song-card{display:grid;grid-template-columns:auto minmax(0,1fr) auto;align-items:center;gap:9px;width:100%;padding:9px;border:1px solid #75603c;border-radius:5px;background:#322724;color:var(--ink);text-align:left}
+.song-card:hover,.song-card[aria-pressed='true']{border-color:var(--gold);background:#423025}
+.song-icon{display:grid;place-items:center;width:29px;height:29px;border-radius:4px;background:var(--gold);color:#2b1e0b;font-size:17px}
+.song-card strong,.song-card small{display:block}
+.song-card strong{font-size:13px;color:#ffe1a1}
+.song-card small{color:#dcd1da;font-size:10px}
+.song-play{color:var(--gold);font-size:10px}
+.youtube-mount{min-height:200px;margin-top:8px;border-radius:5px;background:#100e16;overflow:hidden}
+.youtube-mount iframe{display:block;width:100%;height:200px;border:0}
+.song-actions{display:flex;align-items:center;justify-content:space-between;gap:7px}
+.song-actions a{text-decoration:none}
+#song-status{margin:3px 0 0;font-size:11px}
+#song-status:empty{display:none}
 .look-list{display:grid;gap:6px}
 .look-list button{display:flex;align-items:center;gap:10px;width:100%;padding:8px 10px;min-height:38px;border:1px solid #3e3747;border-radius:5px;background:#211e29;color:var(--ink);font-size:12px;font-weight:600;text-align:left}
 .look-list button:hover{border-color:#8e7e99}

@@ -16,7 +16,7 @@
     renderer = new THREE.WebGLRenderer({antialias: true, alpha: false, preserveDrawingBuffer: true});
   } catch {
     message.textContent = 'El visor 3D requiere WebGL. Los planos y los renders están disponibles en esta página.';
-    for (const button of [...cameraButtons, ...lookButtons, playButton, range, byId('save-image'), byId('reset-show'), byId('choose-audio')]) button.disabled = true;
+    for (const button of [...cameraButtons, ...lookButtons, playButton, range, byId('save-image'), byId('reset-show'), byId('choose-audio'), byId('featured-song')]) button.disabled = true;
     return;
   }
   renderer.setPixelRatio(Math.min(1.65, devicePixelRatio || 1));
@@ -61,8 +61,9 @@
     parent.add(mesh);
     return mesh;
   }
-  box(rig, 0, .76, -2.8, 17.99, 1.52, 10.28, stageEdge);
-  box(rig, 0, 1.53, -2.8, 17.99, .09, 10.28, stage);
+  const stageCenterDepth = -2.8;
+  box(rig, 0, .76, stageCenterDepth, 17.99, 1.52, 10.28, stageEdge);
+  box(rig, 0, 1.53, stageCenterDepth, 17.99, .09, 10.28, stage);
   box(rig, 0, 1.47, 2.39, 17.99, .09, .1, metal);
   for (const side of [-1, 1]) {
     for (let step = 0; step < 7; step++) box(rig, side * 8.32, .105 + .214 * step, 4.65 - .34 * step, 1.06, .21 + .214 * step, .35, darkMetal);
@@ -145,12 +146,13 @@
     group.add(face);
   }
   const [mainScreen, outerScreen, innerScreen, sideFront, frontScreen, overhead] = project.screens;
+  const diagonal = {x: 7.1, z: -2.23, angle: .67};
   panel(0,7.0,-5.3,mainScreen.width,mainScreen.height,0,true);
-  panel(0,2.5,2.65,frontScreen.width,frontScreen.height);
+  panel(0,2.5,stageCenterDepth,frontScreen.width,frontScreen.height);
   for (const side of [-1,1]) {
     panel(side*11.565,6.2,1.83,outerScreen.height,outerScreen.width,0,true);
-    for (const y of [6.33,9.37]) panel(side*7.1,y,-2.23,innerScreen.width,innerScreen.height,-side*.67, true);
-    panel(side*6.5,2.94,1.05,sideFront.width,sideFront.height,-side*.53);
+    for (const y of [6.33,9.37]) panel(side*diagonal.x,y,diagonal.z,innerScreen.width,innerScreen.height,-side*diagonal.angle,true);
+    panel(side*diagonal.x,2.94,diagonal.z,sideFront.width,sideFront.height,-side*diagonal.angle);
   }
 
   function overheadRibbon(x) {
@@ -202,9 +204,19 @@
       for (let index=0; index<project.tubesPerTowerBand; index++) tubePoints.push([side*(9.05+index*.248),y,1.97]);
     }
   }
-  for (let index=0; index<project.frontTubeCount; index++) {
-    const x = (index - (project.frontTubeCount-1)/2)*.231;
-    tubePoints.push([x,3.50,2.40-Math.max(0,Math.abs(x)-4.1)*.21]);
+  const tubesPerDiagonal = 8;
+  const centerTubeCount = project.frontTubeCount - 2*tubesPerDiagonal;
+  for (let index=0; index<centerTubeCount; index++) {
+    const x = (index - (centerTubeCount-1)/2)*.245;
+    tubePoints.push([x,3.50,-4.76]);
+  }
+  for (const side of [-1,1]) {
+    for (let index=0; index<tubesPerDiagonal; index++) {
+      const along = -3.38 + index*.29;
+      const x = side*(diagonal.x + along*Math.cos(diagonal.angle));
+      const z = diagonal.z + along*Math.sin(diagonal.angle) - .52;
+      tubePoints.push([x,3.50,z]);
+    }
   }
   const tubes = new THREE.InstancedMesh(tubeGeo, new THREE.MeshBasicMaterial({color:0xffffff}), tubePoints.length);
   const tubeDummy = new THREE.Object3D();
@@ -287,7 +299,7 @@
   let lastLook = '';
   const temporary = new THREE.Color();
   const vector = new THREE.Vector3();
-  function lightScene(look,t,energy,animated) {
+  function lightScene(look,t,energy,animated,musicBeat=null) {
     const [hot,mid,shade,tubeColor,beamColor] = palette[look];
     const phase = animated ? Math.floor(t*9) : 0;
     if (phase !== lastArtFrame || look !== lastLook) {
@@ -309,13 +321,15 @@
     lampHalos[0].color.set(hot); lampHalos[1].color.set(beamColor);
     beamMaterial.uniforms.tint.value.set(beamColor);
     beamMaterial.uniforms.power.value=.15+energy*.20;
+    const wavePhase = musicBeat === null ? t*3.9 : musicBeat*Math.PI/4;
     tubePoints.forEach(([x,y],i) => {
-      const shimmer = animated ? .77+.17*Math.sin(t*3.9-x*.57-y*.32)+energy*.18 : .92;
+      const shimmer = animated ? .74+.19*Math.sin(wavePhase-x*.57-y*.32)+energy*.27 : .92;
       tubes.setColorAt(i,temporary.set(tubeColor).multiplyScalar(shimmer));
     });
     tubes.instanceColor.needsUpdate = true;
     for (const {mesh,start,side,index} of beams) {
-      vector.set(-side*(4.5+index*.29)+Math.sin(t*(animated?1.28:0)+index*.72)*1.7, 1.8+index*.31+Math.cos(t*.8+index)*1.17, 7.1+index*.54);
+      const sweep = animated ? (musicBeat === null ? t*1.28 : musicBeat*Math.PI/12) : 0;
+      vector.set(-side*(4.5+index*.29)+Math.sin(sweep+index*.72)*1.7, 1.8+index*.31+Math.cos(sweep*.67+index)*1.17, 7.1+index*.54);
       mesh.position.copy(start).addScaledVector(vector,.5);
       mesh.quaternion.setFromUnitVectors(unitY, vector.clone().normalize());
       mesh.scale.set(.74+index*.09,vector.length(),.74+index*.09);
@@ -418,6 +432,16 @@
   let bins;
   const audioStatus=byId('audio-status');
   const volume=byId('audio-volume');
+  const songButton=byId('featured-song');
+  const songPanel=byId('song-player');
+  const songStatus=byId('song-status');
+  const youtubeMount=byId('youtube-mount');
+  let songActive=false;
+  let songPlayer;
+  let songReady=false;
+  let songLoading;
+  let songSeek;
+  let songPlayRequested=false;
   audio.loop=true;
   audio.volume=Number(volume.value)/100;
   function clock(value) {
@@ -440,6 +464,12 @@
     lookButtons.forEach(button=>button.setAttribute('aria-pressed',button.dataset.look===name));
   }
   function renderShow(animate) {
+    if (animate&&songActive) {
+      const cue=featuredCue(position,duration);
+      lightScene(cue.look,position,reduceMotion?.50:cue.energy,!reduceMotion,cue.beat);
+      needsRender=true;
+      return;
+    }
     const looks=['ambar','violeta','azul','ambar'];
     const look=animate?looks[Math.floor(position/9)%looks.length]:activeLook;
     let energy=animate?.28+.22*(1+Math.sin(position*Math.PI*2*1.95)): .45;
@@ -453,12 +483,22 @@
   }
   function pause() {
     playing=false;
+    songPlayRequested=false;
+    if (songActive&&songReady) songPlayer.pauseVideo();
     audio.pause();
     updateTransport();
+  }
+  function seekSong(seconds) {
+    songSeek={target:seconds,expires:performance.now()+2200};
+    songPlayer.seekTo(seconds,true);
   }
   function seek(seconds) {
     position=Math.min(duration,Math.max(0,seconds));
     if (hasAudio) audio.currentTime=position;
+    if (songActive&&songReady) {
+      const state=songPlayer.getPlayerState();
+      if (state===1||state===2||state===3||state===0) seekSong(position);
+    }
     startedAt=performance.now()-position*1000;
     updateTransport();
     renderShow(previewTimeline);
@@ -470,6 +510,7 @@
   byId('reset-show').addEventListener('click',()=>{pause();previewTimeline=false;seek(0);});
   playButton.addEventListener('click',async()=>{
     if (playing) {pause();return;}
+    if (songActive) {requestSongPlayback();return;}
     if (position>=duration) seek(0);
     if (hasAudio) {
       try {
@@ -496,6 +537,10 @@
   byId('choose-audio').addEventListener('click',()=>audioInput.click());
   function clearAudio() {
     pause();
+    songActive=false;
+    songSeek=null;
+    songButton.setAttribute('aria-pressed','false');
+    songPanel.hidden=true;
     if (audioUrl) URL.revokeObjectURL(audioUrl);
     audioUrl='';hasAudio=false;
     audio.onloadedmetadata=null;
@@ -530,10 +575,112 @@
     audioStatus.textContent='El navegador no pudo abrir ese archivo de audio.';
   });
   volume.addEventListener('input',()=>{audio.volume=Number(volume.value)/100;});
-  window.addEventListener('pagehide',()=>audio.pause());
+  window.addEventListener('pagehide',pause);
+
+  function readSongTime() {
+    const length=songPlayer.getDuration();
+    if (Number.isFinite(length)&&length>0) duration=length;
+    const current=songPlayer.getCurrentTime();
+    if (!Number.isFinite(current)) return false;
+    if (songSeek&&Math.abs(current-songSeek.target)>.7&&performance.now()<songSeek.expires) return false;
+    songSeek=null;
+    const moved=Math.abs(position-current)>.02;
+    position=current;
+    return moved;
+  }
+
+  function startFeaturedPlayback() {
+    if (!songActive||!songReady||!songPlayRequested) return;
+    songPlayRequested=false;
+    const bounds=youtubeMount.getBoundingClientRect();
+    const visibleHeight=Math.min(innerHeight,bounds.bottom)-Math.max(0,bounds.top);
+    if (visibleHeight<=bounds.height/2) {
+      songStatus.textContent='Pulsa ▶ en el reproductor para iniciar la canción.';
+      return;
+    }
+    const start=position>=duration-.2?0:position;
+    if (Math.abs((songPlayer.getCurrentTime()||0)-start)>.25) seekSong(start);
+    songPlayer.playVideo();
+  }
+
+  function requestSongPlayback() {
+    songPlayRequested=true;
+    if (songReady) {
+      startFeaturedPlayback();
+      return;
+    }
+    songStatus.textContent='Cargando el reproductor oficial…';
+    if (songLoading) return;
+    songLoading=createFeaturedPlayer(youtubeMount,{
+      onReady(event) {
+        songPlayer=event.target;
+        songReady=true;
+        if (!songActive) return;
+        songStatus.textContent='Pulsa ▶ para iniciar el show sincronizado.';
+        startFeaturedPlayback();
+      },
+      onStateChange(event) {
+        if (!songActive) {
+          if (event.data===1) event.target.pauseVideo();
+          return;
+        }
+        songPlayer=event.target;
+        playing=event.data===1;
+        if (playing) {
+          previewTimeline=true;
+          songStatus.textContent='Luces sincronizadas con la canción.';
+        }
+        if (event.data===0) {
+          songSeek=null;
+          position=duration;
+        } else if (previewTimeline) readSongTime();
+        updateTransport();
+        if (previewTimeline) renderShow(true);
+      },
+      onAutoplayBlocked() {
+        if (songActive) songStatus.textContent='Pulsa ▶ dentro del reproductor para iniciar la canción.';
+      },
+      onError() {
+        if (!songActive) return;
+        playing=false;
+        songStatus.textContent='YouTube no pudo reproducir la canción aquí. Puedes abrir el video oficial o usar Solo luces.';
+        updateTransport();
+      }
+    }).catch(()=>{
+      songLoading=null;
+      songPlayRequested=false;
+      if (songActive) songStatus.textContent='No se pudo cargar YouTube. Puedes abrir el video oficial o usar Solo luces.';
+    });
+    setTimeout(()=>{
+      if (songActive&&songLoading&&!songReady) songStatus.textContent='El reproductor está tardando. Puedes pulsar ▶ dentro del video o abrir el enlace oficial.';
+    },13000);
+  }
+
+  songButton.addEventListener('click',()=>{
+    if (songActive) {
+      if (playing) pause();
+      else requestSongPlayback();
+      return;
+    }
+    clearAudio();
+    songActive=true;
+    duration=featuredSong.duration;
+    songButton.setAttribute('aria-pressed','true');
+    songPanel.hidden=false;
+    byId('show-mode').textContent=featuredSong.title;
+    updateTime();
+    youtubeMount.scrollIntoView({block:'nearest',behavior:'instant'});
+    requestSongPlayback();
+  });
+  byId('use-demo').addEventListener('click',clearAudio);
 
   function tick(now) {
-    if (playing) {
+    if (songActive&&songReady&&previewTimeline) {
+      if (readSongTime()||playing) {
+        updateTime();
+        renderShow(true);
+      }
+    } else if (playing) {
       position=hasAudio?audio.currentTime:((now-startedAt)/1000)%duration;
       updateTime();
       renderShow(true);
