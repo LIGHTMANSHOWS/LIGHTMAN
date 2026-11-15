@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
 import {OrbitControls} from './vendor/OrbitControls.js';
-import {types,pieces,pieceLength,totalLength,measuredLength,stage1Front,CYAN,MAGENTA,roundPath} from './data.js?v=r06';
+import {types,pieces,pieceLength,totalLength,measuredLength,stage1Front,CYAN,MAGENTA,roundPath,mazeSpec,mazeArch,roundedPlan} from './data.js?v=r07';
 const $=s=>document.getElementById(s),fmt=(v,n=2)=>v.toLocaleString('es-PE',{minimumFractionDigits:n,maximumFractionDigits:n}),m=v=>fmt(v)+' m';
 let selected=pieces.find(p=>p.type==='presenting'),view='perspective',overview=false,dimensionsOn=true;
 const order=['presenting','innovation','food','analytic','dataMaze','totem','stageA','stageB'];
@@ -25,7 +25,7 @@ function csv(){
   rows.push([p.type,t.name,qty,zonesFor(p.type),t.w,t.d,t.h,'TOTAL ÍTEM','',(pieceLength(p)).toFixed(6),typeLength(p.type).toFixed(6),'',t.status,t.source]);
  }
  rows.push(['TOTAL MODELO','',pieces.length,'','','','','TOTAL PROVISIONAL','','',totalLength.toFixed(6)]);
- const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"',blob=new Blob(['\ufeff'+rows.map(r=>r.map(quote).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='LIGHTMAN_Credicorp_Metrado_14Nov2026_R06.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Metrado descargado con cantidades, metros unitarios y totales por ítem.');
+ const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"',blob=new Blob(['\ufeff'+rows.map(r=>r.map(quote).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='LIGHTMAN_Credicorp_Metrado_14Nov2026_R07.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Metrado descargado con cantidades, metros unitarios y totales por ítem.');
 }
 renderNav();renderTables();fillInspector();
 $('search').addEventListener('input',renderNav);
@@ -86,12 +86,28 @@ function buildStructure(p,parent){const t=types[p.type];
   const screen=box(parent,0,1.49,0,.34,.014,.27,screenMat);screen.rotation.x=-.09;
   sign(parent,'SUMMIT','2026',.32,.16,0,1.19,.203);
  }else if(p.type==='dataMaze'){
-  box(parent,0,.045,0,2.8,.09,2.8,deckMat);box(parent,0,.16,0,2.66,.14,2.66,darkMat);
-  box(parent,0,1.30,-1.34,2.8,2.2,.12,darkMat);box(parent,-1.20,1.32,-1.16,.4,2.16,.32,bodyMat);box(parent,1.20,1.32,-1.16,.4,2.16,.32,bodyMat);
-  roundedBody(parent,2.8,.35,.14,2.225,-1.23,.15,bodyMat);
-  sign(parent,'Data Maze','',2.22,.30,0,2.21,-1.068);
-  // Printed graphics, not LED; intentionally excluded from the metrado.
-  const tex=mazeTexture();mesh(new THREE.PlaneGeometry(2.05,1.75),new THREE.MeshBasicMaterial({map:tex}),parent,0,1.25,-1.269);
+  const s=mazeSpec,frameMat=new THREE.MeshStandardMaterial({color:'#183141',roughness:.40,metalness:.28});
+  const lowerMat=new THREE.MeshStandardMaterial({color:'#122735',roughness:.43,metalness:.24});
+  const upperMat=new THREE.MeshStandardMaterial({color:'#112332',roughness:.49,metalness:.20});
+  for(const [level,material] of [[s.lower,lowerMat],[s.upper,upperMat]]){
+   const contour=roundedPlan(level.w,level.d,level.r,0);
+   const sh=new THREE.Shape(contour.map(v=>new THREE.Vector2(v[0],v[2])));
+   const geo=new THREE.ExtrudeGeometry(sh,{depth:level.h,steps:1,bevelEnabled:false});
+   geo.rotateX(-Math.PI/2);mesh(geo,material,parent,0,level.y,0);
+  }
+  const outer=mazeArch(-s.width/2,s.width/2,s.floorY,s.height,s.outerRadius,0).map(v=>[v[0],v[1]]);
+  const inner=mazeArch(s.innerLeft,s.innerRight,s.floorY,s.innerTop,s.innerRadius,0).map(v=>[v[0],v[1]]);
+  polygon(parent,[...outer,...inner.slice().reverse()],s.frameDepth,s.frontZ-s.frameDepth,frameMat);
+  const openingWidth=s.innerRight-s.innerLeft,openingHeight=s.innerTop-s.floorY,openingX=(s.innerLeft+s.innerRight)/2;
+  box(parent,openingX,s.floorY+openingHeight/2,-1.30,openingWidth+.05,openingHeight,.07,darkMat);
+  const graphics=dataMazeGraphics();
+  const graphic=(tex,w,h,x,y,z,transparent=false)=>mesh(new THREE.PlaneGeometry(w,h),new THREE.MeshBasicMaterial({map:tex,transparent,depthWrite:!transparent,toneMapped:false}),parent,x,y,z);
+  graphic(graphics.back,openingWidth,openingHeight,openingX,s.floorY+openingHeight/2,-1.259);
+  graphic(graphics.header,2.40,.35,0,2.18,s.frontZ+.010,true);
+  graphic(graphics.brand,.34,1.67,-1.16,1.12,s.frontZ+.011,true);
+  const floor=graphic(graphics.floor,2.39,2.39,0,s.floorY+.003,0);floor.rotation.x=-Math.PI/2;
+  const cyanFill=new THREE.PointLight(CYAN,.65,3,2);cyanFill.position.set(-1.23,.7,-.55);parent.add(cyanFill);
+  const magentaFill=new THREE.PointLight(MAGENTA,.42,2.5,2);magentaFill.position.set(1.10,.9,-.58);parent.add(magentaFill);
  }else{
   const w=t.w,d=t.d,front=stage1Front.map(([x,z])=>[x*w/15.86,z]);
   const shape=new THREE.Shape();shape.moveTo(-w/2,-d/2);shape.lineTo(w/2,-d/2);for(const [x,z] of front.slice().reverse())shape.lineTo(x,z);shape.closePath();
@@ -104,7 +120,43 @@ function buildStructure(p,parent){const t=types[p.type];
   sign(parent,'CREDICORP','IA, DATA & CIBERSEGURIDAD',Math.min(w-2,9),2.05,0,t.h+2.5,-d/2+.38);
  }
 }
-function mazeTexture(){const c=document.createElement('canvas');c.width=512;c.height=512;const ctx=c.getContext('2d');ctx.fillStyle='#06141f';ctx.fillRect(0,0,512,512);ctx.lineWidth=3;ctx.strokeStyle='#25445b';for(let j=0;j<14;j++){const x=26+j*35;ctx.beginPath();ctx.moveTo(x,15);ctx.lineTo(x,497);ctx.stroke();}ctx.strokeStyle='#52607c';ctx.lineWidth=7;ctx.beginPath();ctx.moveTo(70,430);ctx.lineTo(70,130);ctx.lineTo(400,130);ctx.lineTo(400,205);ctx.lineTo(170,205);ctx.lineTo(170,320);ctx.lineTo(360,320);ctx.lineTo(360,430);ctx.stroke();return new THREE.CanvasTexture(c);}
+function dataMazeGraphics(){
+ // All four surfaces are reference print/branding, not physical LED runs.
+ const canvas=(w,h)=>{const c=document.createElement('canvas');c.width=w;c.height=h;return c;};
+ const texture=c=>{const t=new THREE.CanvasTexture(c);t.colorSpace=THREE.SRGBColorSpace;t.anisotropy=Math.min(renderer.capabilities.getMaxAnisotropy(),8);return t;};
+ const header=canvas(1600,260),hc=header.getContext('2d');
+ hc.textAlign='center';hc.textBaseline='middle';hc.font='600 172px Segoe UI, Arial';hc.shadowColor=CYAN;hc.shadowBlur=20;hc.fillStyle='#c9fbff';hc.fillText('Data Maze',800,130);
+ const brand=canvas(300,1600),bc=brand.getContext('2d');bc.translate(150,800);bc.rotate(-Math.PI/2);bc.textAlign='center';bc.textBaseline='middle';bc.font='500 120px Segoe UI, Arial';
+ const chars=[...'CREDICORP'],spacing=142,start=-(chars.length-1)*spacing/2;
+ chars.forEach((ch,i)=>{bc.fillStyle=i===6?MAGENTA:'#d9f5fc';bc.fillText(i===6?'◇':ch,start+i*spacing,0);});
+ let seed=27401;const random=()=>{seed=(seed*1664525+1013904223)>>>0;return seed/4294967296;};
+ const makeCircuits=(floor=false)=>{
+  const c=canvas(1024,1024),ctx=c.getContext('2d');
+  const bg=ctx.createRadialGradient(480,430,25,512,512,760);bg.addColorStop(0,floor?'#0b2739':'#083140');bg.addColorStop(.6,'#071c2b');bg.addColorStop(1,'#050e1a');ctx.fillStyle=bg;ctx.fillRect(0,0,1024,1024);
+  const stroke=(pts,color,width,glow=0)=>{ctx.beginPath();ctx.moveTo(...pts[0]);for(const p of pts.slice(1))ctx.lineTo(...p);ctx.strokeStyle=color;ctx.lineWidth=width;ctx.lineJoin='round';ctx.lineCap='round';ctx.shadowColor=color;ctx.shadowBlur=glow;ctx.stroke();ctx.shadowBlur=0;};
+  for(let i=0;i<(floor?90:72);i++){
+   const x=20+random()*984,y=random()*1024,step=20+random()*70,dir=random()>.5?1:-1;
+   const pts=[[x,y],[x,y+step],[x+dir*step*.65,y+step],[x+dir*step*.65,y+step*2.6]];
+   stroke(pts,i%5===0?'#72366c':'#175468',floor?1.4:2);
+   ctx.beginPath();ctx.arc(x,y,1.8+random()*2,0,Math.PI*2);ctx.fillStyle=i%5===0?'#bb408d':'#2592ac';ctx.fill();
+  }
+  for(let i=0;i<430;i++){const x=random()*1024,y=random()*1024;ctx.globalAlpha=.15+random()*.5;ctx.fillStyle=i%7===0?MAGENTA:CYAN;ctx.beginPath();ctx.arc(x,y,.5+random()*1.6,0,Math.PI*2);ctx.fill();}ctx.globalAlpha=1;
+  if(floor){
+   stroke([[265,315],[760,315],[760,815],[265,815],[265,315]],'#72bad0',3,3);
+   for(const [x,y] of [[265,315],[760,315],[760,815],[265,815]]){ctx.fillStyle='#a7e5ec';ctx.fillRect(x-4,y-4,8,8);}
+  }else{
+   const maze=[[240,855],[240,265],[270,230],[805,230],[850,190],[850,130],[894,130],[894,245],[837,290],[735,290],[735,395],[642,395],[642,325],[402,325],[402,438],[536,438],[536,528],[710,528],[710,726],[611,726],[611,625],[391,625],[391,805],[280,805],[240,855]];
+   stroke(maze,'#0f677e',23,15);stroke(maze,'#54d2e4',8,7);
+   const branch=[[275,750],[275,293],[310,265],[770,265],[770,330],[690,330],[690,430],[602,430],[602,365],[440,365],[440,478],[498,478],[498,568],[670,568],[670,685],[650,685]];
+   stroke(branch,'#9b4c9c',3,4);
+   for(let i=0;i<maze.length-1;i+=2){const [x,y]=maze[i];ctx.shadowColor=CYAN;ctx.shadowBlur=9;ctx.fillStyle=i%4===0?'#92edfa':MAGENTA;ctx.beginPath();ctx.arc(x,y,4,0,Math.PI*2);ctx.fill();}ctx.shadowBlur=0;
+   // Small printed data nodes keep the central maze distinct from a generic F.
+   for(const [x,y] of [[300,710],[615,490],[800,150]]){ctx.strokeStyle='#62d3e0';ctx.lineWidth=2;ctx.strokeRect(x-18,y-18,36,36);ctx.strokeRect(x-9,y-9,18,18);}
+  }
+  return texture(c);
+ };
+ return {header:texture(header),brand:texture(brand),back:makeCircuits(false),floor:makeCircuits(true)};
+}
 function tubeGeometry(points,radius,sides=6){
  const pos=[],norm=[],svalues=[],idx=[];let distance=0;const total=points.slice(1).reduce((s,p,i)=>s+p.distanceTo(points[i]),0);
  for(let i=1;i<points.length;i++){const a=points[i-1],b=points[i],length=a.distanceTo(b);if(length<1e-8)continue;const dir=b.clone().sub(a).normalize(),axis=Math.abs(dir.y)<.9?new THREE.Vector3(0,1,0):new THREE.Vector3(1,0,0),normal=new THREE.Vector3().crossVectors(dir,axis).normalize(),binormal=new THREE.Vector3().crossVectors(dir,normal).normalize(),start=pos.length/3;
@@ -146,4 +198,4 @@ $('overview').onclick=()=>{overview=!overview;$('overview').setAttribute('aria-p
 $('dimensions').onclick=()=>{dimensionsOn=!dimensionsOn;$('dimensions').setAttribute('aria-pressed',String(dimensionsOn));if(ready)addDimensions();};$('reset-camera').onclick=()=>{if(ready)fit();};
 try{init();const id=new URLSearchParams(location.hash.slice(1)).get('item');if(pieces.some(p=>p.id===id))select(id);}catch(err){console.error(err);$('loading').textContent='No se pudo iniciar WebGL. El metrado detallado sigue disponible debajo del visor.';$('loading').style.color='#e5c8d8';document.body.dataset.ready='error';}
 // Expose read-only evidence for QA without adding configuration controls to the presentation.
-globalThis.CREDICORP_REVIEW=Object.freeze({version:'R06',pieceCount:pieces.length,totemIds:pieces.filter(p=>p.type==='totem').map(p=>p.id),total:totalLength,measured:measuredLength,rows:pieces.map(p=>({id:p.id,total:pieceLength(p),traces:p.traces.length})),palette:[MAGENTA,CYAN]});
+globalThis.CREDICORP_REVIEW=Object.freeze({version:'R07',pieceCount:pieces.length,totemIds:pieces.filter(p=>p.type==='totem').map(p=>p.id),total:totalLength,measured:measuredLength,rows:pieces.map(p=>({id:p.id,total:pieceLength(p),traces:p.traces.length})),palette:[MAGENTA,CYAN]});
