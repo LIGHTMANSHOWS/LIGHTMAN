@@ -1,14 +1,19 @@
-CETOX · NAVIDAD EN LUZ · LIGHTMAN · R04
-https://lightmanperu.com/proyectos/cetox-navidad/?v=R04
+CETOX · UNA NAVIDAD EN OTRA LUZ · LIGHTMAN R05
 
-Fuente rastreada: LIGHTMANSHOWS/LIGHTMAN, carpeta propuestas/navidad-san-fernando. Se copiaron choreography.js, las funciones currentCue/currentTrack/lights y paletas de engine.js, y los efectos y contenido de led-brand.js. Los efectos, paletas y cortes automáticos de tracks-data.js se conservan. La identidad del contenido LED se adaptó a LIGHTMAN.
+Presentación: https://lightmanperu.com/proyectos/cetox-navidad/?v=R05
 
-Corrección R04: el delineado de los bordes de la fachada ahora usa el motor completo del árbol. Anteriormente esta variante solo tenía luz cálida con pulso. Las cuatro propuestas permanecen disponibles; Luz fija conserva sus colores de base.
+R05 reconstruye desde cero la arquitectura y la experiencia de presentación. El visor nuevo está en cinema/: geometría de vanos e interiores, perfilería, persianas, letras CETOX extruidas, portones, barandas, entorno, materiales, reflejo planar del suelo y resplandor HDR de varias escalas.
 
-Efecto del árbol permite el show original automático, efectos individuales y la cinta original con cometas, ondas, cascada, pulsos y destellos. Colores permite la paleta original o una selección navideña. Las texturas se calculan con coordenadas normalizadas de la fachada; la forma del edificio se conserva.
+Cuatro conceptos: ESENCIA (firma arquitectónica), AURA (cortina de estrellas y copos), PULSO (segmentos RGB) e ÍCONO (árbol con estrella, guirnaldas y adornos). La pantalla inicial muestra una vista previa iluminada; Ver el encendido inicia el show musical desde su cuenta de entrada. La reproducción, efectos, búsqueda y bucle toman el mismo reloj del audio.
 
-Tres pistas originales LIGHTMAN: Jingle Bells, Deck the Halls y Carol of the Bells / Shchedryk. Un solo reloj de audio para reproducción, pausa, búsqueda, bucle y efectos. Créditos en LICENSES.txt.
+El motor TreeEngine.lights, TreeChoreography y contenido LED se conservan del árbol navideño publicado de LIGHTMAN. Tres pistas instrumentales originales LIGHTMAN: Jingle Bells, Deck the Halls y Carol of the Bells / Shchedryk. Créditos en LICENSES.txt y fuentes tipográficas locales con sus licencias SIL OFL en cinema/fonts/.
 
-Modelo geométrico conceptual estimado desde fotografías; no equivale a un levantamiento técnico o estudio fotométrico. JSON y GLB conservan el modelo R02. Los renders R01 permanecen como referencia.
+Cámaras frontal, perspectiva y detalle; recorrido cinematográfico; comparación con luz de día; personalización de efectos, color e intensidad. Guardar vista entrega un PNG de 1600 × 1600 con marca LIGHTMAN. Los cuatro renders R05 de assets/ fueron exportados desde este nuevo modelo, no generados sobre la fotografía.
 
-El editor privado y el registro de trazabilidad se conservan fuera de la carpeta publicada. No se publican cotizaciones, chats ni credenciales.
+La geometría y las dimensiones son estimadas a partir de las fotos originales. El entorno y los reflejos son recursos de presentación. El modelo no constituye un levantamiento técnico, estudio fotométrico, plan estructural o lista de materiales. Medidas, fijaciones, acceso, suministro y condiciones de montaje y desmontaje requieren visita técnica. Se omitieron cables aéreos en la composición visual; su proximidad debe comprobarse durante la revisión técnica.
+
+Version-r04.html conserva la revisión anterior y sus recursos 3d/. Los JSON y GLB de esa carpeta pertenecen al modelo anterior R02, no a esta nueva reconstrucción. Los renders y visor 2D R01 permanecen como referencias heredadas.
+
+El editor cinematográfico R05 está fuera de la carpeta pública, en CETOX-editor-cinematico-R05.html; permite exportar ajustes y la definición estimada de la nueva escena. Para usar el paquete local, servir su carpeta mediante HTTP: python -m http.server 8797 --bind 127.0.0.1 --directory cetox-navidad-r05
+
+No se incluyen precios, cotizaciones, chats ni credenciales. Los enlaces de contacto requieren una acción del visitante; no se enviaron mensajes.
