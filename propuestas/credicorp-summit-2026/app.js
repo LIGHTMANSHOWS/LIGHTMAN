@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
 import {OrbitControls} from './vendor/OrbitControls.js';
-import {types,pieces,pieceLength,totalLength,measuredLength,stage1Front,CYAN,MAGENTA,roundPath} from './data.js?v=r03';
+import {types,pieces,pieceLength,totalLength,measuredLength,stage1Front,CYAN,MAGENTA,roundPath} from './data.js?v=r04';
 const $=s=>document.getElementById(s),fmt=(v,n=2)=>v.toLocaleString('es-PE',{minimumFractionDigits:n,maximumFractionDigits:n}),m=v=>fmt(v)+' m';
 let selected=pieces.find(p=>p.type==='presenting'),view='perspective',overview=false,dimensionsOn=true;
 const order=['presenting','innovation','food','analytic','dataMaze','totem','stageA','stageB'];
@@ -14,7 +14,7 @@ function renderTables(){
  $('type-summary').innerHTML=order.flatMap(key=>{const a=pieces.filter(p=>p.type===key);if(key==='totem')return a.map(p=>`<button class="summary-type" data-piece="${p.id}"><b>${p.name}</b><small>1 unidad independiente</small><strong>${m(pieceLength(p))}</strong></button>`);const total=a.reduce((s,p)=>s+pieceLength(p),0);return [`<button class="summary-type" data-piece="${a[0].id}"><b>${types[key].name}</b><small>${a.length} ${a.length===1?'unidad':'unidades'} × ${m(pieceLength(a[0]))}</small><strong>${m(total)}</strong></button>`];}).join('');
  $('meter-rows').innerHTML=order.flatMap(type=>pieces.filter(p=>p.type===type)).map(p=>{const t=types[p.type];return `<tr class="meter-row ${p.id===selected.id?'active':''}" data-piece="${p.id}"><td><small>${p.id.toUpperCase()}</small>${escape(p.name)}</td><td>${escape(p.zone)}</td><td>${escape(t.dimensions)}</td><td>${m(pieceLength(p))}</td><td><span class="status ${t.status==='calculado'?'calculated':''}">${status(t.status)}</span></td><td><button class="expand-button" data-expand="${p.id}" aria-expanded="false" aria-label="Desglosar ${escape(p.name)}">+</button></td></tr><tr class="detail-row" id="detail-${p.id}" hidden><td colspan="6"><table aria-label="Desglose ${escape(p.name)}">${p.traces.map(tr=>`<tr><td>${escape(tr.name)}</td><td>${escape(tr.formula)}</td><td>${m(tr.length)}</td><td>${status(tr.status)}</td></tr>`).join('')}</table><p>${escape(t.note)}<br>Fuente: ${escape(t.source)}</p></td></tr>`;}).join('');
 }
-function csv(){const rows=[['item','elemento','ubicacion','ancho_m','fondo_m','alto_modelo_m','recorrido','formula','longitud_m','base_recorrido','base_elemento','fuente']];for(const p of pieces){const t=types[p.type];for(const tr of p.traces)rows.push([p.id,p.name,p.zone,t.w,t.d,t.h,tr.name,tr.formula,tr.length.toFixed(6),tr.status,t.status,t.source]);rows.push([p.id,p.name,p.zone,'','','','TOTAL UNIDAD','',pieceLength(p).toFixed(6),'',t.status,'']);}rows.push(['TOTAL MODELO','','','','','','TOTAL PROVISIONAL','',totalLength.toFixed(6)]);const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"',blob=new Blob(['\ufeff'+rows.map(r=>r.map(quote).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='LIGHTMAN_Credicorp_Metrado_14Nov2026_R03.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Metrado descargado con todos los recorridos y sus bases.');}
+function csv(){const rows=[['item','elemento','ubicacion','ancho_m','fondo_m','alto_modelo_m','recorrido','formula','longitud_m','base_recorrido','base_elemento','fuente']];for(const p of pieces){const t=types[p.type];for(const tr of p.traces)rows.push([p.id,p.name,p.zone,t.w,t.d,t.h,tr.name,tr.formula,tr.length.toFixed(6),tr.status,t.status,t.source]);rows.push([p.id,p.name,p.zone,'','','','TOTAL UNIDAD','',pieceLength(p).toFixed(6),'',t.status,'']);}rows.push(['TOTAL MODELO','','','','','','TOTAL PROVISIONAL','',totalLength.toFixed(6)]);const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"',blob=new Blob(['\ufeff'+rows.map(r=>r.map(quote).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='LIGHTMAN_Credicorp_Metrado_14Nov2026_R04.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Metrado descargado con todos los recorridos y sus bases.');}
 renderNav();renderTables();fillInspector();
 $('search').addEventListener('input',renderNav);
 document.addEventListener('click',e=>{const ex=e.target.closest('[data-expand]');if(ex){const row=$('detail-'+ex.dataset.expand);row.hidden=!row.hidden;ex.setAttribute('aria-expanded',String(!row.hidden));ex.textContent=row.hidden?'+':'−';return;}const b=e.target.closest('[data-piece]');if(b){select(b.dataset.piece);if(b.classList.contains('summary-type')||b.classList.contains('meter-row'))document.querySelector('.studio').scrollIntoView({behavior:'smooth',block:'start'});}});
@@ -46,7 +46,10 @@ function buildStructure(p,parent){const t=types[p.type];
  }else if(p.type==='innovation'){
   box(parent,0,.025,0,4,.07,2,deckMat);box(parent,0,.98,-.97,3.65,1.96,.06,darkMat);
   box(parent,-1.95,1,-.24,.10,2,1.5);box(parent,1.95,1,-.24,.10,2,1.5);
-  const points=p.traces[0].points.map(p=>new THREE.Vector3(...p));mesh(tubeGeometry(points,.065,8),bodyMat,parent);
+  const outerArch=p.traces[0].points.map(v=>[v[0],v[1]]),innerArch=p.traces[1].points.map(v=>[v[0],v[1]]);
+  // The support sits behind both LED centrelines. A tube on the outer
+  // centreline enclosed that LED and hid it from the front.
+  polygon(parent,[...outerArch,...innerArch.slice().reverse()],.025,-.952,bodyMat);
   roundedBody(parent,1.18,.78,.25,.4,.35,.50,bodyMat);
   sign(parent,'INNOVATION','EXPERIENCE',2.5,.47,0,1.62,-.932);sign(parent,'TU MARCA','',.9,.3,0,.4,.866);
  }else if(p.type==='food'){
@@ -124,4 +127,4 @@ $('overview').onclick=()=>{overview=!overview;$('overview').setAttribute('aria-p
 $('dimensions').onclick=()=>{dimensionsOn=!dimensionsOn;$('dimensions').setAttribute('aria-pressed',String(dimensionsOn));if(ready)addDimensions();};$('reset-camera').onclick=()=>{if(ready)fit();};
 try{init();const id=new URLSearchParams(location.hash.slice(1)).get('item');if(pieces.some(p=>p.id===id))select(id);}catch(err){console.error(err);$('loading').textContent='No se pudo iniciar WebGL. El metrado detallado sigue disponible debajo del visor.';$('loading').style.color='#e5c8d8';document.body.dataset.ready='error';}
 // Expose read-only evidence for QA without adding configuration controls to the presentation.
-globalThis.CREDICORP_REVIEW=Object.freeze({version:'R03',pieceCount:pieces.length,totemIds:pieces.filter(p=>p.type==='totem').map(p=>p.id),total:totalLength,measured:measuredLength,rows:pieces.map(p=>({id:p.id,total:pieceLength(p),traces:p.traces.length})),palette:[MAGENTA,CYAN]});
+globalThis.CREDICORP_REVIEW=Object.freeze({version:'R04',pieceCount:pieces.length,totemIds:pieces.filter(p=>p.type==='totem').map(p=>p.id),total:totalLength,measured:measuredLength,rows:pieces.map(p=>({id:p.id,total:pieceLength(p),traces:p.traces.length})),palette:[MAGENTA,CYAN]});
