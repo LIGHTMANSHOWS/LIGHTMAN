@@ -1,12 +1,14 @@
-CETOX · NAVIDAD EN LUZ · LIGHTMAN · R03
-Publicación: https://lightmanperu.com/proyectos/cetox-navidad/
+CETOX · NAVIDAD EN LUZ · LIGHTMAN · R04
+https://lightmanperu.com/proyectos/cetox-navidad/?v=R04
 
-Cuatro propuestas de fachada 3D y tres shows navideños independientes: Jingle Bells (120 s), Deck the Halls (108 s), Carol of the Bells / Shchedryk (102.857 s). Música instrumental sintetizada para el proyecto LIGHTMAN Árbol de Navidad; créditos en LICENSES.txt.
+Fuente rastreada: LIGHTMANSHOWS/LIGHTMAN, carpeta propuestas/navidad-san-fernando. Se copiaron choreography.js, las funciones currentCue/currentTrack/lights y paletas de engine.js, y los efectos y contenido de led-brand.js. Los efectos, paletas y cortes automáticos de tracks-data.js se conservan. La identidad del contenido LED se adaptó a LIGHTMAN.
 
-Audio y TreeChoreography provienen del árbol publicado en https://lightmanperu.com/propuestas/navidad-san-fernando/. Las coordenadas se adaptaron al ancho y la altura de esta fachada, con caramelos, guirnaldas, auroras, cristales, meteoros y mensajes Feliz Navidad. La identidad visual es CETOX y LIGHTMAN.
+Corrección R04: el delineado de los bordes de la fachada ahora usa el motor completo del árbol. Anteriormente esta variante solo tenía luz cálida con pulso. Las cuatro propuestas permanecen disponibles; Luz fija conserva sus colores de base.
 
-Iniciar encendido activa el audio. Pausa, reinicio, búsqueda, bucle y efectos toman el tiempo del mismo elemento de audio. En la cortina, la fachada píxel y el interior del árbol, los efectos siguen la pista elegida. El delineado cálido conserva su carácter arquitectónico con pulsos suaves. La nieve es un efecto ambiental de presentación.
+Efecto del árbol permite el show original automático, efectos individuales y la cinta original con cometas, ondas, cascada, pulsos y destellos. Colores permite la paleta original o una selección navideña. Las texturas se calculan con coordenadas normalizadas de la fachada; la forma del edificio se conserva.
 
-Modelo geométrico conceptual estimado desde fotografías. No equivale a un levantamiento técnico o estudio fotométrico. JSON y GLB conservan el modelo conceptual R02; el runtime musical es R03. Los renders R01 permanecen disponibles como referencia separada.
+Tres pistas originales LIGHTMAN: Jingle Bells, Deck the Halls y Carol of the Bells / Shchedryk. Un solo reloj de audio para reproducción, pausa, búsqueda, bucle y efectos. Créditos en LICENSES.txt.
 
-Publicación sin cotizaciones, documentos comerciales, chats, credenciales ni editor privado. El editor local R03 se conserva fuera de esta carpeta publicable.
+Modelo geométrico conceptual estimado desde fotografías; no equivale a un levantamiento técnico o estudio fotométrico. JSON y GLB conservan el modelo R02. Los renders R01 permanecen como referencia.
+
+El editor privado y el registro de trazabilidad se conservan fuera de la carpeta publicada. No se publican cotizaciones, chats ni credenciales.
