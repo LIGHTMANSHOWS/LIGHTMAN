@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
 import {OrbitControls} from './vendor/OrbitControls.js';
-import {types,pieces,pieceLength,totalLength,measuredLength,stage1Front,CYAN,MAGENTA,roundPath,mazeSpec,mazeArch,roundedPlan} from './data.js?v=r07';
+import {types,pieces,pieceLength,totalLength,measuredLength,stage1Front,CYAN,MAGENTA,roundPath,mazeSpec,mazeArch,roundedPlan,foodSpec} from './data.js?v=r08';
 const $=s=>document.getElementById(s),fmt=(v,n=2)=>v.toLocaleString('es-PE',{minimumFractionDigits:n,maximumFractionDigits:n}),m=v=>fmt(v)+' m';
 let selected=pieces.find(p=>p.type==='presenting'),view='perspective',overview=false,dimensionsOn=true;
 const order=['presenting','innovation','food','analytic','dataMaze','totem','stageA','stageB'];
@@ -25,7 +25,7 @@ function csv(){
   rows.push([p.type,t.name,qty,zonesFor(p.type),t.w,t.d,t.h,'TOTAL ÍTEM','',(pieceLength(p)).toFixed(6),typeLength(p.type).toFixed(6),'',t.status,t.source]);
  }
  rows.push(['TOTAL MODELO','',pieces.length,'','','','','TOTAL PROVISIONAL','','',totalLength.toFixed(6)]);
- const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"',blob=new Blob(['\ufeff'+rows.map(r=>r.map(quote).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='LIGHTMAN_Credicorp_Metrado_14Nov2026_R07.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Metrado descargado con cantidades, metros unitarios y totales por ítem.');
+ const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"',blob=new Blob(['\ufeff'+rows.map(r=>r.map(quote).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='LIGHTMAN_Credicorp_Metrado_15Nov2026_R08.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Metrado descargado con cantidades, metros unitarios y totales por ítem.');
 }
 renderNav();renderTables();fillInspector();
 $('search').addEventListener('input',renderNav);
@@ -65,11 +65,12 @@ function buildStructure(p,parent){const t=types[p.type];
   roundedBody(parent,1.18,.78,.25,.4,.35,.50,bodyMat);
   sign(parent,'INNOVATION','EXPERIENCE',2.5,.47,0,1.62,-.932);sign(parent,'TU MARCA','',.9,.3,0,.4,.866);
  }else if(p.type==='food'){
-  for(const x of [-1.5,1.5])for(const z of [-.95,.95])box(parent,x,1.1,z,.055,2.2,.055,edgeMat);
-  box(parent,0,2.15,0,3.1,.10,2,deckMat);box(parent,0,.48,.40,2.6,.96,.5,darkMat);
-  const outer=[[-1.55,0],[-1.55,2.2],[1.55,2.2],[1.55,0]],ar=p.traces[1].points.map(v=>[v[0],v[1]]);
+  const s=foodSpec;
+  for(const x of [-s.w/2+.05,s.w/2-.05])for(const z of [-s.d/2+.05,s.d/2-.05])box(parent,x,s.h/2,z,.055,s.h,.055,edgeMat);
+  box(parent,0,s.h-.05,0,s.w,.10,s.d,deckMat);box(parent,0,.48,.40,2.6*s.w/3.1,.96,.5,darkMat);
+  const outer=[[-s.w/2,0],[-s.w/2,s.h],[s.w/2,s.h],[s.w/2,0]],ar=p.traces[1].points.map(v=>[v[0],v[1]]);
   polygon(parent,[...outer,...ar.slice().reverse()],.10,.91,bodyMat);
-  sign(parent,'ALIMENTOS','',2.25,.30,0,.50,.66);
+  sign(parent,'ALIMENTOS','',2.25*s.w/3.1,.30,0,.50,.66);
  }else if(p.type==='analytic'){
   mesh(new THREE.CylinderGeometry(.9,.9,.2,64),deckMat,parent,0,.1,0);
   for(const tr of p.traces){
@@ -198,4 +199,4 @@ $('overview').onclick=()=>{overview=!overview;$('overview').setAttribute('aria-p
 $('dimensions').onclick=()=>{dimensionsOn=!dimensionsOn;$('dimensions').setAttribute('aria-pressed',String(dimensionsOn));if(ready)addDimensions();};$('reset-camera').onclick=()=>{if(ready)fit();};
 try{init();const id=new URLSearchParams(location.hash.slice(1)).get('item');if(pieces.some(p=>p.id===id))select(id);}catch(err){console.error(err);$('loading').textContent='No se pudo iniciar WebGL. El metrado detallado sigue disponible debajo del visor.';$('loading').style.color='#e5c8d8';document.body.dataset.ready='error';}
 // Expose read-only evidence for QA without adding configuration controls to the presentation.
-globalThis.CREDICORP_REVIEW=Object.freeze({version:'R07',pieceCount:pieces.length,totemIds:pieces.filter(p=>p.type==='totem').map(p=>p.id),total:totalLength,measured:measuredLength,rows:pieces.map(p=>({id:p.id,total:pieceLength(p),traces:p.traces.length})),palette:[MAGENTA,CYAN]});
+globalThis.CREDICORP_REVIEW=Object.freeze({version:'R08',pieceCount:pieces.length,totemIds:pieces.filter(p=>p.type==='totem').map(p=>p.id),total:totalLength,measured:measuredLength,rows:pieces.map(p=>({id:p.id,total:pieceLength(p),traces:p.traces.length})),palette:[MAGENTA,CYAN]});
