@@ -1,6 +1,6 @@
 import * as THREE from './vendor/three.module.js';
 import {OrbitControls} from './vendor/OrbitControls.js';
-import {types,pieces,pieceLength,totalLength,measuredLength,stage1Front,CYAN,MAGENTA,roundPath} from './data.js?v=r05';
+import {types,pieces,pieceLength,totalLength,measuredLength,stage1Front,CYAN,MAGENTA,roundPath} from './data.js?v=r06';
 const $=s=>document.getElementById(s),fmt=(v,n=2)=>v.toLocaleString('es-PE',{minimumFractionDigits:n,maximumFractionDigits:n}),m=v=>fmt(v)+' m';
 let selected=pieces.find(p=>p.type==='presenting'),view='perspective',overview=false,dimensionsOn=true;
 const order=['presenting','innovation','food','analytic','dataMaze','totem','stageA','stageB'];
@@ -25,7 +25,7 @@ function csv(){
   rows.push([p.type,t.name,qty,zonesFor(p.type),t.w,t.d,t.h,'TOTAL ÍTEM','',(pieceLength(p)).toFixed(6),typeLength(p.type).toFixed(6),'',t.status,t.source]);
  }
  rows.push(['TOTAL MODELO','',pieces.length,'','','','','TOTAL PROVISIONAL','','',totalLength.toFixed(6)]);
- const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"',blob=new Blob(['\ufeff'+rows.map(r=>r.map(quote).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='LIGHTMAN_Credicorp_Metrado_14Nov2026_R05.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Metrado descargado con cantidades, metros unitarios y totales por ítem.');
+ const quote=v=>'"'+String(v??'').replace(/"/g,'""')+'"',blob=new Blob(['\ufeff'+rows.map(r=>r.map(quote).join(';')).join('\r\n')],{type:'text/csv;charset=utf-8'}),url=URL.createObjectURL(blob),a=document.createElement('a');a.href=url;a.download='LIGHTMAN_Credicorp_Metrado_14Nov2026_R06.csv';a.click();setTimeout(()=>URL.revokeObjectURL(url),1000);toast('Metrado descargado con cantidades, metros unitarios y totales por ítem.');
 }
 renderNav();renderTables();fillInspector();
 $('search').addEventListener('input',renderNav);
@@ -72,7 +72,14 @@ function buildStructure(p,parent){const t=types[p.type];
   sign(parent,'ALIMENTOS','',2.25,.30,0,.50,.66);
  }else if(p.type==='analytic'){
   mesh(new THREE.CylinderGeometry(.9,.9,.2,64),deckMat,parent,0,.1,0);
-  for(const tr of p.traces){const [a,b]=tr.points;beam(parent,a,b,.035,darkMat);box(parent,a[0],.03,a[2],.09,.06,.20,edgeMat);}
+  for(const tr of p.traces){
+   const [a,b]=tr.points;
+   // Keep the support behind the luminous centreline. A concentric opaque
+   // support with radius .035 enclosed the LED core (radius .013).
+   const supportA=[a[0],a[1],a[2]-.055],supportB=[b[0],b[1],b[2]-.055];
+   beam(parent,supportA,supportB,.035,darkMat);
+   box(parent,a[0],.03,a[2],.09,.06,.20,edgeMat);
+  }
   sign(parent,'MR ANALITYC','',1.3,.23,0,.12,.82);
  }else if(p.type==='totem'){
   box(parent,0,.735,0,.4,1.47,.4,darkMat);box(parent,0,.03,0,.48,.06,.48,edgeMat);
@@ -139,4 +146,4 @@ $('overview').onclick=()=>{overview=!overview;$('overview').setAttribute('aria-p
 $('dimensions').onclick=()=>{dimensionsOn=!dimensionsOn;$('dimensions').setAttribute('aria-pressed',String(dimensionsOn));if(ready)addDimensions();};$('reset-camera').onclick=()=>{if(ready)fit();};
 try{init();const id=new URLSearchParams(location.hash.slice(1)).get('item');if(pieces.some(p=>p.id===id))select(id);}catch(err){console.error(err);$('loading').textContent='No se pudo iniciar WebGL. El metrado detallado sigue disponible debajo del visor.';$('loading').style.color='#e5c8d8';document.body.dataset.ready='error';}
 // Expose read-only evidence for QA without adding configuration controls to the presentation.
-globalThis.CREDICORP_REVIEW=Object.freeze({version:'R05',pieceCount:pieces.length,totemIds:pieces.filter(p=>p.type==='totem').map(p=>p.id),total:totalLength,measured:measuredLength,rows:pieces.map(p=>({id:p.id,total:pieceLength(p),traces:p.traces.length})),palette:[MAGENTA,CYAN]});
+globalThis.CREDICORP_REVIEW=Object.freeze({version:'R06',pieceCount:pieces.length,totemIds:pieces.filter(p=>p.type==='totem').map(p=>p.id),total:totalLength,measured:measuredLength,rows:pieces.map(p=>({id:p.id,total:pieceLength(p),traces:p.traces.length})),palette:[MAGENTA,CYAN]});
