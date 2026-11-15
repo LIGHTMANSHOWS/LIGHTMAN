@@ -1,0 +1,12 @@
+CETOX · NAVIDAD EN LUZ · LIGHTMAN · R03
+Publicación: https://lightmanperu.com/proyectos/cetox-navidad/
+
+Cuatro propuestas de fachada 3D y tres shows navideños independientes: Jingle Bells (120 s), Deck the Halls (108 s), Carol of the Bells / Shchedryk (102.857 s). Música instrumental sintetizada para el proyecto LIGHTMAN Árbol de Navidad; créditos en LICENSES.txt.
+
+Audio y TreeChoreography provienen del árbol publicado en https://lightmanperu.com/propuestas/navidad-san-fernando/. Las coordenadas se adaptaron al ancho y la altura de esta fachada, con caramelos, guirnaldas, auroras, cristales, meteoros y mensajes Feliz Navidad. La identidad visual es CETOX y LIGHTMAN.
+
+Iniciar encendido activa el audio. Pausa, reinicio, búsqueda, bucle y efectos toman el tiempo del mismo elemento de audio. En la cortina, la fachada píxel y el interior del árbol, los efectos siguen la pista elegida. El delineado cálido conserva su carácter arquitectónico con pulsos suaves. La nieve es un efecto ambiental de presentación.
+
+Modelo geométrico conceptual estimado desde fotografías. No equivale a un levantamiento técnico o estudio fotométrico. JSON y GLB conservan el modelo conceptual R02; el runtime musical es R03. Los renders R01 permanecen disponibles como referencia separada.
+
+Publicación sin cotizaciones, documentos comerciales, chats, credenciales ni editor privado. El editor local R03 se conserva fuera de esta carpeta publicable.
