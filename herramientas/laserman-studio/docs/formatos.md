@@ -20,7 +20,7 @@ Un archivo `.laserman.json` utiliza `format: "lightman-laserman"` y `version: 1`
 | `motion` | Puntos locales de tamaño, giro y desplazamiento |
 | `motionBase`, `motionStrength`, `motionEnabled` | Referencia y control del movimiento musical |
 
-El validador del editor comprueba tipos de pista, IDs únicos, tiempos, colores, parámetros y límites: proyecto de 1–1.200 s, BPM de 40–240, hasta 12.000 bloques y 1.024 marcadores. El límite de archivo importado es 5 MB. El servidor local hace además una validación básica de formato, número de pistas y tamaño; el validador completo del modelo está en `engine.js`.
+El validador del editor comprueba tipos de pista, IDs únicos, tiempos, colores, parámetros y límites: proyecto de 1–1.200 s, BPM de 40–240, hasta 12.000 bloques y 1.024 marcadores. El límite de archivo importado es 20 MB. Los proyectos de más de 2 MB se guardan en IndexedDB para evitar la cuota de localStorage. El servidor local hace además una validación básica de formato, número de pistas y tamaño; el validador completo del modelo está en `engine.js`.
 
 El ejemplo completo e importable es `desktop/samples/NEON-PROTOCOL-Director-Cut.laserman.json`. No es necesario crear a mano seis pistas para empezar: abre Director Cut y edita una copia.
 

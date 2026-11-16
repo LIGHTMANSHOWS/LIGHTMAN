@@ -7,3 +7,5 @@ El código de integración, el editor de timeline, la escena LASERMAN y la sínt
 - `laser.js` y `fb3-wire.js` derivan del trabajo local de LIGHTMAN Laser Studio. La edición web no contiene el transporte USB, el cálculo de autenticación FB3 ni ejecutables de QuickShow, licencias personales o volcados de memoria. El control físico se conserva en el programa local.
 - La chaqueta y las figuras humanas de `scene.js` y `jacket.js` son una reconstrucción mediante geometría propia. No se incluye ni se afirma haber recuperado un modelo 3D privado de LDP.
 - NEON PROTOCOL es una composición instrumental sintetizada para este proyecto. Su archivo de metadatos está junto al WAV.
+
+- El show de referencia ARIUS y su audio proceden del [video suministrado por el usuario](https://www.youtube.com/watch?v=QEo0hH9yCoI). Se conserva la duración original y se aplica ecualización suave y normalización lineal. Los derechos del audio y la actuación pertenecen a sus titulares; esta adaptación no establece una licencia nueva. La reconstrucción visual contiene estimaciones de profundidad, poses y tramos ocultos.

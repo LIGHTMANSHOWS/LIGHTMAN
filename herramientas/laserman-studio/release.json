@@ -1,7 +1,13 @@
 {
-  "version": "1.1.0-web",
-  "show": "director-1.1",
+  "version": "1.2.0-web",
+  "show": "arius-video-keyframes-2",
   "publishedPath": "/herramientas/laserman-studio/",
-  "builtAtUtc": "2026-11-04T13:26:09.545741+00:00",
-  "physicalOutput": "local-operator-only"
+  "builtAtUtc": "2026-11-16T15:23:05.906924+00:00",
+  "physicalOutput": "local-operator-only",
+  "laserTracks": 3,
+  "suitTracks": 3,
+  "laserCues": 276,
+  "nativeKeys": 59292,
+  "showSha256": "92337fadcb133f8c004e765a150ab72779bb15ddeb6e80edb50edf1754652718",
+  "audioSha256": "f2d366c8da56f3e9d91db372be177a1ede6c338696535cc3cddd578d75df6382"
 }

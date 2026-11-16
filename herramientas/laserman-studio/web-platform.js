@@ -32,7 +32,7 @@ async function route(request,url){
   if(path==='audio')return json({url:await saveAudio(await request.blob(),url.searchParams.get('name')||'audio.wav')});
   if(path==='import-show'){
     const files=await unzipFiles(await request.blob()),raw=files.get('project.laserman.json');if(!raw)throw Error('Falta el proyecto en el ZIP.');
-    if(raw.length>5_000_000)throw Error('El proyecto supera 5 MB.');const project=validateProject(JSON.parse(new TextDecoder().decode(raw)));
+    if(raw.length>20_000_000)throw Error('El proyecto supera 20 MB.');const project=validateProject(JSON.parse(new TextDecoder().decode(raw)));
     const name=project.audio?.url?.split('/').at(-1),audio=files.get('assets/'+name)||files.get('audio/'+name);
     if(audio)project.audio.url=await saveAudio(new Blob([audio]),name);
     return json({project});

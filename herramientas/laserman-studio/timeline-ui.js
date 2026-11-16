@@ -3,7 +3,7 @@ import {markerSpan,rangeAt,snapTime,fillRange,makeMarker} from './timeline-model
 
 export function commitFocusedField(){
   const focused=document.activeElement;
-  if(focused?.matches('[data-property],[data-marker-property]'))focused.dispatchEvent(new Event('change',{bubbles:true}));
+  if(focused?.matches('[data-property],[data-marker-property],[data-transition-property]'))focused.dispatchEvent(new Event('change',{bubbles:true}));
 }
 
 export function mountTimelineEditor(options){
@@ -65,7 +65,14 @@ export function mountTimelineEditor(options){
       b.onpointerdown=e=>dragLibrary(e,b,{kind,name,...(kind==='laser'?{shape:id}:kind==='suit'?{effect:id}:{})},id);
       cards.append(b);
     }
-    library.append(cards);const hint=document.createElement('p');hint.className='hint';hint.textContent='Selecciona un efecto y pulsa Rellenar rango, o arrástralo sobre la pista. Alt evita el encaje al mover un bloque.';library.append(hint);
+    library.append(cards);
+    if(kind==='laser'&&options.insertReference){
+      const reference=document.createElement('button');reference.type='button';reference.className='reference-sequence';
+      reference.textContent='▶ Efectos del video';reference.title='Inserta y reproduce 24 s de Laser Assassin desde el cabezal en los tres láseres. Conserva los trajes, las manos y la música. Ctrl+Z deshace.';
+      reference.onclick=options.insertReference;library.append(reference);
+      const note=document.createElement('p');note.className='hint';note.textContent='Laser Assassin · cuadrado verde, corona violeta y barridos. 24 s desde el cabezal; deshacer con Ctrl+Z.';library.append(note);
+    }
+    const hint=document.createElement('p');hint.className='hint';hint.textContent='Selecciona un efecto y pulsa Rellenar rango, o arrástralo sobre la pista. Alt evita el encaje al mover un bloque.';library.append(hint);
   }
   function dragLibrary(event,button,data,id){
     if(event.button!==0)return;event.preventDefault();commitFocusedField();

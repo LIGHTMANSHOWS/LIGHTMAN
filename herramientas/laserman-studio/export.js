@@ -4,8 +4,8 @@ import {createLedEngine} from './led-engine.js';
 import * as core from './vendor/ldp-core.js';
 
 const pause=()=>new Promise(resolve=>setTimeout(resolve,0));
-export function ildFrame(track,time,index,total,height=4){
-  const wire=encodeFB3Frame(laserFrame(track,time,height),{kpps:15,scale:1,intensity:1,startBlankPoints:9});
+export function ildFrame(track,time,index,total,height=4,bpm=128){
+  const wire=encodeFB3Frame(laserFrame(track,time,height,bpm),{kpps:15,scale:1,intensity:1,startBlankPoints:9});
   const count=(wire.length-8)/8,frame=new Uint8Array(32+count*8),view=new DataView(frame.buffer);
   frame.set([73,76,68,65,0,0,0,5]);
   const title=new TextEncoder().encode(track.id.slice(0,8));frame.set(title,8);
@@ -72,7 +72,7 @@ export async function buildExport(source,fixture,positions,fps,onProgress){
     const track=tracks[trackIndex],frames=[];let size=32;
     for(let index=0;index<count;index++){
       const sourceTrack=trackEnabled(project,track)?track:{...track,cues:[]};
-      const frame=ildFrame(sourceTrack,index/fps,index,count,project.stage.rigHeight);frames.push(frame);size+=frame.length;
+      const frame=ildFrame(sourceTrack,index/fps,index,count,project.stage.rigHeight,project.bpm);frames.push(frame);size+=frame.length;
       if(index%40===0){onProgress((trackIndex+index/count)/6,`ILDA ${trackIndex+1}/3 · ${Math.round(index/count*100)} %`);await pause();}
     }
     const combined=new Uint8Array(size);let cursor=0;for(const frame of frames){combined.set(frame,cursor);cursor+=frame.length;}
