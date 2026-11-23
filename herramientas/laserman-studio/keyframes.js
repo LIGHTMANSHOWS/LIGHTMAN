@@ -6,6 +6,7 @@ export const CHANNELS={
   panX:{label:'Posición horizontal · m',min:-3,max:3,step:.01,fallback:0,kind:'laser'},
   panZ:{label:'Posición en profundidad · m',min:-3,max:3,step:.01,fallback:0,kind:'laser'},
   size:{label:'Tamaño',min:.05,max:1,step:.01,fallback:.65,kind:'laser'},
+  sizePulse:{label:'Impulso de tamaño',min:0,max:1,step:.01,fallback:0,kind:'laser'},
   rotation:{label:'Giro · grados',min:-720,max:720,step:1,fallback:0,kind:'laser'},
   opening:{label:'Apertura',min:0,max:1,step:.01,fallback:1,kind:'laser'},
   depthScale:{label:'Profundidad de la figura',min:0,max:2,step:.01,fallback:1,kind:'laser'},
@@ -15,6 +16,7 @@ export const CHANNELS={
   effectPhase:{label:'Fase del movimiento',min:-50000,max:50000,step:.01,fallback:0,kind:'laser'},
   laserIntensity:{label:'Brillo láser · %',min:0,max:100,step:1,fallback:100,kind:'laser'},
   beamCount:{label:'Cantidad de haces',min:3,max:32,step:1,fallback:8,kind:'laser',discrete:true},
+  polygonSides:{label:'Número de lados',min:3,max:32,step:1,fallback:5,kind:'laser',discrete:true},
   pilotIntensity:{label:'Haz interior · brillo %',min:0,max:100,step:1,fallback:0,kind:'laser'},
   pilotWidth:{label:'Haz interior · apertura',min:0,max:1,step:.001,fallback:.04,kind:'laser'},
   pilotCenter:{label:'Haz interior · centro',min:-1,max:1,step:.001,fallback:0,kind:'laser'},
@@ -98,7 +100,7 @@ export function simplifyKeys(keys,tolerance){
   return keys.filter((_,i)=>keep.has(i));
 }
 export function validateAnimation(cue,kind){
-  for(const key of ['opening','depthScale','laserIntensity','motionRate','pilotIntensity','pilotWidth','pilotCenter'])if(cue[key]!==undefined&&(!Number.isFinite(cue[key])||cue[key]<CHANNELS[key].min||cue[key]>CHANNELS[key].max))throw Error(CHANNELS[key].label+' no válido.');
+  for(const key of ['sizePulse','opening','depthScale','laserIntensity','motionRate','pilotIntensity','pilotWidth','pilotCenter'])if(cue[key]!==undefined&&(!Number.isFinite(cue[key])||cue[key]<CHANNELS[key].min||cue[key]>CHANNELS[key].max))throw Error(CHANNELS[key].label+' no válido.');
   if(cue.pilotColor!==undefined&&!/^#[a-f0-9]{6}$/i.test(cue.pilotColor))throw Error('Color de haz interior no válido.');
   const a=cue.animation;if(a===undefined)return;
   if(kind==='hand'||!a||a.version!==1||typeof a.enabled!=='boolean'||!a.curves||Array.isArray(a.curves)||typeof a.curves!=='object')throw Error('Animación por fotogramas no válida.');

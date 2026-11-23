@@ -1,0 +1,24 @@
+{
+  "version": 1,
+  "defaultShow": "neon",
+  "shows": [
+    {
+      "id": "neon",
+      "label": "Neon Protocol",
+      "name": "LASERMAN · NEON PROTOCOL / Director Cut",
+      "duration": 180,
+      "project": "assets/suite-neon-show.json",
+      "demo": true,
+      "fps": 30
+    },
+    {
+      "id": "arius-publico",
+      "label": "ARIUS · demo anterior",
+      "name": "LASERMAN · ARIUS · show ajustado al video · 3 personas",
+      "duration": 433.551375,
+      "project": "assets/suite-arius-publico-show.json",
+      "demo": true,
+      "fps": 30
+    }
+  ]
+}

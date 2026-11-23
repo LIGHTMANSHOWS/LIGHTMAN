@@ -4,7 +4,7 @@ import {SHAPE_NAMES,EFFECTS,clamp} from './engine.js';
 const SVG='http://www.w3.org/2000/svg';
 const round=v=>Math.round(v*1e6)/1e6;
 const fmt=v=>typeof v==='number'?Number(v.toFixed(3)).toString():v;
-const baseFields=['size','rotation','rotationEnd','panX','panZ','opening','depthScale','projectionHeight','previewOrigin','effectSpeed','effectPhase','effectClock','beamCount','laserIntensity','speed','intensity','motionRate'];
+const baseFields=['size','rotation','rotationEnd','panX','panZ','opening','depthScale','projectionHeight','previewOrigin','effectSpeed','effectPhase','effectClock','beamCount','polygonSides','laserIntensity','speed','intensity','motionRate'];
 function node(tag,text,attrs={}){const el=document.createElement(tag);if(text!==undefined)el.textContent=text;for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);return el;}
 function svg(tag,attrs={}){const el=document.createElementNS(SVG,tag);for(const [k,v] of Object.entries(attrs))el.setAttribute(k,v);return el;}
 
@@ -14,7 +14,7 @@ export function mountKeyframeEditor(options){
   const toolbar=node('button','◆ Movimiento',{id:'openKeyframes',title:'Fotogramas clave · K añade una clave en el cabezal'});document.querySelector('.edit-tools').prepend(toolbar);
   const banner=node('div',undefined,{id:'keyframePreviewStatus'}),bannerText=node('span');banner.hidden=true;
   const exit=node('button','■ Salir');exit.onclick=()=>options.stopPreview();banner.append(bannerText,exit);document.querySelector('.stage').append(banner);
-  let opened=false,current=null,channel='panX',selectedId=null,clipboard=null,fit=true;
+  let opened=false,current=null,channel='size',selectedId=null,clipboard=null,fit=true;
   let loopStart=0,loopEnd=0,viewRate=1,lastCue=null,dragging=false,view=null,selectedKey=null,reuseOpen=false,suppressClickUntil=0;
   let library=[];try{const saved=JSON.parse(localStorage.getItem('laserman-movement-library-v1')||'[]');if(Array.isArray(saved))library=saved.filter(x=>x?.movement?.animation&&typeof x.name==='string').slice(0,12);}catch{}
   const ui={};

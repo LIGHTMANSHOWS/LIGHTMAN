@@ -2,13 +2,15 @@ import {effectTime,recordedMotionAt,placeRecordedFrame,validateRecordedMotion} f
 import {animatedCue,animationClock,motionTime,validateAnimation} from './keyframes.js';
 import {TRANSITION_TYPES,TRANSITION_CURVES,transitionState,blendLaserFrames} from './transitions.js';
 import {validateProject as validateLaserProject} from './laser.js';
+import {validateProjection} from './projection.js';
+import {validatePerformerSpace,validateEffectAnchor,anchorDrawing} from './performer-space.js';
 export const BPM=128;
 export const BEAT=60/BPM;
 export const DURATION=180;
 export const COLORS=['#00e5ff','#b55cff','#4aff9c','#ff4545','#ffbe39'];
 export const LASER_SHAPES=['line','fan','ring','square','wave','tunnel','hands'];
 export const REFERENCE_SHAPES=['orbitSquare','beamCage','needle','splitBeams','blade','handPinch','beamFan','prism'];
-export const SHAPE_NAMES={line:'Línea',fan:'Abanico',ring:'Anillo',square:'Cuadrado',wave:'Onda',tunnel:'Túnel',hands:'Hacia las manos',orbitSquare:'Cuadrado giratorio',beamCage:'Corona de haces',needle:'Haz móvil',splitBeams:'Doble haz',blade:'Cuchilla de luz',handPinch:'Pinza a las manos',beamFan:'Abanico de rayos',prism:'Túnel prisma RGB',custom:'Fotogramas de Laser Studio'};
+export const SHAPE_NAMES={line:'Línea',fan:'Abanico',ring:'Anillo',square:'Cuadrado',triangle:'Triángulo',diamond:'Diamante',pentagon:'Pentágono',hexagon:'Hexágono',polygon:'Polígono regular',wave:'Onda',tunnel:'Túnel',hands:'Hacia las manos',orbitSquare:'Cuadrado giratorio',beamCage:'Corona de haces',needle:'Haz móvil',splitBeams:'Doble haz',blade:'Cuchilla de luz',handPinch:'Pinza a las manos',beamFan:'Abanico de rayos',prism:'Túnel prisma RGB',custom:'Fotogramas de Laser Studio'};
 export const EFFECTS={fade:'Color fijo',wave:'Onda',wipe:'Barrido',meteor:'Meteoro',pulse:'Pulso',bars:'Barras',twinkle:'Destellos',confetti:'Confeti',strobe:'Estrobo'};
 export const SECTIONS=[{time:0,name:'Entrada'},{time:30,name:'Geometría'},{time:60,name:'Primer drop'},{time:90,name:'Diálogo'},{time:120,name:'Segundo drop'},{time:150,name:'Final'}];
 export const uid=()=>globalThis.crypto.randomUUID();
@@ -49,6 +51,8 @@ export function demoProject(){
 }
 
 export function validateProject(p){
+  if(p?.laserScale!==undefined&&!finite(p.laserScale,.05,2))throw Error('Amplitud general del láser no válida.');
+  if(p?.projection!==undefined)validateProjection(p.projection);
   if(!p||p.format!=='lightman-laserman'||p.version!==1||!Array.isArray(p.tracks)||p.tracks.length!==6)throw Error('Proyecto LASERMAN no válido.');
   if(typeof p.name!=='string'||p.name.length>100||!finite(p.duration,1,1200)||!finite(p.bpm,40,240))throw Error('Duración, nombre o BPM no válidos.');
   if(p.audio&&(!/^assets\/[a-zA-Z0-9_.-]+$/.test(p.audio.url)||typeof p.audio.name!=='string'||p.audio.name.length>200||!finite(p.audio.offset??0,-1200,1200)))throw Error('Referencia de audio no válida.');
@@ -77,11 +81,13 @@ export function validateProject(p){
         if(c.transitionUnit!==undefined&&!['seconds','beats'].includes(c.transitionUnit))throw Error('Unidad de transición no válida.');
         if(c.transitionCurve!==undefined&&!Object.hasOwn(TRANSITION_CURVES,c.transitionCurve))throw Error('Curva de transición no válida.');
         if(c.motionStrength!==undefined&&!finite(c.motionStrength,0,1))throw Error('Fuerza del movimiento no válida.');
-        validateRecordedMotion(c);validateAnimation(c,list===t.cues?t.type:'hand');
+        validateRecordedMotion(c);validateAnimation(c,list===t.cues?t.type:'hand');validateEffectAnchor(c.effectAnchor);
         if(c.effectSpeed!==undefined&&!finite(c.effectSpeed,0,4))throw Error('Velocidad láser no válida.');
         if(c.beamCount!==undefined&&(!Number.isInteger(c.beamCount)||!finite(c.beamCount,3,32)))throw Error('Cantidad de haces no válida.');
+        if(c.polygonSides!==undefined&&(!Number.isInteger(c.polygonSides)||!finite(c.polygonSides,3,32)))throw Error('El polígono debe tener entre 3 y 32 lados.');
         if(c.projectionHeight!==undefined&&!finite(c.projectionHeight,0,12))throw Error('Altura de figura no válida.');
         if(c.previewOrigin!==undefined&&!['projector','left-hand','right-hand'].includes(c.previewOrigin))throw Error('Origen visual no válido.');
+        if(c.previewRays!==undefined&&typeof c.previewRays!=='boolean')throw Error('Visibilidad de haces no válida.');
         if(c.motionEnabled!==undefined&&typeof c.motionEnabled!=='boolean')throw Error('Estado de movimiento no válido.');
         if(c.motionBase!==undefined&&(!finite(c.motionBase.size,.05,1)||!finite(c.motionBase.rotation,-720,720)||!finite(c.motionBase.rotationEnd,-720,720)||!finite(c.motionBase.panX,-3,3)||!finite(c.motionBase.panZ,-3,3)))throw Error('Base del movimiento no válida.');
         if(c.sourceOffset!==undefined&&!finite(c.sourceOffset,0,1200))throw Error('Recorte de bloque no válido.');
@@ -99,6 +105,7 @@ export function validateProject(p){
     if(typeof m.id!=='string'||ids.has(m.id)||typeof m.name!=='string'||m.name.length>100||!finite(m.start,0,p.duration)||(m.end!=null&&(!finite(m.end,0,p.duration)||m.end-m.start<.025))||!/^#[a-f0-9]{6}$/i.test(m.color))throw Error('Marcador no válido.');
     ids.add(m.id);
   }
+  validatePerformerSpace(p);
   return {...structuredClone(p),markers:structuredClone(p.markers||[])};
 }
 
@@ -119,7 +126,9 @@ function motionValue(cue,time){
   const t=right.at>left.at?clamp((local-left.at)/(right.at-left.at),0,1):0;
   return Object.fromEntries(['size','rotation','panX','panZ'].map(k=>[k,left[k]+(right[k]-left[k])*t]));
 }
-function baseShape(shape,n=96){
+function baseShape(shape,n=96,polygonSides=5){
+  const sides={triangle:3,diamond:4,pentagon:5,hexagon:6,polygon:polygonSides}[shape];
+  if(sides){const vertices=Array.from({length:sides},(_,i)=>{const a=Math.PI/2+i*Math.PI*2/sides;return [Math.cos(a),Math.sin(a)];});return [...vertices,[...vertices[0]]];}
   if(shape==='line')return Array.from({length:n},(_,i)=>[-1+2*i/(n-1),0]);
   if(shape==='square')return Array.from({length:n+1},(_,i)=>{const s=(i%n)/n*4,j=Math.floor(s),f=s-j;return [[-1+2*f,-1],[1,-1+2*f],[1-2*f,1],[-1,1-2*f]][j];});
   if(shape==='fan')return Array.from({length:24},(_,i)=>[-1+2*i/23,Math.abs(Math.sin(i*Math.PI))*.01]);
@@ -128,6 +137,7 @@ function baseShape(shape,n=96){
 }
 export function rawLaserFrame(c,time,height=4,position=[0,4,-.3]){
   c=animatedCue(c,time);
+  if(c.sizePulse)c={...c,size:Math.min(1,c.size+c.sizePulse)};
   const sample=recordedMotionAt(c,time);
   if(!sample)return finishKeyframeFrame(proceduralLaserFrame(c,time,height,position),c);
   const neutral={...c,size:1,rotation:0,rotationEnd:0,panX:0,panZ:0,motionEnabled:false,
@@ -213,7 +223,7 @@ function proceduralLaserFrame(c,time,height=4,position=[0,4,-.3]){
     }
     return {paths};
   }
-  let points=baseShape(c.shape);
+  let points=baseShape(c.shape,96,c.polygonSides??5);
   const clockProgress=clamp(animationClock(c,time)/(c.sourceDuration||c.duration),0,1);
   const size=c.shape==='tunnel'?baseSize*(.65+.25*Math.sin(clockProgress*Math.PI*4)):baseSize;
   if(c.shape==='square')points=[[-1,-1],[1,-1],[1,1],[-1,1],[-1,-1]];
@@ -223,26 +233,32 @@ function proceduralLaserFrame(c,time,height=4,position=[0,4,-.3]){
 
 function laserPlacement(cue,frame){
   const origin=cue?.previewOrigin||'projector';
-  const discrete=!!cue&&(['beamCage','beamFan','needle','splitBeams'].includes(cue.shape)||(cue.shape==='handPinch'&&frame.paths.length>1));
+  const customDots=cue?.shape==='custom'&&frame.paths.length>0&&frame.paths.every(p=>p.points.every(q=>Math.hypot(q[0]-p.points[0][0],q[1]-p.points[0][1])<.015));
+  const discrete=!!cue&&(customDots||['beamCage','beamFan','needle','splitBeams'].includes(cue.shape)||(cue.shape==='handPinch'&&frame.paths.length>1));
   return {height:cue?.projectionHeight??(['hands','handPinch'].includes(cue?.shape)?1.235:.035),
     weights:{projector:origin==='projector'?1:0,'left-hand':origin==='left-hand'?1:0,'right-hand':origin==='right-hand'?1:0},
     discrete,rayOpacity:discrete?.86:.075};
 }
-export function laserFrame(track,time,height=4,bpm=128){
+export function laserFrame(track,time,height=4,bpm=128,project=null){
   const cue=activeCue(track.cues,time);if(!cue)return {paths:[]};
-  return evaluateLaserCue(track,cue,time,height,bpm,0);
+  const frame=evaluateLaserCue(track,cue,time,height,bpm,0,project);
+  if(!project?.laserScale||project.laserScale===1||project.effectSpace)return frame;
+  const maximum=Math.max(0,...frame.paths.flatMap(path=>path.points.flatMap(p=>p.map(Math.abs))));
+  const scale=Math.min(project.laserScale,maximum>0?.98/maximum:project.laserScale);
+  const result={paths:frame.paths.map(path=>({...path,points:path.points.map(p=>p.map(v=>v*scale))}))};
+  Object.defineProperty(result,'placement',{value:frame.placement,configurable:true});return result;
 }
-function evaluateLaserCue(track,cue,time,height,bpm,depth){
-  const current=rawLaserFrame(cue,time,height,track.position),target=laserPlacement(animatedCue(cue,time),current);
+function evaluateLaserCue(track,cue,time,height,bpm,depth,project){
+  const current=anchorDrawing(rawLaserFrame(cue,time,height,track.position),track,cue,height,project),target=laserPlacement(animatedCue(cue,time),current);
   const state=transitionState(track,cue,time,bpm);
   if(!state.active||state.amount>=1-1e-6||depth>=24){Object.defineProperty(current,'placement',{value:target,configurable:true});return current;}
   const previous=state.previous,priorTime=previous?Math.min(cue.start-1e-7,previous.start+previous.duration-1e-7):cue.start;
   // Freeze the actual outgoing image at the join, including any unfinished
   // transition in an overlapping clip, rather than jumping to its raw shape.
-  const prior=previous?evaluateLaserCue(track,previous,priorTime,height,bpm,depth+1):{paths:[]};
+  const prior=previous?evaluateLaserCue(track,previous,priorTime,height,bpm,depth+1,project):{paths:[]};
   const source=previous?(prior.placement||laserPlacement(previous,prior)):target;
   const anchors={from:prior,
-    to:rawLaserFrame(cue,cue.start,height,track.position)};
+    to:anchorDrawing(rawLaserFrame(cue,cue.start,height,track.position),track,cue,height,project)};
   const frame=blendLaserFrames(prior,current,state.amount,cue.transition,previous,cue,anchors);
   const u=state.amount;
   const placement={height:source.height+(target.height-source.height)*u,

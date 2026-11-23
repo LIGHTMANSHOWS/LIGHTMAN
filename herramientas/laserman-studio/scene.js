@@ -22,6 +22,13 @@ export function createScene(canvas,fixture){
   const metal=new THREE.MeshStandardMaterial({color:'#313e52',roughness:.6,metalness:.6});
   const floor=new THREE.Mesh(new THREE.BoxGeometry(10,.14,6),new THREE.MeshStandardMaterial({color:'#101620',roughness:.8}));floor.position.y=-.1;scene.add(floor);
   const grid=new THREE.GridHelper(10,20,'#2d3850','#192333');grid.position.y=.001;scene.add(grid);
+  const roundFloor=new THREE.Mesh(new THREE.CylinderGeometry(2.6,2.6,.14,96),new THREE.MeshStandardMaterial({color:'#101620',roughness:.8}));roundFloor.position.y=-.1;roundFloor.visible=false;scene.add(roundFloor);
+  const performerGuides=new THREE.Group();performerGuides.visible=false;scene.add(performerGuides);
+  const guideMaterial=new THREE.LineBasicMaterial({color:'#67a3ca',transparent:true,opacity:.5});
+  const centerGuide=new THREE.LineSegments(new THREE.BufferGeometry().setFromPoints([[-.16,0,0],[.16,0,0],[0,0,-.16],[0,0,.16]].map(p=>new THREE.Vector3(...p))),guideMaterial);performerGuides.add(centerGuide);
+  const frontGuide=new THREE.Line(new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-1,0,0),new THREE.Vector3(1,0,0)]),guideMaterial);performerGuides.add(frontGuide);
+  function guideLabel(text){const canvas=document.createElement('canvas');canvas.width=384;canvas.height=64;const ctx=canvas.getContext('2d');ctx.font='600 30px sans-serif';ctx.textAlign='center';ctx.fillStyle='#8cc6ec';ctx.fillText(text,192,43);const sprite=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(canvas),transparent:true,depthWrite:false}));sprite.scale.set(1.7,.28,1);return sprite;}
+  const centerLabel=guideLabel('CENTRO'),frontLabel=guideLabel('L1 · FRENTE');performerGuides.add(centerLabel,frontLabel);centerLabel.position.set(.65,.08,0);
   const rig=new THREE.Group();scene.add(rig);
   const cube=(parent,w,h,d,x,y,z,mat=cloth)=>{const m=new THREE.Mesh(new THREE.BoxGeometry(w,h,d),mat);m.position.set(x,y,z);parent.add(m);return m;};
   function rod(parent,a,b,r,mat=metal){const v=new THREE.Vector3(...a),end=new THREE.Vector3(...b),axis=end.clone().sub(v);const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,axis.length(),10),mat);m.position.copy(v.add(end).multiplyScalar(.5));m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),axis.normalize());parent.add(m);return m;}
@@ -88,40 +95,42 @@ export function createScene(canvas,fixture){
     const simulationChanged=time!==lastTime||revision!==lastRevision;
     if(simulationChanged){
     lastTime=time;lastRevision=revision;stats.simulationUpdates++;
-    floor.scale.set(project.stage.width/10,1,project.stage.depth/6);rig.position.y=project.stage.rigHeight-4;
-    if(cinematic!==(project.performerStyle==='arius')){cinematic=project.performerStyle==='arius';view('perspective');}
-    cloth.color.set(project.performerStyle==='arius'?'#5974b8':'#10131b');
+    floor.visible=project.stage.shape!=='circle';roundFloor.visible=project.stage.shape==='circle';grid.visible=project.stage.shape!=='circle';floor.scale.set(project.stage.width/10,1,project.stage.depth/6);rig.position.y=project.stage.rigHeight-4;
+    if(cinematic!==(['arius','reference'].includes(project.performerStyle))){cinematic=['arius','reference'].includes(project.performerStyle);view('perspective');}
+    cloth.color.set(['arius','reference'].includes(project.performerStyle)?'#5974b8':'#10131b');
     const suitTracks=project.tracks.filter(t=>t.type==='suit'),laserTracks=project.tracks.filter(t=>t.type==='laser');
+    performerGuides.visible=!!project.effectSpace;
+    if(project.effectSpace){const actor=suitTracks.find(t=>t.id===project.effectSpace.actorTrackId),distance=project.effectSpace.l1Distance;performerGuides.position.set(actor.position[0],.008,actor.position[2]);frontGuide.position.z=distance;frontGuide.scale.x=distance;frontLabel.position.set(0,.08,distance+.13);}
     actors.forEach((a,i)=>{
-      const t=suitTracks[i];a.group.position.set(...t.position);a.group.rotation.y=project.reference?.motion?0:Math.sin(time*.4+i)*.08;
-      a.hat.visible=project.performerStyle==='arius';posePerformer(a,project,time,i);
+      const t=suitTracks[i];a.group.visible=t.previewVisible!==false&&time>=(t.previewStart||0)&&(!t.previewWindows||t.previewWindows.some(([a,b])=>time>=a&&time<b));a.group.position.set(...t.position);a.group.rotation.y=project.reference?.motion?0:Math.sin(time*.4+i)*.08;
+      a.hat.visible=['arius','reference','reel'].includes(project.performerStyle);posePerformer(a,project,time,i);
       const buf=ledBuffers[i];for(let j=0;j<points.length;j++){color.setRGB(buf[j*3]/255,buf[j*3+1]/255,buf[j*3+2]/255,THREE.SRGBColorSpace);a.leds.setColorAt(j,color);}a.leds.instanceColor.needsUpdate=true;
       a.hands.forEach((beam,j)=>{
         const c=trackEnabled(project,t)&&activeCue(t.hands[j?'right':'left'],time);
-        const laserTrack=laserTracks[i],laserCue=trackEnabled(project,laserTrack)&&activeCue(laserTrack.cues,time);
-        const wrist=laserCue&&animatedCue(laserCue,time).previewOrigin===(j?'right-hand':'left-hand');
-        beam.visible=!!c&&!wrist;beam.userData.lens.visible=!!c;
+        const wrist=laserTracks.some((lt,index)=>(lt.previewActorIndex??index)===i&&trackEnabled(project,lt)&&lt.cues.some(c=>c.enabled!==false&&time>=c.start&&time<c.start+c.duration&&animatedCue(c,time).previewOrigin===(j?'right-hand':'left-hand')));
+        beam.visible=!!c&&c.beamVisible!==false&&!wrist;beam.userData.lens.visible=!!c;
         if(c){beam.material.uniforms.tint.value.set(c.color);beam.userData.lens.material.color.set(c.color);}
       });
     });
     lasers.forEach((l,i)=>{
-      const t=laserTracks[i],c=trackEnabled(project,t)&&activeCue(t.cues,time);l.head.position.set(t.position[0],project.stage.rigHeight-.16,t.position[2]);
+      const t=laserTracks[i],c=t.previewVisible!==false&&trackEnabled(project,t)&&activeCue(t.cues,time);l.head.visible=t.previewVisible!==false;l.head.position.set(t.position[0],project.stage.rigHeight-.16,t.position[2]);
       l.beam.visible=l.path.visible=l.haze.visible=l.aperture.visible=!!c;
+      if(c?.previewRays===false)l.beam.visible=l.haze.visible=false;
       for(const tip of l.tips)tip.visible=false;
       if(!c)return;
-      const frame=laserFrame(t,time,project.stage.rigHeight,project.bpm),spread=project.stage.rigHeight*.53;
+      const frame=laserFrame(t,time,project.stage.rigHeight,project.bpm,project),spread=project.stage.rigHeight*.53;
       const placement=frame.placement,origin=[t.position[0],project.stage.rigHeight-.28,t.position[2]];
       if(placement){
         for(let j=0;j<3;j++)origin[j]*=placement.weights.projector;
         for(const [key,side] of [['left-hand',0],['right-hand',1]]){
-          actors[i].hands[side].userData.lens.getWorldPosition(handOrigin);
+          actors[t.previewActorIndex??i].hands[side].userData.lens.getWorldPosition(handOrigin);
           for(let j=0;j<3;j++)origin[j]+=handOrigin.getComponent(j)*placement.weights[key];
         }
       }
       const discrete=placement?.discrete??false;
       l.beam.material.uniforms.opacity.value=placement?.rayOpacity??.075;
       l.aperture.position.set(...origin);l.aperture.material.color.set(frame.paths[0]?.color||c.color);
-      l.aperture.visible=frame.paths.some(path=>path.points.length>1&&path.color!=='#000000');
+      l.aperture.visible=c.previewRays!==false&&frame.paths.some(path=>path.points.length>1&&path.color!=='#000000');
       world.length=0;const rays=[],pathColors=[],rayColors=[],samples=sampleFrame(frame);
       const stride=Math.max(1,Math.ceil(samples.filter(p=>!p.blank).length/28));let previous=null,index=0,tipIndex=0;
       const y=placement?.height??.035;

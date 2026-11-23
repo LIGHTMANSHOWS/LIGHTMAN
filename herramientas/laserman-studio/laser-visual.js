@@ -61,11 +61,20 @@ export function createLaserStroke({width=5,opacity=1}={}){
 }
 
 export function updateLaserStroke(mesh,positions,colors){
-  const count=positions.length/6,geometry=mesh.geometry;
+  const count=positions.length/6;let geometry=mesh.geometry;
   let start=geometry.getAttribute('beamStart');
   let allocated=0;
   if(!start||start.count<count){
     const capacity=2**Math.ceil(Math.log2(Math.max(32,count)));
+    if(start){
+      // Three caches the instancing limit on the geometry after its first
+      // draw. Replacing attributes alone leaves that old limit in place and
+      // clips longer contours. A fresh geometry also releases the old GPU
+      // buffers rather than abandoning them on each capacity increase.
+      const next=new THREE.InstancedBufferGeometry();
+      next.setAttribute('position',geometry.getAttribute('position').clone());
+      geometry.dispose();mesh.geometry=geometry=next;
+    }
     for(const key of ['beamStart','beamEnd','beamColor']){
       geometry.setAttribute(key,new THREE.InstancedBufferAttribute(new Float32Array(capacity*3),3).setUsage(THREE.DynamicDrawUsage));
     }

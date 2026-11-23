@@ -1,13 +1,21 @@
 {
-  "version": "1.2.0-web",
-  "show": "arius-video-keyframes-2",
+  "version": "1.4.0-web",
+  "desktopBase": "1.4.0",
+  "builtAtUtc": "2026-11-23T16:03:56.547069+00:00",
   "publishedPath": "/herramientas/laserman-studio/",
-  "builtAtUtc": "2026-11-16T15:23:05.906924+00:00",
   "physicalOutput": "local-operator-only",
-  "laserTracks": 3,
-  "suitTracks": 3,
-  "laserCues": 276,
-  "nativeKeys": 59292,
-  "showSha256": "92337fadcb133f8c004e765a150ab72779bb15ddeb6e80edb50edf1754652718",
-  "audioSha256": "f2d366c8da56f3e9d91db372be177a1ede6c338696535cc3cddd578d75df6382"
+  "privateLibraryPublished": false,
+  "features": [
+    "show-tabs",
+    "polygons",
+    "keyframes",
+    "bidirectional-reference-sync",
+    "per-show-and-master-projection",
+    "composite-laser-layers",
+    "browser-command-editing"
+  ],
+  "publicShows": [
+    "neon",
+    "arius-publico"
+  ]
 }

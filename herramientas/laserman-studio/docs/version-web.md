@@ -1,3 +1,8 @@
+# Version web 1.4
+
+Actualizacion del 23 de noviembre de 2026. Lee [novedades y uso](version-1.4.md).
+El historial de la version anterior se conserva a continuacion.
+
 # Plataforma web 1.1
 
 Enlace activo: https://lightmanperu.com/herramientas/laserman-studio/

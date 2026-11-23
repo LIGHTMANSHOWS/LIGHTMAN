@@ -26,7 +26,7 @@ export async function unzipFiles(value){
   for(let i=0;i<count;i++){
     if(cursor+46>data.length||view.getUint32(cursor,true)!==0x02014b50)throw Error('Índice ZIP incompleto.');
     const flags=view.getUint16(cursor+8,true),method=view.getUint16(cursor+10,true),checksum=view.getUint32(cursor+16,true),compressed=view.getUint32(cursor+20,true),size=view.getUint32(cursor+24,true),nameLength=view.getUint16(cursor+28,true),extra=view.getUint16(cursor+30,true),comment=view.getUint16(cursor+32,true),local=view.getUint32(cursor+42,true);
-    total+=size;if(total>150_000_000||size>100_000_000||flags&1)throw Error('Paquete demasiado grande o cifrado.');
+    total+=size;if(total>500_000_000||size>200_000_000||flags&1)throw Error('Paquete demasiado grande o cifrado.');
     if(cursor+46+nameLength+extra+comment>data.length||local+30>data.length||view.getUint32(local,true)!==0x04034b50)throw Error('Cabecera ZIP incompleta.');
     const name=decoder.decode(data.subarray(cursor+46,cursor+46+nameLength));cursor+=46+nameLength+extra+comment;
     const start=local+30+view.getUint16(local+26,true)+view.getUint16(local+28,true);if(start+compressed>data.length)throw Error('Datos ZIP incompletos.');
