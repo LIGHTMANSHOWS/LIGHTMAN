@@ -1,5 +1,6 @@
-# LIGHTMAN LASERMAN Studio web 1.4
+# LIGHTMAN LASERMAN Studio web 1.4.1
 
-Editor basado en el motor desktop 1.4, con guardado por show en el navegador, figuras poligonales, curvas, video sincronizado, encuadres y comandos.
+Biblioteca completa de nueve shows en pestañas, con sus audios y videos de referencia.
+Motor desktop 1.4, polígonos, curvas, sincronización, encuadres y comandos.
 
-Lee [las novedades y el uso](docs/version-1.4.md). La emision fisica se opera en la aplicacion local del montaje.
+Lee [el uso](docs/version-1.4.md). La emisión física se opera en la aplicación local.

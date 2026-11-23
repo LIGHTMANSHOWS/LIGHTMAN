@@ -1,6 +1,6 @@
 import {installWebPlatform} from './web-platform.js';
 installWebPlatform();
-await import('./app.js?v=1.4.0');
+await import('./app.js?v=1.4.1');
 const untilReady=setInterval(()=>{
   if(!window.LASERMAN)return;clearInterval(untilReady);
   const $=id=>document.getElementById(id),localUrl='http://127.0.0.1:8924/';

@@ -1,0 +1,68 @@
+{
+  "references": [
+    {
+      "show": "Petrunko",
+      "source": null,
+      "video": "assets/petrunko-web-reference.mp4",
+      "audio": "assets/petrunko-petrunko-original.mp3",
+      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
+    },
+    {
+      "show": "Illuminati",
+      "source": "https://www.youtube.com/shorts/NU44SfNxmGI",
+      "video": "assets/illuminati-reference-original.mp4",
+      "audio": "assets/illuminati-user-6ec6d77a346efd058e51.mp3",
+      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
+    },
+    {
+      "show": "Laser Lovers",
+      "source": "https://www.youtube.com/shorts/HPHgsrTXk6A",
+      "video": "assets/laser-lovers-reference.mp4",
+      "audio": "assets/laser-lovers-reference-audio.mp3",
+      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
+    },
+    {
+      "show": "Spider-Man",
+      "source": "https://www.instagram.com/reel/DehTRcbCPHd/",
+      "video": "assets/spider-man-reference-5c42c7d8b18b66150f24.mp4",
+      "audio": "assets/spider-man-user-085c4d1e84341e2873f9.wav",
+      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
+    },
+    {
+      "show": "Thriller",
+      "source": "https://www.instagram.com/reels/DfKqUjiq0If/",
+      "video": "assets/thriller-reference-0b8445cdaf0ecd98663a.mp4",
+      "audio": "assets/thriller-user-99a42a23ddc90a2c32a5.wav",
+      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
+    },
+    {
+      "show": "Random Switch",
+      "source": "https://www.instagram.com/reel/Dc4psAiCFkC/",
+      "video": "assets/random-switch-reference-9ab708ac2795edbed0c4.mp4",
+      "audio": "assets/random-switch-user-efb544f414c2b731afe6.wav",
+      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
+    },
+    {
+      "show": "Main Deewana",
+      "source": null,
+      "video": "assets/main-deewana-main-deewana-original.mp4",
+      "audio": "assets/main-deewana-main-deewana.wav",
+      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
+    },
+    {
+      "show": "Reel DccLstpPyFt",
+      "source": "https://www.instagram.com/reels/DccLstpPyFt/",
+      "video": "assets/reel-dcc-reel-original.mp4",
+      "audio": "assets/reel-dcc-reel-audio.m4a",
+      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
+    },
+    {
+      "show": "Neon Protocol",
+      "source": null,
+      "video": "",
+      "audio": "assets/neon-neon-protocol.wav",
+      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
+    }
+  ],
+  "rights": "Los videos y audios pertenecen a sus titulares; publicar esta reconstruccion no concede una licencia nueva."
+}

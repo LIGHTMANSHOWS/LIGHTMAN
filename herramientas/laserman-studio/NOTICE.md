@@ -9,3 +9,5 @@ El código de integración, el editor de timeline, la escena LASERMAN y la sínt
 - NEON PROTOCOL es una composición instrumental sintetizada para este proyecto. Su archivo de metadatos está junto al WAV.
 
 - El show de referencia ARIUS y su audio proceden del [video suministrado por el usuario](https://www.youtube.com/watch?v=QEo0hH9yCoI). Se conserva la duración original y se aplica ecualización suave y normalización lineal. Los derechos del audio y la actuación pertenecen a sus titulares; esta adaptación no establece una licencia nueva. La reconstrucción visual contiene estimaciones de profundidad, poses y tramos ocultos.
+
+- La biblioteca activa también incluye los nueve shows suministrados por el usuario. Sus referencias se registran en [sources-public.json](sources-public.json). Los derechos de música, video y actuaciones pertenecen a sus titulares. La copia web de Petrunko conserva duración y fps, con compresión para navegación; su archivo original se conserva en el respaldo privado.

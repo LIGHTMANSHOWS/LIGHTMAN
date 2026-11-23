@@ -10,10 +10,14 @@ show» abre un JSON o ZIP propio como nueva pestaña local. Los archivos que abr
 no se suben al servidor. Para transferir música y video juntos, exporta el paquete
 completo; un JSON solo contiene las rutas de esos medios.
 
-Las demos públicas anteriores permanecen disponibles. La biblioteca personal de nueve
-shows, los respaldos y las evidencias del montaje permanecen en el repositorio privado.
-El despliegue no reemplaza automáticamente los proyectos guardados de los visitantes;
-la edición anterior de la web queda accesible en «Proyectos anteriores».
+La versión 1.4.1 carga nueve shows en las pestañas: Petrunko, Illuminati, Laser Lovers,
+Spider-Man, Thriller, Random Switch, Main Deewana, Reel Dcc y Neon Protocol. Incluye
+los proyectos guardados, sus audios y videos de referencia. ARIUS está retirado del
+catálogo activo. Los respaldos y perfiles USB del montaje permanecen privados.
+
+El video de Petrunko está adaptado a H.264 de 1280 píxeles, manteniendo 50 fps y la
+misma duración para conservar sincronía. Su original queda en el respaldo privado.
+Al actualizar, las ediciones que guardó cada visitante se conservan en su navegador.
 
 El mapa de encuadre permite preparar y guardar ajustes en el navegador. La prueba
 óptica y el envío USB requieren el operador local en http://127.0.0.1:8924/ y su

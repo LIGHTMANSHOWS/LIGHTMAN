@@ -212,7 +212,7 @@
     "rigHeight": 4
   },
   "audio": {
-    "url": "assets/neon-protocol.wav",
+    "url": "assets/neon-neon-protocol.wav",
     "name": "NEON PROTOCOL · Original LIGHTMAN",
     "offset": 0
   },
@@ -8814,7 +8814,8 @@
       ],
       "patch": {
         "device": ""
-      }
+      },
+      "previewActorIndex": 0
     },
     {
       "id": "laser-2",
@@ -17289,7 +17290,8 @@
       ],
       "patch": {
         "device": ""
-      }
+      },
+      "previewActorIndex": 1
     },
     {
       "id": "laser-3",
@@ -25839,7 +25841,8 @@
       ],
       "patch": {
         "device": ""
-      }
+      },
+      "previewActorIndex": 2
     },
     {
       "id": "suit-1",
@@ -68763,12 +68766,14 @@
   ],
   "edition": "director-1.1",
   "analysis": {
-    "url": "assets/neon-analysis.json",
+    "url": "assets/neon-neon-analysis.json",
     "audioSha256": "889b6e97bfc9b52da43675ca6840370f9d9a99a3df6c7d8bfdbbd34c0b958f18"
   },
   "description": "Coreografía de 180 s, articulada sobre la partitura del máster: capítulos, motivos, acentos zonales, seis manos y movimiento geométrico musical.",
-  "suiteShowId": "neon",
   "reference": {
+    "url": "",
+    "fps": 30,
     "hasVideo": false
-  }
+  },
+  "suiteShowId": "neon"
 }

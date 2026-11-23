@@ -1,0 +1,7876 @@
+{
+  "format": "lightman-laserman",
+  "version": 1,
+  "name": "LASERMAN · Reel DccLstpPyFt",
+  "edition": "reel-dcclstppyft-v1",
+  "duration": 46.2,
+  "bpm": 120,
+  "stage": {
+    "width": 6,
+    "depth": 4,
+    "rigHeight": 4,
+    "shape": "circle"
+  },
+  "audio": {
+    "url": "assets/reel-dcc-reel-audio.m4a",
+    "name": "Audio original del reel · 46,2 s",
+    "offset": 0,
+    "volume": 0.45
+  },
+  "reference": {
+    "url": "assets/reel-dcc-reel-original.mp4",
+    "fps": 30,
+    "motion": true,
+    "source": "https://www.instagram.com/reels/DccLstpPyFt/",
+    "sha256": "9c0628810f7e9516e69f0b29ee94561589ad041a76ecbabca1c8056a9e819a5d",
+    "measured": "Timestamps reales a 30 fps; envolvente lateral a 15 muestras/s; orientación del cuadrado en plano rectificado. Envolvente del cuadrado desde contornos verdes del suelo, interpolada durante oclusiones.",
+    "estimated": "Escenario 6 × 4 m, altura 4 m, profundidad, número de haces violetas, origen de acentos, poses y distribución del traje. BPM 120 solo como rejilla editable; cues no cuantizados.",
+    "occlusion": "Humo, artista y cámara ocultan parte de los haces; se retiene la última envolvente detectada. No es extracción del show nativo.",
+    "hasVideo": true
+  },
+  "tracks": [
+    {
+      "id": "laser-1",
+      "type": "laser",
+      "name": "Láser superior · referencia",
+      "enabled": true,
+      "solo": false,
+      "position": [
+        0,
+        4,
+        -0.3
+      ],
+      "color": "#43ff13",
+      "cues": [
+        {
+          "id": "reel-0001",
+          "name": "Cuadrado verde giratorio",
+          "start": 0,
+          "duration": 21.433333,
+          "shape": "orbitSquare",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {
+              "rotation": [
+                {
+                  "at": 0,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0045"
+                },
+                {
+                  "at": 0.066667,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0046"
+                },
+                {
+                  "at": 0.133333,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0047"
+                },
+                {
+                  "at": 0.2,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0048"
+                },
+                {
+                  "at": 0.266667,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0049"
+                },
+                {
+                  "at": 0.333333,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0050"
+                },
+                {
+                  "at": 0.4,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0051"
+                },
+                {
+                  "at": 0.466667,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0052"
+                },
+                {
+                  "at": 0.533333,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0053"
+                },
+                {
+                  "at": 0.6,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0054"
+                },
+                {
+                  "at": 0.666667,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0055"
+                },
+                {
+                  "at": 0.733333,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0056"
+                },
+                {
+                  "at": 0.8,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0057"
+                },
+                {
+                  "at": 0.866667,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0058"
+                },
+                {
+                  "at": 0.933333,
+                  "value": -7.765,
+                  "easing": "linear",
+                  "id": "reel-0059"
+                },
+                {
+                  "at": 1,
+                  "value": -4.062,
+                  "easing": "linear",
+                  "id": "reel-0060"
+                },
+                {
+                  "at": 1.066667,
+                  "value": -4.062,
+                  "easing": "linear",
+                  "id": "reel-0061"
+                },
+                {
+                  "at": 1.133333,
+                  "value": -4.062,
+                  "easing": "linear",
+                  "id": "reel-0062"
+                },
+                {
+                  "at": 1.2,
+                  "value": -4.062,
+                  "easing": "linear",
+                  "id": "reel-0063"
+                },
+                {
+                  "at": 1.266667,
+                  "value": -4.062,
+                  "easing": "linear",
+                  "id": "reel-0064"
+                },
+                {
+                  "at": 1.333333,
+                  "value": -4.062,
+                  "easing": "linear",
+                  "id": "reel-0065"
+                },
+                {
+                  "at": 1.4,
+                  "value": -4.062,
+                  "easing": "linear",
+                  "id": "reel-0066"
+                },
+                {
+                  "at": 1.466667,
+                  "value": -4.062,
+                  "easing": "linear",
+                  "id": "reel-0067"
+                },
+                {
+                  "at": 1.533333,
+                  "value": -4.062,
+                  "easing": "linear",
+                  "id": "reel-0068"
+                },
+                {
+                  "at": 1.6,
+                  "value": -4.062,
+                  "easing": "linear",
+                  "id": "reel-0069"
+                },
+                {
+                  "at": 1.666667,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0070"
+                },
+                {
+                  "at": 1.733333,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0071"
+                },
+                {
+                  "at": 1.8,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0072"
+                },
+                {
+                  "at": 1.866667,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0073"
+                },
+                {
+                  "at": 1.933333,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0074"
+                },
+                {
+                  "at": 2,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0075"
+                },
+                {
+                  "at": 2.066667,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0076"
+                },
+                {
+                  "at": 2.133333,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0077"
+                },
+                {
+                  "at": 2.2,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0078"
+                },
+                {
+                  "at": 2.266667,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0079"
+                },
+                {
+                  "at": 2.333333,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0080"
+                },
+                {
+                  "at": 2.4,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0081"
+                },
+                {
+                  "at": 2.466667,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0082"
+                },
+                {
+                  "at": 2.533333,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0083"
+                },
+                {
+                  "at": 2.6,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0084"
+                },
+                {
+                  "at": 2.666667,
+                  "value": -7.595,
+                  "easing": "linear",
+                  "id": "reel-0085"
+                },
+                {
+                  "at": 2.733333,
+                  "value": 4.594,
+                  "easing": "linear",
+                  "id": "reel-0086"
+                },
+                {
+                  "at": 2.8,
+                  "value": 4.594,
+                  "easing": "linear",
+                  "id": "reel-0087"
+                },
+                {
+                  "at": 2.866667,
+                  "value": 4.594,
+                  "easing": "linear",
+                  "id": "reel-0088"
+                },
+                {
+                  "at": 2.933333,
+                  "value": 4.594,
+                  "easing": "linear",
+                  "id": "reel-0089"
+                },
+                {
+                  "at": 3,
+                  "value": 4.594,
+                  "easing": "linear",
+                  "id": "reel-0090"
+                },
+                {
+                  "at": 3.066667,
+                  "value": 4.594,
+                  "easing": "linear",
+                  "id": "reel-0091"
+                },
+                {
+                  "at": 3.133333,
+                  "value": 4.594,
+                  "easing": "linear",
+                  "id": "reel-0092"
+                },
+                {
+                  "at": 3.2,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0093"
+                },
+                {
+                  "at": 3.266667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0094"
+                },
+                {
+                  "at": 3.333333,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0095"
+                },
+                {
+                  "at": 3.4,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0096"
+                },
+                {
+                  "at": 3.466667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0097"
+                },
+                {
+                  "at": 3.533333,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0098"
+                },
+                {
+                  "at": 3.6,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0099"
+                },
+                {
+                  "at": 3.666667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0100"
+                },
+                {
+                  "at": 3.733333,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0101"
+                },
+                {
+                  "at": 3.8,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0102"
+                },
+                {
+                  "at": 3.866667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0103"
+                },
+                {
+                  "at": 3.933333,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0104"
+                },
+                {
+                  "at": 4,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0105"
+                },
+                {
+                  "at": 4.066667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0106"
+                },
+                {
+                  "at": 4.133333,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0107"
+                },
+                {
+                  "at": 4.2,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0108"
+                },
+                {
+                  "at": 4.266667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0109"
+                },
+                {
+                  "at": 4.333333,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0110"
+                },
+                {
+                  "at": 4.4,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0111"
+                },
+                {
+                  "at": 4.466667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0112"
+                },
+                {
+                  "at": 4.533333,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0113"
+                },
+                {
+                  "at": 4.6,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0114"
+                },
+                {
+                  "at": 4.666667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0115"
+                },
+                {
+                  "at": 4.733333,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0116"
+                },
+                {
+                  "at": 4.8,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0117"
+                },
+                {
+                  "at": 4.866667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0118"
+                },
+                {
+                  "at": 4.933333,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0119"
+                },
+                {
+                  "at": 5,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0120"
+                },
+                {
+                  "at": 5.066667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0121"
+                },
+                {
+                  "at": 5.133333,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0122"
+                },
+                {
+                  "at": 5.2,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0123"
+                },
+                {
+                  "at": 5.266667,
+                  "value": 1.39,
+                  "easing": "linear",
+                  "id": "reel-0124"
+                },
+                {
+                  "at": 5.333333,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0125"
+                },
+                {
+                  "at": 5.4,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0126"
+                },
+                {
+                  "at": 5.466667,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0127"
+                },
+                {
+                  "at": 5.533333,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0128"
+                },
+                {
+                  "at": 5.6,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0129"
+                },
+                {
+                  "at": 5.666667,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0130"
+                },
+                {
+                  "at": 5.733333,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0131"
+                },
+                {
+                  "at": 5.8,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0132"
+                },
+                {
+                  "at": 5.866667,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0133"
+                },
+                {
+                  "at": 5.933333,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0134"
+                },
+                {
+                  "at": 6,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0135"
+                },
+                {
+                  "at": 6.066667,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0136"
+                },
+                {
+                  "at": 6.133333,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0137"
+                },
+                {
+                  "at": 6.2,
+                  "value": 4.086,
+                  "easing": "linear",
+                  "id": "reel-0138"
+                },
+                {
+                  "at": 6.266667,
+                  "value": 4.086,
+                  "easing": "linear",
+                  "id": "reel-0139"
+                },
+                {
+                  "at": 6.333333,
+                  "value": 4.086,
+                  "easing": "linear",
+                  "id": "reel-0140"
+                },
+                {
+                  "at": 6.4,
+                  "value": 4.086,
+                  "easing": "linear",
+                  "id": "reel-0141"
+                },
+                {
+                  "at": 6.466667,
+                  "value": 4.086,
+                  "easing": "linear",
+                  "id": "reel-0142"
+                },
+                {
+                  "at": 6.533333,
+                  "value": 4.086,
+                  "easing": "linear",
+                  "id": "reel-0143"
+                },
+                {
+                  "at": 6.6,
+                  "value": 4.086,
+                  "easing": "linear",
+                  "id": "reel-0144"
+                },
+                {
+                  "at": 6.666667,
+                  "value": 4.086,
+                  "easing": "linear",
+                  "id": "reel-0145"
+                },
+                {
+                  "at": 6.733333,
+                  "value": 4.086,
+                  "easing": "linear",
+                  "id": "reel-0146"
+                },
+                {
+                  "at": 6.8,
+                  "value": 7.927,
+                  "easing": "linear",
+                  "id": "reel-0147"
+                },
+                {
+                  "at": 6.866667,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0148"
+                },
+                {
+                  "at": 6.933333,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0149"
+                },
+                {
+                  "at": 7,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0150"
+                },
+                {
+                  "at": 7.066667,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0151"
+                },
+                {
+                  "at": 7.133333,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0152"
+                },
+                {
+                  "at": 7.2,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0153"
+                },
+                {
+                  "at": 7.266667,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0154"
+                },
+                {
+                  "at": 7.333333,
+                  "value": 0,
+                  "easing": "linear",
+                  "id": "reel-0155"
+                },
+                {
+                  "at": 7.4,
+                  "value": 7.933,
+                  "easing": "linear",
+                  "id": "reel-0156"
+                },
+                {
+                  "at": 7.466667,
+                  "value": 7.933,
+                  "easing": "linear",
+                  "id": "reel-0157"
+                },
+                {
+                  "at": 7.533333,
+                  "value": 17.28,
+                  "easing": "linear",
+                  "id": "reel-0158"
+                },
+                {
+                  "at": 7.6,
+                  "value": 9.149,
+                  "easing": "linear",
+                  "id": "reel-0159"
+                },
+                {
+                  "at": 7.666667,
+                  "value": 9.149,
+                  "easing": "linear",
+                  "id": "reel-0160"
+                },
+                {
+                  "at": 7.733333,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0161"
+                },
+                {
+                  "at": 7.8,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0162"
+                },
+                {
+                  "at": 7.866667,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0163"
+                },
+                {
+                  "at": 7.933333,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0164"
+                },
+                {
+                  "at": 8,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0165"
+                },
+                {
+                  "at": 8.066667,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0166"
+                },
+                {
+                  "at": 8.133333,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0167"
+                },
+                {
+                  "at": 8.2,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0168"
+                },
+                {
+                  "at": 8.266667,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0169"
+                },
+                {
+                  "at": 8.333333,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0170"
+                },
+                {
+                  "at": 8.4,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0171"
+                },
+                {
+                  "at": 8.466667,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0172"
+                },
+                {
+                  "at": 8.533333,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0173"
+                },
+                {
+                  "at": 8.6,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0174"
+                },
+                {
+                  "at": 8.666667,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0175"
+                },
+                {
+                  "at": 8.733333,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0176"
+                },
+                {
+                  "at": 8.8,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0177"
+                },
+                {
+                  "at": 8.866667,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0178"
+                },
+                {
+                  "at": 8.933333,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0179"
+                },
+                {
+                  "at": 9,
+                  "value": 18.317,
+                  "easing": "linear",
+                  "id": "reel-0180"
+                },
+                {
+                  "at": 9.066667,
+                  "value": 6.654,
+                  "easing": "linear",
+                  "id": "reel-0181"
+                },
+                {
+                  "at": 9.133333,
+                  "value": 6.654,
+                  "easing": "linear",
+                  "id": "reel-0182"
+                },
+                {
+                  "at": 9.2,
+                  "value": 6.654,
+                  "easing": "linear",
+                  "id": "reel-0183"
+                },
+                {
+                  "at": 9.266667,
+                  "value": -4.847,
+                  "easing": "linear",
+                  "id": "reel-0184"
+                },
+                {
+                  "at": 9.333333,
+                  "value": -4.847,
+                  "easing": "linear",
+                  "id": "reel-0185"
+                },
+                {
+                  "at": 9.4,
+                  "value": -4.847,
+                  "easing": "linear",
+                  "id": "reel-0186"
+                },
+                {
+                  "at": 9.466667,
+                  "value": 8.318,
+                  "easing": "linear",
+                  "id": "reel-0187"
+                },
+                {
+                  "at": 9.533333,
+                  "value": 8.318,
+                  "easing": "linear",
+                  "id": "reel-0188"
+                },
+                {
+                  "at": 9.6,
+                  "value": 8.318,
+                  "easing": "linear",
+                  "id": "reel-0189"
+                },
+                {
+                  "at": 9.666667,
+                  "value": 8.318,
+                  "easing": "linear",
+                  "id": "reel-0190"
+                },
+                {
+                  "at": 9.733333,
+                  "value": 8.318,
+                  "easing": "linear",
+                  "id": "reel-0191"
+                },
+                {
+                  "at": 9.8,
+                  "value": 8.318,
+                  "easing": "linear",
+                  "id": "reel-0192"
+                },
+                {
+                  "at": 9.866667,
+                  "value": 8.844,
+                  "easing": "linear",
+                  "id": "reel-0193"
+                },
+                {
+                  "at": 9.933333,
+                  "value": 8.844,
+                  "easing": "linear",
+                  "id": "reel-0194"
+                },
+                {
+                  "at": 10,
+                  "value": 8.844,
+                  "easing": "linear",
+                  "id": "reel-0195"
+                },
+                {
+                  "at": 10.066667,
+                  "value": 8.844,
+                  "easing": "linear",
+                  "id": "reel-0196"
+                },
+                {
+                  "at": 10.133333,
+                  "value": 8.844,
+                  "easing": "linear",
+                  "id": "reel-0197"
+                },
+                {
+                  "at": 10.2,
+                  "value": 10.763,
+                  "easing": "linear",
+                  "id": "reel-0198"
+                },
+                {
+                  "at": 10.266667,
+                  "value": 12.529,
+                  "easing": "linear",
+                  "id": "reel-0199"
+                },
+                {
+                  "at": 10.333333,
+                  "value": 12.529,
+                  "easing": "linear",
+                  "id": "reel-0200"
+                },
+                {
+                  "at": 10.4,
+                  "value": 12.529,
+                  "easing": "linear",
+                  "id": "reel-0201"
+                },
+                {
+                  "at": 10.466667,
+                  "value": 12.529,
+                  "easing": "linear",
+                  "id": "reel-0202"
+                },
+                {
+                  "at": 10.533333,
+                  "value": 12.529,
+                  "easing": "linear",
+                  "id": "reel-0203"
+                },
+                {
+                  "at": 10.6,
+                  "value": 17.046,
+                  "easing": "linear",
+                  "id": "reel-0204"
+                },
+                {
+                  "at": 10.666667,
+                  "value": 17.046,
+                  "easing": "linear",
+                  "id": "reel-0205"
+                },
+                {
+                  "at": 10.733333,
+                  "value": 17.046,
+                  "easing": "linear",
+                  "id": "reel-0206"
+                },
+                {
+                  "at": 10.8,
+                  "value": 9.389,
+                  "easing": "linear",
+                  "id": "reel-0207"
+                },
+                {
+                  "at": 10.866667,
+                  "value": 9.389,
+                  "easing": "linear",
+                  "id": "reel-0208"
+                },
+                {
+                  "at": 10.933333,
+                  "value": 14.64,
+                  "easing": "linear",
+                  "id": "reel-0209"
+                },
+                {
+                  "at": 11,
+                  "value": 13.279,
+                  "easing": "linear",
+                  "id": "reel-0210"
+                },
+                {
+                  "at": 11.066667,
+                  "value": 11.022,
+                  "easing": "linear",
+                  "id": "reel-0211"
+                },
+                {
+                  "at": 11.133333,
+                  "value": 14.086,
+                  "easing": "linear",
+                  "id": "reel-0212"
+                },
+                {
+                  "at": 11.2,
+                  "value": 14.474,
+                  "easing": "linear",
+                  "id": "reel-0213"
+                },
+                {
+                  "at": 11.266667,
+                  "value": 16.348,
+                  "easing": "linear",
+                  "id": "reel-0214"
+                },
+                {
+                  "at": 11.333333,
+                  "value": 11.861,
+                  "easing": "linear",
+                  "id": "reel-0215"
+                },
+                {
+                  "at": 11.4,
+                  "value": 13.141,
+                  "easing": "linear",
+                  "id": "reel-0216"
+                },
+                {
+                  "at": 11.466667,
+                  "value": 13.141,
+                  "easing": "linear",
+                  "id": "reel-0217"
+                },
+                {
+                  "at": 11.533333,
+                  "value": 11.48,
+                  "easing": "linear",
+                  "id": "reel-0218"
+                },
+                {
+                  "at": 11.6,
+                  "value": 8.997,
+                  "easing": "linear",
+                  "id": "reel-0219"
+                },
+                {
+                  "at": 11.666667,
+                  "value": 11.133,
+                  "easing": "linear",
+                  "id": "reel-0220"
+                },
+                {
+                  "at": 11.733333,
+                  "value": 19.328,
+                  "easing": "linear",
+                  "id": "reel-0221"
+                },
+                {
+                  "at": 11.8,
+                  "value": 19.328,
+                  "easing": "linear",
+                  "id": "reel-0222"
+                },
+                {
+                  "at": 11.866667,
+                  "value": 14.583,
+                  "easing": "linear",
+                  "id": "reel-0223"
+                },
+                {
+                  "at": 11.933333,
+                  "value": 1.42,
+                  "easing": "linear",
+                  "id": "reel-0224"
+                },
+                {
+                  "at": 12,
+                  "value": 13.213,
+                  "easing": "linear",
+                  "id": "reel-0225"
+                },
+                {
+                  "at": 12.066667,
+                  "value": -2.087,
+                  "easing": "linear",
+                  "id": "reel-0226"
+                },
+                {
+                  "at": 12.133333,
+                  "value": 7.868,
+                  "easing": "linear",
+                  "id": "reel-0227"
+                },
+                {
+                  "at": 12.2,
+                  "value": 3.273,
+                  "easing": "linear",
+                  "id": "reel-0228"
+                },
+                {
+                  "at": 12.266667,
+                  "value": 3.273,
+                  "easing": "linear",
+                  "id": "reel-0229"
+                },
+                {
+                  "at": 12.333333,
+                  "value": 3.273,
+                  "easing": "linear",
+                  "id": "reel-0230"
+                },
+                {
+                  "at": 12.4,
+                  "value": 13.754,
+                  "easing": "linear",
+                  "id": "reel-0231"
+                },
+                {
+                  "at": 12.466667,
+                  "value": 14.036,
+                  "easing": "linear",
+                  "id": "reel-0232"
+                },
+                {
+                  "at": 12.533333,
+                  "value": 6.923,
+                  "easing": "linear",
+                  "id": "reel-0233"
+                },
+                {
+                  "at": 12.6,
+                  "value": 13.999,
+                  "easing": "linear",
+                  "id": "reel-0234"
+                },
+                {
+                  "at": 12.666667,
+                  "value": 6.953,
+                  "easing": "linear",
+                  "id": "reel-0235"
+                },
+                {
+                  "at": 12.733333,
+                  "value": 13.134,
+                  "easing": "linear",
+                  "id": "reel-0236"
+                },
+                {
+                  "at": 12.8,
+                  "value": 9.982,
+                  "easing": "linear",
+                  "id": "reel-0237"
+                },
+                {
+                  "at": 12.866667,
+                  "value": 10.722,
+                  "easing": "linear",
+                  "id": "reel-0238"
+                },
+                {
+                  "at": 12.933333,
+                  "value": 14.566,
+                  "easing": "linear",
+                  "id": "reel-0239"
+                },
+                {
+                  "at": 13,
+                  "value": 14.566,
+                  "easing": "linear",
+                  "id": "reel-0240"
+                },
+                {
+                  "at": 13.066667,
+                  "value": 14.566,
+                  "easing": "linear",
+                  "id": "reel-0241"
+                },
+                {
+                  "at": 13.133333,
+                  "value": 14.566,
+                  "easing": "linear",
+                  "id": "reel-0242"
+                },
+                {
+                  "at": 13.2,
+                  "value": 11.014,
+                  "easing": "linear",
+                  "id": "reel-0243"
+                },
+                {
+                  "at": 13.266667,
+                  "value": -2.344,
+                  "easing": "linear",
+                  "id": "reel-0244"
+                },
+                {
+                  "at": 13.333333,
+                  "value": -2.344,
+                  "easing": "linear",
+                  "id": "reel-0245"
+                },
+                {
+                  "at": 13.4,
+                  "value": -2.344,
+                  "easing": "linear",
+                  "id": "reel-0246"
+                },
+                {
+                  "at": 13.466667,
+                  "value": -2.344,
+                  "easing": "linear",
+                  "id": "reel-0247"
+                },
+                {
+                  "at": 13.533333,
+                  "value": -2.344,
+                  "easing": "linear",
+                  "id": "reel-0248"
+                },
+                {
+                  "at": 13.6,
+                  "value": 2.188,
+                  "easing": "linear",
+                  "id": "reel-0249"
+                },
+                {
+                  "at": 13.666667,
+                  "value": 2.188,
+                  "easing": "linear",
+                  "id": "reel-0250"
+                },
+                {
+                  "at": 13.733333,
+                  "value": 1.245,
+                  "easing": "linear",
+                  "id": "reel-0251"
+                },
+                {
+                  "at": 13.8,
+                  "value": 1.245,
+                  "easing": "linear",
+                  "id": "reel-0252"
+                },
+                {
+                  "at": 13.866667,
+                  "value": 13.213,
+                  "easing": "linear",
+                  "id": "reel-0253"
+                },
+                {
+                  "at": 13.933333,
+                  "value": 13.195,
+                  "easing": "linear",
+                  "id": "reel-0254"
+                },
+                {
+                  "at": 14,
+                  "value": 13.195,
+                  "easing": "linear",
+                  "id": "reel-0255"
+                },
+                {
+                  "at": 14.066667,
+                  "value": 16.44,
+                  "easing": "linear",
+                  "id": "reel-0256"
+                },
+                {
+                  "at": 14.133333,
+                  "value": 2.459,
+                  "easing": "linear",
+                  "id": "reel-0257"
+                },
+                {
+                  "at": 14.2,
+                  "value": 2.459,
+                  "easing": "linear",
+                  "id": "reel-0258"
+                },
+                {
+                  "at": 14.266667,
+                  "value": 3.036,
+                  "easing": "linear",
+                  "id": "reel-0259"
+                },
+                {
+                  "at": 14.333333,
+                  "value": 3.036,
+                  "easing": "linear",
+                  "id": "reel-0260"
+                },
+                {
+                  "at": 14.4,
+                  "value": 3.036,
+                  "easing": "linear",
+                  "id": "reel-0261"
+                },
+                {
+                  "at": 14.466667,
+                  "value": 11.266,
+                  "easing": "linear",
+                  "id": "reel-0262"
+                },
+                {
+                  "at": 14.533333,
+                  "value": 17.505,
+                  "easing": "linear",
+                  "id": "reel-0263"
+                },
+                {
+                  "at": 14.6,
+                  "value": 14.498,
+                  "easing": "linear",
+                  "id": "reel-0264"
+                },
+                {
+                  "at": 14.666667,
+                  "value": 8.328,
+                  "easing": "linear",
+                  "id": "reel-0265"
+                },
+                {
+                  "at": 14.733333,
+                  "value": 13.473,
+                  "easing": "linear",
+                  "id": "reel-0266"
+                },
+                {
+                  "at": 14.8,
+                  "value": 8.032,
+                  "easing": "linear",
+                  "id": "reel-0267"
+                },
+                {
+                  "at": 14.866667,
+                  "value": 15.163,
+                  "easing": "linear",
+                  "id": "reel-0268"
+                },
+                {
+                  "at": 14.933333,
+                  "value": 14.279,
+                  "easing": "linear",
+                  "id": "reel-0269"
+                },
+                {
+                  "at": 15,
+                  "value": 7.793,
+                  "easing": "linear",
+                  "id": "reel-0270"
+                },
+                {
+                  "at": 15.066667,
+                  "value": 7.793,
+                  "easing": "linear",
+                  "id": "reel-0271"
+                },
+                {
+                  "at": 15.133333,
+                  "value": 16.963,
+                  "easing": "linear",
+                  "id": "reel-0272"
+                },
+                {
+                  "at": 15.2,
+                  "value": 1.776,
+                  "easing": "linear",
+                  "id": "reel-0273"
+                },
+                {
+                  "at": 15.266667,
+                  "value": 16.309,
+                  "easing": "linear",
+                  "id": "reel-0274"
+                },
+                {
+                  "at": 15.333333,
+                  "value": 15.946,
+                  "easing": "linear",
+                  "id": "reel-0275"
+                },
+                {
+                  "at": 15.4,
+                  "value": -0.988,
+                  "easing": "linear",
+                  "id": "reel-0276"
+                },
+                {
+                  "at": 15.466667,
+                  "value": 9.024,
+                  "easing": "linear",
+                  "id": "reel-0277"
+                },
+                {
+                  "at": 15.533333,
+                  "value": 9.024,
+                  "easing": "linear",
+                  "id": "reel-0278"
+                },
+                {
+                  "at": 15.6,
+                  "value": 10.751,
+                  "easing": "linear",
+                  "id": "reel-0279"
+                },
+                {
+                  "at": 15.666667,
+                  "value": 12.618,
+                  "easing": "linear",
+                  "id": "reel-0280"
+                },
+                {
+                  "at": 15.733333,
+                  "value": 15.658,
+                  "easing": "linear",
+                  "id": "reel-0281"
+                },
+                {
+                  "at": 15.8,
+                  "value": 15.658,
+                  "easing": "linear",
+                  "id": "reel-0282"
+                },
+                {
+                  "at": 15.866667,
+                  "value": 16.26,
+                  "easing": "linear",
+                  "id": "reel-0283"
+                },
+                {
+                  "at": 15.933333,
+                  "value": 16.26,
+                  "easing": "linear",
+                  "id": "reel-0284"
+                },
+                {
+                  "at": 16,
+                  "value": 16.126,
+                  "easing": "linear",
+                  "id": "reel-0285"
+                },
+                {
+                  "at": 16.066667,
+                  "value": 13.955,
+                  "easing": "linear",
+                  "id": "reel-0286"
+                },
+                {
+                  "at": 16.133333,
+                  "value": 21.251,
+                  "easing": "linear",
+                  "id": "reel-0287"
+                },
+                {
+                  "at": 16.2,
+                  "value": 12.529,
+                  "easing": "linear",
+                  "id": "reel-0288"
+                },
+                {
+                  "at": 16.266667,
+                  "value": 14.385,
+                  "easing": "linear",
+                  "id": "reel-0289"
+                },
+                {
+                  "at": 16.333333,
+                  "value": 14.385,
+                  "easing": "linear",
+                  "id": "reel-0290"
+                },
+                {
+                  "at": 16.4,
+                  "value": 14.26,
+                  "easing": "linear",
+                  "id": "reel-0291"
+                },
+                {
+                  "at": 16.466667,
+                  "value": 5.492,
+                  "easing": "linear",
+                  "id": "reel-0292"
+                },
+                {
+                  "at": 16.533333,
+                  "value": 12.042,
+                  "easing": "linear",
+                  "id": "reel-0293"
+                },
+                {
+                  "at": 16.6,
+                  "value": 16.674,
+                  "easing": "linear",
+                  "id": "reel-0294"
+                },
+                {
+                  "at": 16.666667,
+                  "value": 10.017,
+                  "easing": "linear",
+                  "id": "reel-0295"
+                },
+                {
+                  "at": 16.733333,
+                  "value": 7.731,
+                  "easing": "linear",
+                  "id": "reel-0296"
+                },
+                {
+                  "at": 16.8,
+                  "value": 14.518,
+                  "easing": "linear",
+                  "id": "reel-0297"
+                },
+                {
+                  "at": 16.866667,
+                  "value": 14.518,
+                  "easing": "linear",
+                  "id": "reel-0298"
+                },
+                {
+                  "at": 16.933333,
+                  "value": 15.498,
+                  "easing": "linear",
+                  "id": "reel-0299"
+                },
+                {
+                  "at": 17,
+                  "value": 15.255,
+                  "easing": "linear",
+                  "id": "reel-0300"
+                },
+                {
+                  "at": 17.066667,
+                  "value": 16.076,
+                  "easing": "linear",
+                  "id": "reel-0301"
+                },
+                {
+                  "at": 17.133333,
+                  "value": 11.09,
+                  "easing": "linear",
+                  "id": "reel-0302"
+                },
+                {
+                  "at": 17.2,
+                  "value": 16.329,
+                  "easing": "linear",
+                  "id": "reel-0303"
+                },
+                {
+                  "at": 17.266667,
+                  "value": 16.329,
+                  "easing": "linear",
+                  "id": "reel-0304"
+                },
+                {
+                  "at": 17.333333,
+                  "value": 17.689,
+                  "easing": "linear",
+                  "id": "reel-0305"
+                },
+                {
+                  "at": 17.4,
+                  "value": 16.93,
+                  "easing": "linear",
+                  "id": "reel-0306"
+                },
+                {
+                  "at": 17.466667,
+                  "value": 22.676,
+                  "easing": "linear",
+                  "id": "reel-0307"
+                },
+                {
+                  "at": 17.533333,
+                  "value": 15.792,
+                  "easing": "linear",
+                  "id": "reel-0308"
+                },
+                {
+                  "at": 17.6,
+                  "value": 13.739,
+                  "easing": "linear",
+                  "id": "reel-0309"
+                },
+                {
+                  "at": 17.666667,
+                  "value": 27.943,
+                  "easing": "linear",
+                  "id": "reel-0310"
+                },
+                {
+                  "at": 17.733333,
+                  "value": 27.943,
+                  "easing": "linear",
+                  "id": "reel-0311"
+                },
+                {
+                  "at": 17.8,
+                  "value": 11.31,
+                  "easing": "linear",
+                  "id": "reel-0312"
+                },
+                {
+                  "at": 17.866667,
+                  "value": 14.462,
+                  "easing": "linear",
+                  "id": "reel-0313"
+                },
+                {
+                  "at": 17.933333,
+                  "value": 14.462,
+                  "easing": "linear",
+                  "id": "reel-0314"
+                },
+                {
+                  "at": 18,
+                  "value": 18.661,
+                  "easing": "linear",
+                  "id": "reel-0315"
+                },
+                {
+                  "at": 18.066667,
+                  "value": 17.827,
+                  "easing": "linear",
+                  "id": "reel-0316"
+                },
+                {
+                  "at": 18.133333,
+                  "value": 17.834,
+                  "easing": "linear",
+                  "id": "reel-0317"
+                },
+                {
+                  "at": 18.2,
+                  "value": 15.009,
+                  "easing": "linear",
+                  "id": "reel-0318"
+                },
+                {
+                  "at": 18.266667,
+                  "value": 16.944,
+                  "easing": "linear",
+                  "id": "reel-0319"
+                },
+                {
+                  "at": 18.333333,
+                  "value": 17.861,
+                  "easing": "linear",
+                  "id": "reel-0320"
+                },
+                {
+                  "at": 18.4,
+                  "value": 17.42,
+                  "easing": "linear",
+                  "id": "reel-0321"
+                },
+                {
+                  "at": 18.466667,
+                  "value": 17.42,
+                  "easing": "linear",
+                  "id": "reel-0322"
+                },
+                {
+                  "at": 18.533333,
+                  "value": 14.956,
+                  "easing": "linear",
+                  "id": "reel-0323"
+                },
+                {
+                  "at": 18.6,
+                  "value": 16.626,
+                  "easing": "linear",
+                  "id": "reel-0324"
+                },
+                {
+                  "at": 18.666667,
+                  "value": 8.267,
+                  "easing": "linear",
+                  "id": "reel-0325"
+                },
+                {
+                  "at": 18.733333,
+                  "value": 11.989,
+                  "easing": "linear",
+                  "id": "reel-0326"
+                },
+                {
+                  "at": 18.8,
+                  "value": 17.745,
+                  "easing": "linear",
+                  "id": "reel-0327"
+                },
+                {
+                  "at": 18.866667,
+                  "value": 15.172,
+                  "easing": "linear",
+                  "id": "reel-0328"
+                },
+                {
+                  "at": 18.933333,
+                  "value": 22.946,
+                  "easing": "linear",
+                  "id": "reel-0329"
+                },
+                {
+                  "at": 19,
+                  "value": 13.593,
+                  "easing": "linear",
+                  "id": "reel-0330"
+                },
+                {
+                  "at": 19.066667,
+                  "value": 12.275,
+                  "easing": "linear",
+                  "id": "reel-0331"
+                },
+                {
+                  "at": 19.133333,
+                  "value": 12.275,
+                  "easing": "linear",
+                  "id": "reel-0332"
+                },
+                {
+                  "at": 19.2,
+                  "value": 12.275,
+                  "easing": "linear",
+                  "id": "reel-0333"
+                },
+                {
+                  "at": 19.266667,
+                  "value": -3.945,
+                  "easing": "linear",
+                  "id": "reel-0334"
+                },
+                {
+                  "at": 19.333333,
+                  "value": 12.236,
+                  "easing": "linear",
+                  "id": "reel-0335"
+                },
+                {
+                  "at": 19.4,
+                  "value": 12.4,
+                  "easing": "linear",
+                  "id": "reel-0336"
+                },
+                {
+                  "at": 19.466667,
+                  "value": -1.42,
+                  "easing": "linear",
+                  "id": "reel-0337"
+                },
+                {
+                  "at": 19.533333,
+                  "value": 9.302,
+                  "easing": "linear",
+                  "id": "reel-0338"
+                },
+                {
+                  "at": 19.6,
+                  "value": 15.151,
+                  "easing": "linear",
+                  "id": "reel-0339"
+                },
+                {
+                  "at": 19.666667,
+                  "value": 0.408,
+                  "easing": "linear",
+                  "id": "reel-0340"
+                },
+                {
+                  "at": 19.733333,
+                  "value": 9.54,
+                  "easing": "linear",
+                  "id": "reel-0341"
+                },
+                {
+                  "at": 19.8,
+                  "value": 16.446,
+                  "easing": "linear",
+                  "id": "reel-0342"
+                },
+                {
+                  "at": 19.866667,
+                  "value": 16.446,
+                  "easing": "linear",
+                  "id": "reel-0343"
+                },
+                {
+                  "at": 19.933333,
+                  "value": 16.446,
+                  "easing": "linear",
+                  "id": "reel-0344"
+                },
+                {
+                  "at": 20,
+                  "value": 13.349,
+                  "easing": "linear",
+                  "id": "reel-0345"
+                },
+                {
+                  "at": 20.066667,
+                  "value": 10.85,
+                  "easing": "linear",
+                  "id": "reel-0346"
+                },
+                {
+                  "at": 20.133333,
+                  "value": 16.928,
+                  "easing": "linear",
+                  "id": "reel-0347"
+                },
+                {
+                  "at": 20.2,
+                  "value": 13.163,
+                  "easing": "linear",
+                  "id": "reel-0348"
+                },
+                {
+                  "at": 20.266667,
+                  "value": 13.163,
+                  "easing": "linear",
+                  "id": "reel-0349"
+                },
+                {
+                  "at": 20.333333,
+                  "value": 13.163,
+                  "easing": "linear",
+                  "id": "reel-0350"
+                },
+                {
+                  "at": 20.4,
+                  "value": 13.163,
+                  "easing": "linear",
+                  "id": "reel-0351"
+                },
+                {
+                  "at": 20.466667,
+                  "value": 13.163,
+                  "easing": "linear",
+                  "id": "reel-0352"
+                },
+                {
+                  "at": 20.533333,
+                  "value": 13.601,
+                  "easing": "linear",
+                  "id": "reel-0353"
+                },
+                {
+                  "at": 20.6,
+                  "value": 6.649,
+                  "easing": "linear",
+                  "id": "reel-0354"
+                },
+                {
+                  "at": 20.666667,
+                  "value": 5.64,
+                  "easing": "linear",
+                  "id": "reel-0355"
+                },
+                {
+                  "at": 20.733333,
+                  "value": 9.395,
+                  "easing": "linear",
+                  "id": "reel-0356"
+                },
+                {
+                  "at": 20.8,
+                  "value": 9.395,
+                  "easing": "linear",
+                  "id": "reel-0357"
+                },
+                {
+                  "at": 20.866667,
+                  "value": 12.745,
+                  "easing": "linear",
+                  "id": "reel-0358"
+                },
+                {
+                  "at": 20.933333,
+                  "value": 10.534,
+                  "easing": "linear",
+                  "id": "reel-0359"
+                },
+                {
+                  "at": 21,
+                  "value": 13.819,
+                  "easing": "linear",
+                  "id": "reel-0360"
+                },
+                {
+                  "at": 21.066667,
+                  "value": 13.155,
+                  "easing": "linear",
+                  "id": "reel-0361"
+                },
+                {
+                  "at": 21.133333,
+                  "value": 13.155,
+                  "easing": "linear",
+                  "id": "reel-0362"
+                },
+                {
+                  "at": 21.2,
+                  "value": 13.155,
+                  "easing": "linear",
+                  "id": "reel-0363"
+                },
+                {
+                  "at": 21.266667,
+                  "value": 13.155,
+                  "easing": "linear",
+                  "id": "reel-0364"
+                },
+                {
+                  "at": 21.333333,
+                  "value": 13.155,
+                  "easing": "linear",
+                  "id": "reel-0365"
+                },
+                {
+                  "at": 21.4,
+                  "value": 13.155,
+                  "easing": "linear",
+                  "id": "reel-0366"
+                },
+                {
+                  "at": 21.433333,
+                  "value": 13.155,
+                  "easing": "linear",
+                  "id": "reel-0367"
+                }
+              ]
+            }
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "orbitSquare",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.068,
+                0.868,
+                0
+              ],
+              [
+                0.066667,
+                -0.07,
+                0.874,
+                0
+              ],
+              [
+                0.133333,
+                -0.116,
+                0.932,
+                0
+              ],
+              [
+                0.2,
+                -0.114,
+                0.934,
+                0
+              ],
+              [
+                0.266667,
+                -0.068,
+                1,
+                0
+              ],
+              [
+                0.333333,
+                -0.14,
+                0.96,
+                0
+              ],
+              [
+                0.4,
+                -0.066,
+                1,
+                0
+              ],
+              [
+                0.466667,
+                -0.126,
+                0.974,
+                0
+              ],
+              [
+                0.533333,
+                -0.166,
+                0.934,
+                0
+              ],
+              [
+                0.6,
+                -0.184,
+                0.916,
+                0
+              ],
+              [
+                0.666667,
+                -0.204,
+                0.896,
+                0
+              ],
+              [
+                0.733333,
+                -0.21,
+                0.838,
+                0
+              ],
+              [
+                0.8,
+                -0.172,
+                0.8,
+                0
+              ],
+              [
+                0.866667,
+                -0.082,
+                0.882,
+                0
+              ],
+              [
+                0.933333,
+                -0.144,
+                0.948,
+                0
+              ],
+              [
+                1,
+                -0.098,
+                0.946,
+                0
+              ],
+              [
+                1.066667,
+                -0.064,
+                1,
+                0
+              ],
+              [
+                1.133333,
+                -0.064,
+                1,
+                0
+              ],
+              [
+                1.2,
+                -0.154,
+                0.946,
+                0
+              ],
+              [
+                1.266667,
+                -0.174,
+                0.926,
+                0
+              ],
+              [
+                1.333333,
+                -0.202,
+                0.898,
+                0
+              ],
+              [
+                1.4,
+                -0.22,
+                0.852,
+                0
+              ],
+              [
+                1.466667,
+                -0.188,
+                0.856,
+                0
+              ],
+              [
+                1.533333,
+                -0.148,
+                0.952,
+                0
+              ],
+              [
+                1.6,
+                -0.144,
+                0.948,
+                0
+              ],
+              [
+                1.666667,
+                -0.136,
+                0.956,
+                0
+              ],
+              [
+                1.733333,
+                -0.06,
+                1,
+                0
+              ],
+              [
+                1.8,
+                -0.068,
+                1,
+                0
+              ],
+              [
+                1.866667,
+                -0.146,
+                0.954,
+                0
+              ],
+              [
+                1.933333,
+                -0.172,
+                0.928,
+                0
+              ],
+              [
+                2,
+                -0.2,
+                0.9,
+                0
+              ],
+              [
+                2.066667,
+                -0.202,
+                0.838,
+                0
+              ],
+              [
+                2.133333,
+                -0.09,
+                0.866,
+                0
+              ],
+              [
+                2.2,
+                -0.112,
+                0.924,
+                0
+              ],
+              [
+                2.266667,
+                -0.132,
+                0.96,
+                0
+              ],
+              [
+                2.333333,
+                -0.056,
+                1,
+                0
+              ],
+              [
+                2.4,
+                -0.144,
+                0.94,
+                0
+              ],
+              [
+                2.466667,
+                -0.194,
+                0.906,
+                0
+              ],
+              [
+                2.533333,
+                -0.192,
+                0.848,
+                0
+              ],
+              [
+                2.6,
+                -0.132,
+                0.824,
+                0
+              ],
+              [
+                2.666667,
+                -0.072,
+                0.884,
+                0
+              ],
+              [
+                2.733333,
+                -0.108,
+                0.932,
+                0
+              ],
+              [
+                2.8,
+                -0.054,
+                1,
+                0
+              ],
+              [
+                2.866667,
+                -0.134,
+                0.946,
+                0
+              ],
+              [
+                2.933333,
+                -0.184,
+                0.908,
+                0
+              ],
+              [
+                3,
+                -0.214,
+                0.874,
+                0
+              ],
+              [
+                3.066667,
+                -0.142,
+                0.818,
+                0
+              ],
+              [
+                3.133333,
+                -0.07,
+                0.882,
+                0
+              ],
+              [
+                3.2,
+                -0.058,
+                0.87,
+                0
+              ],
+              [
+                3.266667,
+                -0.052,
+                1,
+                0
+              ],
+              [
+                3.333333,
+                -0.13,
+                0.958,
+                0
+              ],
+              [
+                3.4,
+                -0.158,
+                0.922,
+                0
+              ],
+              [
+                3.466667,
+                -0.19,
+                0.898,
+                0
+              ],
+              [
+                3.533333,
+                -0.196,
+                0.84,
+                0
+              ],
+              [
+                3.6,
+                -0.07,
+                0.882,
+                0
+              ],
+              [
+                3.666667,
+                -0.048,
+                0.868,
+                0
+              ],
+              [
+                3.733333,
+                -0.05,
+                1,
+                0
+              ],
+              [
+                3.8,
+                -0.05,
+                1,
+                0
+              ],
+              [
+                3.866667,
+                -0.154,
+                0.946,
+                0
+              ],
+              [
+                3.933333,
+                -0.196,
+                0.904,
+                0
+              ],
+              [
+                4,
+                -0.196,
+                0.836,
+                0
+              ],
+              [
+                4.066667,
+                -0.134,
+                0.818,
+                0
+              ],
+              [
+                4.133333,
+                -0.052,
+                0.868,
+                0
+              ],
+              [
+                4.2,
+                -0.05,
+                1,
+                0
+              ],
+              [
+                4.266667,
+                -0.138,
+                0.962,
+                0
+              ],
+              [
+                4.333333,
+                -0.188,
+                0.896,
+                0
+              ],
+              [
+                4.4,
+                -0.07,
+                0.882,
+                0
+              ],
+              [
+                4.466667,
+                -0.11,
+                0.97,
+                0
+              ],
+              [
+                4.533333,
+                -0.06,
+                1,
+                0
+              ],
+              [
+                4.6,
+                -0.166,
+                0.922,
+                0
+              ],
+              [
+                4.666667,
+                -0.178,
+                0.854,
+                0
+              ],
+              [
+                4.733333,
+                -0.066,
+                0.882,
+                0
+              ],
+              [
+                4.8,
+                -0.05,
+                1,
+                0
+              ],
+              [
+                4.866667,
+                -0.152,
+                0.948,
+                0
+              ],
+              [
+                4.933333,
+                -0.166,
+                0.874,
+                0
+              ],
+              [
+                5,
+                -0.066,
+                0.882,
+                0
+              ],
+              [
+                5.066667,
+                -0.058,
+                1,
+                0
+              ],
+              [
+                5.133333,
+                -0.112,
+                0.976,
+                0
+              ],
+              [
+                5.2,
+                -0.182,
+                0.902,
+                0
+              ],
+              [
+                5.266667,
+                -0.142,
+                0.822,
+                0
+              ],
+              [
+                5.333333,
+                -0.106,
+                0.922,
+                0
+              ],
+              [
+                5.4,
+                -0.05,
+                1,
+                0
+              ],
+              [
+                5.466667,
+                -0.15,
+                0.934,
+                0
+              ],
+              [
+                5.533333,
+                -0.194,
+                0.842,
+                0
+              ],
+              [
+                5.6,
+                -0.066,
+                0.882,
+                0
+              ],
+              [
+                5.666667,
+                -0.05,
+                1,
+                0
+              ],
+              [
+                5.733333,
+                -0.134,
+                0.95,
+                0
+              ],
+              [
+                5.8,
+                -0.212,
+                0.872,
+                0
+              ],
+              [
+                5.866667,
+                -0.128,
+                0.824,
+                0
+              ],
+              [
+                5.933333,
+                -0.122,
+                0.958,
+                0
+              ],
+              [
+                6,
+                -0.11,
+                0.974,
+                0
+              ],
+              [
+                6.066667,
+                -0.19,
+                0.91,
+                0
+              ],
+              [
+                6.133333,
+                -0.184,
+                0.896,
+                0
+              ],
+              [
+                6.2,
+                -0.058,
+                0.854,
+                0
+              ],
+              [
+                6.266667,
+                0.122,
+                0.678,
+                0
+              ],
+              [
+                6.333333,
+                -0.106,
+                0.93,
+                0
+              ],
+              [
+                6.4,
+                -0.148,
+                0.924,
+                0
+              ],
+              [
+                6.466667,
+                -0.158,
+                0.798,
+                0
+              ],
+              [
+                6.533333,
+                -0.05,
+                0.862,
+                0
+              ],
+              [
+                6.6,
+                -0.116,
+                0.952,
+                0
+              ],
+              [
+                6.666667,
+                -0.46,
+                0.624,
+                0
+              ],
+              [
+                6.733333,
+                -0.044,
+                0.708,
+                0
+              ],
+              [
+                6.8,
+                -0.092,
+                0.812,
+                0
+              ],
+              [
+                6.866667,
+                -0.098,
+                0.93,
+                0
+              ],
+              [
+                6.933333,
+                -0.136,
+                0.808,
+                0
+              ],
+              [
+                7,
+                -0.21,
+                0.874,
+                0
+              ],
+              [
+                7.066667,
+                -0.098,
+                0.786,
+                0
+              ],
+              [
+                7.133333,
+                -0.066,
+                0.89,
+                0
+              ],
+              [
+                7.2,
+                0.342,
+                0.47,
+                0
+              ],
+              [
+                7.266667,
+                -0.096,
+                0.804,
+                0
+              ],
+              [
+                7.333333,
+                -0.264,
+                0.76,
+                0
+              ],
+              [
+                7.4,
+                -0.116,
+                0.908,
+                0
+              ],
+              [
+                7.466667,
+                -0.098,
+                0.93,
+                0
+              ],
+              [
+                7.533333,
+                -0.198,
+                0.818,
+                0
+              ],
+              [
+                7.6,
+                -0.028,
+                0.84,
+                0
+              ],
+              [
+                7.666667,
+                -0.126,
+                0.93,
+                0
+              ],
+              [
+                7.733333,
+                -0.194,
+                0.834,
+                0
+              ],
+              [
+                7.8,
+                -0.05,
+                0.874,
+                0
+              ],
+              [
+                7.866667,
+                -0.15,
+                0.918,
+                0
+              ],
+              [
+                7.933333,
+                -0.152,
+                0.796,
+                0
+              ],
+              [
+                8,
+                -0.096,
+                0.932,
+                0
+              ],
+              [
+                8.066667,
+                -0.164,
+                0.92,
+                0
+              ],
+              [
+                8.133333,
+                -0.126,
+                0.822,
+                0
+              ],
+              [
+                8.2,
+                -0.072,
+                0.988,
+                0
+              ],
+              [
+                8.266667,
+                -0.19,
+                0.894,
+                0
+              ],
+              [
+                8.333333,
+                -0.062,
+                0.85,
+                0
+              ],
+              [
+                8.4,
+                -0.104,
+                0.964,
+                0
+              ],
+              [
+                8.466667,
+                -0.218,
+                0.87,
+                0
+              ],
+              [
+                8.533333,
+                -0.054,
+                0.862,
+                0
+              ],
+              [
+                8.6,
+                -0.128,
+                0.936,
+                0
+              ],
+              [
+                8.666667,
+                -0.216,
+                0.82,
+                0
+              ],
+              [
+                8.733333,
+                -0.062,
+                0.87,
+                0
+              ],
+              [
+                8.8,
+                -0.15,
+                0.922,
+                0
+              ],
+              [
+                8.866667,
+                -0.162,
+                0.798,
+                0
+              ],
+              [
+                8.933333,
+                -0.572,
+                0.468,
+                0
+              ],
+              [
+                9,
+                0.086,
+                0.706,
+                0
+              ],
+              [
+                9.066667,
+                -0.278,
+                0.682,
+                0
+              ],
+              [
+                9.133333,
+                0.07,
+                0.73,
+                0
+              ],
+              [
+                9.2,
+                0.04,
+                0.736,
+                0
+              ],
+              [
+                9.266667,
+                -0.144,
+                0.772,
+                0
+              ],
+              [
+                9.333333,
+                0.058,
+                0.758,
+                0
+              ],
+              [
+                9.4,
+                0.01,
+                0.722,
+                0
+              ],
+              [
+                9.466667,
+                -0.15,
+                0.814,
+                0
+              ],
+              [
+                9.533333,
+                -0.07,
+                0.974,
+                0
+              ],
+              [
+                9.6,
+                -0.2,
+                0.9,
+                0
+              ],
+              [
+                9.666667,
+                -0.082,
+                0.878,
+                0
+              ],
+              [
+                9.733333,
+                -0.138,
+                0.95,
+                0
+              ],
+              [
+                9.8,
+                -0.228,
+                0.872,
+                0
+              ],
+              [
+                9.866667,
+                -0.066,
+                0.862,
+                0
+              ],
+              [
+                9.933333,
+                -0.13,
+                0.93,
+                0
+              ],
+              [
+                10,
+                -0.222,
+                0.822,
+                0
+              ],
+              [
+                10.066667,
+                -0.068,
+                0.868,
+                0
+              ],
+              [
+                10.133333,
+                -0.15,
+                0.926,
+                0
+              ],
+              [
+                10.2,
+                -0.174,
+                0.802,
+                0
+              ],
+              [
+                10.266667,
+                -0.082,
+                0.89,
+                0
+              ],
+              [
+                10.333333,
+                -0.166,
+                0.914,
+                0
+              ],
+              [
+                10.4,
+                -0.158,
+                0.802,
+                0
+              ],
+              [
+                10.466667,
+                -0.262,
+                0.778,
+                0
+              ],
+              [
+                10.533333,
+                -0.336,
+                0.764,
+                0
+              ],
+              [
+                10.6,
+                -0.142,
+                0.774,
+                0
+              ],
+              [
+                10.666667,
+                -0.272,
+                0.768,
+                0
+              ],
+              [
+                10.733333,
+                -0.314,
+                0.778,
+                0
+              ],
+              [
+                10.8,
+                -0.192,
+                0.72,
+                0
+              ],
+              [
+                10.866667,
+                -0.334,
+                0.71,
+                0
+              ],
+              [
+                10.933333,
+                -0.288,
+                0.748,
+                0
+              ],
+              [
+                11,
+                -0.114,
+                0.534,
+                0
+              ],
+              [
+                11.066667,
+                0.446,
+                0.518,
+                0
+              ],
+              [
+                11.133333,
+                -0.396,
+                0.692,
+                0
+              ],
+              [
+                11.2,
+                -0.054,
+                0.87,
+                0
+              ],
+              [
+                11.266667,
+                -0.114,
+                0.93,
+                0
+              ],
+              [
+                11.333333,
+                -0.226,
+                0.806,
+                0
+              ],
+              [
+                11.4,
+                -0.052,
+                0.872,
+                0
+              ],
+              [
+                11.466667,
+                -0.16,
+                0.908,
+                0
+              ],
+              [
+                11.533333,
+                -0.078,
+                0.866,
+                0
+              ],
+              [
+                11.6,
+                -0.12,
+                0.952,
+                0
+              ],
+              [
+                11.666667,
+                -0.21,
+                0.814,
+                0
+              ],
+              [
+                11.733333,
+                -0.048,
+                0.872,
+                0
+              ],
+              [
+                11.8,
+                -0.146,
+                0.914,
+                0
+              ],
+              [
+                11.866667,
+                -0.118,
+                0.826,
+                0
+              ],
+              [
+                11.933333,
+                -0.116,
+                0.952,
+                0
+              ],
+              [
+                12,
+                -0.194,
+                0.83,
+                0
+              ],
+              [
+                12.066667,
+                -0.04,
+                0.864,
+                0
+              ],
+              [
+                12.133333,
+                -0.138,
+                0.922,
+                0
+              ],
+              [
+                12.2,
+                -0.126,
+                0.814,
+                0
+              ],
+              [
+                12.266667,
+                -0.09,
+                0.934,
+                0
+              ],
+              [
+                12.333333,
+                -0.21,
+                0.866,
+                0
+              ],
+              [
+                12.4,
+                -0.036,
+                0.864,
+                0
+              ],
+              [
+                12.466667,
+                -0.064,
+                0.892,
+                0
+              ],
+              [
+                12.533333,
+                -0.092,
+                0.92,
+                0
+              ],
+              [
+                12.6,
+                -0.12,
+                0.948,
+                0
+              ],
+              [
+                12.666667,
+                0.186,
+                0.61,
+                0
+              ],
+              [
+                12.733333,
+                0.116,
+                0.54,
+                0
+              ],
+              [
+                12.8,
+                0.308,
+                0.692,
+                0
+              ],
+              [
+                12.866667,
+                0.194,
+                0.53,
+                0
+              ],
+              [
+                12.933333,
+                0.202,
+                0.626,
+                0
+              ],
+              [
+                13,
+                0.246,
+                0.57,
+                0
+              ],
+              [
+                13.066667,
+                0.154,
+                0.502,
+                0
+              ],
+              [
+                13.133333,
+                -0.084,
+                0.932,
+                0
+              ],
+              [
+                13.2,
+                -0.174,
+                0.898,
+                0
+              ],
+              [
+                13.266667,
+                -0.038,
+                0.87,
+                0
+              ],
+              [
+                13.333333,
+                -0.102,
+                0.934,
+                0
+              ],
+              [
+                13.4,
+                -0.146,
+                0.806,
+                0
+              ],
+              [
+                13.466667,
+                -0.084,
+                0.932,
+                0
+              ],
+              [
+                13.533333,
+                -0.168,
+                0.904,
+                0
+              ],
+              [
+                13.6,
+                -0.038,
+                0.87,
+                0
+              ],
+              [
+                13.666667,
+                -0.098,
+                0.934,
+                0
+              ],
+              [
+                13.733333,
+                -0.178,
+                0.838,
+                0
+              ],
+              [
+                13.8,
+                -0.084,
+                0.932,
+                0
+              ],
+              [
+                13.866667,
+                -0.146,
+                0.922,
+                0
+              ],
+              [
+                13.933333,
+                -0.03,
+                0.862,
+                0
+              ],
+              [
+                14,
+                -0.096,
+                0.932,
+                0
+              ],
+              [
+                14.066667,
+                -0.178,
+                0.838,
+                0
+              ],
+              [
+                14.133333,
+                -0.052,
+                0.856,
+                0
+              ],
+              [
+                14.2,
+                -0.1,
+                0.952,
+                0
+              ],
+              [
+                14.266667,
+                -0.064,
+                0.868,
+                0
+              ],
+              [
+                14.333333,
+                -0.12,
+                0.896,
+                0
+              ],
+              [
+                14.4,
+                -0.118,
+                0.894,
+                0
+              ],
+              [
+                14.466667,
+                0.134,
+                0.702,
+                0
+              ],
+              [
+                14.533333,
+                0.39,
+                0.462,
+                0
+              ],
+              [
+                14.6,
+                -0.144,
+                0.872,
+                0
+              ],
+              [
+                14.666667,
+                -0.036,
+                0.86,
+                0
+              ],
+              [
+                14.733333,
+                -0.132,
+                0.92,
+                0
+              ],
+              [
+                14.8,
+                -0.116,
+                0.816,
+                0
+              ],
+              [
+                14.866667,
+                -0.004,
+                1,
+                0
+              ],
+              [
+                14.933333,
+                -0.194,
+                0.874,
+                0
+              ],
+              [
+                15,
+                -0.034,
+                0.87,
+                0
+              ],
+              [
+                15.066667,
+                -0.122,
+                0.922,
+                0
+              ],
+              [
+                15.133333,
+                -0.116,
+                0.816,
+                0
+              ],
+              [
+                15.2,
+                -0.004,
+                1,
+                0
+              ],
+              [
+                15.266667,
+                -0.17,
+                0.898,
+                0
+              ],
+              [
+                15.333333,
+                -0.004,
+                1,
+                0
+              ],
+              [
+                15.4,
+                -0.028,
+                0.864,
+                0
+              ],
+              [
+                15.466667,
+                -0.028,
+                0.864,
+                0
+              ],
+              [
+                15.533333,
+                -0.02,
+                0.856,
+                0
+              ],
+              [
+                15.6,
+                -0.104,
+                0.828,
+                0
+              ],
+              [
+                15.666667,
+                -0.174,
+                0.838,
+                0
+              ],
+              [
+                15.733333,
+                -0.168,
+                0.896,
+                0
+              ],
+              [
+                15.8,
+                -0.168,
+                0.896,
+                0
+              ],
+              [
+                15.866667,
+                -0.572,
+                0.48,
+                0
+              ],
+              [
+                15.933333,
+                -0.108,
+                0.94,
+                0
+              ],
+              [
+                16,
+                -0.152,
+                0.864,
+                0
+              ],
+              [
+                16.066667,
+                -0.088,
+                0.924,
+                0
+              ],
+              [
+                16.133333,
+                0.082,
+                0.558,
+                0
+              ],
+              [
+                16.2,
+                -0.33,
+                0.738,
+                0
+              ],
+              [
+                16.266667,
+                -0.17,
+                0.898,
+                0
+              ],
+              [
+                16.333333,
+                -0.128,
+                0.92,
+                0
+              ],
+              [
+                16.4,
+                -0.132,
+                0.912,
+                0
+              ],
+              [
+                16.466667,
+                -0.106,
+                0.922,
+                0
+              ],
+              [
+                16.533333,
+                -0.08,
+                0.932,
+                0
+              ],
+              [
+                16.6,
+                -0.096,
+                0.876,
+                0
+              ],
+              [
+                16.666667,
+                -0.112,
+                0.82,
+                0
+              ],
+              [
+                16.733333,
+                -0.01,
+                0.846,
+                0
+              ],
+              [
+                16.8,
+                -0.402,
+                0.65,
+                0
+              ],
+              [
+                16.866667,
+                -0.172,
+                0.896,
+                0
+              ],
+              [
+                16.933333,
+                -0.132,
+                0.934,
+                0
+              ],
+              [
+                17,
+                -0.092,
+                0.972,
+                0
+              ],
+              [
+                17.066667,
+                -0.062,
+                0.916,
+                0
+              ],
+              [
+                17.133333,
+                -0.032,
+                0.86,
+                0
+              ],
+              [
+                17.2,
+                -0.036,
+                0.872,
+                0
+              ],
+              [
+                17.266667,
+                -0.091,
+                0.839,
+                0
+              ],
+              [
+                17.333333,
+                -0.146,
+                0.806,
+                0
+              ],
+              [
+                17.4,
+                -0.418,
+                0.518,
+                0
+              ],
+              [
+                17.466667,
+                -0.128,
+                0.92,
+                0
+              ],
+              [
+                17.533333,
+                -0.15,
+                0.922,
+                0
+              ],
+              [
+                17.6,
+                -0.346,
+                0.654,
+                0
+              ],
+              [
+                17.666667,
+                -0.008,
+                1,
+                0
+              ],
+              [
+                17.733333,
+                -0.31,
+                0.726,
+                0
+              ],
+              [
+                17.8,
+                0,
+                0.828,
+                0
+              ],
+              [
+                17.866667,
+                -0.032,
+                0.864,
+                0
+              ],
+              [
+                17.933333,
+                0.078,
+                0.558,
+                0
+              ],
+              [
+                18,
+                -0.176,
+                0.836,
+                0
+              ],
+              [
+                18.066667,
+                -0.122,
+                0.814,
+                0
+              ],
+              [
+                18.133333,
+                0.234,
+                0.594,
+                0
+              ],
+              [
+                18.2,
+                -0.142,
+                0.914,
+                0
+              ],
+              [
+                18.266667,
+                -0.079,
+                0.957,
+                0
+              ],
+              [
+                18.333333,
+                -0.016,
+                1,
+                0
+              ],
+              [
+                18.4,
+                -0.11,
+                0.958,
+                0
+              ],
+              [
+                18.466667,
+                -0.07,
+                0.908,
+                0
+              ],
+              [
+                18.533333,
+                -0.03,
+                0.858,
+                0
+              ],
+              [
+                18.6,
+                -0.115,
+                0.865,
+                0
+              ],
+              [
+                18.666667,
+                -0.2,
+                0.872,
+                0
+              ],
+              [
+                18.733333,
+                -0.148,
+                0.808,
+                0
+              ],
+              [
+                18.8,
+                -0.137,
+                0.867,
+                0
+              ],
+              [
+                18.866667,
+                -0.126,
+                0.926,
+                0
+              ],
+              [
+                18.933333,
+                -0.107,
+                0.927,
+                0
+              ],
+              [
+                19,
+                -0.088,
+                0.928,
+                0
+              ],
+              [
+                19.066667,
+                -0.026,
+                1,
+                0
+              ],
+              [
+                19.133333,
+                -0.04,
+                0.941,
+                0
+              ],
+              [
+                19.2,
+                -0.054,
+                0.882,
+                0
+              ],
+              [
+                19.266667,
+                -0.115,
+                0.889,
+                0
+              ],
+              [
+                19.333333,
+                -0.176,
+                0.896,
+                0
+              ],
+              [
+                19.4,
+                -0.18,
+                0.836,
+                0
+              ],
+              [
+                19.466667,
+                -0.145,
+                0.887,
+                0
+              ],
+              [
+                19.533333,
+                -0.11,
+                0.938,
+                0
+              ],
+              [
+                19.6,
+                -0.444,
+                0.612,
+                0
+              ],
+              [
+                19.666667,
+                -0.034,
+                0.862,
+                0
+              ],
+              [
+                19.733333,
+                -0.084,
+                0.932,
+                0
+              ],
+              [
+                19.8,
+                -0.18,
+                0.768,
+                0
+              ],
+              [
+                19.866667,
+                -0.124,
+                0.816,
+                0
+              ],
+              [
+                19.933333,
+                -0.146,
+                0.746,
+                0
+              ],
+              [
+                20,
+                0.026,
+                0.726,
+                0
+              ],
+              [
+                20.066667,
+                -0.188,
+                0.884,
+                0
+              ],
+              [
+                20.133333,
+                0.202,
+                0.634,
+                0
+              ],
+              [
+                20.2,
+                -0.18,
+                0.836,
+                0
+              ],
+              [
+                20.266667,
+                0.208,
+                0.684,
+                0
+              ],
+              [
+                20.333333,
+                -0.048,
+                0.868,
+                0
+              ],
+              [
+                20.4,
+                -0.114,
+                0.938,
+                0
+              ],
+              [
+                20.466667,
+                -0.144,
+                0.918,
+                0
+              ],
+              [
+                20.533333,
+                -0.174,
+                0.898,
+                0
+              ],
+              [
+                20.6,
+                -0.354,
+                0.542,
+                0
+              ],
+              [
+                20.666667,
+                -0.176,
+                0.832,
+                0
+              ],
+              [
+                20.733333,
+                -0.044,
+                1,
+                0
+              ],
+              [
+                20.8,
+                0.16,
+                0.644,
+                0
+              ],
+              [
+                20.866667,
+                -0.124,
+                0.932,
+                0
+              ],
+              [
+                20.933333,
+                -0.098,
+                0.786,
+                0
+              ],
+              [
+                21,
+                -0.18,
+                0.896,
+                0
+              ],
+              [
+                21.066667,
+                -0.038,
+                0.866,
+                0
+              ],
+              [
+                21.133333,
+                -0.038,
+                0.866,
+                0
+              ],
+              [
+                21.2,
+                -0.038,
+                0.866,
+                0
+              ],
+              [
+                21.266667,
+                -0.038,
+                0.866,
+                0
+              ],
+              [
+                21.333333,
+                -0.038,
+                0.866,
+                0
+              ],
+              [
+                21.4,
+                -0.038,
+                0.866,
+                0
+              ],
+              [
+                21.433333,
+                -0.038,
+                0.866,
+                0
+              ]
+            ]
+          },
+          "measurement": "Envolvente del cuadrado medida en el suelo; interpolación donde el humo la oculta. Giro en homografía estimada."
+        },
+        {
+          "id": "reel-0002",
+          "name": "Cierre a un haz",
+          "start": 21.433333,
+          "duration": 1,
+          "shape": "needle",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "needle",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.03279,
+                0.003,
+                0
+              ],
+              [
+                0.1,
+                -0.03279,
+                0.003,
+                0
+              ],
+              [
+                0.166667,
+                -0.03279,
+                0.003,
+                0
+              ],
+              [
+                0.233334,
+                -0.03279,
+                0.003,
+                0
+              ],
+              [
+                0.3,
+                -0.03279,
+                0.003,
+                0
+              ],
+              [
+                0.366667,
+                -0.03279,
+                0.003,
+                0
+              ],
+              [
+                0.433334,
+                -0.03279,
+                0.003,
+                0
+              ],
+              [
+                0.5,
+                -0.03279,
+                0.003,
+                0
+              ],
+              [
+                0.566667,
+                -0.03279,
+                0.003,
+                0
+              ],
+              [
+                0.633334,
+                -0.03279,
+                0.003,
+                0
+              ],
+              [
+                0.7,
+                0.11122,
+                0.003,
+                0
+              ],
+              [
+                0.766667,
+                0.11122,
+                0.003,
+                0
+              ],
+              [
+                0.833334,
+                0.11122,
+                0.003,
+                0
+              ],
+              [
+                0.9,
+                0.11122,
+                0.003,
+                0
+              ],
+              [
+                0.966667,
+                0.11122,
+                0.003,
+                0
+              ],
+              [
+                1,
+                0.11122,
+                0.003,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0003",
+          "name": "Doble haz verde",
+          "start": 22.433333,
+          "duration": 0.433334,
+          "shape": "splitBeams",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "splitBeams",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.1,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.166667,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.233334,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.3,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.366667,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.433334,
+                0.11122,
+                0.00547,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0004",
+          "name": "Cuchilla y gesto lateral",
+          "start": 22.866667,
+          "duration": 1.3,
+          "shape": "blade",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.75,
+          "rotation": -45,
+          "rotationEnd": 45,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 4.5,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {
+              "opening": [
+                {
+                  "at": 0,
+                  "value": 0.07,
+                  "easing": "smooth",
+                  "id": "reel-0368"
+                },
+                {
+                  "at": 0.6500000000000004,
+                  "value": 0.95,
+                  "easing": "smooth",
+                  "id": "reel-0369"
+                },
+                {
+                  "at": 1.3000000000000007,
+                  "value": 0.05,
+                  "easing": "linear",
+                  "id": "reel-0370"
+                }
+              ]
+            }
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "blade",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.066666,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.133333,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.2,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.266666,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.333333,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.4,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.466666,
+                0.11122,
+                0.00547,
+                0
+              ],
+              [
+                0.533333,
+                -0.08306,
+                0.3324,
+                0
+              ],
+              [
+                0.6,
+                -0.08306,
+                0.3324,
+                0
+              ],
+              [
+                0.666666,
+                0.40953,
+                0.004,
+                0
+              ],
+              [
+                0.733333,
+                0.40953,
+                0.004,
+                0
+              ],
+              [
+                0.8,
+                0.40953,
+                0.004,
+                0
+              ],
+              [
+                0.866666,
+                0.33772,
+                0.00947,
+                0
+              ],
+              [
+                0.933333,
+                -0.57619,
+                0.00947,
+                0
+              ],
+              [
+                1,
+                -0.60525,
+                0.004,
+                0
+              ],
+              [
+                1.066666,
+                -0.60525,
+                0.004,
+                0
+              ],
+              [
+                1.133333,
+                0.26162,
+                0.00562,
+                0
+              ],
+              [
+                1.2,
+                0.26162,
+                0.00562,
+                0
+              ],
+              [
+                1.266666,
+                0.26162,
+                0.00562,
+                0
+              ],
+              [
+                1.3,
+                0.26162,
+                0.00562,
+                0
+              ]
+            ]
+          },
+          "previewOrigin": "right-hand",
+          "videoMotionEnabled": false
+        },
+        {
+          "id": "reel-0005",
+          "name": "Haz lateral",
+          "start": 24.166667,
+          "duration": 0.333333,
+          "shape": "needle",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "needle",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                0.26162,
+                0.003,
+                0
+              ],
+              [
+                0.1,
+                0.26162,
+                0.003,
+                0
+              ],
+              [
+                0.166666,
+                0.26162,
+                0.003,
+                0
+              ],
+              [
+                0.233333,
+                0.26162,
+                0.003,
+                0
+              ],
+              [
+                0.3,
+                0.26162,
+                0.003,
+                0
+              ],
+              [
+                0.333333,
+                0.26162,
+                0.003,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0006",
+          "name": "Dos haces · reapertura",
+          "start": 24.5,
+          "duration": 0.733333,
+          "shape": "splitBeams",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "splitBeams",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.1,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.166667,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.233333,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.3,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.366667,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.433333,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.5,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.566667,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.633333,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.7,
+                1,
+                0.002,
+                0
+              ],
+              [
+                0.733333,
+                1,
+                0.002,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0007",
+          "name": "Vuelve el cuadrado",
+          "start": 25.233333,
+          "duration": 0.633334,
+          "shape": "orbitSquare",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {
+              "rotation": [
+                {
+                  "at": 0,
+                  "value": 9.926,
+                  "easing": "linear",
+                  "id": "reel-0371"
+                },
+                {
+                  "at": 0.1,
+                  "value": 9.926,
+                  "easing": "linear",
+                  "id": "reel-0372"
+                },
+                {
+                  "at": 0.166667,
+                  "value": 9.926,
+                  "easing": "linear",
+                  "id": "reel-0373"
+                },
+                {
+                  "at": 0.233334,
+                  "value": 9.926,
+                  "easing": "linear",
+                  "id": "reel-0374"
+                },
+                {
+                  "at": 0.3,
+                  "value": 9.926,
+                  "easing": "linear",
+                  "id": "reel-0375"
+                },
+                {
+                  "at": 0.366667,
+                  "value": 1.444,
+                  "easing": "linear",
+                  "id": "reel-0376"
+                },
+                {
+                  "at": 0.433334,
+                  "value": 1.444,
+                  "easing": "linear",
+                  "id": "reel-0377"
+                },
+                {
+                  "at": 0.5,
+                  "value": 1.444,
+                  "easing": "linear",
+                  "id": "reel-0378"
+                },
+                {
+                  "at": 0.566667,
+                  "value": 1.444,
+                  "easing": "linear",
+                  "id": "reel-0379"
+                },
+                {
+                  "at": 0.633334,
+                  "value": 1.444,
+                  "easing": "linear",
+                  "id": "reel-0380"
+                }
+              ]
+            }
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "orbitSquare",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.22,
+                0.864,
+                0
+              ],
+              [
+                0.1,
+                -0.18,
+                0.856,
+                0
+              ],
+              [
+                0.166667,
+                -0.166,
+                0.922,
+                0
+              ],
+              [
+                0.233334,
+                -0.164,
+                0.92,
+                0
+              ],
+              [
+                0.3,
+                -0.204,
+                0.88,
+                0
+              ],
+              [
+                0.366667,
+                -0.18,
+                0.856,
+                0
+              ],
+              [
+                0.433334,
+                -0.166,
+                0.922,
+                0
+              ],
+              [
+                0.5,
+                -0.038,
+                1,
+                0
+              ],
+              [
+                0.566667,
+                -0.038,
+                1,
+                0
+              ],
+              [
+                0.633334,
+                -0.038,
+                1,
+                0
+              ]
+            ]
+          },
+          "measurement": "Envolvente del cuadrado medida en el suelo; interpolación donde el humo la oculta. Giro en homografía estimada."
+        },
+        {
+          "id": "reel-0008",
+          "name": "Corona violeta · 16 haces estimados",
+          "start": 25.866667,
+          "duration": 3.066666,
+          "shape": "beamCage",
+          "color": "#ac27ff",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "beamCage",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.55717,
+                0.45948,
+                0
+              ],
+              [
+                0.066666,
+                -0.18592,
+                0.8567,
+                0
+              ],
+              [
+                0.133333,
+                -0.11434,
+                0.8567,
+                0
+              ],
+              [
+                0.2,
+                -0.09971,
+                0.8567,
+                0
+              ],
+              [
+                0.266666,
+                -0.09971,
+                0.88085,
+                0
+              ],
+              [
+                0.333333,
+                -0.15921,
+                0.88085,
+                0
+              ],
+              [
+                0.4,
+                -0.15921,
+                0.78764,
+                0
+              ],
+              [
+                0.466666,
+                -0.13108,
+                0.78764,
+                0
+              ],
+              [
+                0.533333,
+                -0.13108,
+                0.88865,
+                0
+              ],
+              [
+                0.6,
+                -0.1548,
+                0.88865,
+                0
+              ],
+              [
+                0.666666,
+                -0.1548,
+                0.86133,
+                0
+              ],
+              [
+                0.733333,
+                -0.12788,
+                0.86133,
+                0
+              ],
+              [
+                0.8,
+                -0.12788,
+                0.86133,
+                0
+              ],
+              [
+                0.866666,
+                -0.12788,
+                0.80877,
+                0
+              ],
+              [
+                0.933333,
+                -0.10801,
+                0.80877,
+                0
+              ],
+              [
+                1,
+                -0.10801,
+                0.88891,
+                0
+              ],
+              [
+                1.066666,
+                -0.13825,
+                0.88891,
+                0
+              ],
+              [
+                1.133333,
+                -0.13825,
+                0.82876,
+                0
+              ],
+              [
+                1.2,
+                -0.12267,
+                0.82876,
+                0
+              ],
+              [
+                1.266666,
+                -0.12267,
+                0.87584,
+                0
+              ],
+              [
+                1.333333,
+                -0.15899,
+                0.87584,
+                0
+              ],
+              [
+                1.4,
+                -0.15899,
+                0.87584,
+                0
+              ],
+              [
+                1.466666,
+                -0.12978,
+                0.87684,
+                0
+              ],
+              [
+                1.533333,
+                -0.12978,
+                0.87684,
+                0
+              ],
+              [
+                1.6,
+                -0.1359,
+                0.79919,
+                0
+              ],
+              [
+                1.666666,
+                -0.1359,
+                0.79919,
+                0
+              ],
+              [
+                1.733333,
+                -0.13411,
+                0.90075,
+                0
+              ],
+              [
+                1.8,
+                -0.13411,
+                0.90075,
+                0
+              ],
+              [
+                1.866666,
+                -0.12892,
+                0.8461,
+                0
+              ],
+              [
+                1.933333,
+                -0.12866,
+                0.8461,
+                0
+              ],
+              [
+                2,
+                -0.12866,
+                0.86385,
+                0
+              ],
+              [
+                2.066666,
+                -0.12866,
+                0.86385,
+                0
+              ],
+              [
+                2.133333,
+                -0.11248,
+                0.86385,
+                0
+              ],
+              [
+                2.2,
+                -0.11248,
+                0.90139,
+                0
+              ],
+              [
+                2.266666,
+                -0.1473,
+                0.90139,
+                0
+              ],
+              [
+                2.333333,
+                -0.1473,
+                0.77463,
+                0
+              ],
+              [
+                2.4,
+                -0.13329,
+                0.77463,
+                0
+              ],
+              [
+                2.466666,
+                -0.13134,
+                0.88825,
+                0
+              ],
+              [
+                2.533333,
+                -0.13134,
+                0.88825,
+                0
+              ],
+              [
+                2.6,
+                -0.12738,
+                0.88825,
+                0
+              ],
+              [
+                2.666666,
+                -0.12738,
+                0.89511,
+                0
+              ],
+              [
+                2.733333,
+                -0.12738,
+                0.89511,
+                0
+              ],
+              [
+                2.8,
+                -0.13362,
+                0.79711,
+                0
+              ],
+              [
+                2.866666,
+                -0.11656,
+                0.58115,
+                0
+              ],
+              [
+                2.933333,
+                -0.08915,
+                0.45253,
+                0
+              ],
+              [
+                3,
+                0.01433,
+                0.35041,
+                0
+              ],
+              [
+                3.066666,
+                0.01433,
+                0.35041,
+                0
+              ]
+            ]
+          },
+          "beamCount": 16
+        },
+        {
+          "id": "reel-0009",
+          "name": "Haz blanco violeta",
+          "start": 28.933333,
+          "duration": 1.5,
+          "shape": "needle",
+          "color": "#e4ddff",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "needle",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                0.05901,
+                0.003,
+                0
+              ],
+              [
+                0.066667,
+                0.05901,
+                0.003,
+                0
+              ],
+              [
+                0.133334,
+                0.32268,
+                0.003,
+                0
+              ],
+              [
+                0.2,
+                0.3326,
+                0.003,
+                0
+              ],
+              [
+                0.266667,
+                0.33421,
+                0.003,
+                0
+              ],
+              [
+                0.333334,
+                0.33783,
+                0.003,
+                0
+              ],
+              [
+                0.4,
+                0.33995,
+                0.003,
+                0
+              ],
+              [
+                0.466667,
+                0.33783,
+                0.003,
+                0
+              ],
+              [
+                0.533334,
+                0.33716,
+                0.003,
+                0
+              ],
+              [
+                0.6,
+                0.33716,
+                0.003,
+                0
+              ],
+              [
+                0.666667,
+                0.33716,
+                0.003,
+                0
+              ],
+              [
+                0.733334,
+                0.33716,
+                0.003,
+                0
+              ],
+              [
+                0.8,
+                0.33415,
+                0.003,
+                0
+              ],
+              [
+                0.866667,
+                0.33217,
+                0.003,
+                0
+              ],
+              [
+                0.933334,
+                0.28655,
+                0.003,
+                0
+              ],
+              [
+                1,
+                0.19804,
+                0.003,
+                0
+              ],
+              [
+                1.066667,
+                0.11596,
+                0.003,
+                0
+              ],
+              [
+                1.133334,
+                0.03984,
+                0.003,
+                0
+              ],
+              [
+                1.2,
+                -0.05285,
+                0.003,
+                0
+              ],
+              [
+                1.266667,
+                -0.14692,
+                0.003,
+                0
+              ],
+              [
+                1.333334,
+                -0.22576,
+                0.003,
+                0
+              ],
+              [
+                1.4,
+                -0.30872,
+                0.003,
+                0
+              ],
+              [
+                1.466667,
+                -0.38652,
+                0.003,
+                0
+              ],
+              [
+                1.5,
+                -0.38652,
+                0.003,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0010",
+          "name": "Haz verde izquierdo",
+          "start": 30.433333,
+          "duration": 0.666667,
+          "shape": "needle",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "needle",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.38652,
+                0.003,
+                0
+              ],
+              [
+                0.1,
+                -0.38652,
+                0.003,
+                0
+              ],
+              [
+                0.166667,
+                -0.38652,
+                0.003,
+                0
+              ],
+              [
+                0.233334,
+                -0.38652,
+                0.003,
+                0
+              ],
+              [
+                0.3,
+                -0.38652,
+                0.003,
+                0
+              ],
+              [
+                0.366667,
+                -0.6666,
+                0.003,
+                0
+              ],
+              [
+                0.433334,
+                -1,
+                0.003,
+                0
+              ],
+              [
+                0.5,
+                -1,
+                0.003,
+                0
+              ],
+              [
+                0.566667,
+                -1,
+                0.003,
+                0
+              ],
+              [
+                0.633334,
+                -1,
+                0.003,
+                0
+              ],
+              [
+                0.666667,
+                -1,
+                0.003,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0011",
+          "name": "Barrido diagonal",
+          "start": 31.1,
+          "duration": 0.7,
+          "shape": "blade",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "blade",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.99073,
+                0.01537,
+                0
+              ],
+              [
+                0.1,
+                -0.98147,
+                0.004,
+                0
+              ],
+              [
+                0.166667,
+                -0.06062,
+                0.004,
+                0
+              ],
+              [
+                0.233333,
+                -0.06062,
+                0.004,
+                0
+              ],
+              [
+                0.3,
+                -0.06062,
+                0.004,
+                0
+              ],
+              [
+                0.366667,
+                -0.06062,
+                0.004,
+                0
+              ],
+              [
+                0.433333,
+                -0.06062,
+                0.004,
+                0
+              ],
+              [
+                0.5,
+                -0.06062,
+                0.004,
+                0
+              ],
+              [
+                0.566667,
+                -0.06062,
+                0.004,
+                0
+              ],
+              [
+                0.633333,
+                -0.06062,
+                0.004,
+                0
+              ],
+              [
+                0.7,
+                -0.06062,
+                0.004,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0012",
+          "name": "Plano sobre el artista",
+          "start": 31.8,
+          "duration": 0.733333,
+          "shape": "blade",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.75,
+          "rotation": -45,
+          "rotationEnd": 45,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 4.5,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {
+              "opening": [
+                {
+                  "at": 0,
+                  "value": 0.07,
+                  "easing": "smooth",
+                  "id": "reel-0381"
+                },
+                {
+                  "at": 0.3666664999999991,
+                  "value": 0.95,
+                  "easing": "smooth",
+                  "id": "reel-0382"
+                },
+                {
+                  "at": 0.7333329999999982,
+                  "value": 0.05,
+                  "easing": "linear",
+                  "id": "reel-0383"
+                }
+              ]
+            }
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "blade",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.06062,
+                0.004,
+                0
+              ],
+              [
+                0.066667,
+                -0.06062,
+                0.004,
+                0
+              ],
+              [
+                0.133333,
+                0.52622,
+                0.004,
+                0
+              ],
+              [
+                0.2,
+                0.52622,
+                0.01968,
+                0
+              ],
+              [
+                0.266667,
+                0.52622,
+                0.01968,
+                0
+              ],
+              [
+                0.333333,
+                0.52622,
+                0.01968,
+                0
+              ],
+              [
+                0.4,
+                -0.084,
+                0.004,
+                0
+              ],
+              [
+                0.466667,
+                -0.51956,
+                0.004,
+                0
+              ],
+              [
+                0.533333,
+                -0.51956,
+                0.004,
+                0
+              ],
+              [
+                0.6,
+                -0.51956,
+                0.004,
+                0
+              ],
+              [
+                0.666667,
+                -0.51956,
+                0.004,
+                0
+              ],
+              [
+                0.733333,
+                -0.51956,
+                0.004,
+                0
+              ]
+            ]
+          },
+          "previewOrigin": "right-hand",
+          "videoMotionEnabled": false
+        },
+        {
+          "id": "reel-0013",
+          "name": "Haz lateral y abanico aéreo",
+          "start": 32.533333,
+          "duration": 0.666667,
+          "shape": "needle",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "needle",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.14011,
+                0.003,
+                0
+              ],
+              [
+                0.066667,
+                0.23935,
+                0.003,
+                0
+              ],
+              [
+                0.133334,
+                0.23935,
+                0.003,
+                0
+              ],
+              [
+                0.2,
+                0.23935,
+                0.003,
+                0
+              ],
+              [
+                0.266667,
+                0.23935,
+                0.003,
+                0
+              ],
+              [
+                0.333334,
+                0.23935,
+                0.003,
+                0
+              ],
+              [
+                0.4,
+                0.23935,
+                0.003,
+                0
+              ],
+              [
+                0.466667,
+                0.23935,
+                0.003,
+                0
+              ],
+              [
+                0.533334,
+                0.23935,
+                0.003,
+                0
+              ],
+              [
+                0.6,
+                0.23935,
+                0.003,
+                0
+              ],
+              [
+                0.666667,
+                0.23935,
+                0.003,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0014",
+          "name": "Corona multicolor",
+          "start": 33.2,
+          "duration": 1.5,
+          "shape": "custom",
+          "color": "#c8ff32",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "custom",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                0.23935,
+                0.004,
+                0
+              ],
+              [
+                0.066667,
+                0.23935,
+                0.004,
+                0
+              ],
+              [
+                0.133333,
+                0.23935,
+                0.004,
+                0
+              ],
+              [
+                0.2,
+                0.2527,
+                0.004,
+                0
+              ],
+              [
+                0.266667,
+                0.2941,
+                0.34495,
+                0
+              ],
+              [
+                0.333333,
+                0.42959,
+                0.34495,
+                0
+              ],
+              [
+                0.4,
+                0.3726,
+                0.34495,
+                0
+              ],
+              [
+                0.466667,
+                0.42959,
+                0.33297,
+                0
+              ],
+              [
+                0.533333,
+                0.47561,
+                0.2905,
+                0
+              ],
+              [
+                0.6,
+                0.49501,
+                0.27648,
+                0
+              ],
+              [
+                0.666667,
+                0.49973,
+                0.21189,
+                0
+              ],
+              [
+                0.733333,
+                0.57281,
+                0.19078,
+                0
+              ],
+              [
+                0.8,
+                0.53029,
+                0.10601,
+                0
+              ],
+              [
+                0.866667,
+                0.57281,
+                0.19078,
+                0
+              ],
+              [
+                0.933333,
+                0.53029,
+                0.22897,
+                0
+              ],
+              [
+                1,
+                0.44403,
+                0.22957,
+                0
+              ],
+              [
+                1.066667,
+                0.37275,
+                0.22897,
+                0
+              ],
+              [
+                1.133333,
+                0.24053,
+                0.22629,
+                0
+              ],
+              [
+                1.2,
+                0.17029,
+                0.21276,
+                0
+              ],
+              [
+                1.266667,
+                0.04578,
+                0.22189,
+                0
+              ],
+              [
+                1.333333,
+                0.02402,
+                0.18475,
+                0
+              ],
+              [
+                1.4,
+                -0.18929,
+                0.22189,
+                0
+              ],
+              [
+                1.466667,
+                -0.18929,
+                0.39487,
+                0
+              ],
+              [
+                1.5,
+                -0.18929,
+                0.39487,
+                0
+              ]
+            ]
+          },
+          "customFps": 30,
+          "customFrames": [
+            {
+              "paths": [
+                {
+                  "color": "#a82aff",
+                  "points": [
+                    [
+                      0.998,
+                      0
+                    ],
+                    [
+                      1,
+                      0
+                    ]
+                  ]
+                },
+                {
+                  "color": "#e0afff",
+                  "points": [
+                    [
+                      0.7051067811865476,
+                      0.7071067811865476
+                    ],
+                    [
+                      0.7091067811865476,
+                      0.7071067811865476
+                    ]
+                  ]
+                },
+                {
+                  "color": "#f3ff42",
+                  "points": [
+                    [
+                      -0.001999999999999939,
+                      1
+                    ],
+                    [
+                      0.002000000000000061,
+                      1
+                    ]
+                  ]
+                },
+                {
+                  "color": "#a9ff31",
+                  "points": [
+                    [
+                      -0.7091067811865475,
+                      0.7071067811865476
+                    ],
+                    [
+                      -0.7051067811865475,
+                      0.7071067811865476
+                    ]
+                  ]
+                },
+                {
+                  "color": "#e0e4ff",
+                  "points": [
+                    [
+                      -1,
+                      1.2246467991473532e-16
+                    ],
+                    [
+                      -0.998,
+                      1.2246467991473532e-16
+                    ]
+                  ]
+                },
+                {
+                  "color": "#8cff32",
+                  "points": [
+                    [
+                      -0.7091067811865477,
+                      -0.7071067811865475
+                    ],
+                    [
+                      -0.7051067811865477,
+                      -0.7071067811865475
+                    ]
+                  ]
+                },
+                {
+                  "color": "#c939ff",
+                  "points": [
+                    [
+                      -0.002000000000000184,
+                      -1
+                    ],
+                    [
+                      0.001999999999999816,
+                      -1
+                    ]
+                  ]
+                },
+                {
+                  "color": "#ccff32",
+                  "points": [
+                    [
+                      0.7051067811865473,
+                      -0.7071067811865477
+                    ],
+                    [
+                      0.7091067811865474,
+                      -0.7071067811865477
+                    ]
+                  ]
+                }
+              ]
+            }
+          ]
+        },
+        {
+          "id": "reel-0015",
+          "name": "Doble haz cerrado",
+          "start": 34.7,
+          "duration": 0.8,
+          "shape": "splitBeams",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "splitBeams",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.19672,
+                0.74775,
+                0
+              ],
+              [
+                0.1,
+                -0.18305,
+                0.87,
+                0
+              ],
+              [
+                0.166667,
+                -0.16098,
+                0.87,
+                0
+              ],
+              [
+                0.233333,
+                -0.16098,
+                0.7666,
+                0
+              ],
+              [
+                0.3,
+                -0.16955,
+                0.59089,
+                0
+              ],
+              [
+                0.366667,
+                -0.16955,
+                0.46625,
+                0
+              ],
+              [
+                0.433333,
+                -0.1599,
+                0.35219,
+                0
+              ],
+              [
+                0.5,
+                -0.15893,
+                0.35056,
+                0
+              ],
+              [
+                0.566667,
+                -0.15893,
+                0.35056,
+                0
+              ],
+              [
+                0.633333,
+                -0.20283,
+                0.35056,
+                0
+              ],
+              [
+                0.7,
+                -0.20283,
+                0.02712,
+                0
+              ],
+              [
+                0.766667,
+                0.15119,
+                0.02712,
+                0
+              ],
+              [
+                0.8,
+                0.15119,
+                0.02712,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0016",
+          "name": "Separación de haces",
+          "start": 35.5,
+          "duration": 0.933333,
+          "shape": "splitBeams",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "splitBeams",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.24088,
+                0.42968,
+                0
+              ],
+              [
+                0.1,
+                -0.25492,
+                0.41013,
+                0
+              ],
+              [
+                0.166667,
+                -0.56212,
+                0.00788,
+                0
+              ],
+              [
+                0.233333,
+                -0.56212,
+                0.00788,
+                0
+              ],
+              [
+                0.3,
+                -0.56212,
+                0.00788,
+                0
+              ],
+              [
+                0.366667,
+                -0.05731,
+                0.53701,
+                0
+              ],
+              [
+                0.433333,
+                -0.05731,
+                0.00897,
+                0
+              ],
+              [
+                0.5,
+                0.39866,
+                0.01474,
+                0
+              ],
+              [
+                0.566667,
+                0.39866,
+                0.01474,
+                0
+              ],
+              [
+                0.633333,
+                0.39866,
+                0.01474,
+                0
+              ],
+              [
+                0.7,
+                0.39866,
+                0.01474,
+                0
+              ],
+              [
+                0.766667,
+                0.39866,
+                0.01474,
+                0
+              ],
+              [
+                0.833333,
+                0.39866,
+                0.01474,
+                0
+              ],
+              [
+                0.9,
+                0.39866,
+                0.01474,
+                0
+              ],
+              [
+                0.933333,
+                0.39866,
+                0.01474,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0017",
+          "name": "Cuchilla vertical",
+          "start": 36.433333,
+          "duration": 1.366667,
+          "shape": "blade",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "blade",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                0.39866,
+                0.01474,
+                0
+              ],
+              [
+                0.1,
+                0.39866,
+                0.01474,
+                0
+              ],
+              [
+                0.166667,
+                0.39866,
+                0.01474,
+                0
+              ],
+              [
+                0.233334,
+                0.38451,
+                0.01696,
+                0
+              ],
+              [
+                0.3,
+                0.3514,
+                0.0562,
+                0
+              ],
+              [
+                0.366667,
+                0.32335,
+                0.08016,
+                0
+              ],
+              [
+                0.433334,
+                0.29189,
+                0.11789,
+                0
+              ],
+              [
+                0.5,
+                0.26364,
+                0.11789,
+                0
+              ],
+              [
+                0.566667,
+                -0.026,
+                0.004,
+                0
+              ],
+              [
+                0.633334,
+                -0.026,
+                0.004,
+                0
+              ],
+              [
+                0.7,
+                0.09715,
+                0.004,
+                0
+              ],
+              [
+                0.766667,
+                0.09715,
+                0.004,
+                0
+              ],
+              [
+                0.833334,
+                0.09715,
+                0.004,
+                0
+              ],
+              [
+                0.9,
+                0.84091,
+                0.004,
+                0
+              ],
+              [
+                0.966667,
+                0.84091,
+                0.0043,
+                0
+              ],
+              [
+                1.033334,
+                0.67835,
+                0.10226,
+                0
+              ],
+              [
+                1.1,
+                -0.25428,
+                0.10226,
+                0
+              ],
+              [
+                1.166667,
+                0.16614,
+                0.10226,
+                0
+              ],
+              [
+                1.233334,
+                0.16614,
+                0.004,
+                0
+              ],
+              [
+                1.3,
+                0.40537,
+                0.004,
+                0
+              ],
+              [
+                1.366667,
+                0.40537,
+                0.004,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0018",
+          "name": "Haz fino · gesto bajo",
+          "start": 37.8,
+          "duration": 1.633333,
+          "shape": "needle",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "needle",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                0.24422,
+                0.003,
+                0
+              ],
+              [
+                0.066667,
+                0.24443,
+                0.003,
+                0
+              ],
+              [
+                0.133333,
+                0.32248,
+                0.003,
+                0
+              ],
+              [
+                0.2,
+                0.32256,
+                0.003,
+                0
+              ],
+              [
+                0.266667,
+                0.39131,
+                0.003,
+                0
+              ],
+              [
+                0.333333,
+                0.39945,
+                0.003,
+                0
+              ],
+              [
+                0.4,
+                0.39945,
+                0.003,
+                0
+              ],
+              [
+                0.466667,
+                0.39945,
+                0.003,
+                0
+              ],
+              [
+                0.533333,
+                0.40093,
+                0.003,
+                0
+              ],
+              [
+                0.6,
+                0.40093,
+                0.003,
+                0
+              ],
+              [
+                0.666667,
+                0.40057,
+                0.003,
+                0
+              ],
+              [
+                0.733333,
+                0.3999,
+                0.003,
+                0
+              ],
+              [
+                0.8,
+                0.39606,
+                0.003,
+                0
+              ],
+              [
+                0.866667,
+                0.39606,
+                0.003,
+                0
+              ],
+              [
+                0.933333,
+                0.39606,
+                0.003,
+                0
+              ],
+              [
+                1,
+                0.61387,
+                0.003,
+                0
+              ],
+              [
+                1.066667,
+                0.61387,
+                0.003,
+                0
+              ],
+              [
+                1.133333,
+                0.61387,
+                0.003,
+                0
+              ],
+              [
+                1.2,
+                0.61387,
+                0.003,
+                0
+              ],
+              [
+                1.266667,
+                0.61387,
+                0.003,
+                0
+              ],
+              [
+                1.333333,
+                0.61387,
+                0.003,
+                0
+              ],
+              [
+                1.4,
+                -0.38268,
+                0.003,
+                0
+              ],
+              [
+                1.466667,
+                -0.38268,
+                0.003,
+                0
+              ],
+              [
+                1.533333,
+                -0.38268,
+                0.003,
+                0
+              ],
+              [
+                1.6,
+                -0.38268,
+                0.003,
+                0
+              ],
+              [
+                1.633333,
+                -0.38268,
+                0.003,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0019",
+          "name": "Cuchilla amplia · manos",
+          "start": 39.433333,
+          "duration": 2.233334,
+          "shape": "blade",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.75,
+          "rotation": -45,
+          "rotationEnd": 45,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 4.5,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {
+              "opening": [
+                {
+                  "at": 0,
+                  "value": 0.07,
+                  "easing": "smooth",
+                  "id": "reel-0384"
+                },
+                {
+                  "at": 1.1166669999999996,
+                  "value": 0.95,
+                  "easing": "smooth",
+                  "id": "reel-0385"
+                },
+                {
+                  "at": 2.2333339999999993,
+                  "value": 0.05,
+                  "easing": "linear",
+                  "id": "reel-0386"
+                }
+              ]
+            }
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "blade",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.1,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.166667,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.233334,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.3,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.366667,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.433334,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.5,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.566667,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.633334,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.7,
+                -0.38268,
+                0.04593,
+                0
+              ],
+              [
+                0.766667,
+                0.43376,
+                0.004,
+                0
+              ],
+              [
+                0.833334,
+                0.43376,
+                0.004,
+                0
+              ],
+              [
+                0.9,
+                -0.04058,
+                0.004,
+                0
+              ],
+              [
+                0.966667,
+                -0.068,
+                0.004,
+                0
+              ],
+              [
+                1.033334,
+                -0.55772,
+                0.004,
+                0
+              ],
+              [
+                1.1,
+                -0.60115,
+                0.004,
+                0
+              ],
+              [
+                1.166667,
+                -0.60115,
+                0.004,
+                0
+              ],
+              [
+                1.233334,
+                -0.60115,
+                0.004,
+                0
+              ],
+              [
+                1.3,
+                -0.60115,
+                0.004,
+                0
+              ],
+              [
+                1.366667,
+                -0.60115,
+                0.004,
+                0
+              ],
+              [
+                1.433334,
+                -0.60115,
+                0.004,
+                0
+              ],
+              [
+                1.5,
+                -0.60115,
+                0.004,
+                0
+              ],
+              [
+                1.566667,
+                -0.60115,
+                0.004,
+                0
+              ],
+              [
+                1.633334,
+                -0.54321,
+                0.004,
+                0
+              ],
+              [
+                1.7,
+                -0.53328,
+                0.00689,
+                0
+              ],
+              [
+                1.766667,
+                -0.53328,
+                0.00689,
+                0
+              ],
+              [
+                1.833334,
+                -0.53328,
+                0.00689,
+                0
+              ],
+              [
+                1.9,
+                -0.53328,
+                0.00689,
+                0
+              ],
+              [
+                1.966667,
+                -0.61561,
+                0.002,
+                0
+              ],
+              [
+                2.033334,
+                -0.61561,
+                0.002,
+                0
+              ],
+              [
+                2.1,
+                -0.61561,
+                0.002,
+                0
+              ],
+              [
+                2.166667,
+                -0.49282,
+                0.004,
+                0
+              ],
+              [
+                2.233334,
+                -0.49282,
+                0.004,
+                0
+              ]
+            ]
+          },
+          "previewOrigin": "right-hand",
+          "videoMotionEnabled": false
+        },
+        {
+          "id": "reel-0020",
+          "name": "Haz derecho",
+          "start": 41.666667,
+          "duration": 0.866666,
+          "shape": "needle",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "needle",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                0.43225,
+                0.003,
+                0
+              ],
+              [
+                0.066666,
+                0.4061,
+                0.003,
+                0
+              ],
+              [
+                0.133333,
+                -0.03417,
+                0.003,
+                0
+              ],
+              [
+                0.2,
+                -0.03417,
+                0.003,
+                0
+              ],
+              [
+                0.266666,
+                -0.00245,
+                0.003,
+                0
+              ],
+              [
+                0.333333,
+                0.09304,
+                0.003,
+                0
+              ],
+              [
+                0.4,
+                0.2007,
+                0.003,
+                0
+              ],
+              [
+                0.466666,
+                0.2007,
+                0.003,
+                0
+              ],
+              [
+                0.533333,
+                0.16608,
+                0.003,
+                0
+              ],
+              [
+                0.6,
+                0.16608,
+                0.003,
+                0
+              ],
+              [
+                0.666666,
+                0.16608,
+                0.003,
+                0
+              ],
+              [
+                0.733333,
+                0.16608,
+                0.003,
+                0
+              ],
+              [
+                0.8,
+                0.47272,
+                0.003,
+                0
+              ],
+              [
+                0.866666,
+                0.47272,
+                0.003,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0021",
+          "name": "Haz central",
+          "start": 42.533333,
+          "duration": 0.766667,
+          "shape": "needle",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "needle",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                0.43585,
+                0.003,
+                0
+              ],
+              [
+                0.066667,
+                0.18892,
+                0.003,
+                0
+              ],
+              [
+                0.133334,
+                -0.41141,
+                0.003,
+                0
+              ],
+              [
+                0.2,
+                -0.63808,
+                0.003,
+                0
+              ],
+              [
+                0.266667,
+                -0.63808,
+                0.003,
+                0
+              ],
+              [
+                0.333334,
+                -0.039,
+                0.003,
+                0
+              ],
+              [
+                0.4,
+                -0.0289,
+                0.003,
+                0
+              ],
+              [
+                0.466667,
+                -0.0289,
+                0.003,
+                0
+              ],
+              [
+                0.533334,
+                -0.01027,
+                0.003,
+                0
+              ],
+              [
+                0.6,
+                -0.01027,
+                0.003,
+                0
+              ],
+              [
+                0.666667,
+                -0.01173,
+                0.003,
+                0
+              ],
+              [
+                0.733334,
+                -0.01173,
+                0.003,
+                0
+              ],
+              [
+                0.766667,
+                -0.01173,
+                0.003,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0022",
+          "name": "Haz izquierdo",
+          "start": 43.3,
+          "duration": 1.2,
+          "shape": "needle",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "needle",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.32173,
+                0.003,
+                0
+              ],
+              [
+                0.1,
+                -0.62534,
+                0.003,
+                0
+              ],
+              [
+                0.166667,
+                -0.62534,
+                0.003,
+                0
+              ],
+              [
+                0.233333,
+                -0.0128,
+                0.003,
+                0
+              ],
+              [
+                0.3,
+                -0.0128,
+                0.003,
+                0
+              ],
+              [
+                0.366667,
+                -1,
+                0.003,
+                0
+              ],
+              [
+                0.433333,
+                -1,
+                0.003,
+                0
+              ],
+              [
+                0.5,
+                -0.86055,
+                0.003,
+                0
+              ],
+              [
+                0.566667,
+                -0.85657,
+                0.003,
+                0
+              ],
+              [
+                0.633333,
+                -0.85657,
+                0.003,
+                0
+              ],
+              [
+                0.7,
+                -0.84042,
+                0.003,
+                0
+              ],
+              [
+                0.766667,
+                -0.84003,
+                0.003,
+                0
+              ],
+              [
+                0.833333,
+                -0.83768,
+                0.003,
+                0
+              ],
+              [
+                0.9,
+                -0.83768,
+                0.003,
+                0
+              ],
+              [
+                0.966667,
+                -0.84292,
+                0.003,
+                0
+              ],
+              [
+                1.033333,
+                -0.84672,
+                0.003,
+                0
+              ],
+              [
+                1.1,
+                -0.84672,
+                0.003,
+                0
+              ],
+              [
+                1.166667,
+                -0.73721,
+                0.003,
+                0
+              ],
+              [
+                1.2,
+                -0.73721,
+                0.003,
+                0
+              ]
+            ]
+          }
+        },
+        {
+          "id": "reel-0023",
+          "name": "Cuadrado final",
+          "start": 45.433333,
+          "duration": 0.766667,
+          "shape": "orbitSquare",
+          "color": "#43ff13",
+          "enabled": true,
+          "size": 0.7,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 1,
+          "motionEnabled": false,
+          "effectClock": "clip",
+          "projectionHeight": 0.035,
+          "laserIntensity": 100,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {
+              "rotation": [
+                {
+                  "at": 0,
+                  "value": 1.444,
+                  "easing": "linear",
+                  "id": "reel-0387"
+                },
+                {
+                  "at": 0.1,
+                  "value": 16.529,
+                  "easing": "linear",
+                  "id": "reel-0388"
+                },
+                {
+                  "at": 0.166667,
+                  "value": 3.298,
+                  "easing": "linear",
+                  "id": "reel-0389"
+                },
+                {
+                  "at": 0.233334,
+                  "value": 3.298,
+                  "easing": "linear",
+                  "id": "reel-0390"
+                },
+                {
+                  "at": 0.3,
+                  "value": 11.893,
+                  "easing": "linear",
+                  "id": "reel-0391"
+                },
+                {
+                  "at": 0.366667,
+                  "value": 16.867,
+                  "easing": "linear",
+                  "id": "reel-0392"
+                },
+                {
+                  "at": 0.433334,
+                  "value": 12.9,
+                  "easing": "linear",
+                  "id": "reel-0393"
+                },
+                {
+                  "at": 0.5,
+                  "value": 12.9,
+                  "easing": "linear",
+                  "id": "reel-0394"
+                },
+                {
+                  "at": 0.566667,
+                  "value": 24.734,
+                  "easing": "linear",
+                  "id": "reel-0395"
+                },
+                {
+                  "at": 0.633334,
+                  "value": 25.115,
+                  "easing": "linear",
+                  "id": "reel-0396"
+                },
+                {
+                  "at": 0.7,
+                  "value": 25.115,
+                  "easing": "linear",
+                  "id": "reel-0397"
+                },
+                {
+                  "at": 0.766667,
+                  "value": 25.115,
+                  "easing": "linear",
+                  "id": "reel-0398"
+                }
+              ]
+            }
+          },
+          "videoMotion": {
+            "version": 1,
+            "shape": "orbitSquare",
+            "baseSize": 0.7,
+            "fps": 15,
+            "frames": [
+              [
+                0,
+                -0.212,
+                0.568,
+                0
+              ],
+              [
+                0.1,
+                -0.212,
+                0.568,
+                0
+              ],
+              [
+                0.166667,
+                -0.212,
+                0.568,
+                0
+              ],
+              [
+                0.233334,
+                -0.212,
+                0.568,
+                0
+              ],
+              [
+                0.3,
+                -0.221,
+                0.563,
+                0
+              ],
+              [
+                0.366667,
+                -0.23,
+                0.558,
+                0
+              ],
+              [
+                0.433334,
+                -0.196,
+                0.66,
+                0
+              ],
+              [
+                0.5,
+                -0.18,
+                0.692,
+                0
+              ],
+              [
+                0.566667,
+                -0.192,
+                0.7,
+                0
+              ],
+              [
+                0.633334,
+                -0.182,
+                0.694,
+                0
+              ],
+              [
+                0.7,
+                -0.182,
+                0.694,
+                0
+              ],
+              [
+                0.766667,
+                -0.182,
+                0.694,
+                0
+              ]
+            ]
+          },
+          "measurement": "Envolvente del cuadrado medida en el suelo; interpolación donde el humo la oculta. Giro en homografía estimada."
+        }
+      ],
+      "patch": {
+        "device": ""
+      },
+      "previewVisible": true,
+      "previewActorIndex": 0
+    },
+    {
+      "id": "laser-2",
+      "type": "laser",
+      "name": "Acentos RGB · origen estimado",
+      "enabled": true,
+      "solo": false,
+      "position": [
+        0,
+        4,
+        -0.3
+      ],
+      "color": "#b52bff",
+      "cues": [
+        {
+          "id": "reel-0024",
+          "name": "Núcleo RGB · apertura estimada",
+          "start": 8.7,
+          "duration": 12.733333,
+          "shape": "prism",
+          "enabled": true,
+          "color": "#a938ff",
+          "size": 0.1,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 0.45,
+          "beamCount": 14,
+          "previewOrigin": "projector",
+          "projectionHeight": 0.035,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {
+              "size": [
+                {
+                  "at": 0,
+                  "value": 0.05,
+                  "easing": "smooth",
+                  "id": "reel-0399"
+                },
+                {
+                  "at": 8,
+                  "value": 0.1,
+                  "easing": "smooth",
+                  "id": "reel-0400"
+                },
+                {
+                  "at": 12.733333000000002,
+                  "value": 0.26,
+                  "easing": "linear",
+                  "id": "reel-0401"
+                }
+              ]
+            }
+          }
+        },
+        {
+          "id": "reel-0025",
+          "name": "Acento verde lateral",
+          "start": 25.866667,
+          "duration": 0.733333,
+          "shape": "blade",
+          "enabled": true,
+          "color": "#44ff17",
+          "size": 0.6,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 0.45,
+          "beamCount": 14,
+          "previewOrigin": "right-hand",
+          "projectionHeight": 4.5,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          }
+        },
+        {
+          "id": "reel-0026",
+          "name": "Abanico aéreo rojo",
+          "start": 31.8,
+          "duration": 1.4,
+          "shape": "beamFan",
+          "enabled": true,
+          "color": "#ff2440",
+          "size": 0.6,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 0.45,
+          "beamCount": 14,
+          "previewOrigin": "right-hand",
+          "projectionHeight": 4.8,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          }
+        },
+        {
+          "id": "reel-0027",
+          "name": "Abanico aéreo violeta final",
+          "start": 45.433333,
+          "duration": 0.766667,
+          "shape": "beamFan",
+          "enabled": true,
+          "color": "#a938ff",
+          "size": 0.6,
+          "rotation": 0,
+          "rotationEnd": 0,
+          "panX": 0,
+          "panZ": 0,
+          "transition": "cut",
+          "effectSpeed": 0.45,
+          "beamCount": 14,
+          "previewOrigin": "right-hand",
+          "projectionHeight": 4.8,
+          "animation": {
+            "version": 1,
+            "enabled": true,
+            "curves": {}
+          }
+        }
+      ],
+      "patch": {
+        "device": ""
+      },
+      "previewVisible": true,
+      "previewActorIndex": 1
+    },
+    {
+      "id": "laser-3",
+      "type": "laser",
+      "name": "Reserva · sin señal",
+      "enabled": false,
+      "solo": false,
+      "position": [
+        0,
+        4,
+        -0.3
+      ],
+      "color": "#465263",
+      "cues": [],
+      "patch": {
+        "device": ""
+      },
+      "previewVisible": false,
+      "previewActorIndex": 2
+    },
+    {
+      "id": "suit-1",
+      "type": "suit",
+      "name": "Artista · traje aproximado",
+      "color": "#ff5022",
+      "enabled": true,
+      "solo": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "previewVisible": true,
+      "hands": {
+        "left": [],
+        "right": []
+      },
+      "patch": {
+        "ip": "",
+        "universe": 0,
+        "handUniverse": 20,
+        "handLeft": 1,
+        "handRight": 2
+      },
+      "cues": [
+        {
+          "id": "reel-0028",
+          "name": "Traje visible · distribución estimada",
+          "start": 9.8,
+          "duration": 0.9,
+          "color": "#1e5832",
+          "effect": "fade",
+          "targets": [
+            "all"
+          ],
+          "speed": 1,
+          "intensity": 75,
+          "enabled": true
+        },
+        {
+          "id": "reel-0029",
+          "name": "Traje visible · distribución estimada",
+          "start": 10.7,
+          "duration": 0.95,
+          "color": "#ff6421",
+          "effect": "fade",
+          "targets": [
+            "all"
+          ],
+          "speed": 1,
+          "intensity": 75,
+          "enabled": true
+        },
+        {
+          "id": "reel-0030",
+          "name": "Traje visible · distribución estimada",
+          "start": 11.65,
+          "duration": 0.95,
+          "color": "#dadfff",
+          "effect": "fade",
+          "targets": [
+            "all"
+          ],
+          "speed": 1,
+          "intensity": 75,
+          "enabled": true
+        },
+        {
+          "id": "reel-0031",
+          "name": "Traje visible · distribución estimada",
+          "start": 12.6,
+          "duration": 1,
+          "color": "#ff6421",
+          "effect": "fade",
+          "targets": [
+            "all"
+          ],
+          "speed": 1,
+          "intensity": 75,
+          "enabled": true
+        },
+        {
+          "id": "reel-0032",
+          "name": "Traje visible · distribución estimada",
+          "start": 13.6,
+          "duration": 1,
+          "color": "#dadfff",
+          "effect": "fade",
+          "targets": [
+            "all"
+          ],
+          "speed": 1,
+          "intensity": 75,
+          "enabled": true
+        },
+        {
+          "id": "reel-0033",
+          "name": "Traje visible · distribución estimada",
+          "start": 14.6,
+          "duration": 0.9,
+          "color": "#dadfff",
+          "effect": "fade",
+          "targets": [
+            "all"
+          ],
+          "speed": 1,
+          "intensity": 75,
+          "enabled": true
+        },
+        {
+          "id": "reel-0034",
+          "name": "Traje visible · distribución estimada",
+          "start": 15.5,
+          "duration": 1.2,
+          "color": "#dadfff",
+          "effect": "fade",
+          "targets": [
+            "all"
+          ],
+          "speed": 1,
+          "intensity": 75,
+          "enabled": true
+        },
+        {
+          "id": "reel-0035",
+          "name": "Traje visible · distribución estimada",
+          "start": 16.7,
+          "duration": 0.95,
+          "color": "#ff6421",
+          "effect": "fade",
+          "targets": [
+            "all"
+          ],
+          "speed": 1,
+          "intensity": 75,
+          "enabled": true
+        },
+        {
+          "id": "reel-0036",
+          "name": "Traje visible · distribución estimada",
+          "start": 17.65,
+          "duration": 1,
+          "color": "#dadfff",
+          "effect": "fade",
+          "targets": [
+            "all"
+          ],
+          "speed": 1,
+          "intensity": 75,
+          "enabled": true
+        },
+        {
+          "id": "reel-0037",
+          "name": "Traje visible · distribución estimada",
+          "start": 18.65,
+          "duration": 27.55,
+          "color": "#ff5022",
+          "effect": "fade",
+          "targets": [
+            "all"
+          ],
+          "speed": 1,
+          "intensity": 75,
+          "enabled": true
+        }
+      ],
+      "previewStart": 9.8
+    },
+    {
+      "id": "suit-2",
+      "type": "suit",
+      "name": "Reserva traje 2",
+      "color": "#ff5022",
+      "enabled": false,
+      "solo": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "previewVisible": false,
+      "hands": {
+        "left": [],
+        "right": []
+      },
+      "patch": {
+        "ip": "",
+        "universe": 4,
+        "handUniverse": 20,
+        "handLeft": 3,
+        "handRight": 4
+      },
+      "cues": []
+    },
+    {
+      "id": "suit-3",
+      "type": "suit",
+      "name": "Reserva traje 3",
+      "color": "#ff5022",
+      "enabled": false,
+      "solo": false,
+      "position": [
+        0,
+        0,
+        0
+      ],
+      "previewVisible": false,
+      "hands": {
+        "left": [],
+        "right": []
+      },
+      "patch": {
+        "ip": "",
+        "universe": 8,
+        "handUniverse": 20,
+        "handLeft": 5,
+        "handRight": 6
+      },
+      "cues": []
+    }
+  ],
+  "sections": [
+    {
+      "time": 0,
+      "name": "Cuadrado verde giratorio"
+    },
+    {
+      "time": 21.433333,
+      "name": "Cierre a un haz"
+    },
+    {
+      "time": 22.433333,
+      "name": "Doble haz verde"
+    },
+    {
+      "time": 22.866667,
+      "name": "Cuchilla y gesto lateral"
+    },
+    {
+      "time": 24.166667,
+      "name": "Haz lateral"
+    },
+    {
+      "time": 24.5,
+      "name": "Dos haces · reapertura"
+    },
+    {
+      "time": 25.233333,
+      "name": "Vuelve el cuadrado"
+    },
+    {
+      "time": 25.866667,
+      "name": "Corona violeta · 16 haces estimados"
+    },
+    {
+      "time": 28.933333,
+      "name": "Haz blanco violeta"
+    },
+    {
+      "time": 30.433333,
+      "name": "Haz verde izquierdo"
+    },
+    {
+      "time": 31.1,
+      "name": "Barrido diagonal"
+    },
+    {
+      "time": 31.8,
+      "name": "Plano sobre el artista"
+    },
+    {
+      "time": 32.533333,
+      "name": "Haz lateral y abanico aéreo"
+    },
+    {
+      "time": 33.2,
+      "name": "Corona multicolor"
+    },
+    {
+      "time": 34.7,
+      "name": "Doble haz cerrado"
+    },
+    {
+      "time": 35.5,
+      "name": "Separación de haces"
+    },
+    {
+      "time": 36.433333,
+      "name": "Cuchilla vertical"
+    },
+    {
+      "time": 37.8,
+      "name": "Haz fino · gesto bajo"
+    },
+    {
+      "time": 39.433333,
+      "name": "Cuchilla amplia · manos"
+    },
+    {
+      "time": 41.666667,
+      "name": "Haz derecho"
+    },
+    {
+      "time": 42.533333,
+      "name": "Haz central"
+    },
+    {
+      "time": 43.3,
+      "name": "Haz izquierdo"
+    },
+    {
+      "time": 45.433333,
+      "name": "Cuadrado final"
+    }
+  ],
+  "markers": [
+    {
+      "id": "reel-0038",
+      "name": "Cuadrado + núcleo RGB",
+      "start": 0,
+      "end": 21.433333,
+      "color": "#55fa68"
+    },
+    {
+      "id": "reel-0039",
+      "name": "Cierre / manos",
+      "start": 21.433333,
+      "end": 25.866667,
+      "color": "#55fa68"
+    },
+    {
+      "id": "reel-0040",
+      "name": "Corona violeta",
+      "start": 25.866667,
+      "end": 28.933333,
+      "color": "#b85dff"
+    },
+    {
+      "id": "reel-0041",
+      "name": "Blanco / verde / RGB",
+      "start": 28.933333,
+      "end": 34.7,
+      "color": "#55fa68"
+    },
+    {
+      "id": "reel-0042",
+      "name": "Haces / cuchillas",
+      "start": 34.7,
+      "end": 44.5,
+      "color": "#55fa68"
+    },
+    {
+      "id": "reel-0043",
+      "name": "Apagado observado",
+      "start": 44.5,
+      "end": 45.433333,
+      "color": "#55fa68"
+    },
+    {
+      "id": "reel-0044",
+      "name": "Reapertura final",
+      "start": 45.433333,
+      "end": 46.2,
+      "color": "#55fa68"
+    }
+  ],
+  "choreography": {
+    "enabled": true,
+    "bpm": 120,
+    "sections": [
+      {
+        "start": 0,
+        "end": 9.8,
+        "pose": "crouch",
+        "energy": 0
+      },
+      {
+        "start": 9.8,
+        "end": 21.433333,
+        "pose": "ready",
+        "energy": 0
+      },
+      {
+        "start": 21.433333,
+        "end": 25.866667,
+        "pose": "grabRight",
+        "energy": 0
+      },
+      {
+        "start": 25.866667,
+        "end": 28.933333,
+        "pose": "spread",
+        "energy": 0
+      },
+      {
+        "start": 28.933333,
+        "end": 31.8,
+        "pose": "ready",
+        "energy": 0
+      },
+      {
+        "start": 31.8,
+        "end": 34.7,
+        "pose": "grabRight",
+        "energy": 0
+      },
+      {
+        "start": 34.7,
+        "end": 39.433333,
+        "pose": "slice",
+        "energy": 0
+      },
+      {
+        "start": 39.433333,
+        "end": 41.666667,
+        "pose": "lift",
+        "energy": 0
+      },
+      {
+        "start": 41.666667,
+        "end": 45.433333,
+        "pose": "ready",
+        "energy": 0
+      },
+      {
+        "start": 45.433333,
+        "end": 46.2,
+        "pose": "spread",
+        "energy": 0
+      }
+    ]
+  },
+  "performerStyle": "reel",
+  "suiteShowId": "reel-dcc"
+}

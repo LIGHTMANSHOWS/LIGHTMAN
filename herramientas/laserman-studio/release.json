@@ -1,10 +1,10 @@
 {
-  "version": "1.4.0-web",
+  "version": "1.4.1-web",
   "desktopBase": "1.4.0",
-  "builtAtUtc": "2026-11-23T16:03:56.547069+00:00",
+  "builtAtUtc": "2026-11-23T16:34:21.090153+00:00",
   "publishedPath": "/herramientas/laserman-studio/",
   "physicalOutput": "local-operator-only",
-  "privateLibraryPublished": false,
+  "privateLibraryPublished": true,
   "features": [
     "show-tabs",
     "polygons",
@@ -15,7 +15,15 @@
     "browser-command-editing"
   ],
   "publicShows": [
-    "neon",
-    "arius-publico"
-  ]
+    "petrunko",
+    "illuminati",
+    "laser-lovers",
+    "spider-man",
+    "thriller",
+    "random-switch",
+    "main-deewana",
+    "reel-dcc",
+    "neon"
+  ],
+  "archivedShowsPublished": false
 }

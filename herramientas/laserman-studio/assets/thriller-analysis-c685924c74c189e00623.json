@@ -1,0 +1,610 @@
+{
+  "audioSha256": "99a42a23ddc90a2c32a5daf2053b08063af9bc0cdbaa24f24085d206434e5774",
+  "duration": 34.65,
+  "sections": [
+    {
+      "time": 0,
+      "name": "Anillo verde · contracción"
+    },
+    {
+      "time": 3.38,
+      "name": "Haz central"
+    },
+    {
+      "time": 3.9,
+      "name": "Corona multicolor"
+    },
+    {
+      "time": 5.22,
+      "name": "Haz central + manos"
+    },
+    {
+      "time": 7.8,
+      "name": "Abanico verde de rayos"
+    },
+    {
+      "time": 11.3,
+      "name": "Dos haces abiertos"
+    },
+    {
+      "time": 12.22,
+      "name": "Cierre al centro"
+    },
+    {
+      "time": 13.03,
+      "name": "Haz central + juego de manos"
+    },
+    {
+      "time": 15.76,
+      "name": "Haz verde central"
+    },
+    {
+      "time": 16.34,
+      "name": "Cuadrado violeta"
+    },
+    {
+      "time": 17.27,
+      "name": "Corona violeta"
+    },
+    {
+      "time": 17.82,
+      "name": "Corona verde"
+    },
+    {
+      "time": 18.34,
+      "name": "Haz central"
+    },
+    {
+      "time": 18.92,
+      "name": "Haz inclinado"
+    },
+    {
+      "time": 19.34,
+      "name": "Abanico compacto"
+    },
+    {
+      "time": 19.84,
+      "name": "Barrido lateral"
+    },
+    {
+      "time": 20.48,
+      "name": "Pausa oscura visible"
+    },
+    {
+      "time": 20.78,
+      "name": "Haz central"
+    },
+    {
+      "time": 22.25,
+      "name": "Cuchilla hacia las manos"
+    },
+    {
+      "time": 24.84,
+      "name": "Cuadrado violeta · lateral"
+    },
+    {
+      "time": 26.83,
+      "name": "Haz central verde"
+    },
+    {
+      "time": 27.23,
+      "name": "Cuadrado violeta"
+    },
+    {
+      "time": 28.2,
+      "name": "Cruce de haces de manos"
+    },
+    {
+      "time": 29.32,
+      "name": "Apagado / pausa"
+    },
+    {
+      "time": 29.82,
+      "name": "Dos haces verdes"
+    },
+    {
+      "time": 30.3,
+      "name": "Cierre al centro"
+    },
+    {
+      "time": 30.77,
+      "name": "Barridos hacia las manos"
+    },
+    {
+      "time": 31.75,
+      "name": "Haz lateral"
+    },
+    {
+      "time": 32.3,
+      "name": "Abanico final"
+    },
+    {
+      "time": 32.87,
+      "name": "Cuchilla diagonal final"
+    }
+  ],
+  "observations": [
+    {
+      "start": 0,
+      "end": 3.38,
+      "figure": "ring",
+      "name": "Anillo verde · contracción",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 0.00..3.38 s"
+    },
+    {
+      "start": 3.38,
+      "end": 3.9,
+      "figure": "needle",
+      "name": "Haz central",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 3.38..3.90 s"
+    },
+    {
+      "start": 3.9,
+      "end": 5.22,
+      "figure": "beamCage",
+      "name": "Corona multicolor",
+      "beamCount": 8,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 3.90..5.22 s"
+    },
+    {
+      "start": 5.22,
+      "end": 7.8,
+      "figure": "needle",
+      "name": "Haz central + manos",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 5.22..7.80 s"
+    },
+    {
+      "start": 7.8,
+      "end": 11.3,
+      "figure": "beamFan",
+      "name": "Abanico verde de rayos",
+      "beamCount": 10,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 7.80..11.30 s"
+    },
+    {
+      "start": 11.3,
+      "end": 12.22,
+      "figure": "splitBeams",
+      "name": "Dos haces abiertos",
+      "beamCount": 2,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 11.30..12.22 s"
+    },
+    {
+      "start": 12.22,
+      "end": 13.03,
+      "figure": "needle",
+      "name": "Cierre al centro",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 12.22..13.03 s"
+    },
+    {
+      "start": 13.03,
+      "end": 15.76,
+      "figure": "needle",
+      "name": "Haz central + juego de manos",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 13.03..15.76 s"
+    },
+    {
+      "start": 15.76,
+      "end": 16.34,
+      "figure": "needle",
+      "name": "Haz verde central",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 15.76..16.34 s"
+    },
+    {
+      "start": 16.34,
+      "end": 17.27,
+      "figure": "orbitSquare",
+      "name": "Cuadrado violeta",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 16.34..17.27 s"
+    },
+    {
+      "start": 17.27,
+      "end": 17.82,
+      "figure": "beamCage",
+      "name": "Corona violeta",
+      "beamCount": 8,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 17.27..17.82 s"
+    },
+    {
+      "start": 17.82,
+      "end": 18.34,
+      "figure": "beamCage",
+      "name": "Corona verde",
+      "beamCount": 8,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 17.82..18.34 s"
+    },
+    {
+      "start": 18.34,
+      "end": 18.92,
+      "figure": "needle",
+      "name": "Haz central",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 18.34..18.92 s"
+    },
+    {
+      "start": 18.92,
+      "end": 19.34,
+      "figure": "needle",
+      "name": "Haz inclinado",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 18.92..19.34 s"
+    },
+    {
+      "start": 19.34,
+      "end": 19.84,
+      "figure": "beamFan",
+      "name": "Abanico compacto",
+      "beamCount": 10,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 19.34..19.84 s"
+    },
+    {
+      "start": 19.84,
+      "end": 20.48,
+      "figure": "needle",
+      "name": "Barrido lateral",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 19.84..20.48 s"
+    },
+    {
+      "start": 20.48,
+      "end": 20.78,
+      "figure": "needle",
+      "name": "Pausa oscura visible",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 20.48..20.78 s"
+    },
+    {
+      "start": 20.78,
+      "end": 22.25,
+      "figure": "needle",
+      "name": "Haz central",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 20.78..22.25 s"
+    },
+    {
+      "start": 22.25,
+      "end": 24.84,
+      "figure": "blade",
+      "name": "Cuchilla hacia las manos",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "low",
+      "evidence": "contact sheets and PTS samples in 22.25..24.84 s"
+    },
+    {
+      "start": 24.84,
+      "end": 26.83,
+      "figure": "orbitSquare",
+      "name": "Cuadrado violeta · lateral",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 24.84..26.83 s"
+    },
+    {
+      "start": 26.83,
+      "end": 27.23,
+      "figure": "needle",
+      "name": "Haz central verde",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 26.83..27.23 s"
+    },
+    {
+      "start": 27.23,
+      "end": 28.2,
+      "figure": "orbitSquare",
+      "name": "Cuadrado violeta",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 27.23..28.20 s"
+    },
+    {
+      "start": 28.2,
+      "end": 29.32,
+      "figure": "splitBeams",
+      "name": "Cruce de haces de manos",
+      "beamCount": 2,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 28.20..29.32 s"
+    },
+    {
+      "start": 29.32,
+      "end": 29.82,
+      "figure": "needle",
+      "name": "Apagado / pausa",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 29.32..29.82 s"
+    },
+    {
+      "start": 29.82,
+      "end": 30.3,
+      "figure": "splitBeams",
+      "name": "Dos haces verdes",
+      "beamCount": 2,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 29.82..30.30 s"
+    },
+    {
+      "start": 30.3,
+      "end": 30.77,
+      "figure": "needle",
+      "name": "Cierre al centro",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 30.30..30.77 s"
+    },
+    {
+      "start": 30.77,
+      "end": 31.75,
+      "figure": "blade",
+      "name": "Barridos hacia las manos",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "low",
+      "evidence": "contact sheets and PTS samples in 30.77..31.75 s"
+    },
+    {
+      "start": 31.75,
+      "end": 32.3,
+      "figure": "needle",
+      "name": "Haz lateral",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 31.75..32.30 s"
+    },
+    {
+      "start": 32.3,
+      "end": 32.87,
+      "figure": "beamFan",
+      "name": "Abanico final",
+      "beamCount": 10,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "medium",
+      "evidence": "contact sheets and PTS samples in 32.30..32.87 s"
+    },
+    {
+      "start": 32.87,
+      "end": 34.65,
+      "figure": "blade",
+      "name": "Cuchilla diagonal final",
+      "beamCount": 1,
+      "color": "measured at 30 Hz",
+      "brightness": "relative estimate from exposure",
+      "center": "image envelope at 15 Hz",
+      "opening": "image envelope at 15 Hz",
+      "phase": "estimated",
+      "depth": "estimated",
+      "transition": "cut; continuous curves inside cue",
+      "confidence": "low",
+      "evidence": "contact sheets and PTS samples in 32.87..34.65 s"
+    }
+  ],
+  "limitations": "Reconstruction from one camera. Depth, physical dimensions, beam endpoints, phase and arm poses are estimates; no calibrated 3D recovery.",
+  "events": []
+}

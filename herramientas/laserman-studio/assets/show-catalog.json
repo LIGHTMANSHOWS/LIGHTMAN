@@ -1,24 +1,96 @@
 {
   "version": 1,
-  "defaultShow": "neon",
+  "defaultShow": "petrunko",
   "shows": [
+    {
+      "id": "petrunko",
+      "label": "Petrunko",
+      "duration": 75.487,
+      "fps": 50,
+      "demo": false,
+      "project": "assets/suite-petrunko-show.json",
+      "video": "assets/petrunko-web-reference.mp4",
+      "name": "PETRUNKO · prueba de persistencia"
+    },
+    {
+      "id": "illuminati",
+      "label": "Illuminati",
+      "duration": 56.014,
+      "fps": 29.97002997002997,
+      "demo": false,
+      "project": "assets/suite-illuminati-show.json",
+      "video": "assets/illuminati-reference-original.mp4",
+      "name": "LASERMAN · Illuminati Dance Crew"
+    },
+    {
+      "id": "laser-lovers",
+      "label": "Laser Lovers",
+      "duration": 43.774,
+      "fps": 30,
+      "demo": false,
+      "project": "assets/suite-laser-lovers-show.json",
+      "video": "assets/laser-lovers-reference.mp4",
+      "name": "ARIUS · Laser lovers · HPHgsrTXk6A"
+    },
+    {
+      "id": "spider-man",
+      "label": "Spider-Man",
+      "duration": 43.93333333333333,
+      "fps": 30,
+      "demo": false,
+      "project": "assets/suite-spider-man-show.json",
+      "video": "assets/spider-man-reference-5c42c7d8b18b66150f24.mp4",
+      "name": "Spider-Man vs Laser Assassin · Reel"
+    },
+    {
+      "id": "thriller",
+      "label": "Thriller",
+      "duration": 34.65,
+      "fps": 60,
+      "demo": false,
+      "project": "assets/suite-thriller-show.json",
+      "video": "assets/thriller-reference-0b8445cdaf0ecd98663a.mp4",
+      "name": "ARIUS · Thriller · Reel DfKqUjiq0If"
+    },
+    {
+      "id": "random-switch",
+      "label": "Random Switch",
+      "duration": 32.266666666666666,
+      "fps": 30,
+      "demo": false,
+      "project": "assets/suite-random-switch-show.json",
+      "video": "assets/random-switch-reference-9ab708ac2795edbed0c4.mp4",
+      "name": "LASERMAN · Random Switch · Dc4psAiCFkC"
+    },
+    {
+      "id": "main-deewana",
+      "label": "Main Deewana",
+      "duration": 17.474,
+      "fps": 24,
+      "demo": false,
+      "project": "assets/suite-main-deewana-show.json",
+      "video": "assets/main-deewana-main-deewana-original.mp4",
+      "name": "LASERMAN · Main Deewana"
+    },
+    {
+      "id": "reel-dcc",
+      "label": "Reel DccLstpPyFt",
+      "duration": 46.2,
+      "fps": 30.0,
+      "demo": false,
+      "project": "assets/suite-reel-dcc-show.json",
+      "video": "assets/reel-dcc-reel-original.mp4",
+      "name": "LASERMAN · Reel DccLstpPyFt"
+    },
     {
       "id": "neon",
       "label": "Neon Protocol",
-      "name": "LASERMAN · NEON PROTOCOL / Director Cut",
       "duration": 180,
+      "fps": 30,
+      "demo": true,
       "project": "assets/suite-neon-show.json",
-      "demo": true,
-      "fps": 30
-    },
-    {
-      "id": "arius-publico",
-      "label": "ARIUS · demo anterior",
-      "name": "LASERMAN · ARIUS · show ajustado al video · 3 personas",
-      "duration": 433.551375,
-      "project": "assets/suite-arius-publico-show.json",
-      "demo": true,
-      "fps": 30
+      "video": "",
+      "name": "LASERMAN · NEON PROTOCOL / Director Cut"
     }
   ]
 }

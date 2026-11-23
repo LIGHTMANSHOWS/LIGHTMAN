@@ -1,0 +1,115 @@
+{
+  "duration": 32.266666666666666,
+  "source": {
+    "url": "assets/reference.mp4",
+    "original": "assets/reference-original.mp4",
+    "sourceUrl": "https://www.instagram.com/reel/Dc4psAiCFkC/",
+    "fps": 30,
+    "offset": 0,
+    "motion": true,
+    "sha256": "b3c369e36ad380faf1a5809d6797f7feb8fe77523e3809fc39b0bfb0d0ec4747",
+    "limits": "Reconstrucción visual aproximada desde una cámara. Contornos visibles medidos; origen, profundidad y poses estimados. Oclusiones no recuperables. No hay calibración física."
+  },
+  "observations": [
+    {
+      "start": 0,
+      "end": 4,
+      "figure": "Entrada · triángulos RGB",
+      "pose": "ready (estimated)",
+      "confidence": "medium",
+      "transition": "cut",
+      "color": "floor RGB / green, native 30 Hz exposure",
+      "depth": "estimated",
+      "evidence": "contact sheets and measurements.json"
+    },
+    {
+      "start": 4,
+      "end": 8.8,
+      "figure": "Triángulos y barridos verdes",
+      "pose": "spread (estimated)",
+      "confidence": "medium",
+      "transition": "cut",
+      "color": "floor RGB / green, native 30 Hz exposure",
+      "depth": "estimated",
+      "evidence": "contact sheets and measurements.json"
+    },
+    {
+      "start": 8.8,
+      "end": 12,
+      "figure": "Giro de triángulos",
+      "pose": "cage (estimated)",
+      "confidence": "medium",
+      "transition": "cut",
+      "color": "floor RGB / green, native 30 Hz exposure",
+      "depth": "estimated",
+      "evidence": "contact sheets and measurements.json"
+    },
+    {
+      "start": 12,
+      "end": 15.8,
+      "figure": "Juego geométrico RGB",
+      "pose": "grabRight (estimated)",
+      "confidence": "medium",
+      "transition": "cut",
+      "color": "floor RGB / green, native 30 Hz exposure",
+      "depth": "estimated",
+      "evidence": "contact sheets and measurements.json"
+    },
+    {
+      "start": 15.8,
+      "end": 19,
+      "figure": "Acentos verdes",
+      "pose": "lift (estimated)",
+      "confidence": "medium",
+      "transition": "cut",
+      "color": "floor RGB / green, native 30 Hz exposure",
+      "depth": "estimated",
+      "evidence": "contact sheets and measurements.json"
+    },
+    {
+      "start": 19,
+      "end": 21.9,
+      "figure": "Cierre de triángulos",
+      "pose": "crouch (estimated)",
+      "confidence": "medium",
+      "transition": "cut",
+      "color": "floor RGB / green, native 30 Hz exposure",
+      "depth": "estimated",
+      "evidence": "contact sheets and measurements.json"
+    },
+    {
+      "start": 21.9,
+      "end": 24.7,
+      "figure": "Cuchillas verdes",
+      "pose": "spread (estimated)",
+      "confidence": "medium",
+      "transition": "cut",
+      "color": "floor RGB / green, native 30 Hz exposure",
+      "depth": "estimated",
+      "evidence": "contact sheets and measurements.json"
+    },
+    {
+      "start": 24.7,
+      "end": 30.25,
+      "figure": "Oscuro y destellos de manos",
+      "pose": "crouch (estimated)",
+      "confidence": "medium",
+      "transition": "cut",
+      "color": "floor RGB / green, native 30 Hz exposure",
+      "depth": "estimated",
+      "evidence": "contact sheets and measurements.json"
+    },
+    {
+      "start": 30.25,
+      "end": 32.266666666666666,
+      "figure": "Abanico verde final",
+      "pose": "ready (estimated)",
+      "confidence": "medium",
+      "transition": "cut",
+      "color": "floor RGB / green, native 30 Hz exposure",
+      "depth": "estimated",
+      "evidence": "contact sheets and measurements.json"
+    }
+  ],
+  "costumes": "Reflective fabric, no observed LED animation; suit RGB and hand output timelines empty."
+}
