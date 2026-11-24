@@ -1,5 +1,5 @@
 {
-  "version": "1.5.0-web",
+  "version": "1.5.1-web",
   "desktopBase": "1.5.0",
   "builtAtUtc": "2026-11-24T14:58:18.356253+00:00",
   "publishedPath": "/herramientas/laserman-studio/",
@@ -12,7 +12,8 @@
     "bidirectional-reference-sync",
     "per-show-and-master-projection",
     "composite-laser-layers",
-    "browser-command-editing"
+    "browser-command-editing",
+    "mobile-stacked-review"
   ],
   "publicShows": [
     "show-cliente-azul-blanco",
@@ -40,5 +41,6 @@
       "white"
     ]
   },
-  "assetRevision": "1.5.0-client"
+  "assetRevision": "1.5.0-client",
+  "mobileRevision": "1.5.1-mobile"
 }

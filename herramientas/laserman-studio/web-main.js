@@ -1,9 +1,11 @@
 import {installWebPlatform} from './web-platform.js?v=1.5.0-client';
+import {mountMobileView} from './mobile-view.js?v=1.5.1-mobile';
 installWebPlatform();
 await import('./app.js?v=1.5.0-client');
 const untilReady=setInterval(()=>{
   if(!window.LASERMAN)return;clearInterval(untilReady);
   const $=id=>document.getElementById(id),localUrl='http://127.0.0.1:8924/';
+  mountMobileView();
   document.querySelector('header').title='LIGHTMAN LASERMAN Studio · edición web 1.5';
   $('readiness').textContent='Editor web 1.5 · guardado en este navegador';
   $('connectFb3').textContent='Operador local';$('connectFb3').onclick=()=>window.open(localUrl,'_blank','noopener');
