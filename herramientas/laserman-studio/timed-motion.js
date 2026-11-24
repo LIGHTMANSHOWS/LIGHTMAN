@@ -6,7 +6,7 @@ import {animationClock,curveAt,CHANNELS} from './keyframes.js';
 
 export function effectTime(cue,time){
   const base=cue.animationBaseSpeed??cue.effectSpeed??1;
-  const origin=cue.effectClock==='show'?(cue.start-(cue.sourceOffset||0))*base:0;
+  const origin=cue.effectClock==='show'?(cue.start-(cue.sourceOffset||0)-(cue.sequenceStart||0))*base:0;
   return (cue.effectPhase||0)+origin+animationClock(cue,time);
 }
 

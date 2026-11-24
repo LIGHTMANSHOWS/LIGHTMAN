@@ -1,6 +1,8 @@
 import {laserFrame,trackEnabled} from './engine.js';
+import {sequenceProjectAt} from './sequence-context.js';
 
 export function compositeLaserFrame(project,time,targetId){
+  project=sequenceProjectAt(project,time);
   const target=project.tracks.find(t=>t.type==='laser'&&t.id===targetId);
   if(!target)throw Error('No existe la salida láser seleccionada.');
   const spread=project.stage.rigHeight*.53,paths=[];

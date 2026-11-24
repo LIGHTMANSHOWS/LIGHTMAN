@@ -1,6 +1,7 @@
 {
   "version": 1,
   "shows": [
+    "show-cliente-azul-blanco",
     "petrunko",
     "illuminati",
     "laser-lovers",
@@ -12,6 +13,8 @@
     "neon"
   ],
   "assets": [
+    "client-blue-white-audio.wav",
+    "client-blue-white-reference.mp4",
     "illuminati-reference-original.mp4",
     "illuminati-user-6ec6d77a346efd058e51.mp3",
     "laser-lovers-reference-audio.mp3",
@@ -37,6 +40,7 @@
     "suite-petrunko-show.json",
     "suite-random-switch-show.json",
     "suite-reel-dcc-show.json",
+    "suite-show-cliente-azul-blanco-show.json",
     "suite-spider-man-show.json",
     "suite-thriller-show.json",
     "thriller-analysis-c685924c74c189e00623.json",

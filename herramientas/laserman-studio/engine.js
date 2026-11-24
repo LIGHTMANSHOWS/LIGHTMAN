@@ -4,6 +4,7 @@ import {TRANSITION_TYPES,TRANSITION_CURVES,transitionState,blendLaserFrames} fro
 import {validateProject as validateLaserProject} from './laser.js';
 import {validateProjection} from './projection.js';
 import {validatePerformerSpace,validateEffectAnchor,anchorDrawing} from './performer-space.js';
+import {sequenceProjectAt,validateSequence,colorFrame} from './sequence-context.js';
 export const BPM=128;
 export const BEAT=60/BPM;
 export const DURATION=180;
@@ -92,6 +93,8 @@ export function validateProject(p){
         if(c.motionBase!==undefined&&(!finite(c.motionBase.size,.05,1)||!finite(c.motionBase.rotation,-720,720)||!finite(c.motionBase.rotationEnd,-720,720)||!finite(c.motionBase.panX,-3,3)||!finite(c.motionBase.panZ,-3,3)))throw Error('Base del movimiento no válida.');
         if(c.sourceOffset!==undefined&&!finite(c.sourceOffset,0,1200))throw Error('Recorte de bloque no válido.');
         if(c.sourceDuration!==undefined&&!finite(c.sourceDuration,.025,1200))throw Error('Duración original no válida.');
+        if(c.sequenceStart!==undefined&&!finite(c.sequenceStart,0,p.duration))throw Error('Origen temporal de secuencia no válido.');
+        if(c.sequenceId!==undefined&&(typeof c.sequenceId!=='string'||c.sequenceId.length>100))throw Error('Tramo de secuencia no válido.');
         if(c.motion!==undefined&&(!Array.isArray(c.motion)||c.motion.length>1024||c.motion.some((k,i)=>!finite(k.at,0,1200)||(i>0&&k.at<c.motion[i-1].at)||!finite(k.size,.05,1)||!finite(k.rotation,-720,720)||!finite(k.panX,-3,3)||!finite(k.panZ,-3,3))))throw Error('Movimiento láser no válido.');
         if(list===t.cues&&t.type==='laser'&&(!Object.hasOwn(SHAPE_NAMES,c.shape)||!finite(c.size,.05,1)||!finite(c.rotation,-720,720)||!finite(c.rotationEnd,-720,720)||!finite(c.panX,-3,3)||!finite(c.panZ,-3,3)||!Object.hasOwn(TRANSITION_TYPES,c.transition)))throw Error('Animación láser no válida.');
         if(list===t.cues&&t.type==='laser'&&c.shape==='custom')validateLaserProject({version:1,name:'Clip',fps:c.customFps,frames:c.customFrames});
@@ -106,6 +109,7 @@ export function validateProject(p){
     ids.add(m.id);
   }
   validatePerformerSpace(p);
+  validateSequence(p);
   return {...structuredClone(p),markers:structuredClone(p.markers||[])};
 }
 
@@ -240,13 +244,14 @@ function laserPlacement(cue,frame){
     discrete,rayOpacity:discrete?.86:.075};
 }
 export function laserFrame(track,time,height=4,bpm=128,project=null){
+  if(project?.sequenceParts){project=sequenceProjectAt(project,time);track={...project.tracks.find(t=>t.id===track.id),cues:track.cues};height=project.stage.rigHeight;bpm=project.bpm;}
   const cue=activeCue(track.cues,time);if(!cue)return {paths:[]};
   const frame=evaluateLaserCue(track,cue,time,height,bpm,0,project);
-  if(!project?.laserScale||project.laserScale===1||project.effectSpace)return frame;
+  if(!project?.laserScale||project.laserScale===1||project.effectSpace)return colorFrame(frame,project?.colorPolicy);
   const maximum=Math.max(0,...frame.paths.flatMap(path=>path.points.flatMap(p=>p.map(Math.abs))));
   const scale=Math.min(project.laserScale,maximum>0?.98/maximum:project.laserScale);
   const result={paths:frame.paths.map(path=>({...path,points:path.points.map(p=>p.map(v=>v*scale))}))};
-  Object.defineProperty(result,'placement',{value:frame.placement,configurable:true});return result;
+  Object.defineProperty(result,'placement',{value:frame.placement,configurable:true});return colorFrame(result,project?.colorPolicy);
 }
 function evaluateLaserCue(track,cue,time,height,bpm,depth,project){
   const current=anchorDrawing(rawLaserFrame(cue,time,height,track.position),track,cue,height,project),target=laserPlacement(animatedCue(cue,time),current);

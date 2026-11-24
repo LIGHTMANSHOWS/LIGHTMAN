@@ -35,6 +35,7 @@ const patterns={
   bow:{leftArm:-.1,rightArm:.1,body:.36,knee:.15}
 };
 export function posePerformer(actor,project,time,index){
+  const phaseTime=time-(project.sequenceTimeOrigin||0);
   const rig=actor.rig,settings=project.choreography;
   if(!settings?.enabled&&!rig.posed)return;
   const sections=settings?.sections||[],section=sections.find(s=>time>=s.start&&time<s.end);
@@ -43,16 +44,16 @@ export function posePerformer(actor,project,time,index){
   const previous=sections.filter(s=>s.end<=time).at(-1),from=patterns[previous?.pose||'ready']||patterns.ready;
   const t=enabled&&section?Math.min(1,(time-section.start)/.24):1,mix=t*t*(3-2*t);
   const procedural=enabled&&!project.reference?.motion;
-  const beat=60/(settings?.bpm||150),pulse=procedural?Math.sin(time/beat*Math.PI*2):0;
+  const beat=60/(settings?.bpm||150),pulse=procedural?Math.sin(phaseTime/beat*Math.PI*2):0;
   const energy=procedural?(section?.energy??.55):0;
   const mirror=settings?.mirrorOutside&&index===2?-1:1;
   const armLeft=from.leftArm+(base.leftArm-from.leftArm)*mix;
   const armRight=from.rightArm+(base.rightArm-from.rightArm)*mix;
-  const sway=Math.sin(time/beat*Math.PI)*.055*energy;
-  rig.joints.leftArm.node.rotation.set(Math.sin(time*.8)*.08*energy,0,(mirror>0?armLeft:-armRight)+pulse*.09*energy);
-  rig.joints.rightArm.node.rotation.set(-Math.sin(time*.8)*.08*energy,0,(mirror>0?armRight:-armLeft)-pulse*.09*energy);
+  const sway=Math.sin(phaseTime/beat*Math.PI)*.055*energy;
+  rig.joints.leftArm.node.rotation.set(Math.sin(phaseTime*.8)*.08*energy,0,(mirror>0?armLeft:-armRight)+pulse*.09*energy);
+  rig.joints.rightArm.node.rotation.set(-Math.sin(phaseTime*.8)*.08*energy,0,(mirror>0?armRight:-armLeft)-pulse*.09*energy);
   const lean=from.body+(base.body-from.body)*mix;
-  rig.joints.body.node.rotation.set(enabled?lean:0,enabled?Math.sin(time*.9)*.1:0,sway);
+  rig.joints.body.node.rotation.set(enabled?lean:0,enabled?Math.sin(phaseTime*.9)*.1:0,sway);
   const knee=enabled?base.knee:0;
   rig.joints.leftLeg.node.rotation.set(pulse*.1*energy,0,knee+sway);
   rig.joints.rightLeg.node.rotation.set(-pulse*.1*energy,0,-knee+sway);

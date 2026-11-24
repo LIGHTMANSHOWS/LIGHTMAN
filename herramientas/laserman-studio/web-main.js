@@ -1,11 +1,11 @@
 import {installWebPlatform} from './web-platform.js';
 installWebPlatform();
-await import('./app.js?v=1.4.1');
+await import('./app.js?v=1.5.0');
 const untilReady=setInterval(()=>{
   if(!window.LASERMAN)return;clearInterval(untilReady);
   const $=id=>document.getElementById(id),localUrl='http://127.0.0.1:8924/';
-  document.querySelector('header').title='LIGHTMAN LASERMAN Studio · edición web 1.4';
-  $('readiness').textContent='Editor web 1.4 · guardado en este navegador';
+  document.querySelector('header').title='LIGHTMAN LASERMAN Studio · edición web 1.5';
+  $('readiness').textContent='Editor web 1.5 · guardado en este navegador';
   $('connectFb3').textContent='Operador local';$('connectFb3').onclick=()=>window.open(localUrl,'_blank','noopener');
   $('suiteOutputStatus').textContent='Web · simulación';
   $('outputDialog').querySelector('p').textContent='Edita y guarda aquí. La emisión FB3 se realiza desde la aplicación local en el PC del montaje.';
@@ -19,7 +19,7 @@ const untilReady=setInterval(()=>{
   $('projectionDialog').querySelector('#masterKppsField').title='Se conserva en el navegador; la tasa física se revisa en el operador local.';
   const openProjection=$('masterProjection').onclick;
   $('masterProjection').onclick=async()=>{await openProjection();$('projectionStatus').textContent='Encuadre local del navegador · prueba física en el operador local.';};
-  const hint=document.createElement('p');hint.className='web-notice';hint.textContent='Editor web 1.4 · Tus cambios se guardan en este navegador. Exporta el show para llevarlo a otra PC.';document.querySelector('main').before(hint);
+  const hint=document.createElement('p');hint.className='web-notice';hint.textContent='Editor web 1.5 · Tus cambios se guardan en este navegador. Exporta el show para llevarlo a otra PC.';document.querySelector('main').before(hint);
   const add=document.createElement('button');add.id='addLocalShow';add.textContent='Añadir show';$('nextShow').before(add);
   const input=document.createElement('input');input.type='file';input.accept='.json,.zip';input.hidden=true;document.body.append(input);add.onclick=()=>input.click();
   input.onchange=async()=>{

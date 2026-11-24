@@ -62,6 +62,7 @@ function syncProjectControls(){
   ref.dataset.fps=project.reference?.fps||30;
   $('referenceOffset').step=String(1/Number(ref.dataset.fps));
   $('referenceTitle').textContent=hasVideo?'VIDEO ORIGINAL · '+(catalog.find(x=>x.id===activeShowId)?.label||project.name):'NEON PROTOCOL · DEMO';
+  if(project.colorPolicy)$('referenceTitle').textContent='REFERENCIA ORIGINAL · PALETA DEL SHOW: AZUL / BLANCO';
   $('stageInfo').textContent=catalog.find(x=>x.id===activeShowId)?.label||project.name;
   $('stageWidth').value=project.stage.width;$('stageDepth').value=project.stage.depth;$('rigHeight').value=project.stage.rigHeight;$('bpm').value=project.bpm;
   document.querySelector('.stage-overlay small').textContent='ESCALA ESTIMADA · '+project.stage.rigHeight.toFixed(1)+' m';
@@ -110,7 +111,7 @@ async function emergencyStop(){
 }
 function updateMode(){
   $('modeBadge').textContent='SIMULADOR 3D';$('modeBadge').classList.remove('live');
-  $('readiness').textContent='Editor web 1.4 · guardado en este navegador';
+  $('readiness').textContent='Editor web 1.5 · guardado en este navegador';
   $('suiteOutputStatus').textContent='Web · simulación';
   $('connectFb3').textContent='Operador local';$('connectFb3').classList.remove('active');
 }

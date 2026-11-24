@@ -2,6 +2,7 @@ import * as core from './vendor/ldp-core.js';
 import {activeCue,trackEnabled,sourceTime} from './engine.js';
 import {transitionState} from './transitions.js';
 import {animatedCue,animationClock} from './keyframes.js';
+import {sequenceProjectAt,colorPixels} from './sequence-context.js';
 
 export function createLedEngine(fixture,positions){
   const tree={id:'suit',name:'Jacket',type:'group',pixelStart:0,pixelCount:fixture.totalLeds,children:fixture.zones.map(z=>({id:z.name,name:z.name,type:'group',compact:true,pixelStart:z.start,pixelCount:z.count,children:[]}))};
@@ -35,6 +36,7 @@ export function createLedEngine(fixture,positions){
     }
   }
   return {reset(){core.a();last=-1;},render(project,track,time){
+    if(project.sequenceParts){project=sequenceProjectAt(project,time);track={...project.tracks.find(t=>t.id===track.id),cues:track.cues,hands:track.hands};}
     if(time<last)core.a();last=time;
     if(!buffers.has(track.id))buffers.set(track.id,new Uint8Array(fixture.totalLeds*3));
     const out=buffers.get(track.id);out.fill(0);
@@ -46,6 +48,6 @@ export function createLedEngine(fixture,positions){
       renderCue(c,time,scratch);
       for(let i=0;i<out.length;i++)out[i]=Math.min(255,out[i]+scratch[i]);
     }
-    return out;
+    return colorPixels(out,project.colorPolicy);
   }};
 }

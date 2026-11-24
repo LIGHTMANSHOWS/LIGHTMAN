@@ -3,7 +3,7 @@ import {validateProject,newCue,SHAPE_NAMES} from './engine.js';
 import {CHANNELS,newKey} from './keyframes.js';
 import {replaceWindow} from './timeline-model.js';
 const uid=()=>crypto.randomUUID();
-const cueFields=new Set(['name','start','duration','color','enabled','shape','size','rotation','rotationEnd','panX','panZ','transition','transitionDuration','transitionUnit','transitionCurve','effectSpeed','effectPhase','effectClock','motionRate','motionEnabled','videoMotionEnabled','opening','depthScale','projectionHeight','previewOrigin','previewRays','laserIntensity','beamCount','polygonSides','effect','targets','speed','intensity','layer','customFps','customFrames','effectAnchor','sourceOffset','sourceDuration','videoMotion','animation']);
+const cueFields=new Set(['name','start','duration','color','enabled','shape','size','rotation','rotationEnd','panX','panZ','transition','transitionDuration','transitionUnit','transitionCurve','effectSpeed','effectPhase','effectClock','motionRate','motionEnabled','videoMotionEnabled','opening','depthScale','projectionHeight','previewOrigin','previewRays','laserIntensity','beamCount','polygonSides','effect','targets','speed','intensity','layer','customFps','customFrames','effectAnchor','sourceOffset','sourceDuration','videoMotion','animation','sequenceId','sequenceStart']);
 function fields(values,allowed){
   if(!values||typeof values!=='object'||Array.isArray(values))throw Error('Falta un objeto de valores.');
   for(const key of Object.keys(values))if(!allowed.has(key))throw Error('Campo no admitido: '+key);
@@ -99,6 +99,9 @@ export function applyCommands(source,commands){
         project.markers=(project.markers||[]).filter(m=>m.start<end&&(m.end==null||end-m.start>=.025)).map(m=>m.end==null?m:{...m,end:Math.min(m.end,end)});
         if(project.sections)project.sections=project.sections.filter(s=>s.time<=end);
         if(project.choreography)project.choreography.sections=project.choreography.sections.filter(s=>s.start<end).map(s=>({...s,end:Math.min(s.end,end)}));
+        if(project.sequenceParts)project.sequenceParts=project.sequenceParts.filter(p=>p.start<end).map(p=>({...p,end:Math.min(p.end,end),context:{...p.context,
+          tracks:p.context.tracks.map(t=>({...t,previewStart:Math.min(t.previewStart??p.start,end),previewWindows:t.previewWindows?t.previewWindows.filter(w=>w[0]<end).map(([a,b])=>[a,Math.min(b,end)]):null})),
+          choreography:p.context.choreography?{...p.context.choreography,sections:p.context.choreography.sections.filter(s=>s.start<end).map(s=>({...s,end:Math.min(s.end,end)}))}:undefined}}));
         project.duration=end;result={...result,duration:end};break;
       }
       default:throw Error('Operación no admitida: '+command.op);

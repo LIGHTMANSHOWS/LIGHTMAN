@@ -1,6 +1,5 @@
-# LIGHTMAN LASERMAN Studio web 1.4.1
+# LIGHTMAN LASERMAN Studio web 1.5
 
-Biblioteca completa de nueve shows en pestañas, con sus audios y videos de referencia.
-Motor desktop 1.4, polígonos, curvas, sincronización, encuadres y comandos.
-
-Lee [el uso](docs/version-1.4.md). La emisión física se opera en la aplicación local.
+Show cliente completo: Main Deewana → Illuminati → Reel DccLstpYft → Random Switch,
+en una sola línea de tiempo de 2:31,955. Salida azul/blanco, sin tonos rojos.
+Los nueve shows originales siguen disponibles. [Novedades](docs/version-1.5.md).

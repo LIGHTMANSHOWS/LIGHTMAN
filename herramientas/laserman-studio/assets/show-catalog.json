@@ -1,7 +1,17 @@
 {
   "version": 1,
-  "defaultShow": "petrunko",
+  "defaultShow": "show-cliente-azul-blanco",
   "shows": [
+    {
+      "id": "show-cliente-azul-blanco",
+      "label": "Show cliente completo",
+      "name": "LIGHTMAN · Show cliente · azul y blanco",
+      "duration": 151.95466666666667,
+      "project": "assets/suite-show-cliente-azul-blanco-show.json",
+      "video": "assets/client-blue-white-reference.mp4",
+      "fps": 30,
+      "demo": false
+    },
     {
       "id": "petrunko",
       "label": "Petrunko",

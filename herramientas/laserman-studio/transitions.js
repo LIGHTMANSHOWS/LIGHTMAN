@@ -15,7 +15,7 @@ export function transitionWindow(cue,bpm=128){
 }
 export function previousCue(track,cue){
   // A gap is a blackout, not a request to resurrect an earlier effect.
-  return track.cues.filter(c=>c.id!==cue.id&&c.enabled!==false&&!c.layer&&c.start<cue.start&&c.start+c.duration>=cue.start-1e-6)
+  return track.cues.filter(c=>c.id!==cue.id&&c.enabled!==false&&!c.layer&&(!cue.sequenceId||c.sequenceId===cue.sequenceId)&&c.start<cue.start&&c.start+c.duration>=cue.start-1e-6)
     .sort((a,b)=>b.start-a.start)[0]||null;
 }
 export function transitionState(track,cue,time,bpm=128){

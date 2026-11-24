@@ -1,7 +1,7 @@
 {
-  "version": "1.4.1-web",
-  "desktopBase": "1.4.0",
-  "builtAtUtc": "2026-11-23T16:34:21.090153+00:00",
+  "version": "1.5.0-web",
+  "desktopBase": "1.5.0",
+  "builtAtUtc": "2026-11-24T14:58:18.356253+00:00",
   "publishedPath": "/herramientas/laserman-studio/",
   "physicalOutput": "local-operator-only",
   "privateLibraryPublished": true,
@@ -15,6 +15,7 @@
     "browser-command-editing"
   ],
   "publicShows": [
+    "show-cliente-azul-blanco",
     "petrunko",
     "illuminati",
     "laser-lovers",
@@ -25,5 +26,18 @@
     "reel-dcc",
     "neon"
   ],
-  "archivedShowsPublished": false
+  "archivedShowsPublished": false,
+  "clientSequence": {
+    "duration": 151.95466666666667,
+    "order": [
+      "main-deewana",
+      "illuminati",
+      "reel-dcc",
+      "random-switch"
+    ],
+    "palette": [
+      "blue",
+      "white"
+    ]
+  }
 }
