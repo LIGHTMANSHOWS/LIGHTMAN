@@ -2,7 +2,7 @@
 // integrator state to reset or accumulate differently from the audio clock.
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const finite=(v,a,b)=>Number.isFinite(v)&&v>=a&&v<=b;
-import {animationClock,curveAt,CHANNELS} from './keyframes.js';
+import {animationClock,curveAt,CHANNELS} from './keyframes.js?v=1.5.0-client';
 
 export function effectTime(cue,time){
   const base=cue.animationBaseSpeed??cue.effectSpeed??1;

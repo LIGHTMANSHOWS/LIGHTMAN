@@ -1,8 +1,8 @@
 import * as core from './vendor/ldp-core.js';
-import {activeCue,trackEnabled,sourceTime} from './engine.js';
-import {transitionState} from './transitions.js';
-import {animatedCue,animationClock} from './keyframes.js';
-import {sequenceProjectAt,colorPixels} from './sequence-context.js';
+import {activeCue,trackEnabled,sourceTime} from './engine.js?v=1.5.0-client';
+import {transitionState} from './transitions.js?v=1.5.0-client';
+import {animatedCue,animationClock} from './keyframes.js?v=1.5.0-client';
+import {sequenceProjectAt,colorPixels} from './sequence-context.js?v=1.5.0-client';
 
 export function createLedEngine(fixture,positions){
   const tree={id:'suit',name:'Jacket',type:'group',pixelStart:0,pixelCount:fixture.totalLeds,children:fixture.zones.map(z=>({id:z.name,name:z.name,type:'group',compact:true,pixelStart:z.start,pixelCount:z.count,children:[]}))};

@@ -1,18 +1,18 @@
-import {resolveMediaUrl} from './web-platform.js';
-import {createShowRepository} from './show-library.js';
-import {routedTracks,buildSharedFrame} from './shared-output.js';
-import {mountReferenceVideo} from './reference-video.js';
-import {mountKeyframeEditor} from './keyframe-ui.js';
-import {mountTransitionEditor} from './transition-ui.js';
-import {demoProject,validateProject,activeCue,trackEnabled,laserFrame,timelineRows,cueList,newCue,clamp,SHAPE_NAMES,EFFECTS,SECTIONS,REFERENCE_SHAPES} from './engine.js';
-import {insertLaserReference} from './laser-reference.js';
-import {createScene} from './scene.js';
-import {createLedEngine} from './led-engine.js';
-import {encodeFB3Frame} from './fb3-wire.js';
-import {validateProject as validateLaserProject} from './laser.js';
-import {mountTimelineEditor,commitFocusedField} from './timeline-ui.js';
-import {replaceWindow} from './timeline-model.js';
-import {mountProjectionEditor} from './projection-ui.js';
+import {resolveMediaUrl} from './web-platform.js?v=1.5.0-client';
+import {createShowRepository} from './show-library.js?v=1.5.0-client';
+import {routedTracks,buildSharedFrame} from './shared-output.js?v=1.5.0-client';
+import {mountReferenceVideo} from './reference-video.js?v=1.5.0-client';
+import {mountKeyframeEditor} from './keyframe-ui.js?v=1.5.0-client';
+import {mountTransitionEditor} from './transition-ui.js?v=1.5.0-client';
+import {demoProject,validateProject,activeCue,trackEnabled,laserFrame,timelineRows,cueList,newCue,clamp,SHAPE_NAMES,EFFECTS,SECTIONS,REFERENCE_SHAPES} from './engine.js?v=1.5.0-client';
+import {insertLaserReference} from './laser-reference.js?v=1.5.0-client';
+import {createScene} from './scene.js?v=1.5.0-client';
+import {createLedEngine} from './led-engine.js?v=1.5.0-client';
+import {encodeFB3Frame} from './fb3-wire.js?v=1.5.0-client';
+import {validateProject as validateLaserProject} from './laser.js?v=1.5.0-client';
+import {mountTimelineEditor,commitFocusedField} from './timeline-ui.js?v=1.5.0-client';
+import {replaceWindow} from './timeline-model.js?v=1.5.0-client';
+import {mountProjectionEditor} from './projection-ui.js?v=1.5.0-client';
 
 const $=id=>document.getElementById(id);
 let project,scene,led,fixture,time=0,playing=false,anchor=0,anchorTime=0,audio=null,audioReady=false,history=[],selected=null,selectedRow='laser-1';
@@ -537,7 +537,7 @@ function bind(){
   $('buildExport').onclick=async()=>{
     if(!$('exportFps').checkValidity())return;const fps=Number($('exportFps').value);$('buildExport').disabled=true;$('exportProgress').hidden=false;
     try{
-      const {buildExport}=await import('./export.js');await buildExport(project,fixture,scene.points,fps,(p,msg)=>{$('exportProgress').value=p;$('exportStatus').textContent=msg;});
+      const {buildExport}=await import('./export.js?v=1.5.0-client');await buildExport(project,fixture,scene.points,fps,(p,msg)=>{$('exportProgress').value=p;$('exportStatus').textContent=msg;});
       $('exportStatus').textContent='Paquete descargado con proyecto, ILDA, audio y video de referencia.';
     }catch(e){$('exportStatus').textContent=e.message;}finally{$('buildExport').disabled=false;}
   };
@@ -571,7 +571,7 @@ function animate(now){
 async function main(){
   const [data,fixtureData,settingsData]=await Promise.all([fetch('assets/show-catalog.json',{cache:'no-store'}).then(r=>r.json()),(await fetch('assets/jacket-patch.json')).json(),api('suite/settings')]);
   catalog=data.shows;fixture=fixtureData;suiteSettings=settingsData;
-  outputWorker=new Worker(new URL('./output-worker.js',import.meta.url),{type:'module'});
+  outputWorker=new Worker(new URL('./output-worker.js?v=1.5.0-client',import.meta.url),{type:'module'});
   outputWorker.onmessage=({data})=>{if(data.type==='test'){projectionTestActive=data.active;projectionEditor?.setActive(data.active);updateMode();}if(data.type==='error'){
     projectionTestActive=false;projectionEditor?.setActive(false);
     outputs=false;hardwareReady=false;updateMode();$('suiteOutputStatus').textContent=data.message;toast('Salida detenida: '+data.message);

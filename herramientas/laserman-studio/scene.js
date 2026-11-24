@@ -1,13 +1,13 @@
 import * as THREE from './vendor/three.module.js';
 import {OrbitControls} from './vendor/addons/controls/OrbitControls.js';
-import {activeCue,trackEnabled,laserFrame} from './engine.js';
-import {sequenceProjectAt,allowedColor} from './sequence-context.js';
-import {sampleFrame} from './laser.js';
-import {createLaserStroke,updateLaserStroke,createLaserHaze,updateLaserHaze} from './laser-visual.js';
-import {rigPerformer,posePerformer} from './performer.js';
+import {activeCue,trackEnabled,laserFrame} from './engine.js?v=1.5.0-client';
+import {sequenceProjectAt,allowedColor} from './sequence-context.js?v=1.5.0-client';
+import {sampleFrame} from './laser.js?v=1.5.0-client';
+import {createLaserStroke,updateLaserStroke,createLaserHaze,updateLaserHaze} from './laser-visual.js?v=1.5.0-client';
+import {rigPerformer,posePerformer} from './performer.js?v=1.5.0-client';
 
-import {jacketPixels} from './jacket.js';
-import {animatedCue} from './keyframes.js';
+import {jacketPixels} from './jacket.js?v=1.5.0-client';
+import {animatedCue} from './keyframes.js?v=1.5.0-client';
 
 export function createScene(canvas,fixture){
   const scene=new THREE.Scene();scene.background=new THREE.Color('#080b12');scene.fog=new THREE.Fog('#080b12',13,32);

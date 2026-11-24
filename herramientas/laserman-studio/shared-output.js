@@ -1,7 +1,7 @@
-import {laserFrame,trackEnabled} from './engine.js';
-import {encodeFB3Frame} from './fb3-wire.js';
-import {projectDrawing,testDrawing} from './projection.js';
-import {compositeLaserFrame} from './laser-composite.js';
+import {laserFrame,trackEnabled} from './engine.js?v=1.5.0-client';
+import {encodeFB3Frame} from './fb3-wire.js?v=1.5.0-client';
+import {projectDrawing,testDrawing} from './projection.js?v=1.5.0-client';
+import {compositeLaserFrame} from './laser-composite.js?v=1.5.0-client';
 
 export function routedTracks(project,settings){
   return project.tracks.map(t=>({...t,patch:t.type==='laser'?{device:t.id===settings.trackId?settings.device:''}:{}}));

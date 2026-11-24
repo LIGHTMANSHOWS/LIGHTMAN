@@ -1,4 +1,4 @@
-import {TRANSITION_TYPES,TRANSITION_CURVES,transitionSeconds,transitionWindow,previousCue} from './transitions.js';
+import {TRANSITION_TYPES,TRANSITION_CURVES,transitionSeconds,transitionWindow,previousCue} from './transitions.js?v=1.5.0-client';
 
 export function mountTransitionEditor(options){
   const $=id=>document.getElementById(id);
