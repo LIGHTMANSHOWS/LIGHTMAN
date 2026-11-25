@@ -1,5 +1,5 @@
-import {SHAPE_NAMES,EFFECTS,clamp} from './engine.js?v=1.8.1-smi';
-import {markerSpan,rangeAt,snapTime,fillRange,makeMarker} from './timeline-model.js?v=1.8.1-smi';
+import {SHAPE_NAMES,EFFECTS,clamp} from './engine.js?v=1.8.2-apertura';
+import {markerSpan,rangeAt,snapTime,fillRange,makeMarker} from './timeline-model.js?v=1.8.2-apertura';
 
 export function commitFocusedField(){
   const focused=document.activeElement;

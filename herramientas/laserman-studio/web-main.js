@@ -1,7 +1,7 @@
-import {installWebPlatform} from './web-platform.js?v=1.8.1-smi';
-import {mountMobileView} from './mobile-view.js?v=1.8.1-smi';
+import {installWebPlatform} from './web-platform.js?v=1.8.2-apertura';
+import {mountMobileView} from './mobile-view.js?v=1.8.2-apertura';
 installWebPlatform();
-await import('./app.js?v=1.8.1-smi');
+await import('./app.js?v=1.8.2-apertura');
 const untilReady=setInterval(()=>{
   if(!window.LASERMAN)return;clearInterval(untilReady);
   const $=id=>document.getElementById(id),localUrl='http://127.0.0.1:8924/';

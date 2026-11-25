@@ -1,14 +1,14 @@
 import * as THREE from './vendor/three.module.js';
 import {OrbitControls} from './vendor/addons/controls/OrbitControls.js';
-import {activeCue,trackEnabled} from './engine.js?v=1.8.1-smi';
-import {sequenceProjectAt,allowedColor} from './sequence-context.js?v=1.8.1-smi';
-import {sampleFrame} from './laser.js?v=1.8.1-smi';
-import {createLaserStroke,updateLaserStroke,createLaserHaze,updateLaserHaze} from './laser-visual.js?v=1.8.1-smi';
-import {rigPerformer,posePerformer} from './performer.js?v=1.8.1-smi';
+import {activeCue,trackEnabled} from './engine.js?v=1.8.2-apertura';
+import {sequenceProjectAt,allowedColor} from './sequence-context.js?v=1.8.2-apertura';
+import {sampleFrame} from './laser.js?v=1.8.2-apertura';
+import {createLaserStroke,updateLaserStroke,createLaserHaze,updateLaserHaze} from './laser-visual.js?v=1.8.2-apertura';
+import {rigPerformer,posePerformer} from './performer.js?v=1.8.2-apertura';
 
-import {jacketPixels} from './jacket.js?v=1.8.1-smi';
-import {performerLayout} from './performer-layout.js?v=1.8.1-smi';
-import {createUrbanLayer} from './urban-performer.js?v=1.8.1-smi';
+import {jacketPixels} from './jacket.js?v=1.8.2-apertura';
+import {performerLayout} from './performer-layout.js?v=1.8.2-apertura';
+import {createUrbanLayer} from './urban-performer.js?v=1.8.2-apertura';
 
 export function createScene(canvas,fixture){
   const scene=new THREE.Scene();scene.background=new THREE.Color('#080b12');scene.fog=new THREE.Fog('#080b12',13,32);

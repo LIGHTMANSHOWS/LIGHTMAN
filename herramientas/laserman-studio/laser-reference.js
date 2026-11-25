@@ -1,5 +1,5 @@
-import {newCue,uid,clamp} from './engine.js?v=1.8.1-smi';
-import {replaceWindow} from './timeline-model.js?v=1.8.1-smi';
+import {newCue,uid,clamp} from './engine.js?v=1.8.2-apertura';
+import {replaceWindow} from './timeline-model.js?v=1.8.2-apertura';
 
 export const LASER_REFERENCE={
   url:'https://www.youtube.com/shorts/9Xt6s-nYO7M',

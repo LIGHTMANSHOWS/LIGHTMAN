@@ -1,7 +1,7 @@
 import * as THREE from './vendor/three.module.js';
 import {GLTFLoader} from './vendor/addons/loaders/GLTFLoader.js';
 import {clone} from './vendor/addons/utils/SkeletonUtils.js';
-import {createUrbanCostume} from './urban-costume.js?v=1.8.1-smi';
+import {createUrbanCostume} from './urban-costume.js?v=1.8.2-apertura';
 
 const V=(x,y,z)=>new THREE.Vector3(x,y,z);
 const world=bone=>bone.getWorldPosition(new THREE.Vector3());

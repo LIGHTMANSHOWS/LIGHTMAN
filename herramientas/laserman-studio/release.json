@@ -1,7 +1,7 @@
 {
-  "version": "1.8.1-web",
-  "desktopBase": "1.8.0",
-  "builtAtUtc": "2026-11-25T19:07:57.025322+00:00",
+  "version": "1.8.2-web",
+  "desktopBase": "1.8.2",
+  "builtAtUtc": "2026-11-25T19:14:08.422878+00:00",
   "publishedPath": "/herramientas/laserman-studio/",
   "physicalOutput": "local-operator-only",
   "privateLibraryPublished": true,
@@ -49,7 +49,7 @@
     ],
     "crossfadeSeconds": 0.4
   },
-  "assetRevision": "1.8.1-smi",
+  "assetRevision": "1.8.2-apertura",
   "mobileRevision": "1.5.1-mobile",
   "performerLayout": {
     "count": 3,
@@ -67,6 +67,8 @@
     "duration": 150.75466666666668,
     "modelSource": "Batucada 3D",
     "photoSource": "Catálogo Full IA",
-    "name": "SMI"
+    "name": "SMI",
+    "apertureScale": 0.5,
+    "modelledGapMetres": 0.48
   }
 }

@@ -1,5 +1,5 @@
-import {validateProjection} from './projection.js?v=1.8.1-smi';
-import {validatePerformerSpace} from './performer-space.js?v=1.8.1-smi';
+import {validateProjection} from './projection.js?v=1.8.2-apertura';
+import {validatePerformerSpace} from './performer-space.js?v=1.8.2-apertura';
 const finite=(v,a,b)=>Number.isFinite(v)&&v>=a&&v<=b;
 
 export function validateSequence(project){

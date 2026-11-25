@@ -1,5 +1,6 @@
-import {activeCue,trackEnabled} from './engine.js?v=1.8.1-smi';
-import {compositeLaserFrame} from './laser-composite.js?v=1.8.1-smi';
+import {activeCue,trackEnabled} from './engine.js?v=1.8.2-apertura';
+import {compositeLaserFrame} from './laser-composite.js?v=1.8.2-apertura';
+import {projectDrawing} from './projection.js?v=1.8.2-apertura';
 // Presentation convention: three performers share one complete programmed image.
 // Never copy timeline layers or multiply samples in the physical DAC stream.
 export function performerLayout(project,time,composition=project){
@@ -10,7 +11,7 @@ export function performerLayout(project,time,composition=project){
   const frame=compositeLaserFrame(composition,time,lasers[0].id);
   const paths=frame.paths.map(path=>({...path,points:path.points.map(p=>[p[0]-offset[0],p[1]-offset[1]])}));
   let maximum=1;for(const path of paths)for(const p of path.points)for(const v of p)maximum=Math.max(maximum,Math.abs(v));
-  const drawing={paths:paths.map(path=>({...path,points:path.points.map(p=>p.map(v=>v/maximum))}))};
+  const drawing=projectDrawing({paths:paths.map(path=>({...path,points:path.points.map(p=>p.map(v=>v/maximum))}))},project.projection);
   const first=lasers.filter(t=>trackEnabled(project,t)).map(t=>activeCue(t.cues,time)).find(Boolean);
   const discrete=drawing.paths.length>0&&drawing.paths.every(path=>{
     const [a]=path.points;return path.points.every(p=>Math.hypot(p[0]-a[0],p[1]-a[1])<.02);

@@ -1,7 +1,7 @@
 // Structured editing operations. No executable expressions or hardware commands.
-import {validateProject,newCue,SHAPE_NAMES} from './engine.js?v=1.8.1-smi';
-import {CHANNELS,newKey} from './keyframes.js?v=1.8.1-smi';
-import {replaceWindow} from './timeline-model.js?v=1.8.1-smi';
+import {validateProject,newCue,SHAPE_NAMES} from './engine.js?v=1.8.2-apertura';
+import {CHANNELS,newKey} from './keyframes.js?v=1.8.2-apertura';
+import {replaceWindow} from './timeline-model.js?v=1.8.2-apertura';
 const uid=()=>crypto.randomUUID();
 const cueFields=new Set(['name','start','duration','color','enabled','shape','size','rotation','rotationEnd','panX','panZ','transition','transitionDuration','transitionUnit','transitionCurve','effectSpeed','effectPhase','effectClock','motionRate','motionEnabled','videoMotionEnabled','opening','depthScale','projectionHeight','previewOrigin','previewRays','laserIntensity','beamCount','polygonSides','effect','targets','speed','intensity','layer','customFps','customFrames','effectAnchor','sourceOffset','sourceDuration','videoMotion','animation','sequenceId','sequenceStart']);
 function fields(values,allowed){

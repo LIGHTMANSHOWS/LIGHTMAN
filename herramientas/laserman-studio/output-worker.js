@@ -1,4 +1,4 @@
-import {packetForAge} from './output-packet.js?v=1.8.1-smi';
+import {packetForAge} from './output-packet.js?v=1.8.2-apertura';
 let active=false,packet=null,updated=0,posting=false,generation=0,lastTest=false;
 self.onmessage=({data})=>{
   if(data.type==='stop'){active=false;packet=null;generation++;return;}

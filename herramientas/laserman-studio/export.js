@@ -1,6 +1,6 @@
-import {encodeFB3Frame} from './fb3-wire.js?v=1.8.1-smi';
-import {laserFrame,trackEnabled,activeCue} from './engine.js?v=1.8.1-smi';
-import {createLedEngine} from './led-engine.js?v=1.8.1-smi';
+import {encodeFB3Frame} from './fb3-wire.js?v=1.8.2-apertura';
+import {laserFrame,trackEnabled,activeCue} from './engine.js?v=1.8.2-apertura';
+import {createLedEngine} from './led-engine.js?v=1.8.2-apertura';
 import * as core from './vendor/ldp-core.js';
 
 const pause=()=>new Promise(resolve=>setTimeout(resolve,0));

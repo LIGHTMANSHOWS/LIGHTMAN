@@ -1,4 +1,4 @@
-import {clamp,cueList,newCue,uid} from './engine.js?v=1.8.1-smi';
+import {clamp,cueList,newCue,uid} from './engine.js?v=1.8.2-apertura';
 
 export function markerSpan(project,marker){
   if(!marker)return null;
