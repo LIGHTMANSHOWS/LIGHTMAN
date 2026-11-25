@@ -1,0 +1,32 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="LIGHTMAN · Show Urban verde y blanco con dos artistas. Video de referencia y presentación 3D sincronizados para celular.">
+  <meta property="og:title" content="LIGHTMAN · Show láser con 2 artistas">
+  <meta property="og:description" content="Video de referencia y propuesta 3D · Urban verde y blanco.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="https://lightmanperu.com/herramientas/laserman-studio/preview.jpg">
+  <title>LIGHTMAN · Show láser · 2 artistas</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="stylesheet" href="smi-duo.css?v=1.0.0">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+  <script type="module" src="smi-duo.js?v=1.0.0"></script>
+</head>
+<body>
+  <main aria-label="LIGHTMAN · Show láser con dos artistas">
+    <section class="stage-panel" aria-label="Propuesta 3D con dos artistas">
+      <canvas id="stage" aria-label="Escenario 3D con dos artistas Urban"></canvas>
+      <span class="badge">LIGHTMAN <span>· 3D · 2 artistas</span></span>
+      <a class="credits" href="docs/urban-procedencia.md" target="_blank" rel="noopener" aria-label="Créditos del modelo 3D">ⓘ</a>
+      <p id="status" role="status">Cargando el show…</p>
+    </section>
+    <section class="video-panel" aria-label="Video de referencia">
+      <video id="referenceVideo" controls playsinline preload="metadata" aria-label="Video de referencia; sus controles también mueven el 3D"></video>
+      <span class="badge video-label">Video de referencia</span>
+    </section>
+  </main>
+</body>
+</html>
