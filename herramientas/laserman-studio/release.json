@@ -1,6 +1,6 @@
 {
-  "version": "1.5.2-web",
-  "desktopBase": "1.5.0",
+  "version": "1.7.0-web",
+  "desktopBase": "1.7.0",
   "builtAtUtc": "2026-11-24T14:58:18.356253+00:00",
   "publishedPath": "/herramientas/laserman-studio/",
   "physicalOutput": "local-operator-only",
@@ -14,7 +14,9 @@
     "composite-laser-layers",
     "browser-command-editing",
     "mobile-stacked-review",
-    "three-synchronized-head-lasers"
+    "three-synchronized-ceiling-lasers",
+    "crossfade-sequence",
+    "clean-reel-music"
   ],
   "publicShows": [
     "show-cliente-azul-blanco",
@@ -30,7 +32,7 @@
   ],
   "archivedShowsPublished": false,
   "clientSequence": {
-    "duration": 151.95466666666667,
+    "duration": 150.75466666666668,
     "order": [
       "main-deewana",
       "illuminati",
@@ -40,13 +42,15 @@
     "palette": [
       "blue",
       "white"
-    ]
+    ],
+    "crossfadeSeconds": 0.4
   },
-  "assetRevision": "1.5.2-three",
+  "assetRevision": "1.7.0-roof",
   "mobileRevision": "1.5.1-mobile",
   "performerLayout": {
     "count": 3,
-    "mount": "head",
+    "mount": "ceiling",
+    "heightMetres": 4,
     "synchronized": true
   }
 }

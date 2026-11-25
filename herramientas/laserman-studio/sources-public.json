@@ -53,8 +53,14 @@
       "show": "Reel DccLstpPyFt",
       "source": "https://www.instagram.com/reels/DccLstpPyFt/",
       "video": "assets/reel-dcc-reel-original.mp4",
-      "audio": "assets/reel-dcc-reel-audio.m4a",
-      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
+      "audio": "assets/reel-dcc-laserbeam-clean.wav",
+      "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas.",
+      "music": {
+        "title": "Laserbeam",
+        "artist": "Ray Volpe",
+        "source": "https://www.youtube.com/watch?v=Ytz7qSH9QPI",
+        "alignment": "Intro matched; official continuation after approximately 26 seconds."
+      }
     },
     {
       "show": "Neon Protocol",

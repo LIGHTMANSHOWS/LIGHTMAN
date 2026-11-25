@@ -2,35 +2,35 @@
   "format": "lightman-laserman",
   "version": 1,
   "name": "LIGHTMAN · Show cliente · azul y blanco",
-  "edition": "client-sequence-1",
-  "duration": 151.95466666666667,
-  "bpm": 120,
+  "edition": "client-sequence-2-crossfade-roof",
+  "duration": 150.75466666666668,
+  "bpm": 84,
   "stage": {
     "width": 8,
     "depth": 5,
     "rigHeight": 4
   },
   "audio": {
-    "url": "assets/client-blue-white-audio.wav",
-    "name": "Show cliente · mezcla continua",
+    "url": "assets/client-blue-white-audio-v2.wav",
+    "name": "Show cliente · empalmes de 0,4 s · Laserbeam original",
     "offset": 0,
-    "volume": 0.68
+    "volume": 1
   },
   "sections": [
     {
-      "time": 0,
+      "time": 0.0,
       "name": "Main Deewana"
     },
     {
-      "time": 17.474,
+      "time": 17.074,
       "name": "Illuminati"
     },
     {
-      "time": 73.488,
+      "time": 72.688,
       "name": "Reel DccLstpYft"
     },
     {
-      "time": 119.688,
+      "time": 118.488,
       "name": "Random Switch"
     }
   ],
@@ -38,29 +38,29 @@
     {
       "id": "part-main-deewana",
       "name": "Main Deewana",
-      "start": 0,
+      "start": 0.0,
       "end": 17.474,
       "color": "#0000ff"
     },
     {
       "id": "part-illuminati",
       "name": "Illuminati",
-      "start": 17.474,
-      "end": 73.488,
+      "start": 17.074,
+      "end": 73.088,
       "color": "#ffffff"
     },
     {
       "id": "part-reel-dcc",
       "name": "Reel DccLstpYft",
-      "start": 73.488,
-      "end": 119.688,
+      "start": 72.688,
+      "end": 118.888,
       "color": "#0000ff"
     },
     {
       "id": "part-random-switch",
       "name": "Random Switch",
-      "start": 119.688,
-      "end": 151.95466666666667,
+      "start": 118.488,
+      "end": 150.75466666666668,
       "color": "#ffffff"
     }
   ],
@@ -917,7 +917,7 @@
           },
           "sourceDuration": 2.791666666666667,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--900b518e-bc95-4931-a0ce-eb0df325a45b",
@@ -2469,7 +2469,7 @@
           ],
           "sourceDuration": 0.833333333333333,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--79838849-02d9-4e2a-bec0-0dfd3825621c",
@@ -4028,7 +4028,7 @@
           ],
           "sourceDuration": 2.125,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--b760618b-b452-4fb9-ae48-d30a685a5c5e",
@@ -7852,7 +7852,7 @@
           ],
           "sourceDuration": 2.166666666666667,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--9218dd17-7f3a-4b66-a2cf-dd53e7fc7737",
@@ -8033,7 +8033,7 @@
           },
           "sourceDuration": 0.5,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--764a83b9-19ff-45c9-a147-0834dccfc449",
@@ -8919,7 +8919,7 @@
           ],
           "sourceDuration": 0.6666666666666661,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--77f66757-e875-4ef4-8d32-60bc7a52ff7d",
@@ -9088,12 +9088,12 @@
           },
           "sourceDuration": 0.45833333333333215,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--84548614-c89b-431f-9d09-22f7d37b7a04",
           "name": "Lámina desde mano · estimada",
-          "start": 12,
+          "start": 12.0,
           "duration": 1.083333333333334,
           "shape": "blade",
           "color": "#0000ff",
@@ -9317,7 +9317,7 @@
           "sourceOffset": 0,
           "sourceDuration": 1.083333333333334,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--803baca1-a1b3-4789-a2a7-92e537823bf0",
@@ -9474,7 +9474,7 @@
           },
           "sourceDuration": 0.41666666666666785,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--75fdecb3-bf35-4892-83f7-2436577c5c9c",
@@ -9787,7 +9787,7 @@
           },
           "sourceDuration": 0.9583333333333321,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--428de44e-e55c-48f8-8d0a-9f54636c8146",
@@ -9932,7 +9932,7 @@
           },
           "sourceDuration": 0.375,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--3ab59f94-a572-4d9f-bcd6-dbd166d0933c",
@@ -10176,10 +10176,10 @@
             }
           },
           "previewOrigin": "right-hand",
-          "sourceOffset": 3.333333342681044e-7,
+          "sourceOffset": 3.333333342681044e-07,
           "sourceDuration": 1.1666670000000003,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--6276b03f-df71-4387-a911-c53e4bd1e85d",
@@ -10492,12 +10492,12 @@
           },
           "sourceDuration": 0.9583333333333321,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "illuminati--laser-00001",
           "name": "Haz central",
-          "start": 21.61615234827112,
+          "start": 21.216152348271123,
           "duration": 1.7678476517288777,
           "shape": "needle",
           "color": "#0000ff",
@@ -11197,12 +11197,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--85d53120-48df-49dd-a161-a05516e61b86",
           "name": "Punto central · apertura a la derecha · 5,910–7,871 s",
-          "start": 23.384,
+          "start": 22.984,
           "duration": 1.961,
           "color": "#0000ff",
           "enabled": true,
@@ -12606,11 +12606,11 @@
                   "points": [
                     [
                       0.02264408481834064,
-                      -0.0000020964300878725743
+                      -2.0964300878725743e-06
                     ],
                     [
                       0.026644082620830484,
-                      0.0000020964300878725743
+                      2.0964300878725743e-06
                     ]
                   ]
                 },
@@ -12662,11 +12662,11 @@
                   "points": [
                     [
                       0.022644422607271043,
-                      -0.00003681624501590673
+                      -3.681624501590673e-05
                     ],
                     [
                       0.02664374483190008,
-                      0.00003681624501590673
+                      3.681624501590673e-05
                     ]
                   ]
                 },
@@ -13894,11 +13894,11 @@
                   "points": [
                     [
                       0.022644729086401437,
-                      -0.00005080404280348519
+                      -5.080404280348519e-05
                     ],
                     [
                       0.026643438352769687,
-                      0.00005080404280348519
+                      5.080404280348519e-05
                     ]
                   ]
                 },
@@ -13950,11 +13950,11 @@
                   "points": [
                     [
                       0.02264414661646577,
-                      -0.000015861385968084055
+                      -1.5861385968084055e-05
                     ],
                     [
                       0.026644020822705353,
-                      0.000015861385968084055
+                      1.5861385968084055e-05
                     ]
                   ]
                 },
@@ -14006,11 +14006,11 @@
                   "points": [
                     [
                       0.022644083772781307,
-                      -4.612840530299031e-7
+                      -4.612840530299031e-07
                     ],
                     [
                       0.026644083666389817,
-                      4.612840530299031e-7
+                      4.612840530299031e-07
                     ]
                   ]
                 },
@@ -14019,11 +14019,11 @@
                   "points": [
                     [
                       0.2226440784532068,
-                      0.00004566712124996037
+                      4.566712124996037e-05
                     ],
                     [
                       0.22664407834681533,
-                      0.000046589689356020174
+                      4.6589689356020174e-05
                     ]
                   ]
                 },
@@ -14238,12 +14238,12 @@
           },
           "sourceDuration": 1.961,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--2eec3589-cf79-4e9a-a1f8-9f851a21bacf",
           "name": "Puntos centrales · apertura a la izquierda · 7,871–9,841 s",
-          "start": 25.345,
+          "start": 24.945,
           "duration": 1.97,
           "color": "#0000ff",
           "enabled": true,
@@ -16463,11 +16463,11 @@
                   "points": [
                     [
                       0.02264408373413082,
-                      -2.412074636827506e-7
+                      -2.412074636827506e-07
                     ],
                     [
                       0.026644083705040303,
-                      2.412074636827506e-7
+                      2.412074636827506e-07
                     ]
                   ]
                 },
@@ -16476,11 +16476,11 @@
                   "points": [
                     [
                       0.22264408227960483,
-                      0.000023879538904592293
+                      2.3879538904592293e-05
                     ],
                     [
                       0.2266440822505143,
-                      0.000024361953831957793
+                      2.4361953831957793e-05
                     ]
                   ]
                 },
@@ -16489,11 +16489,11 @@
                   "points": [
                     [
                       0.5226440800978158,
-                      0.00006006065845700486
+                      6.006065845700486e-05
                     ],
                     [
                       0.5266440800687253,
-                      0.00006054307338437035
+                      6.054307338437035e-05
                     ]
                   ]
                 },
@@ -16502,11 +16502,11 @@
                   "points": [
                     [
                       0.8226440779160269,
-                      0.00009624177800941742
+                      9.624177800941742e-05
                     ],
                     [
                       0.8266440778869364,
-                      0.00009672419293678291
+                      9.672419293678291e-05
                     ]
                   ]
                 },
@@ -16515,11 +16515,11 @@
                   "points": [
                     [
                       -0.17735591481134316,
-                      0.000024361953831957644
+                      2.4361953831957644e-05
                     ],
                     [
                       -0.17335591484043372,
-                      0.000023879538904592148
+                      2.3879538904592148e-05
                     ]
                   ]
                 },
@@ -16528,11 +16528,11 @@
                   "points": [
                     [
                       -0.47735591262955424,
-                      0.00006054307338436999
+                      6.054307338436999e-05
                     ],
                     [
                       -0.4733559126586447,
-                      0.00006006065845700449
+                      6.006065845700449e-05
                     ]
                   ]
                 },
@@ -16541,11 +16541,11 @@
                   "points": [
                     [
                       -0.7773559104477653,
-                      0.00009672419293678235
+                      9.672419293678235e-05
                     ],
                     [
                       -0.7733559104768557,
-                      0.00009624177800941684
+                      9.624177800941684e-05
                     ]
                   ]
                 }
@@ -16558,11 +16558,11 @@
                   "points": [
                     [
                       0.022644091348312332,
-                      -0.000005524024700829142
+                      -5.524024700829142e-06
                     ],
                     [
                       0.026644076090858792,
-                      0.000005524024700829142
+                      5.524024700829142e-06
                     ]
                   ]
                 },
@@ -16653,11 +16653,11 @@
                   "points": [
                     [
                       0.022644158705375145,
-                      -0.0000173187047859626
+                      -1.73187047859626e-05
                     ],
                     [
                       0.02664400873379598,
-                      0.0000173187047859626
+                      1.73187047859626e-05
                     ]
                   ]
                 },
@@ -16748,11 +16748,11 @@
                   "points": [
                     [
                       0.022644391606166395,
-                      -0.0000350920436735269
+                      -3.50920436735269e-05
                     ],
                     [
                       0.02664377583300473,
-                      0.0000350920436735269
+                      3.50920436735269e-05
                     ]
                   ]
                 },
@@ -16843,11 +16843,11 @@
                   "points": [
                     [
                       0.022644933870767464,
-                      -0.00005830850684582316
+                      -5.830850684582316e-05
                     ],
                     [
                       0.02664323356840366,
-                      0.00005830850684582316
+                      5.830850684582316e-05
                     ]
                   ]
                 },
@@ -16938,11 +16938,11 @@
                   "points": [
                     [
                       0.02264595207418461,
-                      -0.0000864287431777723
+                      -8.64287431777723e-05
                     ],
                     [
                       0.026642215364986514,
-                      0.0000864287431777723
+                      8.64287431777723e-05
                     ]
                   ]
                 },
@@ -22828,11 +22828,11 @@
                   "points": [
                     [
                       0.022646573289348854,
-                      -0.00009976011776036066
+                      -9.976011776036066e-05
                     ],
                     [
                       0.02664159414982227,
-                      0.00009976011776036066
+                      9.976011776036066e-05
                     ]
                   ]
                 },
@@ -22923,11 +22923,11 @@
                   "points": [
                     [
                       0.02264581943828805,
-                      -0.0000833058346728376
+                      -8.33058346728376e-05
                     ],
                     [
                       0.026642348000883075,
-                      0.0000833058346728376
+                      8.33058346728376e-05
                     ]
                   ]
                 },
@@ -23018,11 +23018,11 @@
                   "points": [
                     [
                       0.0226452430954331,
-                      -0.00006808934746200846
+                      -6.808934746200846e-05
                     ],
                     [
                       0.026642924343738023,
-                      0.00006808934746200846
+                      6.808934746200846e-05
                     ]
                   ]
                 },
@@ -23113,11 +23113,11 @@
                   "points": [
                     [
                       0.022644818035073795,
-                      -0.00005419153747315505
+                      -5.419153747315505e-05
                     ],
                     [
                       0.02664334940409733,
-                      0.00005419153747315505
+                      5.419153747315505e-05
                     ]
                   ]
                 },
@@ -23208,11 +23208,11 @@
                   "points": [
                     [
                       0.02264451834036586,
-                      -0.000041692855814570754
+                      -4.1692855814570754e-05
                     ],
                     [
                       0.026643649098805264,
-                      0.000041692855814570754
+                      4.1692855814570754e-05
                     ]
                   ]
                 },
@@ -23303,11 +23303,11 @@
                   "points": [
                     [
                       0.02264431894724754,
-                      -0.000030673364925824316
+                      -3.0673364925824316e-05
                     ],
                     [
                       0.026643848491923583,
-                      0.000030673364925824316
+                      3.0673364925824316e-05
                     ]
                   ]
                 },
@@ -23398,11 +23398,11 @@
                   "points": [
                     [
                       0.022644196218373276,
-                      -0.000021212790832083243
+                      -2.1212790832083243e-05
                     ],
                     [
                       0.026643971220797848,
-                      0.000021212790832083243
+                      2.1212790832083243e-05
                     ]
                   ]
                 },
@@ -23493,11 +23493,11 @@
                   "points": [
                     [
                       0.022644128547016945,
-                      -0.000013390583110755786
+                      -1.3390583110755786e-05
                     ],
                     [
                       0.02664403889215418,
-                      0.000013390583110755786
+                      1.3390583110755786e-05
                     ]
                   ]
                 },
@@ -23588,11 +23588,11 @@
                   "points": [
                     [
                       0.02264409699100192,
-                      -0.000007285978953050884
+                      -7.285978953050884e-06
                     ],
                     [
                       0.026644070448169205,
-                      0.000007285978953050884
+                      7.285978953050884e-06
                     ]
                   ]
                 },
@@ -23683,11 +23683,11 @@
                   "points": [
                     [
                       0.02264408593680759,
-                      -0.0000029780670265936434
+                      -2.9780670265936434e-06
                     ],
                     [
                       0.026644081502363533,
-                      0.0000029780670265936434
+                      2.9780670265936434e-06
                     ]
                   ]
                 },
@@ -23778,11 +23778,11 @@
                   "points": [
                     [
                       0.022644083794072564,
-                      -5.458461347994468e-7
+                      -5.458461347994468e-07
                     ],
                     [
                       0.02664408364509856,
-                      5.458461347994468e-7
+                      5.458461347994468e-07
                     ]
                   ]
                 },
@@ -23791,11 +23791,11 @@
                   "points": [
                     [
                       0.22264407634537237,
-                      0.00005403876734514519
+                      5.403876734514519e-05
                     ],
                     [
                       0.22664407619639837,
-                      0.00005513045961474409
+                      5.513045961474409e-05
                     ]
                   ]
                 },
@@ -23830,11 +23830,11 @@
                   "points": [
                     [
                       -0.17735590875722723,
-                      0.0000551304596147441
+                      5.51304596147441e-05
                     ],
                     [
                       -0.17335590890620123,
-                      0.0000540387673451452
+                      5.40387673451452e-05
                     ]
                   ]
                 },
@@ -25306,12 +25306,12 @@
           },
           "sourceDuration": 1.97,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--e82340a4-e424-4bd1-b44c-6debd01b915e",
           "name": "Puntos verdes · giro alrededor del artista · 9,841–13,283 s",
-          "start": 27.314999999999998,
+          "start": 26.915,
           "duration": 3.0730000000000004,
           "color": "#0000ff",
           "enabled": true,
@@ -25344,12 +25344,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--99844b90-2285-400c-abf1-64b73902d52d",
           "name": "Círculo de puntos · cierre rápido · 12,914–13,264 s",
-          "start": 30.387999999999998,
+          "start": 29.988,
           "duration": 0.34999999999999964,
           "color": "#0000ff",
           "enabled": true,
@@ -29135,12 +29135,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--f9e4f714-9605-4173-b739-b10f35ac0ef7",
           "name": "Haz central sostenido tras el cierre",
-          "start": 30.738,
+          "start": 30.338,
           "duration": 0.42600000000000016,
           "color": "#0000ff",
           "enabled": true,
@@ -29188,12 +29188,12 @@
           },
           "sourceDuration": 0.42600000000000016,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--f6e44b7c-fb76-44b3-ac8d-cdbd954069c3",
           "name": "Cortina · apertura desde el haz central · 13,690 s",
-          "start": 31.164,
+          "start": 30.764000000000003,
           "duration": 0.8209999999999997,
           "color": "#0000ff",
           "enabled": true,
@@ -30075,12 +30075,12 @@
           },
           "sourceDuration": 0.8209999999999997,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--7e1660ea-21fa-4eb5-a4bc-8467f8365d1c",
           "name": "Cortina hacia atrás · desde delante",
-          "start": 31.985,
+          "start": 31.585,
           "duration": 1.1210000000000004,
           "color": "#0000ff",
           "enabled": true,
@@ -31268,12 +31268,12 @@
           },
           "sourceDuration": 1.1210000000000004,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--bc067753-0440-4843-aa64-5f197835b5d2",
           "name": "Cortina hacia la derecha · desde delante",
-          "start": 33.106,
+          "start": 32.706,
           "duration": 2.0660000000000007,
           "color": "#0000ff",
           "enabled": true,
@@ -35025,12 +35025,12 @@
           },
           "sourceDuration": 2.0660000000000007,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--7f4cc4de-1e38-47ef-83f2-272c2c76c356",
           "name": "Cortina hacia la izquierda · desde delante",
-          "start": 35.172,
+          "start": 34.772,
           "duration": 1.9819999999999993,
           "color": "#0000ff",
           "enabled": true,
@@ -40179,12 +40179,12 @@
           },
           "sourceDuration": 1.9819999999999993,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--e5675237-f8c6-4958-bcfa-d3075cdf676b",
           "name": "Cierre hasta formar el cuadrado · desde delante",
-          "start": 37.153999999999996,
+          "start": 36.754,
           "duration": 1.9490000000000016,
           "color": "#0000ff",
           "enabled": true,
@@ -46768,12 +46768,12 @@
           },
           "sourceDuration": 1.9490000000000016,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--bbfa1287-0047-4ed0-bc17-22f14ec49f5e",
           "name": "Cuadrado · giro, pausa y giro inverso rápido",
-          "start": 39.103,
+          "start": 38.703,
           "duration": 3.570999999999998,
           "color": "#0000ff",
           "enabled": true,
@@ -46853,12 +46853,12 @@
           },
           "sourceDuration": 3.570999999999998,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--febf1d55-763e-41cc-a143-c052a1de03c2",
           "name": "Cuadrado · reducción rápida al 50%",
-          "start": 42.674,
+          "start": 42.274,
           "duration": 0.1999999999999993,
           "color": "#0000ff",
           "enabled": true,
@@ -47237,12 +47237,12 @@
           },
           "sourceDuration": 0.1999999999999993,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--7401234d-415f-4750-a40f-20dca724e66b",
           "name": "Dos cuadrados · separación diagonal de 45 grados",
-          "start": 42.873999999999995,
+          "start": 42.474,
           "duration": 0.6000000000000014,
           "color": "#0000ff",
           "enabled": true,
@@ -49271,12 +49271,12 @@
           },
           "sourceDuration": 0.6000000000000014,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--4dd2fa6c-f6a3-45b3-a064-9cb56836db53",
           "name": "Dos cuadrados · alineación hacia delante",
-          "start": 43.474000000000004,
+          "start": 43.074000000000005,
           "duration": 0.6999999999999993,
           "color": "#0000ff",
           "enabled": true,
@@ -51575,12 +51575,12 @@
           },
           "sourceDuration": 0.6999999999999993,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--20fe62cc-6637-4862-9b30-82f320d8e8d5",
           "name": "Dos cuadrados · giro sobre sus propios ejes",
-          "start": 44.174,
+          "start": 43.774,
           "duration": 0.8260000000000005,
           "color": "#0000ff",
           "enabled": true,
@@ -54311,12 +54311,12 @@
           },
           "sourceDuration": 0.8260000000000005,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--59d9fa32-5f61-4570-a3db-c6e4ea2647c9",
           "name": "Derecha, izquierda, cuadrado central y cierre a punto",
-          "start": 45,
+          "start": 44.6,
           "duration": 1.4639999999999986,
           "color": "#0000ff",
           "enabled": true,
@@ -56749,12 +56749,12 @@
           },
           "sourceDuration": 1.4639999999999986,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--476b06df-c23b-4a2d-bb48-3b0c40b0093b",
           "name": "Láser apagado · artista toma el haz · desde 28,990 s",
-          "start": 46.464,
+          "start": 46.064,
           "duration": 2.027000000000001,
           "color": "#0000ff",
           "enabled": false,
@@ -56776,12 +56776,12 @@
           "sourceDuration": 27.024000000000004,
           "sourceOffset": 0,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--f32847dd-e322-49ee-80dd-8dd9c688e087",
           "name": "Haz central · encendido en 31,017",
-          "start": 48.491,
+          "start": 48.091,
           "duration": 0.5429999999999993,
           "color": "#0000ff",
           "enabled": true,
@@ -56829,12 +56829,12 @@
           },
           "sourceDuration": 0.5429999999999993,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--e19685a6-8cc0-4879-89e7-bf9a96303cf1",
           "name": "Haz único · rodea al artista hasta las once · 31,560–33,026",
-          "start": 49.034,
+          "start": 48.634,
           "duration": 1.4660000000000046,
           "color": "#0000ff",
           "enabled": true,
@@ -58310,12 +58310,12 @@
           },
           "sourceDuration": 1.4660000000000046,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--56f62400-ae6b-46e6-a1ae-c7d5091acd1b",
           "name": "Láser apagado · artista toma el haz · desde 28,990 s",
-          "start": 50.5,
+          "start": 50.1,
           "duration": 2.8939999999999984,
           "color": "#0000ff",
           "enabled": false,
@@ -58337,12 +58337,12 @@
           "sourceDuration": 27.024000000000004,
           "sourceOffset": 4.036000000000005,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--31df8835-aefd-45ab-aca0-4281f5caa902",
           "name": "Haz diagonal · mano derecha",
-          "start": 53.394000000000005,
+          "start": 52.99400000000001,
           "duration": 0.12199999999999989,
           "color": "#0000ff",
           "enabled": true,
@@ -58391,12 +58391,12 @@
           },
           "sourceDuration": 0.12199999999999989,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--a03a3e2a-70c2-47dc-9b0a-75f15ed31ebc",
           "name": "Dos haces diagonales · ambas manos",
-          "start": 53.516000000000005,
+          "start": 53.11600000000001,
           "duration": 0.9480000000000004,
           "color": "#0000ff",
           "enabled": true,
@@ -58458,12 +58458,12 @@
           },
           "sourceDuration": 0.9480000000000004,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--f3a85f2b-dc2f-4f41-8d5e-8dc3df6f00af",
           "name": "Dos anillos punteados · desfase X 10° · 30 RPM",
-          "start": 54.464,
+          "start": 54.064,
           "duration": 4.469999999999999,
           "color": "#0000ff",
           "enabled": true,
@@ -140926,12 +140926,12 @@
           },
           "sourceDuration": 4.469999999999999,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--046959a7-7db3-41f8-8f8d-07093f6f91a3",
           "name": "Círculo y cuatro marcas exteriores · 32 puntos",
-          "start": 58.934,
+          "start": 58.534,
           "duration": 2,
           "color": "#0000ff",
           "enabled": true,
@@ -141382,12 +141382,12 @@
           },
           "sourceDuration": 2,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01375",
           "name": "Jaula · traje multicolor",
-          "start": 60.934,
+          "start": 60.534,
           "duration": 0.18999999999999773,
           "color": "#0000ff",
           "enabled": true,
@@ -142517,12 +142517,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01511",
           "name": "Haz único y mano lateral",
-          "start": 61.123999999999995,
+          "start": 60.724,
           "duration": 1,
           "color": "#0000ff",
           "enabled": true,
@@ -142932,12 +142932,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01557",
           "name": "Haz único inclinado",
-          "start": 62.123999999999995,
+          "start": 61.724,
           "duration": 2,
           "color": "#0000ff",
           "enabled": true,
@@ -143707,12 +143707,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01648",
           "name": "Jaula rápida",
-          "start": 64.124,
+          "start": 63.724,
           "duration": 1,
           "color": "#0000ff",
           "enabled": true,
@@ -144122,12 +144122,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01694",
           "name": "Regreso al haz",
-          "start": 65.124,
+          "start": 64.72399999999999,
           "duration": 1,
           "color": "#0000ff",
           "enabled": true,
@@ -144537,12 +144537,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01740",
           "name": "Dos haces",
-          "start": 66.124,
+          "start": 65.72399999999999,
           "duration": 1,
           "color": "#0000ff",
           "enabled": true,
@@ -144928,12 +144928,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01783",
           "name": "Abanico multicolor",
-          "start": 67.124,
+          "start": 66.72399999999999,
           "duration": 1,
           "color": "#0000ff",
           "enabled": true,
@@ -145061,12 +145061,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01829",
           "name": "Cierre a dos haces",
-          "start": 69.124,
+          "start": 68.72399999999999,
           "duration": 1,
           "color": "#0000ff",
           "enabled": true,
@@ -145476,12 +145476,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01875",
           "name": "Última jaula",
-          "start": 70.124,
+          "start": 69.72399999999999,
           "duration": 1,
           "color": "#0000ff",
           "enabled": true,
@@ -145891,12 +145891,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01921",
           "name": "Estrella multicolor final",
-          "start": 71.124,
+          "start": 70.72399999999999,
           "duration": 0.8999999999999986,
           "color": "#0000ff",
           "enabled": true,
@@ -150069,12 +150069,12 @@
             ]
           },
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "reel-dcc--reel-0001",
           "name": "Cuadrado verde giratorio",
-          "start": 73.488,
+          "start": 72.688,
           "duration": 21.433333,
           "shape": "orbitSquare",
           "color": "#0000ff",
@@ -153985,12 +153985,12 @@
           "measurement": "Envolvente del cuadrado medida en el suelo; interpolación donde el humo la oculta. Giro en homografía estimada.",
           "sourceDuration": 21.433333,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0002",
           "name": "Cierre a un haz",
-          "start": 94.921333,
+          "start": 94.121333,
           "duration": 1,
           "shape": "needle",
           "color": "#0000ff",
@@ -154117,12 +154117,12 @@
           },
           "sourceDuration": 1,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0003",
           "name": "Doble haz verde",
-          "start": 95.921333,
+          "start": 95.121333,
           "duration": 0.433334,
           "shape": "splitBeams",
           "color": "#0000ff",
@@ -154195,12 +154195,12 @@
           },
           "sourceDuration": 0.433334,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0004",
           "name": "Cuchilla y gesto lateral",
-          "start": 96.354667,
+          "start": 95.55466700000001,
           "duration": 1.3,
           "shape": "blade",
           "color": "#0000ff",
@@ -154380,12 +154380,12 @@
           "videoMotionEnabled": false,
           "sourceDuration": 1.3,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0005",
           "name": "Haz lateral",
-          "start": 97.654667,
+          "start": 96.854667,
           "duration": 0.333333,
           "shape": "needle",
           "color": "#0000ff",
@@ -154452,12 +154452,12 @@
           },
           "sourceDuration": 0.333333,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0006",
           "name": "Dos haces · reapertura",
-          "start": 97.988,
+          "start": 97.188,
           "duration": 0.733333,
           "shape": "splitBeams",
           "color": "#0000ff",
@@ -154560,12 +154560,12 @@
           },
           "sourceDuration": 0.733333,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0007",
           "name": "Vuelve el cuadrado",
-          "start": 98.721333,
+          "start": 97.921333,
           "duration": 0.633334,
           "shape": "orbitSquare",
           "color": "#0000ff",
@@ -154720,12 +154720,12 @@
           "measurement": "Envolvente del cuadrado medida en el suelo; interpolación donde el humo la oculta. Giro en homografía estimada.",
           "sourceDuration": 0.633334,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0008",
           "name": "Corona violeta · 16 haces estimados",
-          "start": 99.354667,
+          "start": 98.55466700000001,
           "duration": 3.066666,
           "shape": "beamCage",
           "color": "#0000ff",
@@ -155039,12 +155039,12 @@
           "beamCount": 16,
           "sourceDuration": 3.066666,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0009",
           "name": "Haz blanco violeta",
-          "start": 102.421333,
+          "start": 101.621333,
           "duration": 1.5,
           "shape": "needle",
           "color": "#ffffff",
@@ -155219,12 +155219,12 @@
           },
           "sourceDuration": 1.5,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0010",
           "name": "Haz verde izquierdo",
-          "start": 103.921333,
+          "start": 103.121333,
           "duration": 0.666667,
           "shape": "needle",
           "color": "#0000ff",
@@ -155321,12 +155321,12 @@
           },
           "sourceDuration": 0.666667,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0011",
           "name": "Barrido diagonal",
-          "start": 104.588,
+          "start": 103.788,
           "duration": 0.7,
           "shape": "blade",
           "color": "#0000ff",
@@ -155423,12 +155423,12 @@
           },
           "sourceDuration": 0.7,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0012",
           "name": "Plano sobre el artista",
-          "start": 105.288,
+          "start": 104.488,
           "duration": 0.733333,
           "shape": "blade",
           "color": "#0000ff",
@@ -155554,12 +155554,12 @@
           "videoMotionEnabled": false,
           "sourceDuration": 0.733333,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0013",
           "name": "Haz lateral y abanico aéreo",
-          "start": 106.021333,
+          "start": 105.221333,
           "duration": 0.666667,
           "shape": "needle",
           "color": "#0000ff",
@@ -155656,12 +155656,12 @@
           },
           "sourceDuration": 0.666667,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0014",
           "name": "Corona multicolor",
-          "start": 106.688,
+          "start": 105.888,
           "duration": 1.5,
           "shape": "custom",
           "color": "#0000ff",
@@ -155947,12 +155947,12 @@
           ],
           "sourceDuration": 1.5,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0015",
           "name": "Doble haz cerrado",
-          "start": 108.188,
+          "start": 107.388,
           "duration": 0.8,
           "shape": "splitBeams",
           "color": "#0000ff",
@@ -156061,12 +156061,12 @@
           },
           "sourceDuration": 0.8,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0016",
           "name": "Separación de haces",
-          "start": 108.988,
+          "start": 108.188,
           "duration": 0.933333,
           "shape": "splitBeams",
           "color": "#0000ff",
@@ -156187,12 +156187,12 @@
           },
           "sourceDuration": 0.933333,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0017",
           "name": "Cuchilla vertical",
-          "start": 109.921333,
+          "start": 109.121333,
           "duration": 1.366667,
           "shape": "blade",
           "color": "#0000ff",
@@ -156349,12 +156349,12 @@
           },
           "sourceDuration": 1.366667,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0018",
           "name": "Haz fino · gesto bajo",
-          "start": 111.288,
+          "start": 110.488,
           "duration": 1.633333,
           "shape": "needle",
           "color": "#0000ff",
@@ -156541,12 +156541,12 @@
           },
           "sourceDuration": 1.633333,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0019",
           "name": "Cuchilla amplia · manos",
-          "start": 112.921333,
+          "start": 112.121333,
           "duration": 2.233334,
           "shape": "blade",
           "color": "#0000ff",
@@ -156804,12 +156804,12 @@
           "videoMotionEnabled": false,
           "sourceDuration": 2.233334,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0020",
           "name": "Haz derecho",
-          "start": 115.15466699999999,
+          "start": 114.35466699999999,
           "duration": 0.866666,
           "shape": "needle",
           "color": "#0000ff",
@@ -156924,12 +156924,12 @@
           },
           "sourceDuration": 0.866666,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0021",
           "name": "Haz central",
-          "start": 116.021333,
+          "start": 115.221333,
           "duration": 0.766667,
           "shape": "needle",
           "color": "#0000ff",
@@ -157038,12 +157038,12 @@
           },
           "sourceDuration": 0.766667,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0022",
           "name": "Haz izquierdo",
-          "start": 116.788,
+          "start": 115.988,
           "duration": 1.2,
           "shape": "needle",
           "color": "#0000ff",
@@ -157188,12 +157188,12 @@
           },
           "sourceDuration": 1.2,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0023",
           "name": "Cuadrado final",
-          "start": 118.921333,
+          "start": 118.121333,
           "duration": 0.766667,
           "shape": "orbitSquare",
           "color": "#0000ff",
@@ -157372,12 +157372,12 @@
           "measurement": "Envolvente del cuadrado medida en el suelo; interpolación donde el humo la oculta. Giro en homografía estimada.",
           "sourceDuration": 0.766667,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "random-switch--9aadba22-358f-40c6-b359-a3ac6c586aeb",
           "name": "Entrada · triángulos RGB",
-          "start": 119.688,
+          "start": 118.488,
           "duration": 4,
           "enabled": true,
           "shape": "custom",
@@ -158806,12 +158806,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--31c36791-6b6a-4939-b986-68c9f895d9cd",
           "name": "Triángulos y barridos verdes",
-          "start": 123.688,
+          "start": 122.488,
           "duration": 4.8,
           "enabled": true,
           "shape": "custom",
@@ -160716,12 +160716,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--26b97af0-ce47-4512-9dd8-6607ebc58255",
           "name": "Giro de triángulos",
-          "start": 128.488,
+          "start": 127.288,
           "duration": 3.2,
           "enabled": true,
           "shape": "custom",
@@ -162026,12 +162026,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--e1b9f624-da64-45b6-9e44-0a6d7a8312a9",
           "name": "Juego geométrico RGB",
-          "start": 131.688,
+          "start": 130.488,
           "duration": 3.8,
           "enabled": true,
           "shape": "custom",
@@ -163561,12 +163561,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--be3ca1dd-58fc-4564-ad6b-750f4527a403",
           "name": "Acentos verdes",
-          "start": 135.488,
+          "start": 134.288,
           "duration": 3.2,
           "enabled": true,
           "shape": "custom",
@@ -164871,12 +164871,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--2c0d0328-2eb5-4760-837f-6ce16e060583",
           "name": "Cierre de triángulos",
-          "start": 138.688,
+          "start": 137.488,
           "duration": 2.9,
           "enabled": true,
           "shape": "custom",
@@ -165421,7 +165421,7 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         }
       ],
       "patch": {
@@ -165445,7 +165445,7 @@
         {
           "id": "illuminati--c94a5af5-75b3-45af-9fec-3f666464c1f4",
           "name": "Láser apagado · artista toma el haz · desde 28,990 s",
-          "start": 46.464,
+          "start": 46.064,
           "duration": 14.66,
           "color": "#0000ff",
           "enabled": false,
@@ -165467,12 +165467,12 @@
           "sourceDuration": 27.024000000000004,
           "sourceOffset": 0,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01930",
           "name": "Abanico de mano · origen estimado",
-          "start": 61.123999999999995,
+          "start": 60.724,
           "duration": 0.7999999999999972,
           "color": "#0000ff",
           "enabled": true,
@@ -165521,12 +165521,12 @@
           "sourceDuration": 0.8,
           "sourceOffset": 0,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--8af03b5a-e2f5-4922-ab45-0a49a148ade6",
           "name": "Láser apagado · artista toma el haz · desde 28,990 s",
-          "start": 61.92399999999999,
+          "start": 61.523999999999994,
           "duration": 6.200000000000003,
           "color": "#0000ff",
           "enabled": false,
@@ -165548,12 +165548,12 @@
           "sourceDuration": 27.024000000000004,
           "sourceOffset": 15.459999999999997,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01934",
           "name": "Abanico de mano · origen estimado",
-          "start": 68.124,
+          "start": 67.72399999999999,
           "duration": 1,
           "color": "#0000ff",
           "enabled": true,
@@ -165602,12 +165602,12 @@
           "sourceDuration": 1,
           "sourceOffset": 0,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--e2f5220b-d6eb-4be4-854d-93da443cb742",
           "name": "Láser apagado · artista toma el haz · desde 28,990 s",
-          "start": 69.124,
+          "start": 68.72399999999999,
           "duration": 4.364000000000004,
           "color": "#0000ff",
           "enabled": false,
@@ -165629,12 +165629,12 @@
           "sourceDuration": 27.024000000000004,
           "sourceOffset": 22.660000000000004,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "reel-dcc--reel-0024",
           "name": "Núcleo RGB · apertura estimada",
-          "start": 82.188,
+          "start": 81.388,
           "duration": 12.733333,
           "shape": "prism",
           "enabled": true,
@@ -165677,12 +165677,12 @@
           },
           "sourceDuration": 12.733333,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0025",
           "name": "Acento verde lateral",
-          "start": 99.354667,
+          "start": 98.55466700000001,
           "duration": 0.733333,
           "shape": "blade",
           "enabled": true,
@@ -165704,12 +165704,12 @@
           },
           "sourceDuration": 0.733333,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0026",
           "name": "Abanico aéreo rojo",
-          "start": 105.288,
+          "start": 104.488,
           "duration": 1.4,
           "shape": "beamFan",
           "enabled": true,
@@ -165731,12 +165731,12 @@
           },
           "sourceDuration": 1.4,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0027",
           "name": "Abanico aéreo violeta final",
-          "start": 118.921333,
+          "start": 118.121333,
           "duration": 0.766667,
           "shape": "beamFan",
           "enabled": true,
@@ -165758,12 +165758,12 @@
           },
           "sourceDuration": 0.766667,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "random-switch--954c8a1d-e1d4-4875-9abd-3305f7d77c6a",
           "name": "Entrada · triángulos RGB",
-          "start": 119.688,
+          "start": 118.488,
           "duration": 4,
           "enabled": true,
           "shape": "custom",
@@ -167309,12 +167309,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--60126567-2551-4b03-a80b-f1346988b5fd",
           "name": "Triángulos y barridos verdes",
-          "start": 123.688,
+          "start": 122.488,
           "duration": 4.8,
           "enabled": true,
           "shape": "custom",
@@ -170454,12 +170454,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--f3b9dd54-a717-4142-8b7d-68fb5d2df476",
           "name": "Giro de triángulos",
-          "start": 128.488,
+          "start": 127.288,
           "duration": 3.2,
           "enabled": true,
           "shape": "custom",
@@ -171946,12 +171946,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--2f90c9a8-a81e-4a2e-9947-034fbc104bee",
           "name": "Juego geométrico RGB",
-          "start": 131.688,
+          "start": 130.488,
           "duration": 3.8,
           "enabled": true,
           "shape": "custom",
@@ -173481,12 +173481,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--78ec6173-a34d-4066-b7b5-f80d58e0b3ea",
           "name": "Acentos verdes",
-          "start": 135.488,
+          "start": 134.288,
           "duration": 3.2,
           "enabled": true,
           "shape": "custom",
@@ -175077,12 +175077,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--b0ff6fbf-b1af-4386-9f73-cff14815fd0b",
           "name": "Cierre de triángulos",
-          "start": 138.688,
+          "start": 137.488,
           "duration": 2.9,
           "enabled": true,
           "shape": "custom",
@@ -176523,12 +176523,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--074b0d90-3104-4c07-a0a9-d79b282d8348",
           "name": "Barridos verdes",
-          "start": 141.588,
+          "start": 140.388,
           "duration": 2.8,
           "enabled": true,
           "shape": "blade",
@@ -178372,12 +178372,12 @@
             "confidence": "medium"
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--45f84d12-fc84-43b9-b5f3-103f755bbbcd",
           "name": "Destellos verdes",
-          "start": 144.388,
+          "start": 143.18800000000002,
           "duration": 5.55,
           "enabled": true,
           "shape": "needle",
@@ -181973,12 +181973,12 @@
             "confidence": "medium"
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--4f04fefc-9918-4286-a23b-ec4edb83f501",
           "name": "Abanico verde final",
-          "start": 149.938,
+          "start": 148.738,
           "duration": 2.0166666666666657,
           "enabled": true,
           "shape": "beamFan",
@@ -182997,7 +182997,7 @@
           "previewOrigin": "left-hand",
           "projectionHeight": 4.2,
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         }
       ],
       "patch": {
@@ -183021,7 +183021,7 @@
         {
           "id": "illuminati--e0439e28-6755-4a2e-8fa7-ebfd38ad8d90",
           "name": "Láser apagado · artista toma el haz · desde 28,990 s",
-          "start": 46.464,
+          "start": 46.064,
           "duration": 21.66,
           "color": "#0000ff",
           "enabled": false,
@@ -183043,12 +183043,12 @@
           "sourceDuration": 27.024000000000004,
           "sourceOffset": 0,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--laser-01946",
           "name": "Abanico de mano · origen estimado",
-          "start": 68.124,
+          "start": 67.72399999999999,
           "duration": 1,
           "color": "#0000ff",
           "enabled": true,
@@ -183097,12 +183097,12 @@
           "sourceDuration": 1,
           "sourceOffset": 0,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--34438168-db24-445a-91c7-9b802bfdda1b",
           "name": "Láser apagado · artista toma el haz · desde 28,990 s",
-          "start": 69.124,
+          "start": 68.72399999999999,
           "duration": 4.364000000000004,
           "color": "#0000ff",
           "enabled": false,
@@ -183124,12 +183124,12 @@
           "sourceDuration": 27.024000000000004,
           "sourceOffset": 22.66,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "random-switch--08f12393-3d74-4ae8-a107-3c060641a951",
           "name": "Entrada · triángulos RGB",
-          "start": 119.688,
+          "start": 118.488,
           "duration": 4,
           "enabled": true,
           "shape": "custom",
@@ -184558,12 +184558,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--7d094c5b-aec5-4029-9a85-b01b59ec1648",
           "name": "Triángulos y barridos verdes",
-          "start": 123.688,
+          "start": 122.488,
           "duration": 4.8,
           "enabled": true,
           "shape": "custom",
@@ -186468,12 +186468,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--518577cf-a617-4b76-bb5b-8f25a0ffc851",
           "name": "Giro de triángulos",
-          "start": 128.488,
+          "start": 127.288,
           "duration": 3.2,
           "enabled": true,
           "shape": "custom",
@@ -187778,12 +187778,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--466ef16b-74a0-4e89-91f0-a32cdd8b87cc",
           "name": "Juego geométrico RGB",
-          "start": 131.688,
+          "start": 130.488,
           "duration": 3.8,
           "enabled": true,
           "shape": "custom",
@@ -189313,12 +189313,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--7b600ee3-23a9-4276-b5d1-3c72f90ff23b",
           "name": "Acentos verdes",
-          "start": 135.488,
+          "start": 134.288,
           "duration": 3.2,
           "enabled": true,
           "shape": "custom",
@@ -190623,12 +190623,12 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         },
         {
           "id": "random-switch--090e15ed-c359-4bf0-a40f-3e681455b850",
           "name": "Cierre de triángulos",
-          "start": 138.688,
+          "start": 137.488,
           "duration": 2.9,
           "enabled": true,
           "shape": "custom",
@@ -191239,7 +191239,7 @@
             ]
           },
           "sequenceId": "random-switch",
-          "sequenceStart": 119.688
+          "sequenceStart": 118.488
         }
       ],
       "patch": {
@@ -191263,7 +191263,7 @@
         {
           "id": "main-deewana--810002ac-d736-4d8a-bf9e-bfa05dbfd170",
           "name": "Traje · #38ff20",
-          "start": 0,
+          "start": 0.0,
           "duration": 17.474,
           "effect": "fade",
           "color": "#0000ff",
@@ -191277,12 +191277,12 @@
           "layer": true,
           "sourceDuration": 17.474,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--de1a6bff-af40-4e08-91c6-c418b20e873f",
           "name": "Traje · #ff2020",
-          "start": 0,
+          "start": 0.0,
           "duration": 17.474,
           "effect": "fade",
           "color": "#ffffff",
@@ -191306,12 +191306,12 @@
           "layer": true,
           "sourceDuration": 17.474,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "main-deewana--82467a18-9d67-49a9-acac-8a90df8d71d0",
           "name": "Traje · #3064ff",
-          "start": 0,
+          "start": 0.0,
           "duration": 17.474,
           "effect": "fade",
           "color": "#0000ff",
@@ -191327,12 +191327,12 @@
           "layer": true,
           "sourceDuration": 17.474,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0
+          "sequenceStart": 0.0
         },
         {
           "id": "illuminati--led-01950",
           "name": "Traje · #ff1b13",
-          "start": 17.594,
+          "start": 17.194000000000003,
           "duration": 29.33,
           "effect": "fade",
           "color": "#ffffff",
@@ -191346,12 +191346,12 @@
           "transition": "cut",
           "sourceDuration": 29.33,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--led-01951",
           "name": "Traje · #19caff",
-          "start": 46.924,
+          "start": 46.524,
           "duration": 7.2,
           "effect": "fade",
           "color": "#0000ff",
@@ -191365,12 +191365,12 @@
           "transition": "cut",
           "sourceDuration": 7.2,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--led-01952",
           "name": "Traje · #ff1b13",
-          "start": 54.123999999999995,
+          "start": 53.724,
           "duration": 1.9,
           "effect": "fade",
           "color": "#ffffff",
@@ -191384,12 +191384,12 @@
           "transition": "cut",
           "sourceDuration": 1.9,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--led-01953",
           "name": "Traje · #2eff66",
-          "start": 56.024,
+          "start": 55.624,
           "duration": 2.1,
           "effect": "fade",
           "color": "#0000ff",
@@ -191403,12 +191403,12 @@
           "transition": "cut",
           "sourceDuration": 2.1,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--led-01954",
           "name": "Traje · #ff1b13",
-          "start": 58.123999999999995,
+          "start": 57.724,
           "duration": 13.9,
           "effect": "fade",
           "color": "#ffffff",
@@ -191422,12 +191422,12 @@
           "transition": "cut",
           "sourceDuration": 13.9,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--led-01955",
           "name": "Traje · #ff3311",
-          "start": 46.924,
+          "start": 46.524,
           "duration": 2.05,
           "effect": "fade",
           "color": "#ffffff",
@@ -191444,12 +191444,12 @@
           "transition": "cut",
           "sourceDuration": 2.05,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--led-01956",
           "name": "Traje · #ff2211",
-          "start": 48.974000000000004,
+          "start": 48.574000000000005,
           "duration": 5.15,
           "effect": "fade",
           "color": "#ffffff",
@@ -191476,12 +191476,12 @@
           "transition": "cut",
           "sourceDuration": 5.15,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--led-01957",
           "name": "Traje · #60ff4d",
-          "start": 57.024,
+          "start": 56.624,
           "duration": 1.1,
           "effect": "fade",
           "color": "#0000ff",
@@ -191508,12 +191508,12 @@
           "transition": "cut",
           "sourceDuration": 1.1,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--led-01958",
           "name": "Traje · #66ff44",
-          "start": 58.123999999999995,
+          "start": 57.724,
           "duration": 0.85,
           "effect": "fade",
           "color": "#0000ff",
@@ -191530,12 +191530,12 @@
           "transition": "cut",
           "sourceDuration": 0.85,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--led-01959",
           "name": "Traje · #3399ff",
-          "start": 58.974000000000004,
+          "start": 58.574000000000005,
           "duration": 2.15,
           "effect": "fade",
           "color": "#0000ff",
@@ -191562,12 +191562,12 @@
           "transition": "cut",
           "sourceDuration": 2.15,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "illuminati--led-01960",
           "name": "Traje · #2fb5ff",
-          "start": 62.123999999999995,
+          "start": 61.724,
           "duration": 9.9,
           "effect": "fade",
           "color": "#0000ff",
@@ -191584,12 +191584,12 @@
           "transition": "cut",
           "sourceDuration": 9.9,
           "sequenceId": "illuminati",
-          "sequenceStart": 17.474
+          "sequenceStart": 17.074
         },
         {
           "id": "reel-dcc--reel-0028",
           "name": "Traje visible · distribución estimada",
-          "start": 83.288,
+          "start": 82.488,
           "duration": 0.9,
           "color": "#000058",
           "effect": "fade",
@@ -191601,12 +191601,12 @@
           "enabled": true,
           "sourceDuration": 0.9,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0029",
           "name": "Traje visible · distribución estimada",
-          "start": 84.188,
+          "start": 83.388,
           "duration": 0.95,
           "color": "#ffffff",
           "effect": "fade",
@@ -191618,12 +191618,12 @@
           "enabled": true,
           "sourceDuration": 0.95,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0030",
           "name": "Traje visible · distribución estimada",
-          "start": 85.138,
+          "start": 84.33800000000001,
           "duration": 0.95,
           "color": "#ffffff",
           "effect": "fade",
@@ -191635,12 +191635,12 @@
           "enabled": true,
           "sourceDuration": 0.95,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0031",
           "name": "Traje visible · distribución estimada",
-          "start": 86.088,
+          "start": 85.288,
           "duration": 1,
           "color": "#ffffff",
           "effect": "fade",
@@ -191652,12 +191652,12 @@
           "enabled": true,
           "sourceDuration": 1,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0032",
           "name": "Traje visible · distribución estimada",
-          "start": 87.088,
+          "start": 86.288,
           "duration": 1,
           "color": "#ffffff",
           "effect": "fade",
@@ -191669,12 +191669,12 @@
           "enabled": true,
           "sourceDuration": 1,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0033",
           "name": "Traje visible · distribución estimada",
-          "start": 88.088,
+          "start": 87.288,
           "duration": 0.9,
           "color": "#ffffff",
           "effect": "fade",
@@ -191686,12 +191686,12 @@
           "enabled": true,
           "sourceDuration": 0.9,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0034",
           "name": "Traje visible · distribución estimada",
-          "start": 88.988,
+          "start": 88.188,
           "duration": 1.2,
           "color": "#ffffff",
           "effect": "fade",
@@ -191703,12 +191703,12 @@
           "enabled": true,
           "sourceDuration": 1.2,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0035",
           "name": "Traje visible · distribución estimada",
-          "start": 90.188,
+          "start": 89.388,
           "duration": 0.95,
           "color": "#ffffff",
           "effect": "fade",
@@ -191720,12 +191720,12 @@
           "enabled": true,
           "sourceDuration": 0.95,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0036",
           "name": "Traje visible · distribución estimada",
-          "start": 91.138,
+          "start": 90.33800000000001,
           "duration": 1,
           "color": "#ffffff",
           "effect": "fade",
@@ -191737,12 +191737,12 @@
           "enabled": true,
           "sourceDuration": 1,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         },
         {
           "id": "reel-dcc--reel-0037",
           "name": "Traje visible · distribución estimada",
-          "start": 92.138,
+          "start": 91.33800000000001,
           "duration": 27.55,
           "color": "#ffffff",
           "effect": "fade",
@@ -191754,7 +191754,7 @@
           "enabled": true,
           "sourceDuration": 27.55,
           "sequenceId": "reel-dcc",
-          "sequenceStart": 73.488
+          "sequenceStart": 72.688
         }
       ],
       "hands": {
@@ -191762,100 +191762,100 @@
           {
             "id": "illuminati--hand-01961",
             "name": "Módulo de mano · aproximado",
-            "start": 23.823999999999998,
+            "start": 23.424,
             "duration": 7.65,
             "enabled": true,
             "color": "#0000ff",
             "beamVisible": false,
             "sourceDuration": 7.65,
             "sequenceId": "illuminati",
-            "sequenceStart": 17.474
+            "sequenceStart": 17.074
           },
           {
             "id": "illuminati--hand-01962",
             "name": "Módulo de mano · aproximado",
-            "start": 33.124,
+            "start": 32.724000000000004,
             "duration": 12.999999999999998,
             "enabled": true,
             "color": "#0000ff",
             "beamVisible": false,
             "sourceDuration": 12.999999999999998,
             "sequenceId": "illuminati",
-            "sequenceStart": 17.474
+            "sequenceStart": 17.074
           },
           {
             "id": "illuminati--hand-01963",
             "name": "Módulo de mano · aproximado",
-            "start": 46.924,
+            "start": 46.524,
             "duration": 7.199999999999999,
             "enabled": true,
             "color": "#0000ff",
             "beamVisible": false,
             "sourceDuration": 7.199999999999999,
             "sequenceId": "illuminati",
-            "sequenceStart": 17.474
+            "sequenceStart": 17.074
           },
           {
             "id": "illuminati--hand-01964",
             "name": "Módulo de mano · aproximado",
-            "start": 56.024,
+            "start": 55.624,
             "duration": 16,
             "enabled": true,
             "color": "#0000ff",
             "beamVisible": false,
             "sourceDuration": 16,
             "sequenceId": "illuminati",
-            "sequenceStart": 17.474
+            "sequenceStart": 17.074
           }
         ],
         "right": [
           {
             "id": "illuminati--hand-01965",
             "name": "Módulo de mano · aproximado",
-            "start": 23.823999999999998,
+            "start": 23.424,
             "duration": 7.65,
             "enabled": true,
             "color": "#0000ff",
             "beamVisible": false,
             "sourceDuration": 7.65,
             "sequenceId": "illuminati",
-            "sequenceStart": 17.474
+            "sequenceStart": 17.074
           },
           {
             "id": "illuminati--hand-01966",
             "name": "Módulo de mano · aproximado",
-            "start": 33.124,
+            "start": 32.724000000000004,
             "duration": 12.999999999999998,
             "enabled": true,
             "color": "#0000ff",
             "beamVisible": false,
             "sourceDuration": 12.999999999999998,
             "sequenceId": "illuminati",
-            "sequenceStart": 17.474
+            "sequenceStart": 17.074
           },
           {
             "id": "illuminati--hand-01967",
             "name": "Módulo de mano · aproximado",
-            "start": 46.924,
+            "start": 46.524,
             "duration": 7.199999999999999,
             "enabled": true,
             "color": "#0000ff",
             "beamVisible": false,
             "sourceDuration": 7.199999999999999,
             "sequenceId": "illuminati",
-            "sequenceStart": 17.474
+            "sequenceStart": 17.074
           },
           {
             "id": "illuminati--hand-01968",
             "name": "Módulo de mano · aproximado",
-            "start": 56.024,
+            "start": 55.624,
             "duration": 16,
             "enabled": true,
             "color": "#0000ff",
             "beamVisible": false,
             "sourceDuration": 16,
             "sequenceId": "illuminati",
-            "sequenceStart": 17.474
+            "sequenceStart": 17.074
           }
         ]
       },
@@ -191904,7 +191904,7 @@
     }
   ],
   "reference": {
-    "url": "assets/client-blue-white-reference.mp4",
+    "url": "assets/client-blue-white-reference-v2.mp4",
     "hasVideo": true,
     "fps": 30,
     "offset": 0,
@@ -191938,7 +191938,7 @@
     {
       "id": "main-deewana",
       "name": "Main Deewana",
-      "start": 0,
+      "start": 0.0,
       "end": 17.474,
       "context": {
         "bpm": 120,
@@ -192015,7 +192015,7 @@
               "energy": 0.5
             },
             {
-              "start": 12,
+              "start": 12.0,
               "end": 13.083333333333334,
               "pose": "slice",
               "energy": 0.5
@@ -192063,7 +192063,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 0,
+            "previewStart": 0.0,
             "previewWindows": null
           },
           {
@@ -192076,7 +192076,7 @@
             "previewVisible": true,
             "previewActorIndex": 1,
             "actorIndex": 1,
-            "previewStart": 0,
+            "previewStart": 0.0,
             "previewWindows": null
           },
           {
@@ -192089,7 +192089,7 @@
             "previewVisible": true,
             "previewActorIndex": 2,
             "actorIndex": 2,
-            "previewStart": 0,
+            "previewStart": 0.0,
             "previewWindows": null
           },
           {
@@ -192102,7 +192102,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 0,
+            "previewStart": 0.0,
             "previewWindows": null
           },
           {
@@ -192115,7 +192115,7 @@
             "previewVisible": false,
             "previewActorIndex": 1,
             "actorIndex": 1,
-            "previewStart": 0,
+            "previewStart": 0.0,
             "previewWindows": null
           },
           {
@@ -192128,18 +192128,19 @@
             "previewVisible": false,
             "previewActorIndex": 2,
             "actorIndex": 2,
-            "previewStart": 0,
+            "previewStart": 0.0,
             "previewWindows": null
           }
         ]
       },
-      "sourceSha256": "ba5e32f49dac5f01d6315e1a1f143cd8f46e883ab4f3be4c5f802968f16602ce"
+      "sourceSha256": "ba5e32f49dac5f01d6315e1a1f143cd8f46e883ab4f3be4c5f802968f16602ce",
+      "overlap": 0
     },
     {
       "id": "illuminati",
       "name": "Illuminati",
-      "start": 17.474,
-      "end": 73.488,
+      "start": 17.074,
+      "end": 73.088,
       "context": {
         "bpm": 120,
         "stage": {
@@ -192160,170 +192161,170 @@
           "bpm": 120,
           "sections": [
             {
-              "start": 22.024,
-              "end": 23.823999999999998,
+              "start": 21.624000000000002,
+              "end": 23.424,
               "pose": "spread",
               "energy": 0.3
             },
             {
-              "start": 23.823999999999998,
-              "end": 26.024,
+              "start": 23.424,
+              "end": 25.624000000000002,
               "pose": "crouch",
               "energy": 0.3
             },
             {
-              "start": 26.024,
-              "end": 27.624000000000002,
+              "start": 25.624000000000002,
+              "end": 27.224000000000004,
               "pose": "cage",
               "energy": 0.3
             },
             {
-              "start": 27.624000000000002,
-              "end": 31.124000000000002,
+              "start": 27.224000000000004,
+              "end": 30.724000000000004,
               "pose": "cage",
               "energy": 0.3
             },
             {
-              "start": 31.124000000000002,
-              "end": 33.124,
+              "start": 30.724000000000004,
+              "end": 32.724000000000004,
               "pose": "slice",
               "energy": 0.3
             },
             {
-              "start": 33.124,
-              "end": 36.224000000000004,
+              "start": 32.724000000000004,
+              "end": 35.824000000000005,
               "pose": "spread",
               "energy": 0.3
             },
             {
-              "start": 36.224000000000004,
-              "end": 39.224000000000004,
+              "start": 35.824000000000005,
+              "end": 38.824000000000005,
               "pose": "cage",
               "energy": 0.3
             },
             {
-              "start": 39.224000000000004,
-              "end": 43.324,
+              "start": 38.824000000000005,
+              "end": 42.924,
               "pose": "slice",
               "energy": 0.3
             },
             {
-              "start": 43.324,
-              "end": 45.123999999999995,
+              "start": 42.924,
+              "end": 44.724,
               "pose": "spread",
               "energy": 0.3
             },
             {
-              "start": 45.123999999999995,
-              "end": 46.123999999999995,
+              "start": 44.724,
+              "end": 45.724,
               "pose": "cage",
               "energy": 0.3
             },
             {
-              "start": 46.123999999999995,
-              "end": 46.924,
+              "start": 45.724,
+              "end": 46.524,
               "pose": "lift",
               "energy": 0.3
             },
             {
-              "start": 46.924,
-              "end": 49.024,
+              "start": 46.524,
+              "end": 48.624,
               "pose": "slice",
               "energy": 0.3
             },
             {
-              "start": 49.024,
-              "end": 51.123999999999995,
+              "start": 48.624,
+              "end": 50.724,
               "pose": "grabRight",
               "energy": 0.3
             },
             {
-              "start": 51.123999999999995,
-              "end": 53.123999999999995,
+              "start": 50.724,
+              "end": 52.724,
               "pose": "lift",
               "energy": 0.3
             },
             {
-              "start": 53.123999999999995,
-              "end": 54.123999999999995,
+              "start": 52.724,
+              "end": 53.724,
               "pose": "slice",
               "energy": 0.3
             },
             {
-              "start": 54.123999999999995,
-              "end": 56.024,
+              "start": 53.724,
+              "end": 55.624,
               "pose": "ready",
               "energy": 0.3
             },
             {
-              "start": 56.024,
-              "end": 58.123999999999995,
+              "start": 55.624,
+              "end": 57.724,
               "pose": "cage",
               "energy": 0.3
             },
             {
-              "start": 58.123999999999995,
-              "end": 61.123999999999995,
+              "start": 57.724,
+              "end": 60.724,
               "pose": "cage",
               "energy": 0.3
             },
             {
-              "start": 61.123999999999995,
-              "end": 62.123999999999995,
+              "start": 60.724,
+              "end": 61.724,
               "pose": "spread",
               "energy": 0.3
             },
             {
-              "start": 62.123999999999995,
-              "end": 64.124,
+              "start": 61.724,
+              "end": 63.724,
               "pose": "cage",
               "energy": 0.3
             },
             {
-              "start": 64.124,
-              "end": 65.124,
+              "start": 63.724,
+              "end": 64.72399999999999,
               "pose": "cage",
               "energy": 0.3
             },
             {
-              "start": 65.124,
-              "end": 66.124,
+              "start": 64.72399999999999,
+              "end": 65.72399999999999,
               "pose": "grabRight",
               "energy": 0.3
             },
             {
-              "start": 66.124,
-              "end": 67.124,
+              "start": 65.72399999999999,
+              "end": 66.72399999999999,
               "pose": "spread",
               "energy": 0.3
             },
             {
-              "start": 67.124,
-              "end": 68.124,
+              "start": 66.72399999999999,
+              "end": 67.72399999999999,
               "pose": "cage",
               "energy": 0.3
             },
             {
-              "start": 68.124,
-              "end": 69.124,
+              "start": 67.72399999999999,
+              "end": 68.72399999999999,
               "pose": "slice",
               "energy": 0.3
             },
             {
-              "start": 69.124,
-              "end": 70.124,
+              "start": 68.72399999999999,
+              "end": 69.72399999999999,
               "pose": "cage",
               "energy": 0.3
             },
             {
-              "start": 70.124,
-              "end": 71.124,
+              "start": 69.72399999999999,
+              "end": 70.72399999999999,
               "pose": "lift",
               "energy": 0.3
             },
             {
-              "start": 71.124,
-              "end": 72.024,
+              "start": 70.72399999999999,
+              "end": 71.624,
               "pose": "bow",
               "energy": 0.3
             }
@@ -192340,7 +192341,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 17.474,
+            "previewStart": 17.074,
             "previewWindows": null
           },
           {
@@ -192353,7 +192354,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 17.474,
+            "previewStart": 17.074,
             "previewWindows": null
           },
           {
@@ -192366,7 +192367,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 17.474,
+            "previewStart": 17.074,
             "previewWindows": null
           },
           {
@@ -192379,7 +192380,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 17.474,
+            "previewStart": 17.074,
             "previewWindows": null
           },
           {
@@ -192392,7 +192393,7 @@
             "previewVisible": false,
             "previewActorIndex": 1,
             "actorIndex": 1,
-            "previewStart": 17.474,
+            "previewStart": 17.074,
             "previewWindows": null
           },
           {
@@ -192405,18 +192406,19 @@
             "previewVisible": false,
             "previewActorIndex": 2,
             "actorIndex": 2,
-            "previewStart": 17.474,
+            "previewStart": 17.074,
             "previewWindows": null
           }
         ]
       },
-      "sourceSha256": "669df01493f5364186f0eb244930f88644ecfc5aec3898f4f366d15450f2a986"
+      "sourceSha256": "669df01493f5364186f0eb244930f88644ecfc5aec3898f4f366d15450f2a986",
+      "overlap": 0.4
     },
     {
       "id": "reel-dcc",
       "name": "Reel DccLstpYft",
-      "start": 73.488,
-      "end": 119.688,
+      "start": 72.688,
+      "end": 118.888,
       "context": {
         "bpm": 120,
         "stage": {
@@ -192432,62 +192434,62 @@
           "bpm": 120,
           "sections": [
             {
-              "start": 73.488,
-              "end": 83.288,
+              "start": 72.688,
+              "end": 82.488,
               "pose": "crouch",
               "energy": 0
             },
             {
-              "start": 83.288,
-              "end": 94.921333,
+              "start": 82.488,
+              "end": 94.121333,
               "pose": "ready",
               "energy": 0
             },
             {
-              "start": 94.921333,
-              "end": 99.354667,
+              "start": 94.121333,
+              "end": 98.55466700000001,
               "pose": "grabRight",
               "energy": 0
             },
             {
-              "start": 99.354667,
-              "end": 102.421333,
+              "start": 98.55466700000001,
+              "end": 101.621333,
               "pose": "spread",
               "energy": 0
             },
             {
-              "start": 102.421333,
-              "end": 105.288,
+              "start": 101.621333,
+              "end": 104.488,
               "pose": "ready",
               "energy": 0
             },
             {
-              "start": 105.288,
-              "end": 108.188,
+              "start": 104.488,
+              "end": 107.388,
               "pose": "grabRight",
               "energy": 0
             },
             {
-              "start": 108.188,
-              "end": 112.921333,
+              "start": 107.388,
+              "end": 112.121333,
               "pose": "slice",
               "energy": 0
             },
             {
-              "start": 112.921333,
-              "end": 115.15466699999999,
+              "start": 112.121333,
+              "end": 114.35466699999999,
               "pose": "lift",
               "energy": 0
             },
             {
-              "start": 115.15466699999999,
-              "end": 118.921333,
+              "start": 114.35466699999999,
+              "end": 118.121333,
               "pose": "ready",
               "energy": 0
             },
             {
-              "start": 118.921333,
-              "end": 119.688,
+              "start": 118.121333,
+              "end": 118.888,
               "pose": "spread",
               "energy": 0
             }
@@ -192504,7 +192506,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 73.488,
+            "previewStart": 72.688,
             "previewWindows": null
           },
           {
@@ -192517,7 +192519,7 @@
             "previewVisible": true,
             "previewActorIndex": 1,
             "actorIndex": 1,
-            "previewStart": 73.488,
+            "previewStart": 72.688,
             "previewWindows": null
           },
           {
@@ -192530,7 +192532,7 @@
             "previewVisible": false,
             "previewActorIndex": 2,
             "actorIndex": 2,
-            "previewStart": 73.488,
+            "previewStart": 72.688,
             "previewWindows": null
           },
           {
@@ -192543,7 +192545,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 83.288,
+            "previewStart": 82.488,
             "previewWindows": null
           },
           {
@@ -192556,7 +192558,7 @@
             "previewVisible": false,
             "previewActorIndex": 1,
             "actorIndex": 1,
-            "previewStart": 73.488,
+            "previewStart": 72.688,
             "previewWindows": null
           },
           {
@@ -192569,18 +192571,19 @@
             "previewVisible": false,
             "previewActorIndex": 2,
             "actorIndex": 2,
-            "previewStart": 73.488,
+            "previewStart": 72.688,
             "previewWindows": null
           }
         ]
       },
-      "sourceSha256": "b960d71d93bb9bbaabf809f22c4bd12764d300ca83ba2e1cd2891dd71bd69dde"
+      "sourceSha256": "b960d71d93bb9bbaabf809f22c4bd12764d300ca83ba2e1cd2891dd71bd69dde",
+      "overlap": 0.4
     },
     {
       "id": "random-switch",
       "name": "Random Switch",
-      "start": 119.688,
-      "end": 151.95466666666667,
+      "start": 118.488,
+      "end": 150.75466666666668,
       "context": {
         "bpm": 128,
         "stage": {
@@ -192596,56 +192599,56 @@
           "mirrorOutside": false,
           "sections": [
             {
-              "start": 119.688,
-              "end": 123.688,
+              "start": 118.488,
+              "end": 122.488,
               "pose": "ready",
               "energy": 0
             },
             {
-              "start": 123.688,
-              "end": 128.488,
+              "start": 122.488,
+              "end": 127.288,
               "pose": "spread",
               "energy": 0
             },
             {
-              "start": 128.488,
-              "end": 131.688,
+              "start": 127.288,
+              "end": 130.488,
               "pose": "cage",
               "energy": 0
             },
             {
-              "start": 131.688,
-              "end": 135.488,
+              "start": 130.488,
+              "end": 134.288,
               "pose": "grabRight",
               "energy": 0
             },
             {
-              "start": 135.488,
-              "end": 138.688,
+              "start": 134.288,
+              "end": 137.488,
               "pose": "lift",
               "energy": 0
             },
             {
-              "start": 138.688,
-              "end": 141.588,
+              "start": 137.488,
+              "end": 140.388,
               "pose": "crouch",
               "energy": 0
             },
             {
-              "start": 141.588,
-              "end": 144.388,
+              "start": 140.388,
+              "end": 143.18800000000002,
               "pose": "spread",
               "energy": 0
             },
             {
-              "start": 144.388,
-              "end": 149.938,
+              "start": 143.18800000000002,
+              "end": 148.738,
               "pose": "crouch",
               "energy": 0
             },
             {
-              "start": 149.938,
-              "end": 151.95466666666667,
+              "start": 148.738,
+              "end": 150.75466666666668,
               "pose": "ready",
               "energy": 0
             }
@@ -192662,7 +192665,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 119.688,
+            "previewStart": 118.488,
             "previewWindows": null
           },
           {
@@ -192675,7 +192678,7 @@
             "previewVisible": true,
             "previewActorIndex": 1,
             "actorIndex": 1,
-            "previewStart": 119.688,
+            "previewStart": 118.488,
             "previewWindows": null
           },
           {
@@ -192688,7 +192691,7 @@
             "previewVisible": true,
             "previewActorIndex": 2,
             "actorIndex": 2,
-            "previewStart": 119.688,
+            "previewStart": 118.488,
             "previewWindows": null
           },
           {
@@ -192701,7 +192704,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 119.688,
+            "previewStart": 118.488,
             "previewWindows": null
           },
           {
@@ -192714,7 +192717,7 @@
             "previewVisible": true,
             "previewActorIndex": 1,
             "actorIndex": 1,
-            "previewStart": 119.688,
+            "previewStart": 118.488,
             "previewWindows": null
           },
           {
@@ -192727,12 +192730,13 @@
             "previewVisible": true,
             "previewActorIndex": 2,
             "actorIndex": 2,
-            "previewStart": 119.688,
+            "previewStart": 118.488,
             "previewWindows": null
           }
         ]
       },
-      "sourceSha256": "6fee39dd61798dda33c1d6cbe5f0299c30d24ebb9eb8472ed9e40f7af64dfa3a"
+      "sourceSha256": "6fee39dd61798dda33c1d6cbe5f0299c30d24ebb9eb8472ed9e40f7af64dfa3a",
+      "overlap": 0.4
     }
   ],
   "requestSummary": {
@@ -192746,13 +192750,19 @@
       150,
       180
     ],
-    "actualDuration": 151.95466666666667,
+    "actualDuration": 150.75466666666668,
     "allowedPalette": [
       "blue",
       "white"
     ],
     "greenUsed": false,
     "noRedHue": true,
-    "originalShowsUnchanged": true
+    "originalShowsUnchanged": true,
+    "transitionSeconds": 0.4,
+    "originalLocalCueTimesPreserved": true
+  },
+  "laserQuality": {
+    "stabilizeRecorded": true,
+    "steadyRecordedBrightness": true
   }
 }

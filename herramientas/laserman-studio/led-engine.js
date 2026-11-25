@@ -1,8 +1,8 @@
 import * as core from './vendor/ldp-core.js';
-import {activeCue,trackEnabled,sourceTime} from './engine.js?v=1.5.2-three';
-import {transitionState} from './transitions.js?v=1.5.2-three';
-import {animatedCue,animationClock} from './keyframes.js?v=1.5.2-three';
-import {sequenceProjectAt,colorPixels} from './sequence-context.js?v=1.5.2-three';
+import {activeCue,trackEnabled,sourceTime} from './engine.js?v=1.7.0-roof';
+import {transitionState} from './transitions.js?v=1.7.0-roof';
+import {animatedCue,animationClock} from './keyframes.js?v=1.7.0-roof';
+import {sequenceProjectAt,sequenceMix,sequencePartProject,colorPixels} from './sequence-context.js?v=1.7.0-roof';
 
 export function createLedEngine(fixture,positions){
   const tree={id:'suit',name:'Jacket',type:'group',pixelStart:0,pixelCount:fixture.totalLeds,children:fixture.zones.map(z=>({id:z.name,name:z.name,type:'group',compact:true,pixelStart:z.start,pixelCount:z.count,children:[]}))};
@@ -35,8 +35,16 @@ export function createLedEngine(fixture,positions){
       target[i]=Math.round(prior[i]*(1-u)+target[i]*u);
     }
   }
-  return {reset(){core.a();last=-1;},render(project,track,time){
-    if(project.sequenceParts){project=sequenceProjectAt(project,time);track={...project.tracks.find(t=>t.id===track.id),cues:track.cues,hands:track.hands};}
+  const api={reset(){core.a();last=-1;},render(project,track,time){
+    const mix=sequenceMix(project,time);
+    if(mix){
+      const from=sequencePartProject(project,mix.from),to=sequencePartProject(project,mix.to);
+      const a=api.render(from,from.tracks.find(t=>t.id===track.id),time).slice();
+      const b=api.render(to,to.tracks.find(t=>t.id===track.id),time);
+      for(let i=0;i<b.length;i++)b[i]=Math.round(a[i]*(1-mix.amount)+b[i]*mix.amount);
+      return b;
+    }
+    if(project.sequenceParts){project=sequenceProjectAt(project,time);track=project.tracks.find(t=>t.id===track.id);}
     if(time<last)core.a();last=time;
     if(!buffers.has(track.id))buffers.set(track.id,new Uint8Array(fixture.totalLeds*3));
     const out=buffers.get(track.id);out.fill(0);
@@ -50,4 +58,5 @@ export function createLedEngine(fixture,positions){
     }
     return colorPixels(out,project.colorPolicy);
   }};
+  return api;
 }

@@ -1,13 +1,20 @@
-import {installWebPlatform} from './web-platform.js?v=1.5.2-three';
-import {mountMobileView} from './mobile-view.js?v=1.5.2-three';
+import {installWebPlatform} from './web-platform.js?v=1.7.0-roof';
+import {mountMobileView} from './mobile-view.js?v=1.7.0-roof';
 installWebPlatform();
-await import('./app.js?v=1.5.2-three');
+await import('./app.js?v=1.7.0-roof');
 const untilReady=setInterval(()=>{
   if(!window.LASERMAN)return;clearInterval(untilReady);
   const $=id=>document.getElementById(id),localUrl='http://127.0.0.1:8924/';
   mountMobileView();
-  document.querySelector('header').title='LIGHTMAN LASERMAN Studio · edición web 1.5';
-  $('readiness').textContent='Editor web 1.5 · guardado en este navegador';
+  // Existing browser edits remain intact until the operator chooses the release.
+  const updatedMedia={'show-cliente-azul-blanco':'assets/client-blue-white-audio-v2.wav','reel-dcc':'assets/reel-dcc-laserbeam-clean.wav'};
+  const releaseButton=document.createElement('button');releaseButton.id='loadPublishedUpdate';releaseButton.textContent='Cargar actualización 1.7';
+  releaseButton.title='Guarda un respaldo de esta edición y carga la versión publicada con el audio corregido';$('nextShow').before(releaseButton);
+  const refreshRelease=()=>{const app=window.LASERMAN;releaseButton.hidden=!updatedMedia[app.activeShowId]||app.project.audio?.url===updatedMedia[app.activeShowId];};
+  refreshRelease();setInterval(refreshRelease,1000);
+  releaseButton.onclick=async()=>{releaseButton.disabled=true;try{await $('loadReferenceShow').onclick();refreshRelease();}finally{releaseButton.disabled=false;}};
+  document.querySelector('header').title='LIGHTMAN LASERMAN Studio · edición web 1.7';
+  $('readiness').textContent='Editor web 1.7 · guardado en este navegador';
   $('connectFb3').textContent='Operador local';$('connectFb3').onclick=()=>window.open(localUrl,'_blank','noopener');
   $('suiteOutputStatus').textContent='Web · simulación';
   $('outputDialog').querySelector('p').textContent='Edita y guarda aquí. La emisión FB3 se realiza desde la aplicación local en el PC del montaje.';
@@ -21,7 +28,7 @@ const untilReady=setInterval(()=>{
   $('projectionDialog').querySelector('#masterKppsField').title='Se conserva en el navegador; la tasa física se revisa en el operador local.';
   const openProjection=$('masterProjection').onclick;
   $('masterProjection').onclick=async()=>{await openProjection();$('projectionStatus').textContent='Encuadre local del navegador · prueba física en el operador local.';};
-  const hint=document.createElement('p');hint.className='web-notice';hint.textContent='Editor web 1.5 · Tus cambios se guardan en este navegador. Exporta el show para llevarlo a otra PC.';document.querySelector('main').before(hint);
+  const hint=document.createElement('p');hint.className='web-notice';hint.textContent='Editor web 1.7 · Tus cambios se guardan en este navegador. Exporta el show para llevarlo a otra PC.';document.querySelector('main').before(hint);
   const add=document.createElement('button');add.id='addLocalShow';add.textContent='Añadir show';$('nextShow').before(add);
   const input=document.createElement('input');input.type='file';input.accept='.json,.zip';input.hidden=true;document.body.append(input);add.onclick=()=>input.click();
   input.onchange=async()=>{

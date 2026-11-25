@@ -1,13 +1,13 @@
 import * as THREE from './vendor/three.module.js';
 import {OrbitControls} from './vendor/addons/controls/OrbitControls.js';
-import {activeCue,trackEnabled} from './engine.js?v=1.5.2-three';
-import {sequenceProjectAt,allowedColor} from './sequence-context.js?v=1.5.2-three';
-import {sampleFrame} from './laser.js?v=1.5.2-three';
-import {createLaserStroke,updateLaserStroke,createLaserHaze,updateLaserHaze} from './laser-visual.js?v=1.5.2-three';
-import {rigPerformer,posePerformer} from './performer.js?v=1.5.2-three';
+import {activeCue,trackEnabled} from './engine.js?v=1.7.0-roof';
+import {sequenceProjectAt,allowedColor} from './sequence-context.js?v=1.7.0-roof';
+import {sampleFrame} from './laser.js?v=1.7.0-roof';
+import {createLaserStroke,updateLaserStroke,createLaserHaze,updateLaserHaze} from './laser-visual.js?v=1.7.0-roof';
+import {rigPerformer,posePerformer} from './performer.js?v=1.7.0-roof';
 
-import {jacketPixels} from './jacket.js?v=1.5.2-three';
-import {performerLayout} from './performer-layout.js?v=1.5.2-three';
+import {jacketPixels} from './jacket.js?v=1.7.0-roof';
+import {performerLayout} from './performer-layout.js?v=1.7.0-roof';
 
 export function createScene(canvas,fixture){
   const scene=new THREE.Scene();scene.background=new THREE.Color('#080b12');scene.fog=new THREE.Fog('#080b12',13,32);
@@ -37,7 +37,6 @@ export function createScene(canvas,fixture){
   for(const x of [-4.3,4.3]){rod(rig,[x,0,-.3],[x,4,-.3],.035);cube(rig,.5,.07,.5,x,0,-.3,metal);}
   const actors=[],lasers=[],points=jacketPixels(fixture),matrix=new THREE.Matrix4(),color=new THREE.Color();
   const mark=(mesh,joint)=>{mesh.userData.joint=joint;return mesh;};
-  const handOrigin=new THREE.Vector3();
   const glowCanvas=document.createElement('canvas');glowCanvas.width=glowCanvas.height=64;
   const glowContext=glowCanvas.getContext('2d'),gradient=glowContext.createRadialGradient(32,32,0,32,32,32);
   gradient.addColorStop(0,'rgba(255,255,255,1)');gradient.addColorStop(.12,'rgba(255,255,255,.85)');
@@ -81,9 +80,8 @@ export function createScene(canvas,fixture){
       mark(beam,j?'rightArm':'leftArm');mark(beam.userData.lens,j?'rightArm':'leftArm');
       return beam;
     });
-    const headMount=new THREE.Object3D();headMount.position.set(0,2.06,.12);group.add(mark(headMount,'body'));
-    const rigged=rigPerformer(group,fixture,points,leds);actors.push({group,leds,hands,hat,headMount,rig:rigged});
-    const head=cube(scene,.18,.10,.18,(i-1)*2.4,2.06,.12,metal);
+    const rigged=rigPerformer(group,fixture,points,leds);actors.push({group,leds,hands,hat,rig:rigged});
+    const head=cube(scene,.18,.10,.18,(i-1)*2.4,4,-.3,metal);
     const beam=createLaserStroke({width:2.2,opacity:.075}),path=createLaserStroke({width:5,opacity:1});
     const haze=createLaserHaze(),aperture=lens(scene,[(i-1)*2.4,3.72,-.3],.19);
     haze.renderOrder=1;beam.renderOrder=2;path.renderOrder=3;
@@ -94,7 +92,7 @@ export function createScene(canvas,fixture){
   let width=0,height=0,lastTime=NaN,lastRevision=-1,needsRender=true,cinematic=false;const world=[];
   const stats={renders:0,simulationUpdates:0,bufferAllocations:0};
   function update(project,time,ledBuffers,revision=0){
-    project=sequenceProjectAt(project,time);const poseTime=time-(project.sequenceTimeOrigin||0);
+    const composition=project;project=sequenceProjectAt(project,time);const poseTime=time-(project.sequenceTimeOrigin||0);
     const simulationChanged=time!==lastTime||revision!==lastRevision;
     if(simulationChanged){
     lastTime=time;lastRevision=revision;stats.simulationUpdates++;
@@ -102,7 +100,7 @@ export function createScene(canvas,fixture){
     if(cinematic!==(['arius','reference'].includes(project.performerStyle))){cinematic=['arius','reference'].includes(project.performerStyle);view('perspective');}
     cloth.color.set(['arius','reference'].includes(project.performerStyle)?'#5974b8':'#10131b');
     const suitTracks=project.tracks.filter(t=>t.type==='suit'),laserTracks=project.tracks.filter(t=>t.type==='laser');
-    const formation=performerLayout(project,time);rig.visible=false;
+    const formation=performerLayout(project,time,composition);rig.visible=true;
     floor.scale.x=Math.max(project.stage.width,8.2)/10;roundFloor.scale.x=1.8;
     performerGuides.visible=!!project.effectSpace;
     if(project.effectSpace){const actor=suitTracks.find(t=>t.id===project.effectSpace.actorTrackId),distance=project.effectSpace.l1Distance;performerGuides.position.set(actor.position[0],.008,actor.position[2]);frontGuide.position.z=distance;frontGuide.scale.x=distance;frontLabel.position.set(0,.08,distance+.13);}
@@ -117,12 +115,12 @@ export function createScene(canvas,fixture){
       });
     });
     lasers.forEach((l,i)=>{
-      const actor=actors[i];actor.headMount.getWorldPosition(handOrigin);l.head.visible=true;l.head.position.copy(handOrigin);actor.headMount.getWorldQuaternion(l.head.quaternion);
-      const origin=handOrigin.toArray();origin[2]+=.10;
+      const mount=formation.projectors[i];l.head.visible=true;l.head.position.set(...mount);l.head.quaternion.identity();
+      const origin=[mount[0],mount[1]-.06,mount[2]];
       l.beam.visible=l.path.visible=l.haze.visible=l.aperture.visible=formation.lit;
       for(const tip of l.tips)tip.visible=false;
       if(!formation.lit)return;
-      const frame=formation.drawing,spread=2.06*.53;
+      const frame=formation.drawing,spread=formation.spread;
       const discrete=formation.discrete;
       l.beam.material.uniforms.opacity.value=discrete?.86:.075;
       l.aperture.position.set(...origin);l.aperture.material.color.set(frame.paths[0]?.color||'#ffffff');

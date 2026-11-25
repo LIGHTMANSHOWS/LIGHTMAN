@@ -13,7 +13,9 @@
     "neon"
   ],
   "assets": [
+    "client-blue-white-audio-v2.wav",
     "client-blue-white-audio.wav",
+    "client-blue-white-reference-v2.mp4",
     "client-blue-white-reference.mp4",
     "illuminati-reference-original.mp4",
     "illuminati-user-6ec6d77a346efd058e51.mp3",
@@ -28,6 +30,7 @@
     "random-switch-analysis-312128e5c5409f33e703.json",
     "random-switch-reference-9ab708ac2795edbed0c4.mp4",
     "random-switch-user-efb544f414c2b731afe6.wav",
+    "reel-dcc-laserbeam-clean.wav",
     "reel-dcc-reel-audio.m4a",
     "reel-dcc-reel-original.mp4",
     "show-catalog.json",

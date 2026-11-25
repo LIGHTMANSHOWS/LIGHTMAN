@@ -6,7 +6,7 @@
       "id": "show-cliente-azul-blanco",
       "label": "Show cliente completo",
       "name": "LIGHTMAN · Show cliente · azul y blanco",
-      "duration": 151.95466666666667,
+      "duration": 150.75466666666668,
       "project": "assets/suite-show-cliente-azul-blanco-show.json",
       "video": "assets/client-blue-white-reference.mp4",
       "fps": 30,
@@ -15,92 +15,104 @@
     {
       "id": "petrunko",
       "label": "Petrunko",
+      "name": "PETRUNKO Â· prueba de persistencia",
       "duration": 75.487,
-      "fps": 50,
-      "demo": false,
       "project": "assets/suite-petrunko-show.json",
-      "video": "assets/petrunko-web-reference.mp4",
-      "name": "PETRUNKO · prueba de persistencia"
+      "video": "assets/petrunko-petrunko-reference.mp4",
+      "fps": 50,
+      "demo": false
     },
     {
       "id": "illuminati",
       "label": "Illuminati",
+      "name": "LASERMAN Â· Illuminati Dance Crew",
       "duration": 56.014,
-      "fps": 29.97002997002997,
-      "demo": false,
       "project": "assets/suite-illuminati-show.json",
       "video": "assets/illuminati-reference-original.mp4",
-      "name": "LASERMAN · Illuminati Dance Crew"
+      "fps": 29.97002997002997,
+      "demo": false
     },
     {
       "id": "laser-lovers",
       "label": "Laser Lovers",
+      "name": "ARIUS Â· Laser lovers Â· HPHgsrTXk6A",
       "duration": 43.774,
-      "fps": 30,
-      "demo": false,
       "project": "assets/suite-laser-lovers-show.json",
       "video": "assets/laser-lovers-reference.mp4",
-      "name": "ARIUS · Laser lovers · HPHgsrTXk6A"
+      "fps": 30,
+      "demo": false
     },
     {
       "id": "spider-man",
       "label": "Spider-Man",
+      "name": "Spider-Man vs Laser Assassin Â· Reel",
       "duration": 43.93333333333333,
-      "fps": 30,
-      "demo": false,
       "project": "assets/suite-spider-man-show.json",
       "video": "assets/spider-man-reference-5c42c7d8b18b66150f24.mp4",
-      "name": "Spider-Man vs Laser Assassin · Reel"
+      "fps": 30,
+      "demo": false
     },
     {
       "id": "thriller",
       "label": "Thriller",
+      "name": "ARIUS Â· Thriller Â· Reel DfKqUjiq0If",
       "duration": 34.65,
-      "fps": 60,
-      "demo": false,
       "project": "assets/suite-thriller-show.json",
       "video": "assets/thriller-reference-0b8445cdaf0ecd98663a.mp4",
-      "name": "ARIUS · Thriller · Reel DfKqUjiq0If"
+      "fps": 60,
+      "demo": false
     },
     {
       "id": "random-switch",
       "label": "Random Switch",
+      "name": "LASERMAN Â· Random Switch Â· Dc4psAiCFkC",
       "duration": 32.266666666666666,
-      "fps": 30,
-      "demo": false,
       "project": "assets/suite-random-switch-show.json",
       "video": "assets/random-switch-reference-9ab708ac2795edbed0c4.mp4",
-      "name": "LASERMAN · Random Switch · Dc4psAiCFkC"
+      "fps": 30,
+      "demo": false
     },
     {
       "id": "main-deewana",
       "label": "Main Deewana",
+      "name": "LASERMAN Â· Main Deewana",
       "duration": 17.474,
-      "fps": 24,
-      "demo": false,
       "project": "assets/suite-main-deewana-show.json",
       "video": "assets/main-deewana-main-deewana-original.mp4",
-      "name": "LASERMAN · Main Deewana"
+      "fps": 24,
+      "demo": false
     },
     {
       "id": "reel-dcc",
       "label": "Reel DccLstpPyFt",
+      "name": "LASERMAN Â· Reel DccLstpPyFt",
       "duration": 46.2,
-      "fps": 30.0,
-      "demo": false,
       "project": "assets/suite-reel-dcc-show.json",
       "video": "assets/reel-dcc-reel-original.mp4",
-      "name": "LASERMAN · Reel DccLstpPyFt"
+      "fps": 30.0,
+      "demo": false
     },
     {
       "id": "neon",
       "label": "Neon Protocol",
+      "name": "LASERMAN Â· NEON PROTOCOL / Director Cut",
       "duration": 180,
-      "fps": 30,
-      "demo": true,
       "project": "assets/suite-neon-show.json",
       "video": "",
-      "name": "LASERMAN · NEON PROTOCOL / Director Cut"
+      "fps": 30,
+      "demo": true
+    }
+  ],
+  "archivedShows": [
+    {
+      "id": "arius",
+      "label": "ARIUS",
+      "name": "LASERMAN Â· ARIUS Â· show ajustado al video Â· 3 personas",
+      "duration": 433.551375,
+      "project": "assets/suite-arius-show.json",
+      "video": "assets/arius-arius-original.mp4",
+      "fps": 30,
+      "demo": false
     }
   ]
 }

@@ -1,16 +1,17 @@
-import {validateProjection} from './projection.js?v=1.5.2-three';
-import {validatePerformerSpace} from './performer-space.js?v=1.5.2-three';
+import {validateProjection} from './projection.js?v=1.7.0-roof';
+import {validatePerformerSpace} from './performer-space.js?v=1.7.0-roof';
 const finite=(v,a,b)=>Number.isFinite(v)&&v>=a&&v<=b;
 
 export function validateSequence(project){
   if(project.colorPolicy!==undefined&&project.colorPolicy?.mode!=='blue-white')throw Error('Política de color no válida.');
   if(project.sequenceParts===undefined)return;
   if(!Array.isArray(project.sequenceParts)||!project.sequenceParts.length||project.sequenceParts.length>64)throw Error('Secuencia de shows no válida.');
-  let end=0;const ids=new Set();
+  let end=0,previousStart=0,priorEnd=0;const ids=new Set();
   for(const part of project.sequenceParts){
     const c=part?.context;
-    if(!part||typeof part.id!=='string'||ids.has(part.id)||!finite(part.start,0,project.duration)||!finite(part.end,0,project.duration)||Math.abs(part.start-end)>.000001||part.end-part.start<=.000001||!c||!finite(c.bpm,40,240)||!c.stage||!finite(c.stage.width,4,30)||!finite(c.stage.depth,3,20)||!finite(c.stage.rigHeight,2,12)||!Array.isArray(c.tracks)||c.tracks.length!==6)throw Error('Contexto o límites de secuencia no válidos.');
-    ids.add(part.id);end=part.end;
+    if(!part||typeof part.id!=='string'||ids.has(part.id)||!finite(part.start,0,project.duration)||!finite(part.end,0,project.duration)||!finite(part.overlap??0,0,2)||(Math.abs(part.start-(end-(part.overlap??0)))>.000001&&!(end===project.duration&&part.end===end&&part.start<end&&end-part.start<=(part.overlap??0)))||(ids.size===0&&(part.overlap??0)!==0)||(ids.size>0&&(part.start<=previousStart||part.end<end||(part.end===end&&end!==project.duration)))||part.end-part.start<=.000001||!c||!finite(c.bpm,40,240)||!c.stage||!finite(c.stage.width,4,30)||!finite(c.stage.depth,3,20)||!finite(c.stage.rigHeight,2,12)||!Array.isArray(c.tracks)||c.tracks.length!==6)throw Error('Contexto o límites de secuencia no válidos.');
+    if(ids.size>1&&part.start<priorEnd-.000001)throw Error('No se admiten tres segmentos superpuestos.');
+    ids.add(part.id);previousStart=part.start;priorEnd=end;end=part.end;
     const fields=new Set(['id','position','previewVisible','previewActorIndex','actorIndex','previewStart','previewWindows']);
     if(new Set(c.tracks.map(t=>t.id)).size!==6)throw Error('Pistas duplicadas en la secuencia.');
     for(const t of c.tracks){
@@ -27,13 +28,25 @@ export function validateSequence(project){
   if(Math.abs(end-project.duration)>.000001)throw Error('La secuencia no cubre la duración del show.');
 }
 
-// Cues remain in one editable global timeline; only scene context changes by part.
+// A short overlap uses two source contexts, keeping every cue on its own clock.
+export function sequenceMix(project,time){
+  if(!project?.sequenceParts)return null;
+  const active=project.sequenceParts.filter(p=>time>=p.start&&time<p.end);
+  if(active.length!==2)return null;
+  const [from,to]=active;
+  return {from,to,amount:Math.max(0,Math.min(1,(time-to.start)/(to.overlap??(from.end-to.start))))};
+}
+export function sequencePartProject(project,part){
+  const c=part.context,keep=cue=>!cue.sequenceId||cue.sequenceId===part.id;
+  return {...project,bpm:c.bpm,stage:c.stage,performerStyle:c.performerStyle,effectSpace:c.effectSpace,laserScale:c.laserScale,
+    choreography:c.choreography,reference:{...project.reference,motion:c.referenceMotion},sequenceParts:undefined,sequenceTimeOrigin:part.start,sequencePartId:part.id,
+    tracks:project.tracks.map(t=>({...t,...c.tracks.find(s=>s.id===t.id),cues:t.cues.filter(keep),
+      ...(t.hands?{hands:Object.fromEntries(Object.entries(t.hands).map(([side,cues])=>[side,cues.filter(keep)]))}:{})}))};
+}
 export function sequenceProjectAt(project,time){
   if(!project?.sequenceParts)return project;
-  const part=project.sequenceParts.find(p=>time>=p.start&&time<p.end)||project.sequenceParts.at(-1),c=part.context;
-  return {...project,bpm:c.bpm,stage:c.stage,performerStyle:c.performerStyle,effectSpace:c.effectSpace,laserScale:c.laserScale,
-    choreography:c.choreography,reference:{...project.reference,motion:c.referenceMotion},sequenceParts:undefined,sequenceTimeOrigin:part.start,
-    tracks:project.tracks.map(t=>({...t,...c.tracks.find(s=>s.id===t.id),cues:t.cues,hands:t.hands}))};
+  const part=project.sequenceParts.findLast(p=>time>=p.start&&time<p.end)||project.sequenceParts.at(-1);
+  return sequencePartProject(project,part);
 }
 
 export function allowedRgb(r,g,b,policy){

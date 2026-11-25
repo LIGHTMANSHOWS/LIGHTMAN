@@ -1,10 +1,11 @@
-import {effectTime,recordedMotionAt,placeRecordedFrame,validateRecordedMotion} from './timed-motion.js?v=1.5.2-three';
-import {animatedCue,animationClock,motionTime,validateAnimation} from './keyframes.js?v=1.5.2-three';
-import {TRANSITION_TYPES,TRANSITION_CURVES,transitionState,blendLaserFrames} from './transitions.js?v=1.5.2-three';
-import {validateProject as validateLaserProject} from './laser.js?v=1.5.2-three';
-import {validateProjection} from './projection.js?v=1.5.2-three';
-import {validatePerformerSpace,validateEffectAnchor,anchorDrawing} from './performer-space.js?v=1.5.2-three';
-import {sequenceProjectAt,validateSequence,colorFrame} from './sequence-context.js?v=1.5.2-three';
+import {effectTime,recordedMotionAt,placeRecordedFrame,validateRecordedMotion} from './timed-motion.js?v=1.7.0-roof';
+import {animatedCue,animationClock,motionTime,validateAnimation} from './keyframes.js?v=1.7.0-roof';
+import {TRANSITION_TYPES,TRANSITION_CURVES,transitionState,blendLaserFrames} from './transitions.js?v=1.7.0-roof';
+import {validateProject as validateLaserProject} from './laser.js?v=1.7.0-roof';
+import {validateProjection} from './projection.js?v=1.7.0-roof';
+import {validatePerformerSpace,validateEffectAnchor,anchorDrawing} from './performer-space.js?v=1.7.0-roof';
+import {sequenceProjectAt,sequenceMix,sequencePartProject,validateSequence,colorFrame} from './sequence-context.js?v=1.7.0-roof';
+import {qualityCue,validateLaserQuality} from './laser-quality.js?v=1.7.0-roof';
 export const BPM=128;
 export const BEAT=60/BPM;
 export const DURATION=180;
@@ -52,6 +53,7 @@ export function demoProject(){
 }
 
 export function validateProject(p){
+  validateLaserQuality(p?.laserQuality);
   if(p?.laserScale!==undefined&&!finite(p.laserScale,.05,2))throw Error('Amplitud general del láser no válida.');
   if(p?.projection!==undefined)validateProjection(p.projection);
   if(!p||p.format!=='lightman-laserman'||p.version!==1||!Array.isArray(p.tracks)||p.tracks.length!==6)throw Error('Proyecto LASERMAN no válido.');
@@ -244,7 +246,12 @@ function laserPlacement(cue,frame){
     discrete,rayOpacity:discrete?.86:.075};
 }
 export function laserFrame(track,time,height=4,bpm=128,project=null){
-  if(project?.sequenceParts){project=sequenceProjectAt(project,time);track={...project.tracks.find(t=>t.id===track.id),cues:track.cues};height=project.stage.rigHeight;bpm=project.bpm;}
+  const mix=sequenceMix(project,time);
+  if(mix){
+    const frame=part=>{const view=sequencePartProject(project,part),selected={...view.tracks.find(t=>t.id===track.id),cues:track.cues.filter(c=>!c.sequenceId||c.sequenceId===part.id)};return laserFrame(selected,time,view.stage.rigHeight,view.bpm,view);};
+    return blendLaserFrames(frame(mix.from),frame(mix.to),mix.amount,'fade');
+  }
+  if(project?.sequenceParts){project=sequenceProjectAt(project,time);track={...project.tracks.find(t=>t.id===track.id),cues:track.cues.filter(c=>!c.sequenceId||c.sequenceId===project.sequencePartId)};height=project.stage.rigHeight;bpm=project.bpm;}
   const cue=activeCue(track.cues,time);if(!cue)return {paths:[]};
   const frame=evaluateLaserCue(track,cue,time,height,bpm,0,project);
   if(!project?.laserScale||project.laserScale===1||project.effectSpace)return colorFrame(frame,project?.colorPolicy);
@@ -254,7 +261,8 @@ export function laserFrame(track,time,height=4,bpm=128,project=null){
   Object.defineProperty(result,'placement',{value:frame.placement,configurable:true});return colorFrame(result,project?.colorPolicy);
 }
 function evaluateLaserCue(track,cue,time,height,bpm,depth,project){
-  const current=anchorDrawing(rawLaserFrame(cue,time,height,track.position),track,cue,height,project),target=laserPlacement(animatedCue(cue,time),current);
+  const corrected=qualityCue(cue,project?.laserQuality);
+  const current=anchorDrawing(rawLaserFrame(corrected,time,height,track.position),track,cue,height,project),target=laserPlacement(animatedCue(corrected,time),current);
   const state=transitionState(track,cue,time,bpm);
   if(!state.active||state.amount>=1-1e-6||depth>=24){Object.defineProperty(current,'placement',{value:target,configurable:true});return current;}
   const previous=state.previous,priorTime=previous?Math.min(cue.start-1e-7,previous.start+previous.duration-1e-7):cue.start;

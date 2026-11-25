@@ -12,10 +12,16 @@
     "shape": "circle"
   },
   "audio": {
-    "url": "assets/reel-dcc-reel-audio.m4a",
-    "name": "Audio original del reel · 46,2 s",
+    "url": "assets/reel-dcc-laserbeam-clean.wav",
+    "name": "Ray Volpe · Laserbeam · versión oficial sincronizada",
     "offset": 0,
-    "volume": 0.45
+    "volume": 0.45,
+    "provenance": {
+      "artist": "Ray Volpe",
+      "title": "Laserbeam",
+      "source": "https://www.youtube.com/watch?v=Ytz7qSH9QPI",
+      "alignmentReport": "docs/reel-audio-alignment.json"
+    }
   },
   "reference": {
     "url": "assets/reel-dcc-reel-original.mp4",
@@ -7872,5 +7878,9 @@
     ]
   },
   "performerStyle": "reel",
-  "suiteShowId": "reel-dcc"
+  "suiteShowId": "reel-dcc",
+  "laserQuality": {
+    "stabilizeRecorded": true,
+    "steadyRecordedBrightness": true
+  }
 }

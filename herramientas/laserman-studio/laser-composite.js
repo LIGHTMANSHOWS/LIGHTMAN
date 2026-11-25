@@ -1,7 +1,11 @@
-import {laserFrame,trackEnabled} from './engine.js?v=1.5.2-three';
-import {sequenceProjectAt} from './sequence-context.js?v=1.5.2-three';
+import {laserFrame,trackEnabled} from './engine.js?v=1.7.0-roof';
+import {sequenceProjectAt,sequenceMix,sequencePartProject} from './sequence-context.js?v=1.7.0-roof';
+import {blendLaserFrames} from './transitions.js?v=1.7.0-roof';
 
 export function compositeLaserFrame(project,time,targetId){
+  const mix=sequenceMix(project,time);
+  if(mix)return blendLaserFrames(compositeLaserFrame(sequencePartProject(project,mix.from),time,targetId),
+    compositeLaserFrame(sequencePartProject(project,mix.to),time,targetId),mix.amount,'fade');
   project=sequenceProjectAt(project,time);
   const target=project.tracks.find(t=>t.type==='laser'&&t.id===targetId);
   if(!target)throw Error('No existe la salida láser seleccionada.');

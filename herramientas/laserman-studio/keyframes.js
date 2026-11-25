@@ -1,5 +1,5 @@
 // Serializable parameter curves shared by the editor, preview and exports.
-import {mixColor} from './transitions.js?v=1.5.2-three';
+import {mixColor} from './transitions.js?v=1.7.0-roof';
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 export const KEY_CURVES={linear:'Lineal',smooth:'Suave',easeIn:'Acelerar',easeOut:'Desacelerar',hold:'Mantener / corte'};
 export const CHANNELS={

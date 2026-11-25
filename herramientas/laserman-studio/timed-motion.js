@@ -2,7 +2,7 @@
 // integrator state to reset or accumulate differently from the audio clock.
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 const finite=(v,a,b)=>Number.isFinite(v)&&v>=a&&v<=b;
-import {animationClock,curveAt,CHANNELS} from './keyframes.js?v=1.5.2-three';
+import {animationClock,curveAt,CHANNELS} from './keyframes.js?v=1.7.0-roof';
 
 export function effectTime(cue,time){
   const base=cue.animationBaseSpeed??cue.effectSpeed??1;
@@ -33,6 +33,11 @@ export function recordedMotionAt(cue,time){
   const b=frames[lo],a=frames[Math.max(0,lo-1)];
   const u=b[0]>a[0]?clamp((local-a[0])/(b[0]-a[0]),0,1):0;
   const curves=cue.animation?.enabled!==false?cue.animation?.curves:null;
+  if(cue.stabilizeVideo){
+    const median=i=>{const values=[frames[Math.max(0,i-1)][2],frames[i][2],frames[Math.min(frames.length-1,i+1)][2]].sort((x,y)=>x-y);return values[1];};
+    return {center:0,width:median(Math.max(0,lo-1))*(1-u)+median(lo)*u,
+      phase:curveAt(curves?.videoPhase,local,a[3]+(b[3]-a[3])*u,CHANNELS.videoPhase)};
+  }
   return {center:curveAt(curves?.videoCenter,local,a[1]+(b[1]-a[1])*u,CHANNELS.videoCenter),
     width:curveAt(curves?.videoWidth,local,a[2]+(b[2]-a[2])*u,CHANNELS.videoWidth),
     phase:curveAt(curves?.videoPhase,local,a[3]+(b[3]-a[3])*u,CHANNELS.videoPhase)};
