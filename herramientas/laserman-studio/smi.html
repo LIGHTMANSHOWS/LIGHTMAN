@@ -1,0 +1,27 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#080b12">
+  <meta name="description" content="SMI · LIGHTMAN. Show Urban verde y blanco: vista 3D y video sincronizados.">
+  <title>SMI · LIGHTMAN</title>
+  <link rel="stylesheet" href="smi-view.css?v=1.0.0">
+  <script type="importmap">{"imports":{"three":"./vendor/three.module.js"}}</script>
+  <script type="module" src="smi-view.js?v=1.0.0"></script>
+</head>
+<body>
+  <main aria-label="SMI · vista del show">
+    <section class="stage-panel" aria-label="Vista 3D">
+      <canvas id="stage"></canvas>
+      <span class="badge">SMI <span>· 3D</span></span>
+      <a class="credits" href="docs/urban-procedencia.md" target="_blank" rel="noopener" aria-label="Créditos del modelo 3D">ⓘ</a>
+      <p id="status" role="status">Cargando SMI…</p>
+    </section>
+    <section class="video-panel" aria-label="Video de referencia y reproducción del show">
+      <video id="referenceVideo" controls playsinline preload="metadata" aria-label="Video de referencia SMI; sus controles también mueven el 3D"></video>
+      <span class="badge video-label">Video de referencia</span>
+    </section>
+  </main>
+</body>
+</html>

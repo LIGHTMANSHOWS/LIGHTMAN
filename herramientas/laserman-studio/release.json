@@ -19,7 +19,8 @@
     "clean-reel-music",
     "urban-costume-from-batucada-3d",
     "green-white-client-variant",
-    "catalogue-costume-reference"
+    "catalogue-costume-reference",
+    "smi-mobile-viewer"
   ],
   "publicShows": [
     "show-cliente-azul-blanco",
@@ -70,5 +71,11 @@
     "name": "SMI",
     "apertureScale": 0.5,
     "modelledGapMetres": 0.48
+  },
+  "smiViewer": {
+    "url": "https://lightmanperu.com/herramientas/laserman-studio/smi.html",
+    "revision": "1.0.0",
+    "clock": "single-video-with-clean-audio",
+    "editor": false
   }
 }
