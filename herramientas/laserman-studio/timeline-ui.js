@@ -1,5 +1,5 @@
-import {SHAPE_NAMES,EFFECTS,clamp} from './engine.js?v=1.5.0-client';
-import {markerSpan,rangeAt,snapTime,fillRange,makeMarker} from './timeline-model.js?v=1.5.0-client';
+import {SHAPE_NAMES,EFFECTS,clamp} from './engine.js?v=1.5.2-three';
+import {markerSpan,rangeAt,snapTime,fillRange,makeMarker} from './timeline-model.js?v=1.5.2-three';
 
 export function commitFocusedField(){
   const focused=document.activeElement;

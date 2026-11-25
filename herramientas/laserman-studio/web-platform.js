@@ -1,7 +1,7 @@
-import {validateProject} from './engine.js?v=1.5.0-client';
-import {validateProjection} from './projection.js?v=1.5.0-client';
-import {applyCommands,COMMAND_SCHEMA} from './commands.js?v=1.5.0-client';
-import {zipFiles,unzipFiles} from './web-zip.js?v=1.5.0-client';
+import {validateProject} from './engine.js?v=1.5.2-three';
+import {validateProjection} from './projection.js?v=1.5.2-three';
+import {applyCommands,COMMAND_SCHEMA} from './commands.js?v=1.5.2-three';
+import {zipFiles,unzipFiles} from './web-zip.js?v=1.5.2-three';
 
 const originalFetch=globalThis.fetch.bind(globalThis),base=new URL('./',import.meta.url),mediaUrls=new Map(),jobs=new Map(),queues=new Map();
 const database=new Promise((resolve,reject)=>{

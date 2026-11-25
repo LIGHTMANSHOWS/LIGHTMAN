@@ -1,4 +1,4 @@
-import {DEFAULT_PROJECTION,validateProjection,projectPoint,testDrawing} from './projection.js?v=1.5.0-client';
+import {DEFAULT_PROJECTION,validateProjection,projectPoint,testDrawing} from './projection.js?v=1.5.2-three';
 
 export function mountProjectionEditor({getSettings,getName,saveSettings,pause,cancelTest,startTest,isConnected}){
   const dialog=document.createElement('dialog');dialog.id='projectionDialog';

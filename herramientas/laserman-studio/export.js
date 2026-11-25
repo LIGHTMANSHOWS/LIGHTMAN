@@ -1,6 +1,6 @@
-import {encodeFB3Frame} from './fb3-wire.js?v=1.5.0-client';
-import {laserFrame,trackEnabled,activeCue} from './engine.js?v=1.5.0-client';
-import {createLedEngine} from './led-engine.js?v=1.5.0-client';
+import {encodeFB3Frame} from './fb3-wire.js?v=1.5.2-three';
+import {laserFrame,trackEnabled,activeCue} from './engine.js?v=1.5.2-three';
+import {createLedEngine} from './led-engine.js?v=1.5.2-three';
 import * as core from './vendor/ldp-core.js';
 
 const pause=()=>new Promise(resolve=>setTimeout(resolve,0));

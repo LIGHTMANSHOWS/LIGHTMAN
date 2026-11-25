@@ -1,4 +1,4 @@
-import {packetForAge} from './output-packet.js?v=1.5.0-client';
+import {packetForAge} from './output-packet.js?v=1.5.2-three';
 let active=false,packet=null,updated=0,posting=false,generation=0,lastTest=false;
 self.onmessage=({data})=>{
   if(data.type==='stop'){active=false;packet=null;generation++;return;}

@@ -1,10 +1,10 @@
-import {effectTime,recordedMotionAt,placeRecordedFrame,validateRecordedMotion} from './timed-motion.js?v=1.5.0-client';
-import {animatedCue,animationClock,motionTime,validateAnimation} from './keyframes.js?v=1.5.0-client';
-import {TRANSITION_TYPES,TRANSITION_CURVES,transitionState,blendLaserFrames} from './transitions.js?v=1.5.0-client';
-import {validateProject as validateLaserProject} from './laser.js?v=1.5.0-client';
-import {validateProjection} from './projection.js?v=1.5.0-client';
-import {validatePerformerSpace,validateEffectAnchor,anchorDrawing} from './performer-space.js?v=1.5.0-client';
-import {sequenceProjectAt,validateSequence,colorFrame} from './sequence-context.js?v=1.5.0-client';
+import {effectTime,recordedMotionAt,placeRecordedFrame,validateRecordedMotion} from './timed-motion.js?v=1.5.2-three';
+import {animatedCue,animationClock,motionTime,validateAnimation} from './keyframes.js?v=1.5.2-three';
+import {TRANSITION_TYPES,TRANSITION_CURVES,transitionState,blendLaserFrames} from './transitions.js?v=1.5.2-three';
+import {validateProject as validateLaserProject} from './laser.js?v=1.5.2-three';
+import {validateProjection} from './projection.js?v=1.5.2-three';
+import {validatePerformerSpace,validateEffectAnchor,anchorDrawing} from './performer-space.js?v=1.5.2-three';
+import {sequenceProjectAt,validateSequence,colorFrame} from './sequence-context.js?v=1.5.2-three';
 export const BPM=128;
 export const BEAT=60/BPM;
 export const DURATION=180;

@@ -1,13 +1,13 @@
 import * as THREE from './vendor/three.module.js';
 import {OrbitControls} from './vendor/addons/controls/OrbitControls.js';
-import {activeCue,trackEnabled,laserFrame} from './engine.js?v=1.5.0-client';
-import {sequenceProjectAt,allowedColor} from './sequence-context.js?v=1.5.0-client';
-import {sampleFrame} from './laser.js?v=1.5.0-client';
-import {createLaserStroke,updateLaserStroke,createLaserHaze,updateLaserHaze} from './laser-visual.js?v=1.5.0-client';
-import {rigPerformer,posePerformer} from './performer.js?v=1.5.0-client';
+import {activeCue,trackEnabled} from './engine.js?v=1.5.2-three';
+import {sequenceProjectAt,allowedColor} from './sequence-context.js?v=1.5.2-three';
+import {sampleFrame} from './laser.js?v=1.5.2-three';
+import {createLaserStroke,updateLaserStroke,createLaserHaze,updateLaserHaze} from './laser-visual.js?v=1.5.2-three';
+import {rigPerformer,posePerformer} from './performer.js?v=1.5.2-three';
 
-import {jacketPixels} from './jacket.js?v=1.5.0-client';
-import {animatedCue} from './keyframes.js?v=1.5.0-client';
+import {jacketPixels} from './jacket.js?v=1.5.2-three';
+import {performerLayout} from './performer-layout.js?v=1.5.2-three';
 
 export function createScene(canvas,fixture){
   const scene=new THREE.Scene();scene.background=new THREE.Color('#080b12');scene.fog=new THREE.Fog('#080b12',13,32);
@@ -81,8 +81,9 @@ export function createScene(canvas,fixture){
       mark(beam,j?'rightArm':'leftArm');mark(beam.userData.lens,j?'rightArm':'leftArm');
       return beam;
     });
-    const rigged=rigPerformer(group,fixture,points,leds);actors.push({group,leds,hands,hat,rig:rigged});
-    const head=cube(scene,.32,.2,.3,(i-1)*2.4,3.84,-.3,metal);
+    const headMount=new THREE.Object3D();headMount.position.set(0,2.06,.12);group.add(mark(headMount,'body'));
+    const rigged=rigPerformer(group,fixture,points,leds);actors.push({group,leds,hands,hat,headMount,rig:rigged});
+    const head=cube(scene,.18,.10,.18,(i-1)*2.4,2.06,.12,metal);
     const beam=createLaserStroke({width:2.2,opacity:.075}),path=createLaserStroke({width:5,opacity:1});
     const haze=createLaserHaze(),aperture=lens(scene,[(i-1)*2.4,3.72,-.3],.19);
     haze.renderOrder=1;beam.renderOrder=2;path.renderOrder=3;
@@ -101,44 +102,36 @@ export function createScene(canvas,fixture){
     if(cinematic!==(['arius','reference'].includes(project.performerStyle))){cinematic=['arius','reference'].includes(project.performerStyle);view('perspective');}
     cloth.color.set(['arius','reference'].includes(project.performerStyle)?'#5974b8':'#10131b');
     const suitTracks=project.tracks.filter(t=>t.type==='suit'),laserTracks=project.tracks.filter(t=>t.type==='laser');
+    const formation=performerLayout(project,time);rig.visible=false;
+    floor.scale.x=Math.max(project.stage.width,8.2)/10;roundFloor.scale.x=1.8;
     performerGuides.visible=!!project.effectSpace;
     if(project.effectSpace){const actor=suitTracks.find(t=>t.id===project.effectSpace.actorTrackId),distance=project.effectSpace.l1Distance;performerGuides.position.set(actor.position[0],.008,actor.position[2]);frontGuide.position.z=distance;frontGuide.scale.x=distance;frontLabel.position.set(0,.08,distance+.13);}
     actors.forEach((a,i)=>{
-      const t=suitTracks[i];a.group.visible=t.previewVisible!==false&&time>=(t.previewStart||0)&&(!t.previewWindows||t.previewWindows.some(([a,b])=>time>=a&&time<b));a.group.position.set(...t.position);a.group.rotation.y=project.reference?.motion?0:Math.sin(poseTime*.4+i)*.08;
-      a.hat.visible=['arius','reference','reel'].includes(project.performerStyle);posePerformer(a,project,time,i);
-      const buf=ledBuffers[i];for(let j=0;j<points.length;j++){color.setRGB(buf[j*3]/255,buf[j*3+1]/255,buf[j*3+2]/255,THREE.SRGBColorSpace);a.leds.setColorAt(j,color);}a.leds.instanceColor.needsUpdate=true;
+      const t=suitTracks[i];a.group.visible=true;a.group.position.set(...formation.positions[i]);a.group.rotation.y=project.reference?.motion?0:Math.sin(poseTime*.4)*.08;
+      a.hat.visible=['arius','reference','reel'].includes(project.performerStyle);posePerformer(a,project,time,0);
+      const buf=ledBuffers[formation.sourceSuitIndex];for(let j=0;j<points.length;j++){color.setRGB(buf[j*3]/255,buf[j*3+1]/255,buf[j*3+2]/255,THREE.SRGBColorSpace);a.leds.setColorAt(j,color);}a.leds.instanceColor.needsUpdate=true;
       a.hands.forEach((beam,j)=>{
         const c=trackEnabled(project,t)&&activeCue(t.hands[j?'right':'left'],time);
-        const wrist=laserTracks.some((lt,index)=>(lt.previewActorIndex??index)===i&&trackEnabled(project,lt)&&lt.cues.some(c=>c.enabled!==false&&time>=c.start&&time<c.start+c.duration&&animatedCue(c,time).previewOrigin===(j?'right-hand':'left-hand')));
-        beam.visible=!!c&&c.beamVisible!==false&&!wrist;beam.userData.lens.visible=!!c;
+        beam.visible=false;beam.userData.lens.visible=!!c;
         if(c){const color=allowedColor(c.color,project.colorPolicy);beam.material.uniforms.tint.value.set(color);beam.userData.lens.material.color.set(color);}
       });
     });
     lasers.forEach((l,i)=>{
-      const t=laserTracks[i],c=t.previewVisible!==false&&trackEnabled(project,t)&&activeCue(t.cues,time);l.head.visible=t.previewVisible!==false;l.head.position.set(t.position[0],project.stage.rigHeight-.16,t.position[2]);
-      l.beam.visible=l.path.visible=l.haze.visible=l.aperture.visible=!!c;
-      if(c?.previewRays===false)l.beam.visible=l.haze.visible=false;
+      const actor=actors[i];actor.headMount.getWorldPosition(handOrigin);l.head.visible=true;l.head.position.copy(handOrigin);actor.headMount.getWorldQuaternion(l.head.quaternion);
+      const origin=handOrigin.toArray();origin[2]+=.10;
+      l.beam.visible=l.path.visible=l.haze.visible=l.aperture.visible=formation.lit;
       for(const tip of l.tips)tip.visible=false;
-      if(!c)return;
-      const frame=laserFrame(t,time,project.stage.rigHeight,project.bpm,project),spread=project.stage.rigHeight*.53;
-      const placement=frame.placement,origin=[t.position[0],project.stage.rigHeight-.28,t.position[2]];
-      if(placement){
-        for(let j=0;j<3;j++)origin[j]*=placement.weights.projector;
-        for(const [key,side] of [['left-hand',0],['right-hand',1]]){
-          actors[t.previewActorIndex??i].hands[side].userData.lens.getWorldPosition(handOrigin);
-          for(let j=0;j<3;j++)origin[j]+=handOrigin.getComponent(j)*placement.weights[key];
-        }
-      }
-      const discrete=placement?.discrete??false;
-      l.beam.material.uniforms.opacity.value=placement?.rayOpacity??.075;
-      l.aperture.position.set(...origin);l.aperture.material.color.set(frame.paths[0]?.color||c.color);
-      l.aperture.visible=c.previewRays!==false&&frame.paths.some(path=>path.points.length>1&&path.color!=='#000000');
+      if(!formation.lit)return;
+      const frame=formation.drawing,spread=2.06*.53;
+      const discrete=formation.discrete;
+      l.beam.material.uniforms.opacity.value=discrete?.86:.075;
+      l.aperture.position.set(...origin);l.aperture.material.color.set(frame.paths[0]?.color||'#ffffff');
       world.length=0;const rays=[],pathColors=[],rayColors=[],samples=sampleFrame(frame);
       const stride=Math.max(1,Math.ceil(samples.filter(p=>!p.blank).length/28));let previous=null,index=0,tipIndex=0;
-      const y=placement?.height??.035;
+      const y=formation.positions[i][1]+formation.height;
       for(const point of samples){
         if(point.blank){previous=null;continue;}
-        const p=[origin[0]+point.x*spread,y,origin[2]+point.y*spread];
+        const p=[formation.positions[i][0]+point.x*spread,y,formation.positions[i][2]+point.y*spread];
         const rgb=color.set(point.color).toArray();
         if(previous){world.push(...previous,...p);pathColors.push(...rgb,...rgb);}
         if(discrete ? previous===null : previous===null||index++%stride===0){

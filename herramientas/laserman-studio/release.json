@@ -1,5 +1,5 @@
 {
-  "version": "1.5.1-web",
+  "version": "1.5.2-web",
   "desktopBase": "1.5.0",
   "builtAtUtc": "2026-11-24T14:58:18.356253+00:00",
   "publishedPath": "/herramientas/laserman-studio/",
@@ -13,7 +13,8 @@
     "per-show-and-master-projection",
     "composite-laser-layers",
     "browser-command-editing",
-    "mobile-stacked-review"
+    "mobile-stacked-review",
+    "three-synchronized-head-lasers"
   ],
   "publicShows": [
     "show-cliente-azul-blanco",
@@ -41,6 +42,11 @@
       "white"
     ]
   },
-  "assetRevision": "1.5.0-client",
-  "mobileRevision": "1.5.1-mobile"
+  "assetRevision": "1.5.2-three",
+  "mobileRevision": "1.5.1-mobile",
+  "performerLayout": {
+    "count": 3,
+    "mount": "head",
+    "synchronized": true
+  }
 }

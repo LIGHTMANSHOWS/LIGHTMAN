@@ -1,5 +1,5 @@
-import {laserFrame,trackEnabled} from './engine.js?v=1.5.0-client';
-import {sequenceProjectAt} from './sequence-context.js?v=1.5.0-client';
+import {laserFrame,trackEnabled} from './engine.js?v=1.5.2-three';
+import {sequenceProjectAt} from './sequence-context.js?v=1.5.2-three';
 
 export function compositeLaserFrame(project,time,targetId){
   project=sequenceProjectAt(project,time);

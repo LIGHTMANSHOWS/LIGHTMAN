@@ -1,7 +1,7 @@
-import {installWebPlatform} from './web-platform.js?v=1.5.0-client';
-import {mountMobileView} from './mobile-view.js?v=1.5.1-mobile';
+import {installWebPlatform} from './web-platform.js?v=1.5.2-three';
+import {mountMobileView} from './mobile-view.js?v=1.5.2-three';
 installWebPlatform();
-await import('./app.js?v=1.5.0-client');
+await import('./app.js?v=1.5.2-three');
 const untilReady=setInterval(()=>{
   if(!window.LASERMAN)return;clearInterval(untilReady);
   const $=id=>document.getElementById(id),localUrl='http://127.0.0.1:8924/';

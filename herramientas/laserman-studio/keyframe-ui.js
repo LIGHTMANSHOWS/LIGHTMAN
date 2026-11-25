@@ -1,5 +1,5 @@
-import {CHANNELS,KEY_CURVES,parameterAt,curveAt,localTime,motionTime,animationClock,ensureAnimation,newKey,upsertKey,simplifyKeys} from './keyframes.js?v=1.5.0-client';
-import {SHAPE_NAMES,EFFECTS,clamp} from './engine.js?v=1.5.0-client';
+import {CHANNELS,KEY_CURVES,parameterAt,curveAt,localTime,motionTime,animationClock,ensureAnimation,newKey,upsertKey,simplifyKeys} from './keyframes.js?v=1.5.2-three';
+import {SHAPE_NAMES,EFFECTS,clamp} from './engine.js?v=1.5.2-three';
 
 const SVG='http://www.w3.org/2000/svg';
 const round=v=>Math.round(v*1e6)/1e6;
