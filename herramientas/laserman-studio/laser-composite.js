@@ -1,6 +1,6 @@
-import {laserFrame,trackEnabled} from './engine.js?v=1.8.0-urban';
-import {sequenceProjectAt,sequenceMix,sequencePartProject} from './sequence-context.js?v=1.8.0-urban';
-import {blendLaserFrames} from './transitions.js?v=1.8.0-urban';
+import {laserFrame,trackEnabled} from './engine.js?v=1.8.1-smi';
+import {sequenceProjectAt,sequenceMix,sequencePartProject} from './sequence-context.js?v=1.8.1-smi';
+import {blendLaserFrames} from './transitions.js?v=1.8.1-smi';
 
 export function compositeLaserFrame(project,time,targetId){
   const mix=sequenceMix(project,time);

@@ -1,7 +1,7 @@
 {
   "format": "lightman-laserman",
   "version": 1,
-  "name": "LIGHTMAN · Show cliente · Urban verde y blanco",
+  "name": "SMI",
   "edition": "client-sequence-urban-green-white-1",
   "duration": 150.75466666666668,
   "bpm": 84,
@@ -18,7 +18,7 @@
   },
   "sections": [
     {
-      "time": 0.0,
+      "time": 0,
       "name": "Main Deewana"
     },
     {
@@ -38,7 +38,7 @@
     {
       "id": "part-main-deewana",
       "name": "Main Deewana",
-      "start": 0.0,
+      "start": 0,
       "end": 17.474,
       "color": "#00ff00"
     },
@@ -917,7 +917,7 @@
           },
           "sourceDuration": 2.791666666666667,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--900b518e-bc95-4931-a0ce-eb0df325a45b",
@@ -2469,7 +2469,7 @@
           ],
           "sourceDuration": 0.833333333333333,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--79838849-02d9-4e2a-bec0-0dfd3825621c",
@@ -4028,7 +4028,7 @@
           ],
           "sourceDuration": 2.125,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--b760618b-b452-4fb9-ae48-d30a685a5c5e",
@@ -7852,7 +7852,7 @@
           ],
           "sourceDuration": 2.166666666666667,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--9218dd17-7f3a-4b66-a2cf-dd53e7fc7737",
@@ -8033,7 +8033,7 @@
           },
           "sourceDuration": 0.5,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--764a83b9-19ff-45c9-a147-0834dccfc449",
@@ -8919,7 +8919,7 @@
           ],
           "sourceDuration": 0.6666666666666661,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--77f66757-e875-4ef4-8d32-60bc7a52ff7d",
@@ -9088,12 +9088,12 @@
           },
           "sourceDuration": 0.45833333333333215,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--84548614-c89b-431f-9d09-22f7d37b7a04",
           "name": "Lámina desde mano · estimada",
-          "start": 12.0,
+          "start": 12,
           "duration": 1.083333333333334,
           "shape": "blade",
           "color": "#00ff00",
@@ -9317,7 +9317,7 @@
           "sourceOffset": 0,
           "sourceDuration": 1.083333333333334,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--803baca1-a1b3-4789-a2a7-92e537823bf0",
@@ -9474,7 +9474,7 @@
           },
           "sourceDuration": 0.41666666666666785,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--75fdecb3-bf35-4892-83f7-2436577c5c9c",
@@ -9787,7 +9787,7 @@
           },
           "sourceDuration": 0.9583333333333321,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--428de44e-e55c-48f8-8d0a-9f54636c8146",
@@ -9932,7 +9932,7 @@
           },
           "sourceDuration": 0.375,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--3ab59f94-a572-4d9f-bcd6-dbd166d0933c",
@@ -10179,7 +10179,7 @@
           "sourceOffset": 3.333333342681044e-07,
           "sourceDuration": 1.1666670000000003,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--6276b03f-df71-4387-a911-c53e4bd1e85d",
@@ -10492,7 +10492,7 @@
           },
           "sourceDuration": 0.9583333333333321,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "illuminati--laser-00001",
@@ -191263,7 +191263,7 @@
         {
           "id": "main-deewana--810002ac-d736-4d8a-bf9e-bfa05dbfd170",
           "name": "Traje · #38ff20",
-          "start": 0.0,
+          "start": 0,
           "duration": 17.474,
           "effect": "fade",
           "color": "#00ff00",
@@ -191277,12 +191277,12 @@
           "layer": true,
           "sourceDuration": 17.474,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--de1a6bff-af40-4e08-91c6-c418b20e873f",
           "name": "Traje · #ff2020",
-          "start": 0.0,
+          "start": 0,
           "duration": 17.474,
           "effect": "fade",
           "color": "#ffffff",
@@ -191306,12 +191306,12 @@
           "layer": true,
           "sourceDuration": 17.474,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "main-deewana--82467a18-9d67-49a9-acac-8a90df8d71d0",
           "name": "Traje · #3064ff",
-          "start": 0.0,
+          "start": 0,
           "duration": 17.474,
           "effect": "fade",
           "color": "#00ff00",
@@ -191327,7 +191327,7 @@
           "layer": true,
           "sourceDuration": 17.474,
           "sequenceId": "main-deewana",
-          "sequenceStart": 0.0
+          "sequenceStart": 0
         },
         {
           "id": "illuminati--led-01950",
@@ -191938,7 +191938,7 @@
     {
       "id": "main-deewana",
       "name": "Main Deewana",
-      "start": 0.0,
+      "start": 0,
       "end": 17.474,
       "context": {
         "bpm": 120,
@@ -192015,7 +192015,7 @@
               "energy": 0.5
             },
             {
-              "start": 12.0,
+              "start": 12,
               "end": 13.083333333333334,
               "pose": "slice",
               "energy": 0.5
@@ -192063,7 +192063,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 0.0,
+            "previewStart": 0,
             "previewWindows": null
           },
           {
@@ -192076,7 +192076,7 @@
             "previewVisible": true,
             "previewActorIndex": 1,
             "actorIndex": 1,
-            "previewStart": 0.0,
+            "previewStart": 0,
             "previewWindows": null
           },
           {
@@ -192089,7 +192089,7 @@
             "previewVisible": true,
             "previewActorIndex": 2,
             "actorIndex": 2,
-            "previewStart": 0.0,
+            "previewStart": 0,
             "previewWindows": null
           },
           {
@@ -192102,7 +192102,7 @@
             "previewVisible": true,
             "previewActorIndex": 0,
             "actorIndex": 0,
-            "previewStart": 0.0,
+            "previewStart": 0,
             "previewWindows": null
           },
           {
@@ -192115,7 +192115,7 @@
             "previewVisible": false,
             "previewActorIndex": 1,
             "actorIndex": 1,
-            "previewStart": 0.0,
+            "previewStart": 0,
             "previewWindows": null
           },
           {
@@ -192128,7 +192128,7 @@
             "previewVisible": false,
             "previewActorIndex": 2,
             "actorIndex": 2,
-            "previewStart": 0.0,
+            "previewStart": 0,
             "previewWindows": null
           }
         ]

@@ -1,7 +1,7 @@
-import {validateProject} from './engine.js?v=1.8.0-urban';
-import {validateProjection} from './projection.js?v=1.8.0-urban';
-import {applyCommands,COMMAND_SCHEMA} from './commands.js?v=1.8.0-urban';
-import {zipFiles,unzipFiles} from './web-zip.js?v=1.8.0-urban';
+import {validateProject} from './engine.js?v=1.8.1-smi';
+import {validateProjection} from './projection.js?v=1.8.1-smi';
+import {applyCommands,COMMAND_SCHEMA} from './commands.js?v=1.8.1-smi';
+import {zipFiles,unzipFiles} from './web-zip.js?v=1.8.1-smi';
 
 const originalFetch=globalThis.fetch.bind(globalThis),base=new URL('./',import.meta.url),mediaUrls=new Map(),jobs=new Map(),queues=new Map();
 const database=new Promise((resolve,reject)=>{
@@ -18,8 +18,18 @@ async function digest(data){return [...new Uint8Array(await crypto.subtle.digest
 const revision=project=>digest(new TextEncoder().encode(JSON.stringify(project)));
 const catalogPromise=originalFetch(new URL('assets/show-catalog.json',base),{cache:'no-store'}).then(r=>r.json());
 async function catalog(){return {...await catalogPromise,shows:[...(await catalogPromise).shows,...(await read('local-catalog')||[])]};}
+async function renamePublishedUrban(id,current){
+  const old='LIGHTMAN · Show cliente · Urban verde y blanco';
+  if(id!=='show-cliente-urban-verde-blanco'||current.project.name!==old)return current;
+  const project={...current.project,name:'SMI'},next={...current,project,revision:await revision(project)},db=await database;
+  return new Promise((resolve,reject)=>{const t=db.transaction('records','readwrite'),store=t.objectStore('records'),r=store.get('show/'+id);let result=current;
+    r.onsuccess=()=>{result=r.result||current;if(result.revision!==current.revision||result.project.name!==old)return;
+      store.put(current.project,'backup/rename-smi-'+current.revision);store.put(next,'show/'+id);store.put(next.revision,'revision/'+id);result=next;};
+    t.oncomplete=()=>resolve(result);t.onerror=()=>reject(t.error);t.onabort=()=>reject(t.error||Error('No se pudo actualizar el nombre.'));
+  });
+}
 async function state(id){
-  const existing=await read('show/'+id);if(existing)return existing;
+  const existing=await read('show/'+id);if(existing)return renamePublishedUrban(id,existing);
   const entry=(await catalog()).shows.find(s=>s.id===id);if(!entry)throw Error('Show no encontrado.');
   const project=validateProject(await(await originalFetch(new URL(entry.project,base))).json());
   const seed={project,revision:await revision(project)};
