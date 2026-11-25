@@ -1,18 +1,19 @@
-import {resolveMediaUrl} from './web-platform.js?v=1.7.0-roof';
-import {createShowRepository} from './show-library.js?v=1.7.0-roof';
-import {routedTracks,buildSharedFrame} from './shared-output.js?v=1.7.0-roof';
-import {mountReferenceVideo} from './reference-video.js?v=1.7.0-roof';
-import {mountKeyframeEditor} from './keyframe-ui.js?v=1.7.0-roof';
-import {mountTransitionEditor} from './transition-ui.js?v=1.7.0-roof';
-import {demoProject,validateProject,activeCue,trackEnabled,laserFrame,timelineRows,cueList,newCue,clamp,SHAPE_NAMES,EFFECTS,SECTIONS,REFERENCE_SHAPES} from './engine.js?v=1.7.0-roof';
-import {insertLaserReference} from './laser-reference.js?v=1.7.0-roof';
-import {createScene} from './scene.js?v=1.7.0-roof';
-import {createLedEngine} from './led-engine.js?v=1.7.0-roof';
-import {encodeFB3Frame} from './fb3-wire.js?v=1.7.0-roof';
-import {validateProject as validateLaserProject} from './laser.js?v=1.7.0-roof';
-import {mountTimelineEditor,commitFocusedField} from './timeline-ui.js?v=1.7.0-roof';
-import {replaceWindow} from './timeline-model.js?v=1.7.0-roof';
-import {mountProjectionEditor} from './projection-ui.js?v=1.7.0-roof';
+import {resolveMediaUrl} from './web-platform.js?v=1.8.0-urban';
+import {createShowRepository} from './show-library.js?v=1.8.0-urban';
+import {routedTracks,buildSharedFrame} from './shared-output.js?v=1.8.0-urban';
+import {mountReferenceVideo} from './reference-video.js?v=1.8.0-urban';
+import {mountKeyframeEditor} from './keyframe-ui.js?v=1.8.0-urban';
+import {mountTransitionEditor} from './transition-ui.js?v=1.8.0-urban';
+import {demoProject,validateProject,activeCue,trackEnabled,laserFrame,timelineRows,cueList,newCue,clamp,SHAPE_NAMES,EFFECTS,SECTIONS,REFERENCE_SHAPES} from './engine.js?v=1.8.0-urban';
+import {insertLaserReference} from './laser-reference.js?v=1.8.0-urban';
+import {createScene} from './scene.js?v=1.8.0-urban';
+import {mountCostumeReference} from './costume-reference.js?v=1.8.0-urban';
+import {createLedEngine} from './led-engine.js?v=1.8.0-urban';
+import {encodeFB3Frame} from './fb3-wire.js?v=1.8.0-urban';
+import {validateProject as validateLaserProject} from './laser.js?v=1.8.0-urban';
+import {mountTimelineEditor,commitFocusedField} from './timeline-ui.js?v=1.8.0-urban';
+import {replaceWindow} from './timeline-model.js?v=1.8.0-urban';
+import {mountProjectionEditor} from './projection-ui.js?v=1.8.0-urban';
 
 const $=id=>document.getElementById(id);
 let project,scene,led,fixture,time=0,playing=false,anchor=0,anchorTime=0,audio=null,audioReady=false,history=[],selected=null,selectedRow='laser-1';
@@ -26,6 +27,7 @@ const clientId=crypto.randomUUID();
 let showRepository=null,sharedStatusTimer=null,hardwareReady=false,outputWorker=null;
 let localDirty=false,applyingRemote=false,pendingRemote=null,remotePollBusy=false,editGesture=false;
 const handledCommands=new Set();
+let costumeReference=null;
 let projectionEditor=null,projectionTestActive=false,projectionStopPending=null;
 async function cancelProjectionTest(){
   if(projectionStopPending)return projectionStopPending;
@@ -55,6 +57,7 @@ function persist(){
 async function flushShow(){clearTimeout(saveTimer);const sid=activeShowId,generation=storageGeneration;await showRepository.save(sid,project);if(sid===activeShowId&&generation===storageGeneration){localDirty=false;$('saveStatus').textContent='Guardado en este navegador';}}
 function changed(render=true){renderRevision++;persist();if(render)renderTimeline();}
 function syncProjectControls(){
+  costumeReference?.update();
   const ref=$('referenceVideo'),hasVideo=project.reference?.hasVideo!==false&&!!project.reference?.url;
   ref.hidden=!hasVideo;$('referenceEmpty').hidden=hasVideo;
   if(hasVideo&&ref.dataset.mediaPath!==project.reference.url){referenceVideo?.reset();ref.pause();resolveMediaUrl(project.reference.url).then(src=>{if(project.reference?.url===ref.dataset.mediaPath){ref.src=src;ref.load();}}).catch(e=>toast(e.message));ref.dataset.mediaPath=project.reference.url;}
@@ -62,7 +65,7 @@ function syncProjectControls(){
   ref.dataset.fps=project.reference?.fps||30;
   $('referenceOffset').step=String(1/Number(ref.dataset.fps));
   $('referenceTitle').textContent=hasVideo?'VIDEO ORIGINAL · '+(catalog.find(x=>x.id===activeShowId)?.label||project.name):'NEON PROTOCOL · DEMO';
-  if(project.colorPolicy)$('referenceTitle').textContent='REFERENCIA ORIGINAL · PALETA DEL SHOW: AZUL / BLANCO';
+  if(project.colorPolicy)$('referenceTitle').textContent='REFERENCIA ORIGINAL · PALETA DEL SHOW: '+(project.colorPolicy.mode==='green-white'?'VERDE / BLANCO':'AZUL / BLANCO');
   $('stageInfo').textContent=catalog.find(x=>x.id===activeShowId)?.label||project.name;
   $('stageWidth').value=project.stage.width;$('stageDepth').value=project.stage.depth;$('rigHeight').value=project.stage.rigHeight;$('bpm').value=project.bpm;
   document.querySelector('.stage-overlay small').textContent='ESCALA ESTIMADA · '+project.stage.rigHeight.toFixed(1)+' m';
@@ -422,6 +425,7 @@ async function pollRemoteChanges(){
 }
 
 function bind(){
+  costumeReference=mountCostumeReference(()=>project);
   window.addEventListener('pointerdown',()=>editGesture=true,true);
   window.addEventListener('pointerup',()=>editGesture=false,true);window.addEventListener('pointercancel',()=>editGesture=false,true);
   $('properties').onsubmit=e=>{e.preventDefault();commitFocusedField();};
@@ -537,7 +541,7 @@ function bind(){
   $('buildExport').onclick=async()=>{
     if(!$('exportFps').checkValidity())return;const fps=Number($('exportFps').value);$('buildExport').disabled=true;$('exportProgress').hidden=false;
     try{
-      const {buildExport}=await import('./export.js?v=1.7.0-roof');await buildExport(project,fixture,scene.points,fps,(p,msg)=>{$('exportProgress').value=p;$('exportStatus').textContent=msg;});
+      const {buildExport}=await import('./export.js?v=1.8.0-urban');await buildExport(project,fixture,scene.points,fps,(p,msg)=>{$('exportProgress').value=p;$('exportStatus').textContent=msg;});
       $('exportStatus').textContent='Paquete descargado con proyecto, ILDA, audio y video de referencia.';
     }catch(e){$('exportStatus').textContent=e.message;}finally{$('buildExport').disabled=false;}
   };
@@ -571,7 +575,7 @@ function animate(now){
 async function main(){
   const [data,fixtureData,settingsData]=await Promise.all([fetch('assets/show-catalog.json',{cache:'no-store'}).then(r=>r.json()),(await fetch('assets/jacket-patch.json')).json(),api('suite/settings')]);
   catalog=data.shows;fixture=fixtureData;suiteSettings=settingsData;
-  outputWorker=new Worker(new URL('./output-worker.js?v=1.7.0-roof',import.meta.url),{type:'module'});
+  outputWorker=new Worker(new URL('./output-worker.js?v=1.8.0-urban',import.meta.url),{type:'module'});
   outputWorker.onmessage=({data})=>{if(data.type==='test'){projectionTestActive=data.active;projectionEditor?.setActive(data.active);updateMode();}if(data.type==='error'){
     projectionTestActive=false;projectionEditor?.setActive(false);
     outputs=false;hardwareReady=false;updateMode();$('suiteOutputStatus').textContent=data.message;toast('Salida detenida: '+data.message);

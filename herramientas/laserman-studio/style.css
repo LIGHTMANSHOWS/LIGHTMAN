@@ -87,3 +87,5 @@ main{grid-template-rows:minmax(230px,1fr) 440px}
 @media(max-height:800px){main{grid-template-rows:minmax(240px,1fr) 300px}.reference-panel{padding:5px;gap:3px}.reference-actions button{font-size:9px}.reference-panel p{display:none}.reference-heading{font-size:9px}}
 
 .stage-overlay span{font-size:13px;letter-spacing:.12em}.stage-overlay{pointer-events:none}
+
+.costume-reference-dialog{width:min(1100px,94vw);max-height:92vh;padding:18px}.costume-reference-dialog img{display:block;width:100%;max-height:70vh;object-fit:contain;background:#000}.costume-reference-dialog p{line-height:1.5;color:#b2c5d5}.costume-reference-dialog::backdrop{background:#000b}

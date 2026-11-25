@@ -1,11 +1,11 @@
-import {effectTime,recordedMotionAt,placeRecordedFrame,validateRecordedMotion} from './timed-motion.js?v=1.7.0-roof';
-import {animatedCue,animationClock,motionTime,validateAnimation} from './keyframes.js?v=1.7.0-roof';
-import {TRANSITION_TYPES,TRANSITION_CURVES,transitionState,blendLaserFrames} from './transitions.js?v=1.7.0-roof';
-import {validateProject as validateLaserProject} from './laser.js?v=1.7.0-roof';
-import {validateProjection} from './projection.js?v=1.7.0-roof';
-import {validatePerformerSpace,validateEffectAnchor,anchorDrawing} from './performer-space.js?v=1.7.0-roof';
-import {sequenceProjectAt,sequenceMix,sequencePartProject,validateSequence,colorFrame} from './sequence-context.js?v=1.7.0-roof';
-import {qualityCue,validateLaserQuality} from './laser-quality.js?v=1.7.0-roof';
+import {effectTime,recordedMotionAt,placeRecordedFrame,validateRecordedMotion} from './timed-motion.js?v=1.8.0-urban';
+import {animatedCue,animationClock,motionTime,validateAnimation} from './keyframes.js?v=1.8.0-urban';
+import {TRANSITION_TYPES,TRANSITION_CURVES,transitionState,blendLaserFrames} from './transitions.js?v=1.8.0-urban';
+import {validateProject as validateLaserProject} from './laser.js?v=1.8.0-urban';
+import {validateProjection} from './projection.js?v=1.8.0-urban';
+import {validatePerformerSpace,validateEffectAnchor,anchorDrawing} from './performer-space.js?v=1.8.0-urban';
+import {sequenceProjectAt,sequenceMix,sequencePartProject,validateSequence,colorFrame} from './sequence-context.js?v=1.8.0-urban';
+import {qualityCue,validateLaserQuality} from './laser-quality.js?v=1.8.0-urban';
 export const BPM=128;
 export const BEAT=60/BPM;
 export const DURATION=180;
@@ -54,6 +54,7 @@ export function demoProject(){
 
 export function validateProject(p){
   validateLaserQuality(p?.laserQuality);
+  if(p?.performerCostume!==undefined&&!['classic','urban'].includes(p.performerCostume))throw Error('Vestuario no válido.');
   if(p?.laserScale!==undefined&&!finite(p.laserScale,.05,2))throw Error('Amplitud general del láser no válida.');
   if(p?.projection!==undefined)validateProjection(p.projection);
   if(!p||p.format!=='lightman-laserman'||p.version!==1||!Array.isArray(p.tracks)||p.tracks.length!==6)throw Error('Proyecto LASERMAN no válido.');

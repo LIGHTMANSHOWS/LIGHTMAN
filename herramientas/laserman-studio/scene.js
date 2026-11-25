@@ -1,13 +1,14 @@
 import * as THREE from './vendor/three.module.js';
 import {OrbitControls} from './vendor/addons/controls/OrbitControls.js';
-import {activeCue,trackEnabled} from './engine.js?v=1.7.0-roof';
-import {sequenceProjectAt,allowedColor} from './sequence-context.js?v=1.7.0-roof';
-import {sampleFrame} from './laser.js?v=1.7.0-roof';
-import {createLaserStroke,updateLaserStroke,createLaserHaze,updateLaserHaze} from './laser-visual.js?v=1.7.0-roof';
-import {rigPerformer,posePerformer} from './performer.js?v=1.7.0-roof';
+import {activeCue,trackEnabled} from './engine.js?v=1.8.0-urban';
+import {sequenceProjectAt,allowedColor} from './sequence-context.js?v=1.8.0-urban';
+import {sampleFrame} from './laser.js?v=1.8.0-urban';
+import {createLaserStroke,updateLaserStroke,createLaserHaze,updateLaserHaze} from './laser-visual.js?v=1.8.0-urban';
+import {rigPerformer,posePerformer} from './performer.js?v=1.8.0-urban';
 
-import {jacketPixels} from './jacket.js?v=1.7.0-roof';
-import {performerLayout} from './performer-layout.js?v=1.7.0-roof';
+import {jacketPixels} from './jacket.js?v=1.8.0-urban';
+import {performerLayout} from './performer-layout.js?v=1.8.0-urban';
+import {createUrbanLayer} from './urban-performer.js?v=1.8.0-urban';
 
 export function createScene(canvas,fixture){
   const scene=new THREE.Scene();scene.background=new THREE.Color('#080b12');scene.fog=new THREE.Fog('#080b12',13,32);
@@ -35,6 +36,7 @@ export function createScene(canvas,fixture){
   function rod(parent,a,b,r,mat=metal){const v=new THREE.Vector3(...a),end=new THREE.Vector3(...b),axis=end.clone().sub(v);const m=new THREE.Mesh(new THREE.CylinderGeometry(r,r,axis.length(),10),mat);m.position.copy(v.add(end).multiplyScalar(.5));m.quaternion.setFromUnitVectors(new THREE.Vector3(0,1,0),axis.normalize());parent.add(m);return m;}
   for(const z of [-.4,-.2])rod(rig,[-4.3,4,z],[4.3,4,z],.035);
   for(const x of [-4.3,4.3]){rod(rig,[x,0,-.3],[x,4,-.3],.035);cube(rig,.5,.07,.5,x,0,-.3,metal);}
+  const urban=createUrbanLayer(scene);let urbanStarted=false;
   const actors=[],lasers=[],points=jacketPixels(fixture),matrix=new THREE.Matrix4(),color=new THREE.Color();
   const mark=(mesh,joint)=>{mesh.userData.joint=joint;return mesh;};
   const glowCanvas=document.createElement('canvas');glowCanvas.width=glowCanvas.height=64;
@@ -100,12 +102,16 @@ export function createScene(canvas,fixture){
     if(cinematic!==(['arius','reference'].includes(project.performerStyle))){cinematic=['arius','reference'].includes(project.performerStyle);view('perspective');}
     cloth.color.set(['arius','reference'].includes(project.performerStyle)?'#5974b8':'#10131b');
     const suitTracks=project.tracks.filter(t=>t.type==='suit'),laserTracks=project.tracks.filter(t=>t.type==='laser');
-    const formation=performerLayout(project,time,composition);rig.visible=true;
+    const formation=performerLayout(project,time,composition),isUrban=project.performerCostume==='urban';rig.visible=true;
+    canvas.dataset.costume=isUrban?'urban':'classic';canvas.dataset.urbanReady=String(urban.ready);
+    if(isUrban&&!urbanStarted){urbanStarted=true;urban.load().then(()=>{lastRevision=-1;needsRender=true;canvas.dataset.urbanReady='true';}).catch(e=>{console.error(e);canvas.dataset.urbanError='No se pudo cargar el traje Urban.';});}
+    urban.groups.forEach(g=>g.visible=isUrban&&urban.ready);
+    canvas.setAttribute('aria-label',isUrban?'Escenario 3D con tres artistas Urban y proyectores de techo a cuatro metros':'Escenario 3D LASERMAN con tres artistas');
     floor.scale.x=Math.max(project.stage.width,8.2)/10;roundFloor.scale.x=1.8;
     performerGuides.visible=!!project.effectSpace;
     if(project.effectSpace){const actor=suitTracks.find(t=>t.id===project.effectSpace.actorTrackId),distance=project.effectSpace.l1Distance;performerGuides.position.set(actor.position[0],.008,actor.position[2]);frontGuide.position.z=distance;frontGuide.scale.x=distance;frontLabel.position.set(0,.08,distance+.13);}
     actors.forEach((a,i)=>{
-      const t=suitTracks[i];a.group.visible=true;a.group.position.set(...formation.positions[i]);a.group.rotation.y=project.reference?.motion?0:Math.sin(poseTime*.4)*.08;
+      const t=suitTracks[i];a.group.visible=!isUrban;a.group.position.set(...formation.positions[i]);a.group.rotation.y=project.reference?.motion?0:Math.sin(poseTime*.4)*.08;
       a.hat.visible=['arius','reference','reel'].includes(project.performerStyle);posePerformer(a,project,time,0);
       const buf=ledBuffers[formation.sourceSuitIndex];for(let j=0;j<points.length;j++){color.setRGB(buf[j*3]/255,buf[j*3+1]/255,buf[j*3+2]/255,THREE.SRGBColorSpace);a.leds.setColorAt(j,color);}a.leds.instanceColor.needsUpdate=true;
       a.hands.forEach((beam,j)=>{
@@ -114,6 +120,7 @@ export function createScene(canvas,fixture){
         if(c){const color=allowedColor(c.color,project.colorPolicy);beam.material.uniforms.tint.value.set(color);beam.userData.lens.material.color.set(color);}
       });
     });
+    if(isUrban&&urban.ready)urban.update(actors,fixture,ledBuffers[formation.sourceSuitIndex]);
     lasers.forEach((l,i)=>{
       const mount=formation.projectors[i];l.head.visible=true;l.head.position.set(...mount);l.head.quaternion.identity();
       const origin=[mount[0],mount[1]-.06,mount[2]];
@@ -152,5 +159,5 @@ export function createScene(canvas,fixture){
     if(simulationChanged||resized||moved||needsRender){renderer.render(scene,camera);stats.renders++;needsRender=false;}
   }
   function view(name){const views=cinematic?{front:[0,3,11],perspective:[6.8,4.2,10],jackets:[0,1.8,6.6],top:[0,13,.01],side:[11,4,0]}:{front:[0,2.3,7.3],perspective:[4.8,3.5,7.3],jackets:[0,1.4,5.4],top:[0,11,.01],side:[9,3,0]};camera.position.set(...views[name]);controls.target.set(0,name==='jackets'?1:cinematic?2.4:1.9,0);controls.update();needsRender=true;}
-  return {points,update,view,renderer,actors,lasers,scene,stats};
+  return {points,update,view,renderer,actors,lasers,scene,stats,urban};
 }

@@ -1,4 +1,4 @@
-import {DEFAULT_PROJECTION,validateProjection,projectPoint,testDrawing} from './projection.js?v=1.7.0-roof';
+import {DEFAULT_PROJECTION,validateProjection,projectPoint,testDrawing} from './projection.js?v=1.8.0-urban';
 
 export function mountProjectionEditor({getSettings,getName,saveSettings,pause,cancelTest,startTest,isConnected}){
   const dialog=document.createElement('dialog');dialog.id='projectionDialog';

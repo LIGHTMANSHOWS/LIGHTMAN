@@ -1,4 +1,4 @@
-import {sampleFrame} from './laser.js?v=1.7.0-roof';
+import {sampleFrame} from './laser.js?v=1.8.0-urban';
 
 export const FB3_MAX_KPPS = 15;
 

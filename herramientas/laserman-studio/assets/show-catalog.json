@@ -13,6 +13,16 @@
       "demo": false
     },
     {
+      "id": "show-cliente-urban-verde-blanco",
+      "label": "Urban verde / blanco",
+      "name": "LIGHTMAN · Show cliente · Urban verde y blanco",
+      "duration": 150.75466666666668,
+      "project": "assets/suite-show-cliente-urban-verde-blanco-show.json",
+      "video": "assets/client-blue-white-reference-v2.mp4",
+      "fps": 30,
+      "demo": false
+    },
+    {
       "id": "petrunko",
       "label": "Petrunko",
       "name": "PETRUNKO Â· prueba de persistencia",

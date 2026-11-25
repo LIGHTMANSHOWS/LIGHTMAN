@@ -44,10 +44,16 @@
     "suite-random-switch-show.json",
     "suite-reel-dcc-show.json",
     "suite-show-cliente-azul-blanco-show.json",
+    "suite-show-cliente-urban-verde-blanco-show.json",
     "suite-spider-man-show.json",
     "suite-thriller-show.json",
     "thriller-analysis-c685924c74c189e00623.json",
     "thriller-reference-0b8445cdaf0ecd98663a.mp4",
-    "thriller-user-99a42a23ddc90a2c32a5.wav"
+    "thriller-user-99a42a23ddc90a2c32a5.wav",
+    "urban-catalog.png",
+    "urban-face-color.jpg",
+    "urban-face-normal.jpg",
+    "urban-head.glb",
+    "urban-performer.glb"
   ]
 }

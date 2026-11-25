@@ -70,5 +70,12 @@
       "reconstruction": "Geometria y profundidad reconstruidas; partes ocultas estimadas."
     }
   ],
-  "rights": "Los videos y audios pertenecen a sus titulares; publicar esta reconstruccion no concede una licencia nueva."
+  "rights": "Los videos y audios pertenecen a sus titulares; publicar esta reconstruccion no concede una licencia nueva.",
+  "urbanVariant": {
+    "show": "show-cliente-urban-verde-blanco",
+    "photo": "assets/urban-catalog.png",
+    "costumeSource": "https://lightmanperu.com/propuestas/batucada-building-connections/3d.html",
+    "photoSource": "Catálogo Full IA de LIGHTMAN",
+    "credits": "docs/urban-procedencia.md"
+  }
 }

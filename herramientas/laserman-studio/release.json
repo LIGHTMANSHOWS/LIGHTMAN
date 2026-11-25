@@ -1,7 +1,7 @@
 {
-  "version": "1.7.0-web",
-  "desktopBase": "1.7.0",
-  "builtAtUtc": "2026-11-25T05:39:08.975373+00:00",
+  "version": "1.8.0-web",
+  "desktopBase": "1.8.0",
+  "builtAtUtc": "2026-11-25T18:57:17.517668+00:00",
   "publishedPath": "/herramientas/laserman-studio/",
   "physicalOutput": "local-operator-only",
   "privateLibraryPublished": true,
@@ -16,10 +16,14 @@
     "mobile-stacked-review",
     "three-synchronized-ceiling-lasers",
     "crossfade-sequence",
-    "clean-reel-music"
+    "clean-reel-music",
+    "urban-costume-from-batucada-3d",
+    "green-white-client-variant",
+    "catalogue-costume-reference"
   ],
   "publicShows": [
     "show-cliente-azul-blanco",
+    "show-cliente-urban-verde-blanco",
     "petrunko",
     "illuminati",
     "laser-lovers",
@@ -45,12 +49,23 @@
     ],
     "crossfadeSeconds": 0.4
   },
-  "assetRevision": "1.7.0-roof",
+  "assetRevision": "1.8.0-urban",
   "mobileRevision": "1.5.1-mobile",
   "performerLayout": {
     "count": 3,
     "mount": "ceiling",
     "heightMetres": 4,
     "synchronized": true
+  },
+  "urbanVariant": {
+    "id": "show-cliente-urban-verde-blanco",
+    "palette": [
+      "green",
+      "white"
+    ],
+    "costume": "Urban",
+    "duration": 150.75466666666668,
+    "modelSource": "Batucada 3D",
+    "photoSource": "Catálogo Full IA"
   }
 }

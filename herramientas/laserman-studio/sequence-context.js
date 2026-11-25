@@ -1,9 +1,9 @@
-import {validateProjection} from './projection.js?v=1.7.0-roof';
-import {validatePerformerSpace} from './performer-space.js?v=1.7.0-roof';
+import {validateProjection} from './projection.js?v=1.8.0-urban';
+import {validatePerformerSpace} from './performer-space.js?v=1.8.0-urban';
 const finite=(v,a,b)=>Number.isFinite(v)&&v>=a&&v<=b;
 
 export function validateSequence(project){
-  if(project.colorPolicy!==undefined&&project.colorPolicy?.mode!=='blue-white')throw Error('Política de color no válida.');
+  if(project.colorPolicy!==undefined&&!['blue-white','green-white'].includes(project.colorPolicy?.mode))throw Error('Política de color no válida.');
   if(project.sequenceParts===undefined)return;
   if(!Array.isArray(project.sequenceParts)||!project.sequenceParts.length||project.sequenceParts.length>64)throw Error('Secuencia de shows no válida.');
   let end=0,previousStart=0,priorEnd=0;const ids=new Set();
@@ -50,19 +50,19 @@ export function sequenceProjectAt(project,time){
 }
 
 export function allowedRgb(r,g,b,policy){
-  if(policy?.mode!=='blue-white'||(r===g&&b>=r))return [r,g,b];
+  if(!['blue-white','green-white'].includes(policy?.mode)||(policy.mode==='blue-white'?(r===g&&b>=r):(r===b&&g>=r)))return [r,g,b];
   const level=Math.max(r,g,b),white=level-Math.min(r,g,b)<=48||(r>g*1.15&&r>=b*1.1);
-  return white?[level,level,level]:[0,0,level];
+  return white?[level,level,level]:policy.mode==='green-white'?[0,level,0]:[0,0,level];
 }
 export function allowedColor(color,policy){
   return '#'+allowedRgb(...[1,3,5].map(i=>parseInt(color.slice(i,i+2),16)),policy).map(n=>n.toString(16).padStart(2,'0')).join('');
 }
 export function colorFrame(frame,policy){
-  if(policy?.mode!=='blue-white')return frame;
+  if(!['blue-white','green-white'].includes(policy?.mode))return frame;
   const result={paths:frame.paths.map(p=>({...p,color:allowedColor(p.color,policy)}))};
   if(frame.placement)Object.defineProperty(result,'placement',{value:frame.placement,configurable:true});return result;
 }
 export function colorPixels(pixels,policy){
-  if(policy?.mode==='blue-white')for(let i=0;i<pixels.length;i+=3){const rgb=allowedRgb(pixels[i],pixels[i+1],pixels[i+2],policy);pixels[i]=rgb[0];pixels[i+1]=rgb[1];pixels[i+2]=rgb[2];}
+  if(['blue-white','green-white'].includes(policy?.mode))for(let i=0;i<pixels.length;i+=3){const rgb=allowedRgb(pixels[i],pixels[i+1],pixels[i+2],policy);pixels[i]=rgb[0];pixels[i+1]=rgb[1];pixels[i+2]=rgb[2];}
   return pixels;
 }
